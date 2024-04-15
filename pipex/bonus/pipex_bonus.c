@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 22:40:42 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/04/13 15:38:33 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:58:50 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	check_args(t_pipe *pipex, char **argv)
 	return (5);
 }
 
-int	main(int argc, char **argv, char **envp)
+int	pipex_bonus(int argc, char **argv, char **envp)
 {
 	t_pipe	pipex;
 	pid_t	pid;

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 22:12:07 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/04/13 15:37:12 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:57:39 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	second_child(t_pipe pipex, char **argv, char **envp)
 	execute_cmd(pipex, argv, envp, 3);
 }
 
-int	main(int argc, char **argv, char **envp)
+int	pipex(int argc, char **argv, char **envp)
 {
 	t_pipe	pipex;
 	pid_t	pid1;
