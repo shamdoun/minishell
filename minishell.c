@@ -75,6 +75,7 @@ int main(int argc, char **argv, char **envp)
                 else
                     printf("command not found: %s\n", args_list[0]);
             }
+            add_history(command);
         }
         else
             printf("\n");
