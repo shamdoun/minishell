@@ -1,1 +1,0 @@
-void check_args(char **argv);
