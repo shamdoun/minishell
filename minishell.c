@@ -16,6 +16,8 @@ int main(int argc, char **argv, char **env)
     char cwd[150];
     t_command *command = malloc(sizeof(t_command));
     ft_lstadd_back(&status_list, ft_lstnew(0));
+    status_list->all_a_data = NULL;
+    ft_lstadd_allocated_data_back(&status_list->all_a_data, ft_lstnew_a_data(command));
     atexit(f);
     while (1)
     {
@@ -26,6 +28,15 @@ int main(int argc, char **argv, char **env)
             execute_input(command, &env, &status_list);
         else
         {
+            free(command->input);
+            t_a_data *tmp;
+            while(status_list->all_a_data)
+            {
+                tmp = status_list->all_a_data;
+                free(status_list->all_a_data->data);
+                status_list->all_a_data = status_list->all_a_data->next;
+                free(tmp);
+            }
             ft_lstadd_back(&status_list, ft_lstnew(0));
             return (ft_lstlast(status_list)->status);
         }

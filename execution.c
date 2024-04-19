@@ -22,15 +22,6 @@ static void run_built_ins(t_command *command, t_status **s_list, char ***env)
     free_array(args_list);
 }
 
-void echo_message(char **args)
-{
-    //!!TODO:parse args
-    if (args[1])
-        printf("%s", args[1]);
-    else
-        printf("%s\n", args[0]);
-}
-
 void execute_input(t_command *command, char ***env, t_status **s_list)
 {
     command->type = 1;

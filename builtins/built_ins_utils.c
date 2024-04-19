@@ -1,8 +1,4 @@
-#include "execution.h"
-
-extern char** environ;
-
-
+#include "../execution.h"
 
 
 char *find_command_path(char *s)
@@ -44,7 +40,7 @@ char *find_command_path(char *s)
 	return (NULL);
 }
 
-void copy_list_updating(char *env_name, char *data, char **new_environ, char ***old_env)
+void copy_list_updating(char *env_name, t_status **s_list, char *data, char **new_environ, char ***old_env)
 {
     char **old_list;
     char **p;
@@ -59,31 +55,12 @@ void copy_list_updating(char *env_name, char *data, char **new_environ, char ***
             else
             {
                 data = ft_strdup(data);
+                ft_lstadd_allocated_data_back(&(*s_list)->all_a_data, ft_lstnew_a_data(data));
                 ft_memcpy(new_environ, &data, sizeof(char *));
             }
             new_environ++;
             free_array(p);
             i++;
-    }
-    *new_environ = NULL;
-}
-
-void copy_list_excluding(char **new_environ, char **old_env, char *str)
-{
-    char **p;
-    int i = 0;
-    while (i < list_len(old_env))
-    {
-        p = ft_split(environ[i], '=');
-        if (ft_strncmp(str, p[0], ft_strlen(str) + 1))
-        {
-            ft_memcpy(new_environ, &old_env[i], sizeof(char *));
-            new_environ++;
-        }
-        else
-            printf("excluding %s\n", p[0]);
-        free_array(p);
-        i++;
     }
     *new_environ = NULL;
 }
