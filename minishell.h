@@ -1,7 +1,11 @@
 #include <limits.h>
-#include "stdlib.h"
-#include "stdio.h"
+#include <stdlib.h>
+#include <stdio.h>
 #include <readline/readline.h>
+#include <readline/history.h>
+#include <errno.h>
+#include <libc.h>
+
 typedef struct file
 {
     char	*file_name;
