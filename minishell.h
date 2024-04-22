@@ -42,6 +42,7 @@ typedef struct shell
     struct input			*all_input;
     struct status			*all_status;
     struct allocated_data	*all_allocated_data;
+    char                    **env;
 } t_shell;
 
 
