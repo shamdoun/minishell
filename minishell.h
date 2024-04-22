@@ -39,3 +39,13 @@ typedef struct shell
     struct status			*all_status;
     struct allocated_data	*all_allocated_data;
 } t_shell;
+
+
+void		ft_lst_add_input_back(t_input **lst, t_input *new);
+void		ft_lst_add_ad_back(t_a_data **lst, t_a_data *new);
+void		ft_lst_add_file_back(t_file **lst, t_file *new);
+void		ft_lst_add_status_back(t_status **lst, t_status *new);
+t_input		*ft_lstnew_input();
+t_a_data	*ft_lstnew_ad(void *address);
+t_status	*ft_lstnew_status(int status);
+t_file	*ft_lstnew_file(char *file_name, int type, char *delimeter);
