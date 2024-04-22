@@ -1,5 +1,5 @@
 #include <limits.h>
-
+#include <readline/readline.h>
 typedef struct file
 {
     char	*file_name;
