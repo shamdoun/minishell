@@ -1,10 +1,13 @@
 #include <limits.h>
+#include "stdlib.h"
+#include "stdio.h"
 #include <readline/readline.h>
 typedef struct file
 {
     char	*file_name;
     int		type;
     char	*delimeter;
+	struct file *next;
 } t_file;
 
 typedef struct input
