@@ -6,6 +6,5 @@ int main()
     minishell->all_allocated_data = NULL;
     minishell->all_input = NULL;
     minishell->all_status = NULL;
-    //read all inputs from user
     free(minishell);
 }
