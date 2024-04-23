@@ -6,12 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 20:31:38 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/01/14 00:23:54 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:24:17 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "minishell.h"
 
 int	o_return(int sign)
 {

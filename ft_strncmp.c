@@ -6,11 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 21:19:56 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/04/23 15:00:52 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:25:01 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
+#include "minishell.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
