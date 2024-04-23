@@ -7,7 +7,7 @@ char *ft_getenv(char *name, char **env)
 
     while (*env)
     {
-        split = ft_split(*env, '=');
+        split = ft_split_1(*env, '=');
         if (!ft_strncmp(split[0], name, ft_strlen(name) + 1))
         {
             found = ft_strdup(split[1]);

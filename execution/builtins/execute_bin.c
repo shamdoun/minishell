@@ -17,11 +17,11 @@ void execute_binary(t_shell *shell)
 
     if (shell->all_input->args)
     {
-        args_list = ft_split(shell->all_input->args, ' ');
+        args_list = ft_split_1(shell->all_input->args, ' ');
         update_split_list(&args_list, shell->all_input->command_name);
     }
     else
-        args_list = ft_split(shell->all_input->command_name, ' ');
+        args_list = ft_split_1(shell->all_input->command_name, ' ');
     cmd_path = find_command_path(args_list[0]);
     if (cmd_path)
     {

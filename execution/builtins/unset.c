@@ -6,7 +6,7 @@ void copy_list_excluding(char **new_environ, char **old_env, char *str)
     int i = 0;
     while (i < list_len(old_env))
     {
-        p = ft_split(old_env[i], '=');
+        p = ft_split_1(old_env[i], '=');
         if (ft_strncmp(str, p[0], ft_strlen(str)))
         {
             ft_memcpy(new_environ, &old_env[i], sizeof(char *));
