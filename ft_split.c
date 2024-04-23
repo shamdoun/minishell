@@ -14,12 +14,13 @@ static char	*ft_skipchar(char *str)
 				str++;
 			str++;
 		}
-		str++;
+		else
+			str++;
 	}
 	return (str);
 }
 
-static int	ft_count_words(char *str)
+static int	ft_words(char *str)
 {
 	int		count;
 	char	q;
@@ -56,7 +57,8 @@ static int	ft_strlenght(char *str)
 	{
 		if (*str == '"' || *str == '\'')
 		{
-			q = *str;
+			q = *(str++);
+			len++;
 			while (*str && *str != q)
 				(1) && (str++, len++);
 		}
@@ -84,7 +86,7 @@ static char	*ft_fillstr(char *str)
 			val[i++] = *str;
 			while (*(++str) != q)
 				val[i++] = *str;
-			val[i++] = *(str++);
+			val[i] = *(str);
 		}
 		else
 			val[i] = *str;
@@ -100,13 +102,13 @@ char	**ft_split(char *str)
 	char	q;
 	int		j;
 
-	(1) && (j = ft_count_words(str), ptr = malloc(sizeof(char *) * (j + 1)));
+	(1) && (j = ft_words(str), ptr = malloc(sizeof(char *) * (j + 1)), j = 0);
 	if (!ptr)
 		return (NULL);
-	(1) && (ptr[j] = NULL, j = 0);
 	while (*str)
 	{
-		ptr[j++] = ft_fillstr(str);
+		if (*str != ' ' && *str != '\t')
+			ptr[j++] = ft_fillstr(str);
 		while (*str && *str != ' ' && *str != '\t')
 		{
 			if (*str == '\'' || *str == '"')
@@ -117,8 +119,8 @@ char	**ft_split(char *str)
 			}
 			str++;
 		}
-		if (*str)
+		while (*str && (*str == ' ' || *str == '\t'))
 			str++;
 	}
-	return (ptr);
+	return (ptr[j] = NULL, ptr);
 }

@@ -6,7 +6,6 @@
 #include <errno.h>
 #include <libc.h>
 #include <stdbool.h>
-#include "libft/libft.h"
 
 typedef struct file
 {
