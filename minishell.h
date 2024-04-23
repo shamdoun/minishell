@@ -53,4 +53,5 @@ void		ft_lst_add_status_back(t_status **lst, t_status *new);
 t_input		*ft_lstnew_input();
 t_a_data	*ft_lstnew_ad(void *address);
 t_status	*ft_lstnew_status(int status);
-t_file	*ft_lstnew_file(char *file_name, int type, char *delimeter);
+t_file	    *ft_lstnew_file(char *file_name, int type, char *delimeter);
+size_t      *ft_strlen(const char *);
