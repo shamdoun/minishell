@@ -14,7 +14,7 @@ char *find_command_path(char *s)
 		return (command);
 	}
 
-    env_list = ft_split(getenv("PATH"), ':');
+    env_list = ft_split_1(getenv("PATH"), ':');
 	i = 0;
     while (env_list[i])
 	{
@@ -49,7 +49,7 @@ void copy_list_updating(char *env_name, char *data, t_shell *shell, char **new_e
     old_list = shell->env;
     while (i < list_len(old_list))
     {
-            p = ft_split(old_list[i], '=');
+            p = ft_split_1(old_list[i], '=');
             if (ft_strncmp(env_name, p[0], ft_strlen(env_name)))
                 ft_memcpy(new_environ, &old_list[i], sizeof(char *));
             else

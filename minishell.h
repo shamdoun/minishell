@@ -61,3 +61,14 @@ void        execute_input(t_shell *shell);
 void        free_array(char **a);
 char	    *ft_strdup1(char *s);
 void        print_all_env_vars(char **env);
+int	        ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t	    ft_strlen(const char *s);
+size_t	    ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	    ft_strlcat(char *dst, const char *src, size_t dstsize);
+char	    *ft_strjoin(char const *s1, char const *s2);
+char	    *ft_strdup(const char *s1);
+char	    **ft_split_1(char const *s, char c);
+void	    *ft_memmove(void *dst, const void *src, size_t len );
+void	    *ft_memcpy(void *dst, const void *src, size_t n);
+int         ft_atoi(const char *str);
+

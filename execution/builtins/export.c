@@ -5,7 +5,7 @@ int env_exists(char *name, char **env)
     char **split;
     while (*env)
     {
-        split = ft_split(*env, '=');
+        split = ft_split_1(*env, '=');
         if (!ft_strncmp(split[0], name, ft_strlen(name)))
         {
             free_array(split);
@@ -53,7 +53,7 @@ void add_env(char *data, t_shell *shell, char ***env)
 
 void add_update_env(char *data, t_shell *shell, char ***env)
 {
-    char **split_env = ft_split(data, '=');
+    char **split_env = ft_split_1(data, '=');
     if (env_exists(split_env[0], *env))
         update_env(split_env[0], shell, data, env);
     else

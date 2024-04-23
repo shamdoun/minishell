@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_v2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 21:35:15 by shamdoun          #+#    #+#             */
-/*   Updated: 2023/11/05 21:42:44 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:33:57 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
 static char	**ft_free(char **array, int limit)
 {
@@ -93,7 +93,7 @@ static char	**ft_add_data(char **array, const char *s, char c, int *range)
 	return (array);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_1(char const *s, char c)
 {
 	int		count;
 	char	**array;

@@ -6,7 +6,7 @@ void echo_message(char *args)
 
     new_line = true;
     //!!TODO:parse args
-    char **split = ft_split(args, ' ');
+    char **split = ft_split_1(args, ' ');
     while (*split && !ft_strncmp(*split, "-n", ft_strlen(*split)))
     {
         split++;
