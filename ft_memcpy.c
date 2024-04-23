@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 21:53:56 by shamdoun          #+#    #+#             */
-/*   Updated: 2023/11/05 21:56:38 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:24:27 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
@@ -30,12 +30,3 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	}
 	return (dst);
 }
-// #include <stdio.h>
-
-// int main()
-// {
-// 	int nb[] = {26856,5456,566};
-// 	int nb1[] = {0};
-// 	ft_memcpy(nb1,&nb,3*sizeof(int));
-// 	printf("%d",nb1[2]);
-// }
