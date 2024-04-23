@@ -50,7 +50,7 @@ void copy_list_updating(char *env_name, char *data, t_shell *shell, char **new_e
     while (i < list_len(old_list))
     {
             p = ft_split(old_list[i], '=');
-            if (ft_strncmp(env_name, p[0], ft_strlen(env_name) + 1))
+            if (ft_strncmp(env_name, p[0], ft_strlen(env_name)))
                 ft_memcpy(new_environ, &old_list[i], sizeof(char *));
             else
             {

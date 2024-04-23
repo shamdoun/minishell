@@ -6,7 +6,7 @@ int env_exists(char *name, char **env)
     while (*env)
     {
         split = ft_split(*env, '=');
-        if (!ft_strncmp(split[0], name, ft_strlen(name) + 1))
+        if (!ft_strncmp(split[0], name, ft_strlen(name)))
         {
             free_array(split);
             return (1);

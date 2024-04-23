@@ -8,7 +8,7 @@ char *ft_getenv(char *name, char **env)
     while (*env)
     {
         split = ft_split(*env, '=');
-        if (!ft_strncmp(split[0], name, ft_strlen(name) + 1))
+        if (!ft_strncmp(split[0], name, ft_strlen(split[0])))
         {
             found = ft_strdup(split[1]);
             free_array(split);
@@ -25,7 +25,7 @@ void change_directory(char *path, t_shell *shell, char ***env)
     int return_value;
 
     return_value = 0;
-    if (path && ft_strncmp(path, "~", 2))
+    if (path && ft_strncmp(path, "~", ft_strlen(path)))
         return_value = chdir(path);
     else
     {
