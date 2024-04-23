@@ -13,3 +13,4 @@ char *find_command_path(char *s);
 void copy_list_updating(char *env_name, char *data, t_shell *shell, char **new_environ);
 int list_len(char **list);
 int ft_last_status(t_status *list);
+void redirect_streams(t_shell *shell);
