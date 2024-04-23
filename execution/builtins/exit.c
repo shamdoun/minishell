@@ -1,5 +1,13 @@
 #include "../execution.h"
 
+int ft_last_status(t_status *list)
+{
+    while (list->next)
+        list = list->next;
+    return (list->status);
+}
+
+
 void exit_shell(t_shell *shell, char *status)
 {
     int value;

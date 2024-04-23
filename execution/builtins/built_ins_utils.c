@@ -68,7 +68,6 @@ void copy_list_updating(char *env_name, char *data, t_shell *shell, char **new_e
 int list_len(char **list)
 {
     int i;
-
     i = 0;
     while (list[i])
         i++;

@@ -23,8 +23,8 @@ void update_env(char *env_name, t_shell *shell, char *data, char ***env)
     new_environ = malloc(sizeof(char *) * (list_len(*env) + 1));
     if (new_environ)
     {
-        copy_list_updating(env_name, shell, data, new_environ);
-        ft_lstadd_allocated_data_back(&shell->all_allocated_data, ft_lstnew_ad(new_environ));
+        copy_list_updating(env_name, data, shell, new_environ);
+        ft_lst_add_ad_back(&shell->all_allocated_data, ft_lstnew_ad(new_environ));
         *env = new_environ;
     }
     else
@@ -44,8 +44,8 @@ void add_env(char *data, t_shell *shell, char ***env)
         new_environ[list_len(*env)] = new_data;
         new_environ[list_len(*env) + 1] = NULL;
         *env = new_environ;
-        ft_lstadd_allocated_data_back(&shell->all_allocated_data, ft_lstnew_ad(new_data));
-        ft_lstadd_allocated_data_back(&shell->all_allocated_data, ft_lstnew_ad(new_environ));
+        ft_lst_add_ad_back(&shell->all_allocated_data, ft_lstnew_ad(new_data));
+        ft_lst_add_ad_back(&shell->all_allocated_data, ft_lstnew_ad(new_environ));
     }
     else
         ft_lst_add_status_back(&shell->all_status, ft_lstnew_status(errno));

@@ -29,5 +29,5 @@ void remove_env(char *data, t_shell *shell, char ***env)
         *env = new_environ;             
     }
     else
-        ft_lst_add_status_back(&shell->all_status, ft_lstnew(errno)); 
+        ft_lst_add_status_back(&shell->all_status, ft_lstnew_status(errno)); 
 }

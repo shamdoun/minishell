@@ -1,10 +1,25 @@
 #include "../execution.h"
 
-void echo_message(char **args)
+void echo_message(char *args)
 {
+    bool new_line;
+
+    new_line = true;
     //!!TODO:parse args
-    if (args[1])
-        printf("%s", args[1]);
-    else
-        printf("%s\n", args[0]);
+    char **split = ft_split(args, ' ');
+    while (*split && !ft_strncmp(*split, "-n", ft_strlen(*split)))
+    {
+        split++;
+        new_line = false;
+    }
+
+    while (*split)
+    {
+        printf("%s", *split);
+        if (*(split+1))
+            printf(" ");
+        split++;
+    }
+    if (new_line)
+        printf("\n");
 }

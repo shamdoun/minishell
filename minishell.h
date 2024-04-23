@@ -5,6 +5,8 @@
 #include <readline/history.h>
 #include <errno.h>
 #include <libc.h>
+#include <stdbool.h>
+#include "libft/libft.h"
 
 typedef struct file
 {
@@ -54,4 +56,9 @@ t_input		*ft_lstnew_input();
 t_a_data	*ft_lstnew_ad(void *address);
 t_status	*ft_lstnew_status(int status);
 t_file	    *ft_lstnew_file(char *file_name, int type, char *delimeter);
-size_t      *ft_strlen(const char *);
+size_t      ft_strlen(const char *);
+int         ft_strncmp(const char *s1, const char *s2, size_t n);
+void        execute_input(t_shell *shell);
+void        free_array(char **a);
+char	    *ft_strdup1(char *s);
+void        print_all_env_vars(char **env);

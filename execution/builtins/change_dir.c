@@ -8,7 +8,7 @@ char *ft_getenv(char *name, char **env)
     while (*env)
     {
         split = ft_split(*env, '=');
-        if (!ft_strncmp(split[0], name, ft_strlen(split[0])))
+        if (!ft_strncmp(split[0], name, ft_strlen(name) + 1))
         {
             found = ft_strdup(split[1]);
             free_array(split);
@@ -36,7 +36,7 @@ void change_directory(char *path, t_shell *shell, char ***env)
     }
     if (return_value)
     {
-        ft_lst_add_ad_back(&shell->all_status, ft_lstnew_status(errno));
+        ft_lst_add_status_back(&shell->all_status, ft_lstnew_status(errno));
         perror("cd");
     }
 }
