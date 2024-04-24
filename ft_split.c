@@ -98,23 +98,23 @@ static char	*ft_fillstr(char *str)
 
 char	**ft_split(char *str)
 {
-	char	**ptr;
-	char	q;
-	int		j;
+	t_v	v;
 
-	(1) && (j = ft_words(str), ptr = malloc(sizeof(char *) * (j + 1)), j = 0);
-	if (!ptr)
+	(1) && (v.j = ft_words(str), v.ptr = malloc(sizeof(char *) * (v.j + 1)), v.j = 0);
+	if (!v.ptr)
 		return (NULL);
 	while (*str)
 	{
 		if (*str != ' ' && *str != '\t')
-			ptr[j++] = ft_fillstr(str);
+			v.ptr[v.j++] = ft_fillstr(str);
+		if (v.ptr[v.j - 1] == NULL)
+			return (ft_free(v.ptr, v.j), NULL);
 		while (*str && *str != ' ' && *str != '\t')
 		{
 			if (*str == '\'' || *str == '"')
 			{
-				q = *(str++);
-				while (*str && *str != q)
+				v.q = *(str++);
+				while (*str && *str != v.q)
 					str++;
 			}
 			str++;
@@ -122,5 +122,5 @@ char	**ft_split(char *str)
 		while (*str && (*str == ' ' || *str == '\t'))
 			str++;
 	}
-	return (ptr[j] = NULL, ptr);
+	return (v.ptr[v.j] = NULL, v.ptr);
 }
