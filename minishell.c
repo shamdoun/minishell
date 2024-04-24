@@ -13,7 +13,7 @@ int main(int argc, char **argv, char **env)
     new_input->command_name = "cat";
     new_input->args = NULL;
     ft_lst_add_input_back(&minishell->all_input, new_input);
-    t_file *file1 = ft_lstnew_file("Makefile", 3, NULL);
+    t_file *file1 = ft_lstnew_file(NULL, 4, "da");
     ft_lst_add_file_back(&minishell->all_input->all_files, file1);
     execute_input(minishell);
     free(minishell);
