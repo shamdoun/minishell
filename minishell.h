@@ -41,6 +41,13 @@ typedef struct shell
     char                    **env;
 } t_shell;
 
+// to handle norminette errors on split
+typedef struct  s_v
+{
+    char    **p;
+    char    q;
+    int     j;
+}   t_v;
 
 void		ft_lst_add_input_back(t_input **lst, t_input *new);
 void		ft_lst_add_ad_back(t_a_data **lst, t_a_data *new);
@@ -50,3 +57,5 @@ t_input		*ft_lstnew_input();
 t_a_data	*ft_lstnew_ad(void *address);
 t_status	*ft_lstnew_status(int status);
 t_file	*ft_lstnew_file(char *file_name, int type, char *delimeter);
+/*---------------free for split---------------*/
+void    ft_free(char **ptr, int last);
