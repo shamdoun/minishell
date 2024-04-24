@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 22:52:39 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/04/13 16:40:26 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:36:36 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	here_doc(t_pipe *pipex, char *limiter)
 	fd = open(".new_input", O_RDWR | O_CREAT | O_TRUNC, 0777);
 	if (!fd)
 		error_exit("failed to create here_open file", 1);
-	unlink(".new_input");
+	// unlink(".new_input");
 	while (1)
 	{
 		write(1, "pipe heredoc> ", 15);
