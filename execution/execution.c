@@ -31,7 +31,7 @@ char	*ft_strdup1(char *s)
 	return (r);
 }
 
-static void run_built_ins(t_shell *shell)
+void run_built_ins(t_shell *shell)
 {
     if (shell->all_input->all_files)
         redirect_streams(shell);
@@ -57,4 +57,6 @@ void execute_input(t_shell *shell)
 {
     if (!shell->all_input->next)
         run_built_ins(shell);
+	else
+		pipex(shell);
 }

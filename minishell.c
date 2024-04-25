@@ -9,12 +9,14 @@ int main(int argc, char **argv, char **env)
     minishell->all_input = NULL;
     // minishell->all_status = NULL;
     minishell->env = env;
-    t_input *new_input = ft_lstnew_input();
-    new_input->command_name = "cat";
-    new_input->args = NULL;
-    ft_lst_add_input_back(&minishell->all_input, new_input);
-    t_file *file1 = ft_lstnew_file(NULL, 4, "da");
-    ft_lst_add_file_back(&minishell->all_input->all_files, file1);
+    t_input *input1 = ft_lstnew_input();
+    input1->command_name = "cd";
+    input1->args = "..";
+    ft_lst_add_input_back(&minishell->all_input, input1);
+    t_input *input2 = ft_lstnew_input();
+    input2->command_name = "echo";
+    input2->args = "hello world";
+    ft_lst_add_input_back(&minishell->all_input, input2);
     execute_input(minishell);
     free(minishell);
 }
