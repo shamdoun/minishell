@@ -9,9 +9,9 @@
 
 typedef struct file
 {
-    char	*file_name;
-    int		type;
-    char	*delimeter;
+	char	*file_name;
+	int		type;
+	char	*delimeter;
 	struct file *next;
 } t_file;
 
@@ -28,31 +28,60 @@ typedef struct input
 
 
 typedef struct status {
-    int				status;
-    struct status	*next;
+	int				status;
+	struct status	*next;
 } t_status;
 
 typedef struct allocated_data
 {
-    void					*address;
-    struct allocated_data	*next;
+	void					*address;
+	struct allocated_data	*next;
 }t_a_data;
 
 typedef struct shell
 {
-    struct input			*all_input;
-    struct status			*all_status;
-    struct allocated_data	*all_allocated_data;
-    char                    **env;
+	struct input			*all_input;
+	struct status			*all_status;
+	struct allocated_data	*all_allocated_data;
+	char                    **env;
 } t_shell;
 
 // to handle norminette errors on split
 typedef struct  s_v
 {
-    char    **p;
-    char    q;
-    int     j;
+	char    **p;
+	char    q;
+	int     j;
 }   t_v;
+
+typedef struct  s_parse_list
+{
+	char					ch; // character
+	char					type; // type of character (special or normal character)
+	struct s_parse_list		*next;
+}	t_parse_list;
+
+/*
+	the idea is to parse the commands if it has pipes
+	example: echo "hello" > file.txt | echo "how are you" >> file.txt
+	for the example, the linked list will had two nodes:
+	first node: echo "hello" > file.txt
+	second node: echo "how are you" >> file.txt
+*/
+typedef struct	s_commands
+{
+	char				*command;
+	struct s_commands	*next;
+}	t_commands;
+
+typedef struct	s_space
+{
+	char	*ptr;
+	char	o;
+	int		slen;
+	int		i;
+	int		j;
+}	t_space;
 
 void		ft_lst_add_input_back(t_input **lst, t_input *new);
 void		ft_lst_add_ad_back(t_a_data **lst, t_a_data *new);
@@ -79,5 +108,18 @@ void	    *ft_memmove(void *dst, const void *src, size_t len );
 void	    *ft_memcpy(void *dst, const void *src, size_t n);
 int         ft_atoi(const char *str);
 t_file	*ft_lstnew_file(char *file_name, int type, char *delimeter);
-/*---------------free for split---------------*/
-void    ft_free(char **ptr, int last);
+/*---------------ft_free.c---------------*/
+void   		ft_free(char **ptr, int last); //for split
+void		free_fail(t_parse_list **list); // for freeing linked list in ft_parsing file
+void		free_list(t_commands *list); // for freeing linked list that each node has command ( | )
+/*---------------parsing/ft_parsing.c---------------*/
+int			ft_parsing(char *str);
+/*---------------parsing/divide_cmd.c---------------*/
+t_commands	*create_cmd(char *input);
+/*---------------parsing/parsing_utils.c---------------*/
+int			ft_strchr(const char *s, int c);
+/*---------------parsing/ft_syntax.c---------------*/
+int			ft_checkquotes(t_parse_list *list);
+int			check_operator(char *s);
+/*---------------parsing/ft_addspace.c---------------*/
+void		add_space(t_commands *cmd);
