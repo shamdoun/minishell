@@ -36,6 +36,13 @@ int	check_operator(char *s)
 	while (*s)
 	{
 		k = 0;
+		if (*s == '\'' || *s == '"')
+		{
+			o = *s;
+			s++;
+			while (*s != o)
+				s++;
+		}
 		if (*s == '<' || *s == '>')
 		{
 			o = *s;

@@ -6,6 +6,13 @@ int	main()
 	char		*input;
     int     	check;
 	t_commands	*cmds;
+	t_shell *minishell;
+	//init
+
+	minishell->all_input = NULL;
+	minishell->all_status = NULL;
+	
+	minishell->all_allocated_data = NULL;
 
 	if (isatty(STDIN_FILENO))
 	{
@@ -28,6 +35,9 @@ int	main()
 				// 	cmds = cmds->next;
 				// }
 				add_space(cmds);
+				shell,cmds
+				input *v1;
+				ft_lst_add_input_back(shell->all_input, v1);
 				while (cmds)
 				{
 					printf("%s\n", cmds->command);

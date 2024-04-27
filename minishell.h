@@ -7,6 +7,13 @@
 #include <libc.h>
 #include <stdbool.h>
 
+/*
+	<<: 4
+	>>: 2
+	<: 3
+	>: 1
+*/
+
 typedef struct file
 {
 	char	*file_name;
@@ -25,7 +32,6 @@ typedef struct input
 	char			cwd[PATH_MAX];
 	struct input	*next;
 } t_input;
-
 
 typedef struct status {
 	int				status;
@@ -71,6 +77,7 @@ typedef struct  s_parse_list
 typedef struct	s_commands
 {
 	char				*command;
+	
 	struct s_commands	*next;
 }	t_commands;
 
@@ -82,6 +89,7 @@ typedef struct	s_space
 	int		i;
 	int		j;
 }	t_space;
+
 
 void		ft_lst_add_input_back(t_input **lst, t_input *new);
 void		ft_lst_add_ad_back(t_a_data **lst, t_a_data *new);
