@@ -33,8 +33,7 @@ char	*ft_strdup1(char *s)
 
 void run_built_ins(t_shell *shell)
 {
-    if (shell->all_input->all_files)
-        redirect_streams(shell);
+	redirect_streams(shell);
     if (!ft_strncmp(shell->all_input->command_name, "cd", ft_strlen(shell->all_input->command_name)))
         change_directory(shell->all_input->args, shell, &shell->env);
     else if (!ft_strncmp(shell->all_input->command_name, "export", ft_strlen(shell->all_input->command_name)))
@@ -55,6 +54,7 @@ void run_built_ins(t_shell *shell)
 
 void execute_input(t_shell *shell)
 {
+	open_input_files(shell);
     if (!shell->all_input->next)
         run_built_ins(shell);
 	else

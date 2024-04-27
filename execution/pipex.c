@@ -31,7 +31,6 @@ void pipex(t_shell *shell)
 {
     int *ends;
     int pipe_count;
-
     pipe_count = count_nbr_of_pipes(shell->all_input);
     create_pipes(&ends, pipe_count);
     pid_t child1;
@@ -53,7 +52,6 @@ void pipex(t_shell *shell)
                 j++;
             }
             run_built_ins(shell);
-            exit(0);
         }
         shell->all_input = shell->all_input->next;
         i++;

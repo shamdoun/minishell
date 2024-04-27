@@ -16,3 +16,4 @@ int ft_last_status(t_status *list);
 void redirect_streams(t_shell *shell);
 void pipex(t_shell *shell);
 void run_built_ins(t_shell *shell);
+void open_input_files(t_shell *shell);
