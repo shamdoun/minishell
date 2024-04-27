@@ -17,7 +17,7 @@ int	main()
                 break;
 			add_history(input);
             check = ft_parsing(input);
-			if (check == 1)
+			if (check)
 			{
 				cmds = create_cmd(input);
 				if (cmds == NULL)
@@ -28,6 +28,11 @@ int	main()
 				// 	cmds = cmds->next;
 				// }
 				add_space(cmds);
+				while (cmds)
+				{
+					printf("%s\n", cmds->command);
+					cmds = cmds->next;
+				}
 			}
 			else
 				printf("syntax error\n");

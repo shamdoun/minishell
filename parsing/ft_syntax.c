@@ -33,9 +33,9 @@ int	check_operator(char *s)
 	int		k;
 	char	o;
 
-	k = 0;
 	while (*s)
 	{
+		k = 0;
 		if (*s == '<' || *s == '>')
 		{
 			o = *s;

@@ -66,13 +66,14 @@ char	*ft_strwithspace(char *s)
 	v.ptr = malloc(v.slen + 1);
 	v.slen = 0;
 	putstring(s, &v);
-	return (v.ptr);
+	return (free(s), v.ptr);
 }
 
-// void	add_space(t_commands *cmd)
-// {
-// 	while (cmd)
-// 	{
-
-// 	}
-// }
+void	add_space(t_commands *cmd)
+{
+	while (cmd)
+	{
+		cmd->command = ft_strwithspace(cmd->command);
+		cmd = cmd->next;
+	}
+}

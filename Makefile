@@ -21,10 +21,11 @@
 
 #!!!!!!!!!!!!!!!!!!MAKEFILE FOR TESTING PARSING!!!!!!!!!!!!!!!!!!!!#
 
-SRC= ft_free.c parsing/ft_parsing.c parsing/divide_cmd.c parsing/ft_syntax.c ft_strchr.c parsing/main.c
+SRC= ft_free.c parsing/ft_parsing.c parsing/divide_cmd.c parsing/ft_syntax.c ft_strchr.c parsing/ft_addspace.c \
+	parsing/main.c
 
 CC= cc
-Flags= -Wall -Werror -Wextra
+Flags= -Wall -Werror -Wextra -g
 
 O_SRC=$(SRC:.c=.o)
 
