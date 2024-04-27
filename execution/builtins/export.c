@@ -51,9 +51,24 @@ void add_env(char *data, t_shell *shell, char ***env)
         ft_lst_add_status_back(&shell->all_status, ft_lstnew_status(errno));
 }
 
+void declare_envs(char **env)
+{
+    while (*env)
+    {
+        printf("declare -x %s\n", *env);
+        env++;
+    }
+}
+
 void add_update_env(char *data, t_shell *shell, char ***env)
 {
-    char **split_env = ft_split_1(data, '=');
+    char **split_env;
+    if (!data)
+    {
+        declare_envs(*env);
+        return ;
+    }
+    split_env = ft_split_1(data, '=');
     if (env_exists(split_env[0], *env))
         update_env(split_env[0], shell, data, env);
     else

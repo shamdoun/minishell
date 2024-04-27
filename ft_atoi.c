@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 20:31:38 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/04/23 16:24:17 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:11:16 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ int	ft_atoi(const char *str)
 	{
 		if (result > 922337203685477580
 			|| ((result == 922337203685477580) && (*s > '7')))
-			return (o_return(sign));
+			{
+				perror("numeric argument required");
+				exit(255);
+			}
 		result = (result * 10) + (*s - '0');
 		s++;
 	}

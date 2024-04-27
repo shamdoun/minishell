@@ -6,13 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 21:35:15 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/04/23 16:33:57 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/04/27 20:58:15 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	**ft_free(char **array, int limit)
+static char	**ft_free1(char **array, int limit)
 {
 	while (limit)
 	{
@@ -85,7 +85,7 @@ static char	**ft_add_data(char **array, const char *s, char c, int *range)
 			}
 			array[j] = ft_strdnup(s, i - *range, *range);
 			if (!array[j])
-				return (ft_free(array, j));
+				return (ft_free1(array, j));
 			j++;
 			*range = 0;
 		}
