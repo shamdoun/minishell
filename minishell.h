@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <limits.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -14,6 +15,12 @@
 	>: 1
 */
 
+typedef struct	s_arg
+{
+	char			*arg;
+	struct	s_arg	*next;
+}	t_arg;
+
 typedef struct file
 {
 	char	*file_name;
@@ -25,7 +32,7 @@ typedef struct file
 typedef struct input
 {
 	char			*command_name;
-	char			*args;
+	t_arg			*args;
 	struct file		*all_files;
 	int				in_file;
 	int				out_file;
@@ -60,6 +67,14 @@ typedef struct  s_v
 	int     j;
 }   t_v;
 
+// handlig norminette on divide_cmd.c file
+typedef struct	s_var
+{
+	int		j;
+	char	q;
+	char	*cmd;
+}	t_var;
+
 typedef struct  s_parse_list
 {
 	char					ch; // character
@@ -83,9 +98,9 @@ typedef struct	s_commands
 
 typedef struct	s_space
 {
-	char	*ptr;
+	char	*p;
 	char	o;
-	int		slen;
+	int		l;
 	int		i;
 	int		j;
 }	t_space;
@@ -120,6 +135,10 @@ t_file	*ft_lstnew_file(char *file_name, int type, char *delimeter);
 void   		ft_free(char **ptr, int last); //for split
 void		free_fail(t_parse_list **list); // for freeing linked list in ft_parsing file
 void		free_list(t_commands *list); // for freeing linked list that each node has command ( | )
+void		ft_free_split(char **ptr); // free split when it succeeds
+void		ft_free_inputlist(t_parse_list **input_list); // free first step on parsing
+/*---------------ft_free.c---------------*/
+void		free_tokenize(t_input *token);
 /*---------------parsing/ft_parsing.c---------------*/
 int			ft_parsing(char *str);
 /*---------------parsing/divide_cmd.c---------------*/
@@ -131,3 +150,11 @@ int			ft_checkquotes(t_parse_list *list);
 int			check_operator(char *s);
 /*---------------parsing/ft_addspace.c---------------*/
 void		add_space(t_commands *cmd);
+/*---------------ft_split.c---------------*/
+char		**ft_split(char *s);
+/*---------------parsing/ft_split_cmd.c---------------*/
+t_input		*split_cmd(t_commands *cmd);
+/*---------------parsing/ft_split_cmd_utils.c---------------*/
+void		put_delimiter(t_input *nw, char *str);
+void		put_filename(t_input *nw, char *str);
+void		put_cmdname(t_input *nw, char *str);

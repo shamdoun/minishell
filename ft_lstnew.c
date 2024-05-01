@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:34:17 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/04/23 12:18:00 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:59:03 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ t_input	*ft_lstnew_input()
 {
 	t_input	*n_node;
 
-	n_node = (t_input *)malloc(sizeof(t_input));
+	n_node = malloc(sizeof(t_input));
 	if (!n_node)
 		return (NULL);
+	n_node->command_name = NULL;
+	n_node->args = NULL;
 	n_node->in_file = 0;
 	n_node->out_file = 1;
 	n_node->next = NULL;

@@ -35,38 +35,38 @@ char	*putstring(char *s, t_space *v)
 	{
 		if (s[v->i] == '\'' || s[v->i] == '"')
 		{
-			(1) && (v->o = s[v->i], v->ptr[v->j++] = s[v->i++]);
+			(1) && (v->o = s[v->i], v->p[v->j++] = s[v->i++]);
 			while (s[v->i] != v->o)
-				v->ptr[v->j++] = s[v->i++];
+				v->p[v->j++] = s[v->i++];
 		}
 		if (v->i > 0 && ((s[v->i] == '>' && s[v->i - 1] != '>')
 				|| (s[v->i] == '<' && s[v->i - 1] != '<')))
 		{
 			if (v->i > 0 && (s[v->i - 1] != ' ' && s[v->i - 1] != '\t'))
-				(1) && (v->ptr[v->j] = ' ', v->ptr[++v->j] = s[v->i], v->slen = 1);
+				(1) && (v->p[v->j] = ' ', v->p[++v->j] = s[v->i], v->l = 1);
 		}
 		if (s[v->i + 1] && ((s[v->i] == '>' && s[v->i + 1] != '>')
 				|| (s[v->i] == '<' && s[v->i + 1] != '<')))
 		{
 			if (s[v->i + 1] != ' ' && s[v->i + 1] != '\t')
-				(1) && (v->ptr[v->j] = s[v->i], v->ptr[++v->j] = ' ', v->slen = 1);
+				(1) && (v->p[v->j] = s[v->i], v->p[++v->j] = ' ', v->l = 1);
 		}
-		if (v->slen == 0)
-			v->ptr[v->j] = s[v->i];
-		(1) && (v->slen = 0, v->j++, v->i++);
+		if (v->l == 0)
+			v->p[v->j] = s[v->i];
+		(1) && (v->l = 0, v->j++, v->i++);
 	}
-	return (v->ptr[v->j] = '\0', v->ptr);
+	return (v->p[v->j] = '\0', v->p);
 }
 
 char	*ft_strwithspace(char *s)
 {
 	t_space	v;
 
-	(1) && (v.i = 0, v.j = 0, v.slen = ft_cmdlenght(s));
-	v.ptr = malloc(v.slen + 1);
-	v.slen = 0;
+	(1) && (v.i = 0, v.j = 0, v.l = ft_cmdlenght(s));
+	v.p = malloc(v.l + 1);
+	v.l = 0;
 	putstring(s, &v);
-	return (free(s), v.ptr);
+	return (free(s), v.p);
 }
 
 void	add_space(t_commands *cmd)

@@ -86,7 +86,7 @@ static char	*ft_fillstr(char *str)
 			val[i++] = *str;
 			while (*(++str) != q)
 				val[i++] = *str;
-			val[i++] = *(str++);
+			val[i] = *str;
 		}
 		else
 			val[i] = *str;
@@ -106,7 +106,7 @@ char	**ft_split(char *s)
 	while (*s)
 	{
 		if (*s != ' ' && *s != '\t')
-			v.p[v.j++] = ft_fillstr(s);
+			(1) && (v.p[v.j] = ft_fillstr(s), v.j++);
 		if (v.j != 0 && v.p[v.j - 1] == NULL)
 			return (ft_free(v.p, v.j), NULL);
 		while (*s && *s != ' ' && *s != '\t')

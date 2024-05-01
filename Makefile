@@ -21,8 +21,9 @@
 
 #!!!!!!!!!!!!!!!!!!MAKEFILE FOR TESTING PARSING!!!!!!!!!!!!!!!!!!!!#
 
-SRC= ft_free.c parsing/ft_parsing.c parsing/divide_cmd.c parsing/ft_syntax.c ft_strchr.c parsing/ft_addspace.c \
-	parsing/main.c
+SRC= ft_free.c ft_split.c parsing/ft_parsing.c parsing/divide_cmd.c parsing/ft_syntax.c ft_strchr.c \
+	ft_lst_add_back.c ft_lstnew.c parsing/ft_split_cmd.c parsing/ft_addspace.c \
+	ft_free2.c parsing/ft_split_cmd_utils.c parsing/main.c
 
 CC= cc
 Flags= -Wall -Werror -Wextra -g
@@ -37,7 +38,7 @@ NAME= minishell
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(FLAGS) -lreadline $(O_SRC) -o $(NAME)
+	$(CC) $(FLAGS) -lreadline -fsanitize=address $(O_SRC) -o $(NAME)
 
 clean:
 	rm -f $(O_SRC)

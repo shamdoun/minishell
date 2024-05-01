@@ -32,28 +32,44 @@ int	cmd_lenght(char *str)
 	return (i);
 }
 
+char	*ft_mediator(char *cmd, char *input, int *j)
+{
+	char	q;
+
+	q = *input;
+	cmd[*j] = *input;
+	(*j)++;
+	input++;
+	while (*input != q)
+	{
+		cmd[*j] = *input;
+		input++;
+		(*j)++;
+	}
+	return (input);
+}
+
 // split the command ( | ) 
 t_commands	*create_cmd(char *input)
 {
-	int			i;
-	int			j;
-	char		*cmd;
+	t_var		v;
 	t_commands	*cmd_list;
 
-	cmd_list = NULL;
 	while (*input)
 	{
-		j = 0;
-		i = cmd_lenght(input);
-		cmd = malloc((sizeof(char) * i) + 1);
-		if (cmd == NULL)
+		v.j = 0;
+		v.cmd = malloc((sizeof(char) * cmd_lenght(input)) + 1);
+		if (v.cmd == NULL)
 			return (NULL);
 		while (*input && *input != '|')
 		{
-			cmd[j] = *input;
-			(1) && (j++, input++);
+			if (*input == '\'' || *input == '"')
+				input = ft_mediator(v.cmd, input, &v.j);
+			v.cmd[v.j] = *input;
+			(1) && (v.j++, input++);
 		}
-		(1) && (cmd[j] = '\0', cmd_list = create_commands(cmd_list, cmd));
+		v.cmd[v.j] = '\0';
+		cmd_list = create_commands(cmd_list, v.cmd);
 		if (cmd_list == NULL)
 			return (NULL);
 		if (*input)

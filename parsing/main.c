@@ -6,13 +6,7 @@ int	main()
 	char		*input;
     int     	check;
 	t_commands	*cmds;
-	t_shell *minishell;
-	//init
-
-	minishell->all_input = NULL;
-	minishell->all_status = NULL;
-	
-	minishell->all_allocated_data = NULL;
+	t_input 	*minishell;
 
 	if (isatty(STDIN_FILENO))
 	{
@@ -20,32 +14,41 @@ int	main()
 		while (1)
 		{
 			input = readline("$> ");
-			if (input == 0)
-                break;
-			add_history(input);
-            check = ft_parsing(input);
-			if (check)
+			if (*input != '\0')
 			{
-				cmds = create_cmd(input);
-				if (cmds == NULL)
-					(perror("allocation failed..."), exit (1));
-				// while (cmds)
-				// {
-				// 	printf("%s\n", cmds->command);
-				// 	cmds = cmds->next;
-				// }
-				add_space(cmds);
-				shell,cmds
-				input *v1;
-				ft_lst_add_input_back(shell->all_input, v1);
-				while (cmds)
+				add_history(input);
+				check = ft_parsing(input);
+				if (check)
 				{
-					printf("%s\n", cmds->command);
-					cmds = cmds->next;
+					cmds = create_cmd(input);
+					if (cmds == NULL)
+						(perror("allocation failed..."), exit (1));
+					add_space(cmds);
+					minishell = split_cmd(cmds);
+					if (!minishell)
+						printf("syntax error\n");
+					while (minishell)
+					{
+						printf("command_name: %s\n", minishell->command_name);
+						printf("ARGS: \n");
+						while (minishell->args)
+						{
+							printf("\t%s\n", minishell->args->arg);
+							minishell->args = minishell->args->next;
+						}
+						while (minishell->all_files)
+						{
+							printf("file_name->name: %s\n", minishell->all_files->file_name);
+							printf("file_name->type: %d\n", minishell->all_files->type);
+							printf("file_name->delimiter: %s\n", minishell->all_files->delimeter);
+							minishell->all_files = minishell->all_files->next;
+						}
+						minishell = minishell->next;
+					}
 				}
+				else
+					printf("syntax error\n");
 			}
-			else
-				printf("syntax error\n");
 		}
 	}
 	else

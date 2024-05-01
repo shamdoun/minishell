@@ -7,6 +7,8 @@ static int	check_syntax(char *str)
 	i = 0;
 	while (str[i])
 		i++;
+	while (i > 0 && (str[i - 1] == ' ' || str[i - 1] == '\t'))
+		i--;
 	if (str[i - 1] == '\\' || str[i - 1] == '<' || str[i - 1] == '>')
 		return (1);
 	return (0);
@@ -77,5 +79,5 @@ int	ft_parsing(char *str)
 		free_fail(&input_list);
 		return (0);
 	}
-	return (1);
+	return (ft_free_inputlist(&input_list), 1);
 }
