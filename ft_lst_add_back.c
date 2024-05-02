@@ -1,31 +1,19 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_lst_add_back.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 19:11:41 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/04/22 19:11:41 by shamdoun         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 void	ft_lst_add_input_back(t_input **lst, t_input *new)
 {
-    t_input	*head;
-
 	if (!lst || !new)
 		return ;
-	head = *lst;
-	if (!head)
+	if (!(*lst))
+	{
 		*lst = new;
+		return ;
+	}
 	else
 	{
-		while (head -> next)
-			head = head -> next;
-		head -> next = new;
+		while ((*lst)->next)
+			(*lst) = (*lst)->next;
+		(*lst)->next = new;
 	}
 }
 
