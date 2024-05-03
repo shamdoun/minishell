@@ -2,17 +2,19 @@
 
 static void	put_redirection(t_input *nw, char *str, char *name)
 {
-	t_file	*new;	
+	t_file	*new;
+	char	*ptr;	
 
 	new = NULL;
+	ptr = remove_quotes(name);
 	if (!strncmp(str, "<", 2))
-		new = ft_lstnew_file(name, 3, NULL);
+		new = ft_lstnew_file(ptr, 3, NULL);
 	else if (!strncmp(str, ">", 2))
-		new = ft_lstnew_file(name, 1, NULL);
+		new = ft_lstnew_file(ptr, 1, NULL);
 	else if (!strncmp(str, ">>", 3))
-		new = ft_lstnew_file(name, 2, NULL);
+		new = ft_lstnew_file(ptr, 2, NULL);
 	else if (!strncmp(str, "<<", 3))
-		new = ft_lstnew_file(NULL, 4, name);
+		new = ft_lstnew_file(NULL, 4, ptr);
 	ft_lst_add_file_back(&(nw->all_files), new);
 }
 
@@ -20,12 +22,14 @@ static t_arg	*put_arg(t_arg *arguments, char *str)
 {
 	t_arg	*new;
 	t_arg	*head;
+	char	*ptr;
 
+	ptr = remove_quotes(str);
 	head = arguments;
 	new = malloc(sizeof(t_arg));
 	if (!new)
 		return (NULL);
-	new->arg = str;
+	new->arg = ptr;
 	new->next = NULL;
 	if (!arguments)
 	{
@@ -51,7 +55,6 @@ static int	check_last(char *str)
 	return (1);
 }
 
-// TO TEST
 static int	filltoken(t_commands *cmd, t_input *new)
 {
 	char	**str;

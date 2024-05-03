@@ -1,5 +1,61 @@
 #include "../minishell.h"
 
+int	ft_lenwithoutquotes(char *str)
+{
+	char	q;
+	int		len;
+	int		i;
+
+	i = 0;
+	len = 0;
+	while (str[i])
+	{
+		if (str[i] == '\'' || str[i] == '"')
+		{
+			q = str[i];
+			i++;
+			while (str[i] != q)
+				(1) && (i++, len++);
+			i++;
+		}
+		else
+		{
+			len++;
+			i++;
+		}
+	}
+	return (len);
+}
+
+char	*remove_quotes(char *str)
+{
+	char	*ptr;
+	char	q;
+	int		i;
+	int		j;
+
+	i = ft_lenwithoutquotes(str);
+	ptr = malloc(i + 1);
+	(1) && (i = 0, j = 0);
+	while (str[i])
+	{
+		if (str[i] == '\'' || str[i] == '"')
+		{
+			q = str[i];
+			i++;
+			while (str[i] != q)
+			{
+				ptr[j] = str[i];
+				(1) && (j++, i++);
+			}
+			i++;
+		}
+		else
+			(1) && (ptr[j] = str[i], i++, j++);
+	}
+	return (ptr[j] = '\0', ptr);
+}
+
 void	put_delimiter(t_input *nw, char *str)
 {
 	int	i;

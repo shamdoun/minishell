@@ -159,6 +159,7 @@ t_input		*split_cmd(t_commands *cmd);
 void		put_delimiter(t_input *nw, char *str);
 void		put_filename(t_input *nw, char *str);
 void		put_cmdname(t_input *nw, char *str);
+char		*remove_quotes(char *str);
 //for signals
 void        handle_signal(int sig);
 void exit_shell(t_shell *shell, t_arg *status);
