@@ -12,12 +12,14 @@ void update_split_list(char ***args_list, char *data)
 void execute_binary(t_shell *shell)
 {
     char **args_list;
+    char *joined_args;
     char *cmd_path;
     pid_t child;
 
     if (shell->all_input->args)
     {
-        args_list = ft_split_1(shell->all_input->args, ' ');
+        joined_args = ft_join_args(shell->all_input->args);
+        args_list = ft_split_1(joined_args, ' ');
         update_split_list(&args_list, shell->all_input->command_name);
     }
     else
@@ -34,7 +36,7 @@ void execute_binary(t_shell *shell)
             if (rv)
                 ft_lst_add_status_back(&shell->all_status, ft_lstnew_status(errno));
         }
-        waitpid(-1, NULL, 0);
+        wait(NULL);
         free(cmd_path);
     }
     else

@@ -19,12 +19,12 @@ void copy_list_excluding(char **new_environ, char **old_env, char *str)
 }
 
 
-void remove_env(char *data, t_shell *shell, char ***env)
+void remove_env(t_arg *data, t_shell *shell, char ***env)
 {
     char **new_environ = malloc(sizeof(char *) * (list_len(*env)));
     if (new_environ)
     {
-        copy_list_excluding(new_environ, *env, data);
+        copy_list_excluding(new_environ, *env, data->arg);
         ft_lst_add_ad_back(&shell->all_allocated_data, ft_lstnew_ad(new_environ));
         *env = new_environ;             
     }

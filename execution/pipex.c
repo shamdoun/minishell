@@ -52,6 +52,7 @@ void pipex(t_shell *shell)
                 j++;
             }
             run_built_ins(shell);
+            exit(0);
         }
         shell->all_input = shell->all_input->next;
         i++;

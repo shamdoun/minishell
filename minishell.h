@@ -37,7 +37,6 @@ typedef struct input
 	struct file		*all_files;
 	int				in_file;
 	int				out_file;
-	char			cwd[PATH_MAX];
 	struct input	*next;
 } t_input;
 
@@ -58,6 +57,7 @@ typedef struct shell
 	struct status			*all_status;
 	struct allocated_data	*all_allocated_data;
 	char                    **env;
+    char			        cwd[PATH_MAX];
 } t_shell;
 
 // to handle norminette errors on split
@@ -161,3 +161,4 @@ void		put_filename(t_input *nw, char *str);
 void		put_cmdname(t_input *nw, char *str);
 //for signals
 void        handle_signal(int sig);
+void exit_shell(t_shell *shell, t_arg *status);

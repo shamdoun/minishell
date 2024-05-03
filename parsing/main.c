@@ -1,19 +1,37 @@
 #include "../minishell.h"
 
-int	main()
+void f()
 {
-	char		buf[1024];
+	system("leaks minishell");
+}
+
+int	main(int argc, char **argv, char **env)
+{
 	char		*input;
     int     	check;
 	t_commands	*cmds;
-	t_input 	*minishell;
+	t_shell		*minishell;
 
+	// atexit(f);
+	signal(SIGINT, &handle_signal);
+	signal(SIGQUIT, &handle_signal);
+	(void)argc;
+	(void)argv;
+	minishell = malloc(sizeof(t_shell));
+	minishell->all_allocated_data = NULL;
+	minishell->all_status = NULL;
+	ft_lst_add_status_back(&minishell->all_status, ft_lstnew_status(0));
+	minishell->all_input = NULL;
+	minishell->env = env;
 	if (isatty(STDIN_FILENO))
 	{
-		getcwd(buf, sizeof(buf));
 		while (1)
 		{
+			getcwd(minishell->cwd, sizeof(minishell->cwd));
+			printf("%s", minishell->cwd);
 			input = readline("$> ");
+			if (!input)
+				exit_shell(minishell, NULL);
 			if (*input != '\0')
 			{
 				add_history(input);
@@ -24,27 +42,10 @@ int	main()
 					if (cmds == NULL)
 						(perror("allocation failed..."), exit (1));
 					add_space(cmds);
-					minishell = split_cmd(cmds);
-					if (!minishell)
+					minishell->all_input = split_cmd(cmds);
+					if (!minishell->all_input)
 						printf("syntax error\n");
-					while (minishell)
-					{
-						printf("command_name: %s\n", minishell->command_name);
-						printf("ARGS: \n");
-						while (minishell->args)
-						{
-							printf("\t%s\n", minishell->args->arg);
-							minishell->args = minishell->args->next;
-						}
-						while (minishell->all_files)
-						{
-							printf("file_name->name: %s\n", minishell->all_files->file_name);
-							printf("file_name->type: %d\n", minishell->all_files->type);
-							printf("file_name->delimiter: %s\n", minishell->all_files->delimeter);
-							minishell->all_files = minishell->all_files->next;
-						}
-						minishell = minishell->next;
-					}
+					execute_input(minishell);
 				}
 				else
 					printf("syntax error\n");

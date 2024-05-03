@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static char	**ft_free(char **array, int limit)
+static char	**ft_free1(char **array, int limit)
 {
 	while (limit)
 	{
@@ -73,7 +73,7 @@ static char	**ft_add_data(char **array, const char *s, char c, int *range)
 			}
 			array[j] = ft_strdnup(s, i - *range, *range);
 			if (!array[j])
-				return (ft_free(array, j));
+				return (ft_free1(array, j));
 			j++;
 			*range = 0;
 		}

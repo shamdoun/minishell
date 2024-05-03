@@ -51,12 +51,12 @@ void add_env(char *data, t_shell *shell, char ***env)
         ft_lst_add_status_back(&shell->all_status, ft_lstnew_status(errno));
 }
 
-void add_update_env(char *data, t_shell *shell, char ***env)
+void add_update_env(t_arg *data, t_shell *shell, char ***env)
 {
-    char **split_env = ft_split_1(data, '=');
+    char **split_env = ft_split_1(data->arg, '=');
     if (env_exists(split_env[0], *env))
-        update_env(split_env[0], shell, data, env);
+        update_env(split_env[0], shell, data->arg, env);
     else
-        add_env(data, shell, env);
+        add_env(data->arg, shell, env);
     free_array(split_env);
 }

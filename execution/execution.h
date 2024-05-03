@@ -1,13 +1,12 @@
 #include "../minishell.h"
 
 
-void remove_env(char *data, t_shell *shell, char ***env);
-void add_update_env(char *data, t_shell *shell, char ***env);
-void exit_shell(t_shell *shell, char *status);
+void remove_env(t_arg *data, t_shell *shell, char ***env);
+void add_update_env(t_arg *data, t_shell *shell, char ***env);
 void execute_binary(t_shell *shell);
 void print_all_env_vars(char **env);
-void echo_message(char *args);
-void change_directory(char *path, t_shell *shell, char ***env);
+void echo_message(t_arg *args);
+void change_directory(t_arg *path, t_shell *shell, char ***env);
 char *ft_getenv(char *name, char **env);
 char *find_command_path(char *s);
 void copy_list_updating(char *env_name, char *data, t_shell *shell, char **new_environ);
@@ -17,3 +16,4 @@ void redirect_streams(t_shell *shell);
 void pipex(t_shell *shell);
 void run_built_ins(t_shell *shell);
 void open_input_files(t_shell *shell);
+char *ft_join_args(t_arg *args);

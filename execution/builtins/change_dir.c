@@ -20,19 +20,22 @@ char *ft_getenv(char *name, char **env)
     return (NULL);
 }
 
-void change_directory(char *path, t_shell *shell, char ***env)
+void change_directory(t_arg *path, t_shell *shell, char ***env)
 {
     int return_value;
+    char *home;
 
+    (void)env;
+    (void)shell;
     return_value = 0;
-    if (path && ft_strncmp(path, "~", ft_strlen(path)))
-        return_value = chdir(path);
+    if (path && ft_strncmp(path->arg, "~", ft_strlen(path->arg)))
+        return_value = chdir(path->arg);
     else
     {
-        path = ft_getenv("HOME", *env);
-        if (path)
-            return_value = chdir(path);
-        ft_lst_add_ad_back(&shell->all_allocated_data, ft_lstnew_ad(path));
+        home = ft_getenv("HOME", *env);
+        if (home)
+            return_value = chdir(home);
+        ft_lst_add_ad_back(&shell->all_allocated_data, ft_lstnew_ad(home));
     }
     if (return_value)
     {

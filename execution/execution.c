@@ -41,13 +41,15 @@ void run_built_ins(t_shell *shell)
     else if(!ft_strncmp(shell->all_input->command_name, "unset", ft_strlen(shell->all_input->command_name)))
         remove_env(shell->all_input->args, shell, &shell->env);
     else if (!ft_strncmp(shell->all_input->command_name, "exit", ft_strlen(shell->all_input->command_name)))
-        exit_shell(shell,  shell->all_input->args);
-    else if (!ft_strncmp(shell->all_input->command_name, "echo", ft_strlen(shell->all_input->command_name)))
+	{
+        exit_shell(shell, shell->all_input->args);
+	}
+	else if (!ft_strncmp(shell->all_input->command_name, "echo", ft_strlen(shell->all_input->command_name)))
         echo_message(shell->all_input->args);
     else if (!ft_strncmp(shell->all_input->command_name, "env", ft_strlen(shell->all_input->command_name)))
         print_all_env_vars(shell->env);
     else if (!ft_strncmp(shell->all_input->command_name, "pwd", ft_strlen(shell->all_input->command_name)))
-        printf("%s\n", shell->all_input->cwd);
+        printf("%s\n", shell->cwd);
     else
         execute_binary(shell);
 }

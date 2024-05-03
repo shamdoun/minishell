@@ -8,14 +8,18 @@ int ft_last_status(t_status *list)
 }
 
 
-void exit_shell(t_shell *shell, char *status)
+void exit_shell(t_shell *shell, t_arg *status)
 {
     int value;
     //!!TODO: check if status is not bigger than INT_MAX
     // free(command->input);
-    if (status)
+    while (shell->all_allocated_data)
     {
-        value = ft_atoi(status);
+        free(shell->all_allocated_data);
+        shell->all_allocated_data = shell->all_allocated_data->next;
+    }    if (status)
+    {
+        value = ft_atoi(status->arg);
         exit(value);
     }
     else
