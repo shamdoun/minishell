@@ -14,8 +14,8 @@ void here_doc(t_shell *shell)
     while (1)
     {
         line = readline(">");
-        if (!ft_strncmp(line, shell->all_input->all_files->delimeter, ft_strlen(line)))
-            break;
+        if (!line || !ft_strncmp(line, shell->all_input->all_files->delimeter, ft_strlen(line)))
+            break ;
         write(fd, line, ft_strlen(line));
         write(fd, "\n", 1);
         free(line);

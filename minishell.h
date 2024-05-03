@@ -6,6 +6,7 @@
 #include <readline/history.h>
 #include <errno.h>
 #include <libc.h>
+#include <signal.h>
 #include <stdbool.h>
 
 /*
@@ -158,3 +159,5 @@ t_input		*split_cmd(t_commands *cmd);
 void		put_delimiter(t_input *nw, char *str);
 void		put_filename(t_input *nw, char *str);
 void		put_cmdname(t_input *nw, char *str);
+//for signals
+void        handle_signal(int sig);
