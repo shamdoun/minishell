@@ -5,6 +5,7 @@
 #include <readline/history.h>
 #include <errno.h>
 #include <libc.h>
+#include <signal.h>
 #include <stdbool.h>
 
 typedef struct file
@@ -78,6 +79,7 @@ char	    **ft_split_1(char const *s, char c);
 void	    *ft_memmove(void *dst, const void *src, size_t len );
 void	    *ft_memcpy(void *dst, const void *src, size_t n);
 int         ft_atoi(const char *str);
-t_file	*ft_lstnew_file(char *file_name, int type, char *delimeter);
+t_file	    *ft_lstnew_file(char *file_name, int type, char *delimeter);
 /*---------------free for split---------------*/
-void    ft_free(char **ptr, int last);
+void        ft_free(char **ptr, int last);
+void        handle_signal(int sig);
