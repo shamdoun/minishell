@@ -2,6 +2,9 @@
 
 void	ft_lst_add_input_back(t_input **lst, t_input *new)
 {
+	t_input	*head;
+
+	head = (*lst);
 	if (!lst || !new)
 		return ;
 	if (!(*lst))
@@ -11,9 +14,9 @@ void	ft_lst_add_input_back(t_input **lst, t_input *new)
 	}
 	else
 	{
-		while ((*lst)->next)
-			(*lst) = (*lst)->next;
-		(*lst)->next = new;
+		while (head->next)
+			head = head->next;
+		head->next = new;
 	}
 }
 

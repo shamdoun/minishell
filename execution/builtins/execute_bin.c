@@ -9,11 +9,12 @@ void update_split_list(char ***args_list, char *data)
     *args_list = new_list;
 }
 
-void execute_binary(t_shell *shell)
+void execute_binary(t_shell *shell, int mode)
 {
     char **args_list;
     char *joined_args;
     char *cmd_path;
+    int  rv;
     pid_t child;
 
     if (shell->all_input->args)
@@ -27,16 +28,27 @@ void execute_binary(t_shell *shell)
     cmd_path = find_command_path(args_list[0]);
     if (cmd_path)
     {
-        child = fork();
-        if (child == 0)
+        if (mode)
         {
-            int rv;
+            child = fork();
+            if (child == 0)
+            {
+                rv = execve(cmd_path, args_list, shell->env);
+                fprintf(stderr, "error of %d\n", errno);
+                if (rv)
+                    ft_lst_add_status_back(&shell->all_status, ft_lstnew_status(errno));
+            }
+            int status;
+            waitpid(-1, &status, 0);
+            ft_lst_add_status_back(&shell->all_status, ft_lstnew_status(status));
+        }
+        else
+        {
             rv = execve(cmd_path, args_list, shell->env);
             fprintf(stderr, "error of %d\n", errno);
             if (rv)
                 ft_lst_add_status_back(&shell->all_status, ft_lstnew_status(errno));
         }
-        wait(NULL);
         free(cmd_path);
     }
     else

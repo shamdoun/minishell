@@ -27,15 +27,16 @@ int count_nbr_of_pipes(t_input *list)
     return (i - 1);
 }
 
-void pipex(t_shell *shell)
+void pipex(t_shell *shell, int mode)
 {
+    pid_t child1;
     int *ends;
     int pipe_count;
+    int *processes;
     pipe_count = count_nbr_of_pipes(shell->all_input);
     create_pipes(&ends, pipe_count);
-    pid_t child1;
     int i = 0;
-
+    processes = malloc(sizeof(int) * (pipe_count + 1));
     while (i < pipe_count + 1)
     {
         child1 = fork();
@@ -51,9 +52,10 @@ void pipex(t_shell *shell)
                 close(ends[j]);
                 j++;
             }
-            run_built_ins(shell);
-            exit(0);
+            run_built_ins(shell, mode);
         }
+        processes[i] = child1;
+        close(shell->all_input->in_file);
         shell->all_input = shell->all_input->next;
         i++;
     }
@@ -63,5 +65,11 @@ void pipex(t_shell *shell)
         close(ends[j]);
         j++;
     }
-    waitpid(-1, NULL, 0);
+    j = 0;
+    while (j < pipe_count + 1)
+    {
+        waitpid(processes[j], NULL, 0);
+        j++;
+    }
+    
 }

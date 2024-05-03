@@ -161,4 +161,5 @@ void		put_filename(t_input *nw, char *str);
 void		put_cmdname(t_input *nw, char *str);
 //for signals
 void        handle_signal(int sig);
-void exit_shell(t_shell *shell, t_arg *status);
+void 		exit_shell(t_shell *shell, t_arg *status);
+void 		remove_env(t_arg *data, t_shell *shell, char ***env);

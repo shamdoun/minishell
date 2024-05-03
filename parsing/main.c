@@ -12,24 +12,31 @@ int	main(int argc, char **argv, char **env)
 	t_commands	*cmds;
 	t_shell		*minishell;
 
-	// atexit(f);
+	// signals
 	signal(SIGINT, &handle_signal);
 	signal(SIGQUIT, &handle_signal);
 	(void)argc;
 	(void)argv;
+
+	//initializing minishell structure
 	minishell = malloc(sizeof(t_shell));
 	minishell->all_allocated_data = NULL;
 	minishell->all_status = NULL;
+	//init first status -> 0
 	ft_lst_add_status_back(&minishell->all_status, ft_lstnew_status(0));
 	minishell->all_input = NULL;
 	minishell->env = env;
+	//removing oldpwd from env list
+	t_arg *oldpwd = malloc(sizeof(t_arg));
+	oldpwd->arg = ft_strdup("OLDPWD");
+	remove_env(oldpwd, minishell, &minishell->env);
+	//updating shelllvl
 	if (isatty(STDIN_FILENO))
 	{
 		while (1)
 		{
 			getcwd(minishell->cwd, sizeof(minishell->cwd));
-			printf("%s", minishell->cwd);
-			input = readline("$> ");
+			input = readline("minishell$> ");
 			if (!input)
 				exit_shell(minishell, NULL);
 			if (*input != '\0')

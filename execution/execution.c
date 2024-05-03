@@ -31,7 +31,7 @@ char	*ft_strdup1(char *s)
 	return (r);
 }
 
-void run_built_ins(t_shell *shell)
+void run_built_ins(t_shell *shell, int mode)
 {
 	redirect_streams(shell);
     if (!ft_strncmp(shell->all_input->command_name, "cd", 3))
@@ -49,7 +49,13 @@ void run_built_ins(t_shell *shell)
     else if (!ft_strncmp(shell->all_input->command_name, "pwd", 4))
         printf("%s\n", shell->cwd);
     else
-        execute_binary(shell);
+        execute_binary(shell, mode);
+	if (shell->all_input->in_file)
+		close(shell->all_input->in_file);
+	if (shell->all_input->out_file)
+		close(shell->all_input->out_file);
+	if (!mode)
+		exit(0);
 }
 
 void execute_input(t_shell *shell)
@@ -60,9 +66,13 @@ void execute_input(t_shell *shell)
 	o_out = dup(STDOUT_FILENO);
 	open_input_files(shell);
     if (!shell->all_input->next)
-        run_built_ins(shell);
+	{
+        run_built_ins(shell, 1);
+	}
 	else
-		pipex(shell);
+		pipex(shell, 0);
 	dup2(o_in, STDIN_FILENO);
 	dup2(o_out, STDOUT_FILENO);
+	close(o_in);
+	close(o_out);
 }
