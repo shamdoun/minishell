@@ -60,9 +60,9 @@ void redirect_streams(t_shell *shell)
         if (shell->all_input->all_files->type < 3 && shell->all_input->out_file > 1)
             close(shell->all_input->out_file);
         if (shell->all_input->all_files->type == 1)
-            shell->all_input->out_file = open(shell->all_input->all_files->file_name, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+            shell->all_input->out_file = open(shell->all_input->all_files->file_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
         else if (shell->all_input->all_files->type == 2)
-            shell->all_input->out_file = open(shell->all_input->all_files->file_name, O_WRONLY | O_CREAT | O_APPEND, 0666);
+            shell->all_input->out_file = open(shell->all_input->all_files->file_name, O_WRONLY | O_CREAT | O_APPEND, 0644);
         shell->all_input->all_files = shell->all_input->all_files->next;
     }
     if (shell->all_input->in_file)
