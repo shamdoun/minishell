@@ -26,7 +26,6 @@ void echo_message(t_arg *args)
     char **split;
 
     new_line = true;
-    //!!TODO:parse args
     if (!args->arg)
     {
         printf("\n");

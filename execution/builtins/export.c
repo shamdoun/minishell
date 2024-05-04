@@ -53,6 +53,11 @@ void add_env(char *data, t_shell *shell, char ***env)
 
 void add_update_env(t_arg *data, t_shell *shell, char ***env)
 {
+    if (!data)
+    {
+        declare_all_envs(*env);
+        return ;
+    }
     if (!ft_strrchr(data->arg, '='))
         return ;
     char **split_env = ft_split_1(data->arg, '=');

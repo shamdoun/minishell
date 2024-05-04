@@ -2,11 +2,14 @@
 
 int ft_last_status(t_status *list)
 {
-    if (!list)
+    t_status *head;
+
+    head = list;
+    if (!head)
         return (0);
-    while (list->next)
-        list = list->next;
-    return (list->status);
+    while (head->next)
+        head = head->next;
+    return (head->status);
 }
 
 
