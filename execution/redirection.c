@@ -38,10 +38,10 @@ void open_input_files(t_shell *shell)
         {
             if (shell->all_input->all_files->type >= 3 && shell->all_input->in_file)
                 close(shell->all_input->in_file);
-            if (shell->all_input->all_files->type == 3)
-                shell->all_input->in_file = open(shell->all_input->all_files->file_name, O_RDONLY, 0777);
             else if (shell->all_input->all_files->type == 4)
                 here_doc(shell);
+            if (shell->all_input->all_files->type == 3)
+                shell->all_input->in_file = open(shell->all_input->all_files->file_name, O_RDONLY, 0777);
             if (shell->all_input->in_file < 0)
                 perror("failed to open file!");
             shell->all_input->all_files = shell->all_input->all_files->next;

@@ -36,7 +36,10 @@ int	ft_atoi(const char *str)
 	{
 		if (result > 922337203685477580
 			|| ((result == 922337203685477580) && (*s > '7')))
-			return (o_return(sign));
+			{
+				perror("bash: exit: numeric argument required");
+				return (255);
+			}
 		result = (result * 10) + (*s - '0');
 		s++;
 	}

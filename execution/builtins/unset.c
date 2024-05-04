@@ -21,6 +21,11 @@ void copy_list_excluding(char **new_environ, char **old_env, char *str)
 
 void remove_env(t_arg *data, t_shell *shell, char ***env)
 {
+    if (ft_strrchr(data->arg, '='))
+    {
+        perror("bash: unset: not a valid identifier");
+        return ;
+    }
     char **new_environ = malloc(sizeof(char *) * (list_len(*env)));
     if (new_environ)
     {

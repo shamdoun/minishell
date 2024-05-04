@@ -164,3 +164,5 @@ char		*remove_quotes(char *str);
 void        handle_signal(int sig);
 void 		exit_shell(t_shell *shell, t_arg *status);
 void 		remove_env(t_arg *data, t_shell *shell, char ***env);
+void 		ft_str_tolower(char *str);
+char		*ft_strrchr(const char *s, int c);
