@@ -27,6 +27,19 @@ int count_nbr_of_pipes(t_input *list)
     return (i - 1);
 }
 
+void close_unused_here_docs(t_input *input)
+{
+    t_input *head;
+
+    head = input->next;
+    while (head)
+    {
+        if (head->here_doc)
+            close(head->here_doc);
+        head = head->next;
+    }
+}
+
 void pipex(t_shell *shell, int mode)
 {
     pid_t child1;
@@ -52,10 +65,13 @@ void pipex(t_shell *shell, int mode)
                 close(ends[j]);
                 j++;
             }
+            close_unused_here_docs(shell->all_input);
             run_built_ins(shell, mode);
         }
         processes[i] = child1;
         close(shell->all_input->in_file);
+        if (shell->all_input->here_doc)
+            close(shell->all_input->here_doc);
         shell->all_input = shell->all_input->next;
         i++;
     }
@@ -71,5 +87,4 @@ void pipex(t_shell *shell, int mode)
         waitpid(processes[j], NULL, 0);
         j++;
     }
-    
 }

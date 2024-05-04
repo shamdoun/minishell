@@ -37,6 +37,7 @@ typedef struct input
 	struct file		*all_files;
 	int				in_file;
 	int				out_file;
+	int				here_doc;
 	struct input	*next;
 } t_input;
 

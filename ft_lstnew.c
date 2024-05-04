@@ -11,6 +11,7 @@ t_input	*ft_lstnew_input()
 	n_node->args = NULL;
 	n_node->in_file = 0;
 	n_node->out_file = 1;
+	n_node->here_doc = 0;
 	n_node->next = NULL;
 	n_node->all_files = NULL;
 	return (n_node);
