@@ -6,7 +6,6 @@ void execute_binary(t_shell *shell, int mode);
 void print_all_env_vars(char **env);
 void echo_message(t_arg *args);
 void change_directory(t_arg *path, t_shell *shell, char ***env);
-char *ft_getenv(char *name, char **env);
 char *find_command_path(char *s);
 void copy_list_updating(char *env_name, char *data, t_shell *shell, char **new_environ);
 int list_len(char **list);

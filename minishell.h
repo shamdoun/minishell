@@ -167,3 +167,7 @@ void 		exit_shell(t_shell *shell, t_arg *status);
 void 		remove_env(t_arg *data, t_shell *shell, char ***env);
 void 		ft_str_tolower(char *str);
 char		*ft_strrchr(const char *s, int c);
+void 		update_shlvl(t_shell *shell);
+void 		update_env_path_var(t_shell *shell);
+char		*ft_itoa(int n);
+char 		*ft_getenv(char *name, char **env);

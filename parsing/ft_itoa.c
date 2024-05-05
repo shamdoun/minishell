@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 22:01:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2023/11/11 13:18:29 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/05 13:23:28 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
 static size_t	count_int(int n)
 {

@@ -73,11 +73,9 @@ void execute_input(t_shell *shell)
 	int o_out;
 	o_in = dup(STDIN_FILENO);
 	o_out = dup(STDOUT_FILENO);
-	open_input_files(shell);
+	open_input_files(shell);	
     if (!shell->all_input->next)
-	{
         run_built_ins(shell, 1);
-	}
 	else
 		pipex(shell, 0);
 	dup2(o_in, STDIN_FILENO);

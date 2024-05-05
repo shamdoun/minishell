@@ -1,9 +1,8 @@
 #include "../minishell.h"
 
-void here_doc(t_input *input)
+void here_doc(t_input *input, t_file *file)
 {
     char *line;
-    printf("opening here_doc\n");
     int fd = open("here_doc.txt", O_CREAT | O_TRUNC | O_WRONLY, 0777);
     if (fd < 0)
         perror("failed to open here_doc file for writing");
@@ -14,7 +13,7 @@ void here_doc(t_input *input)
     while (1)
     {
         line = readline(">");
-        if (!line || !ft_strncmp(line, input->all_files->delimeter, ft_strlen(line)))
+        if (!line || !ft_strncmp(line, file->delimeter, ft_strlen(line)))
             break ;
         write(fd, line, ft_strlen(line));
         write(fd, "\n", 1);
@@ -38,7 +37,7 @@ void open_here_docs(t_shell *shell)
             {
                 if (i_head->here_doc)
                     close(i_head->here_doc);
-                here_doc(i_head);
+                here_doc(i_head, f_head);
             }
             f_head = f_head->next;
         }
@@ -67,7 +66,11 @@ void open_input_files(t_shell *shell)
             if (shell->all_input->all_files->type == 4)
                 shell->all_input->in_file = shell->all_input->here_doc;
             if (shell->all_input->in_file < 0)
+            {
                 perror("failed to open file!");
+                if (!shell->all_input->next)
+                    exit(1);
+            }
             shell->all_input->all_files = shell->all_input->all_files->next;
         }
         if (first_file)
