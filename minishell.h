@@ -59,6 +59,7 @@ typedef struct shell
 	struct allocated_data	*all_allocated_data;
 	char                    **env;
     char			        cwd[PATH_MAX];
+	char 					*r_path;
 } t_shell;
 
 // to handle norminette errors on split

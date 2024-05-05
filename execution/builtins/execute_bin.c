@@ -25,7 +25,7 @@ void execute_binary(t_shell *shell, int mode)
     }
     else
         args_list = ft_split_1(shell->all_input->command_name, ' ');
-    cmd_path = find_command_path(args_list[0]);
+    cmd_path = find_command_path(args_list[0], shell);
     if (cmd_path)
     {
         if (mode)

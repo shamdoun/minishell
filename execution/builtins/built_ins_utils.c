@@ -1,7 +1,7 @@
 #include "../execution.h"
 
 
-char *find_command_path(char *s)
+char *find_command_path(char *s, t_shell *shell)
 {
     char **env_list;
     int i;
@@ -13,8 +13,12 @@ char *find_command_path(char *s)
 		command = ft_strdup1(s);
 		return (command);
 	}
-
-    env_list = ft_split_1(getenv("PATH"), ':');
+    if (shell->r_path)
+        env_list = ft_split_1(shell->r_path, ':');
+    else
+        env_list = ft_split_1(ft_getenv("PATH", shell->env), ':');
+    if (!env_list)
+        return (NULL);
 	i = 0;
     while (env_list[i])
 	{

@@ -78,18 +78,19 @@ void add_default_env(t_shell *shell)
     tmp->arg = pwd;
     add_update_env(tmp, shell, &shell->env);
     free(tmp->arg);
-
     tmp->arg = NULL;
     tmp->arg = ft_strdup("SHLVL=1");
     add_update_env(tmp, shell, &shell->env);
     free(tmp->arg);
+    tmp->arg = NULL;
     free(tmp);
+    shell->r_path = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
 }
 
 void update_inhereted_env(t_shell *shell, char **env)
 {
     t_arg *oldpwd;
-    
+    (void)env;
     //removing oldpwd from env list
 	oldpwd = malloc(sizeof(t_arg));
 	oldpwd->arg = ft_strdup("OLDPWD");
@@ -98,6 +99,4 @@ void update_inhereted_env(t_shell *shell, char **env)
 	free(oldpwd);
 	//updating shell lvl
 	update_shlvl(shell);
-	if (ft_strncmp(ft_getenv("_", env), "/usr/bin/env", 13))
-		update_env_path_var(shell);
 }
