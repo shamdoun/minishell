@@ -8,6 +8,7 @@
 #include <libc.h>
 #include <signal.h>
 #include <stdbool.h>
+#include <termios.h>
 
 /*
 	<<: 4
