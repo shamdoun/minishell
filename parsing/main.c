@@ -20,7 +20,7 @@ void init(t_shell **minishell, char **env)
 		add_default_env(*minishell);
 	else
 		update_inhereted_env(*minishell, env);
-	if (!ft_getenv("_", env) || !ft_strncmp(ft_getenv("_", env), "/usr/bin/env", 13))
+	if (!ft_getenv("_", env) || ft_strncmp(ft_getenv("_", env), "/usr/bin/env", 13))
 		update_env_path_var(*minishell);
 }
 
