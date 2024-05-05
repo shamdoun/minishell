@@ -35,7 +35,6 @@ void add_env(char *data, t_shell *shell, char ***env)
 {
     char **new_environ;
     char *new_data;
-
     new_environ = malloc(sizeof(char *) * (list_len(*env) + 2));
     if (new_environ)
     {

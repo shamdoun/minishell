@@ -67,3 +67,37 @@ void declare_all_envs(char **env)
         i++;
     }
 }
+
+void add_default_env(t_shell *shell)
+{
+    t_arg *tmp;
+    char *pwd;
+
+    tmp = malloc(sizeof(t_arg));
+    pwd = ft_strjoin("PWD=", shell->cwd);
+    tmp->arg = pwd;
+    add_update_env(tmp, shell, &shell->env);
+    free(tmp->arg);
+
+    tmp->arg = NULL;
+    tmp->arg = ft_strdup("SHLVL=1");
+    add_update_env(tmp, shell, &shell->env);
+    free(tmp->arg);
+    free(tmp);
+}
+
+void update_inhereted_env(t_shell *shell, char **env)
+{
+    t_arg *oldpwd;
+    
+    //removing oldpwd from env list
+	oldpwd = malloc(sizeof(t_arg));
+	oldpwd->arg = ft_strdup("OLDPWD");
+	remove_env(oldpwd, shell, &shell->env);
+	free(oldpwd->arg);
+	free(oldpwd);
+	//updating shell lvl
+	update_shlvl(shell);
+	if (ft_strncmp(ft_getenv("_", env), "/usr/bin/env", 13))
+		update_env_path_var(shell);
+}
