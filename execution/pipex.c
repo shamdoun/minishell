@@ -67,6 +67,7 @@ void pipex(t_shell *shell, int mode)
             }
             close_unused_here_docs(shell->all_input);
             run_built_ins(shell, mode);
+            exit(1);
         }
         processes[i] = child1;
         close(shell->all_input->in_file);

@@ -34,14 +34,15 @@ char	*ft_strdup1(char *s)
 void run_built_ins(t_shell *shell, int mode)
 {
 	char *command;
-	
+	if (open_input_files(shell))
+		return ;
+	redirect_streams(shell);
 	//turn all letters to lowercase
 	if (!shell->all_input->command_name)
 		return ;
 	command = ft_strdup(shell->all_input->command_name);
 	ft_str_tolower(command);
 
-	redirect_streams(shell);
     if (!ft_strncmp(command, "cd", 3))
         change_directory(shell->all_input->args, shell, &shell->env);
     else if (!ft_strncmp(command, "export", 7))
@@ -73,7 +74,7 @@ void execute_input(t_shell *shell)
 	int o_out;
 	o_in = dup(STDIN_FILENO);
 	o_out = dup(STDOUT_FILENO);
-	open_input_files(shell);	
+	open_here_docs(shell);
     if (!shell->all_input->next)
         run_built_ins(shell, 1);
 	else

@@ -45,39 +45,29 @@ void open_here_docs(t_shell *shell)
     }
 }
 
-void open_input_files(t_shell *shell)
+int open_input_files(t_shell *shell)
 {
-    t_input *first_input;
     t_file *first_file;
 
-    open_here_docs(shell);
-    first_input = shell->all_input;
     first_file = NULL;
-    while (shell->all_input)
+    while (shell->all_input->all_files)
     {
-        if (shell->all_input->all_files)
-            first_file = shell->all_input->all_files;
-        while (shell->all_input->all_files)
+        if (shell->all_input->all_files->type >= 3 && shell->all_input->in_file)
+            close(shell->all_input->in_file);
+        if (shell->all_input->all_files->type == 3)
+            shell->all_input->in_file = open(shell->all_input->all_files->file_name, O_RDONLY, 0777);
+        if (shell->all_input->all_files->type == 4)
+            shell->all_input->in_file = shell->all_input->here_doc;
+        if (shell->all_input->in_file < 0)
         {
-            if (shell->all_input->all_files->type >= 3 && shell->all_input->in_file)
-                close(shell->all_input->in_file);
-            if (shell->all_input->all_files->type == 3)
-                shell->all_input->in_file = open(shell->all_input->all_files->file_name, O_RDONLY, 0777);
-            if (shell->all_input->all_files->type == 4)
-                shell->all_input->in_file = shell->all_input->here_doc;
-            if (shell->all_input->in_file < 0)
-            {
-                perror("failed to open file!");
-                if (!shell->all_input->next)
-                    exit(1);
-            }
-            shell->all_input->all_files = shell->all_input->all_files->next;
+            perror("bash: ");
+            return (1);
         }
-        if (first_file)
-            shell->all_input->all_files = first_file;
-        shell->all_input = shell->all_input->next;
+        shell->all_input->all_files = shell->all_input->all_files->next;
     }
-    shell->all_input = first_input;
+    if (first_file)
+        shell->all_input->all_files = first_file;
+    return (0);
 }
 
 void redirect_streams(t_shell *shell)

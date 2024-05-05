@@ -13,6 +13,6 @@ int ft_last_status(t_status *list);
 void redirect_streams(t_shell *shell);
 void pipex(t_shell *shell, int mode);
 void run_built_ins(t_shell *shell, int mode);
-void open_input_files(t_shell *shell);
+int open_input_files(t_shell *shell);
 char *ft_join_args(t_arg *args);
 void declare_all_envs(char **env);
