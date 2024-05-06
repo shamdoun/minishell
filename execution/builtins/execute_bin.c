@@ -1,5 +1,7 @@
 #include "../execution.h"
 
+extern volatile sig_atomic_t stop_signal;
+
 void update_split_list(char ***args_list, char *data)
 {
     char **new_list = malloc(sizeof(char *) * (list_len(*args_list) + 2));
@@ -56,4 +58,5 @@ void execute_binary(t_shell *shell, int mode)
         ft_lst_add_status_back(&shell->all_status, ft_lstnew_status(127));
         fprintf(stderr, "bash: %s: command not found\n", args_list[0]);
     }
+    stop_signal = 0;
 }

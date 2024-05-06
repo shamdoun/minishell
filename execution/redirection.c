@@ -1,6 +1,15 @@
 #include "../minishell.h"
 
-void here_doc(t_input *input, t_file *file)
+extern volatile sig_atomic_t stop_signal;
+
+void handle_signal_heredoc()
+{
+    close(STDIN_FILENO);
+    write(1, "\n", 1);
+    stop_signal = 1;
+}
+
+int here_doc(t_input *input, t_file *file)
 {
     char *line;
     int fd = open("here_doc.txt", O_CREAT | O_TRUNC | O_WRONLY, 0777);
@@ -10,22 +19,29 @@ void here_doc(t_input *input, t_file *file)
     if (input->here_doc < 0)
         perror("failed to open here_doc file!");
     unlink("here_doc.txt");
+    signal(SIGINT, &handle_signal_heredoc);
     while (1)
     {
         line = readline(">");
-        if (!line || !ft_strncmp(line, file->delimeter, ft_strlen(line)))
+        if (!line || !ft_strncmp(line, file->delimeter, ft_strlen(line) + 1))
             break ;
         write(fd, line, ft_strlen(line));
         write(fd, "\n", 1);
         free(line);
     }
     close(fd);
+    if (stop_signal == 1)
+        return (1);
+    if (!line)
+        stop_signal = 2;
+    return (0);
 }
 
-void open_here_docs(t_shell *shell)
+int open_here_docs(t_shell *shell)
 {
     t_input *i_head;
     t_file *f_head;
+
 
     i_head = shell->all_input;
     while (i_head)
@@ -37,12 +53,14 @@ void open_here_docs(t_shell *shell)
             {
                 if (i_head->here_doc)
                     close(i_head->here_doc);
-                here_doc(i_head, f_head);
+                if (here_doc(i_head, f_head))
+                    return (1);
             }
             f_head = f_head->next;
         }
         i_head = i_head->next;
     }
+    return (0);
 }
 
 int open_input_files(t_shell *shell)

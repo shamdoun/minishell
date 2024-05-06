@@ -175,4 +175,4 @@ char		*ft_itoa(int n);
 char 		*ft_getenv(char *name, char **env);
 void 		add_default_env(t_shell *shell);
 void 		update_inhereted_env(t_shell *shell, char **env);
-void 		open_here_docs(t_shell *shell);
+int 		open_here_docs(t_shell *shell);

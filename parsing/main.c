@@ -1,5 +1,7 @@
 #include "../minishell.h"
 
+volatile sig_atomic_t stop_signal = 0;
+
 void f()
 {
 	system("leaks minishell");
@@ -9,6 +11,8 @@ void init(t_shell **minishell, char **env)
 {
 	//initializing minishell structure
 	(*minishell) = malloc(sizeof(t_shell));
+	if (!(*minishell))
+		exit(1);
 	(*minishell)->all_allocated_data = NULL;
 	(*minishell)->all_status = NULL;
 	(*minishell)->all_input = NULL;
@@ -49,10 +53,11 @@ int	main(int argc, char **argv, char **env)
 	minishell = NULL;
 	init(&minishell, env);
 	ft_hide_ctrl_c();
-	if (isatty(STDIN_FILENO))
+	if (isatty(1))
 	{
 		while (1)
 		{
+			signal(SIGINT, &handle_signal);
 			input = readline("minishell$> ");
 			if (!input)
 				exit_shell(minishell, NULL);

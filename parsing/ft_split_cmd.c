@@ -96,6 +96,8 @@ t_input	*split_cmd(t_commands *cmd)
 	while (cmd)
 	{
 		new = ft_lstnew_input();
+		if (!new)
+			exit(1);
 		check = filltoken(cmd, new);
 		if (!check)
 			return (free_tokenize(tokenize), free_list(head), NULL);

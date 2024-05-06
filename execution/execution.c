@@ -1,4 +1,5 @@
 #include "execution.h"
+extern volatile sig_atomic_t stop_signal;
 
 void	free_array(char **a)
 {
@@ -37,12 +38,10 @@ void run_built_ins(t_shell *shell, int mode)
 	if (open_input_files(shell))
 		return ;
 	redirect_streams(shell);
-	//turn all letters to lowercase
 	if (!shell->all_input->command_name)
 		return ;
 	command = ft_strdup(shell->all_input->command_name);
 	ft_str_tolower(command);
-
     if (!ft_strncmp(command, "cd", 3))
         change_directory(shell->all_input->args, shell, &shell->env);
     else if (!ft_strncmp(command, "export", 7))
@@ -65,6 +64,8 @@ void run_built_ins(t_shell *shell, int mode)
 		close(shell->all_input->out_file);
 	if (!mode)
 		exit(0);
+	else
+		stop_signal = 0;
 	free(command);
 }
 
@@ -74,8 +75,15 @@ void execute_input(t_shell *shell)
 	int o_out;
 	o_in = dup(STDIN_FILENO);
 	o_out = dup(STDOUT_FILENO);
-	open_here_docs(shell);
-    if (!shell->all_input->next)
+	if (open_here_docs(shell))
+	{
+		dup2(o_in, STDIN_FILENO);
+		dup2(o_out, STDOUT_FILENO);
+		close(o_in);
+		close(o_out);
+		return ;
+	}
+	if (!shell->all_input->next)
         run_built_ins(shell, 1);
 	else
 		pipex(shell, 0);

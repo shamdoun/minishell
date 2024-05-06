@@ -40,7 +40,7 @@ int	check_operator(char *s)
 		{
 			o = *s;
 			s++;
-			while (*s != o)
+			while (*s && *s != o)
 				s++;
 		}
 		if (*s == '<' || *s == '>')
