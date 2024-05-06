@@ -24,6 +24,16 @@ void init(t_shell **minishell, char **env)
 		update_env_path_var(*minishell);
 }
 
+void ft_hide_ctrl_c(void)
+{
+	struct termios ter;
+
+	tcgetattr(STDIN_FILENO, &ter);
+
+	ter.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, 0, &ter);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	char		*input;
@@ -38,6 +48,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	minishell = NULL;
 	init(&minishell, env);
+	ft_hide_ctrl_c();
 	if (isatty(STDIN_FILENO))
 	{
 		while (1)
