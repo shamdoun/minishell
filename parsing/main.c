@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char **env)
 
 	// signals
 	signal(SIGINT, &handle_signal);
-	signal(SIGQUIT, &handle_signal);
+	signal(SIGQUIT, SIG_IGN);
 	(void)argc;
 	(void)argv;
 	minishell = NULL;
@@ -47,7 +47,6 @@ int	main(int argc, char **argv, char **env)
 				exit_shell(minishell, NULL);
 			if (*input != '\0')
 			{
-				add_history(input);
 				check = ft_parsing(input);
 				if (check)
 				{
@@ -62,6 +61,7 @@ int	main(int argc, char **argv, char **env)
 				}
 				else
 					printf("syntax error\n");
+				add_history(input);
 			}
 		}
 	}
