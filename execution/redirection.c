@@ -5,7 +5,7 @@ extern volatile sig_atomic_t stop_signal;
 void handle_signal_heredoc()
 {
     close(STDIN_FILENO);
-    write(1, "\n", 1);
+    // write(1, "\n", 1);
     stop_signal = 1;
 }
 

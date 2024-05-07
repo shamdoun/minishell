@@ -64,8 +64,6 @@ void run_built_ins(t_shell *shell, int mode)
 		close(shell->all_input->out_file);
 	if (!mode)
 		exit(0);
-	else
-		stop_signal = 0;
 	free(command);
 }
 
@@ -77,12 +75,14 @@ void execute_input(t_shell *shell)
 	o_out = dup(STDOUT_FILENO);
 	if (open_here_docs(shell))
 	{
+		signal(SIGINT, &handle_signal);
 		dup2(o_in, STDIN_FILENO);
 		dup2(o_out, STDOUT_FILENO);
 		close(o_in);
 		close(o_out);
 		return ;
 	}
+	signal(SIGINT, &handle_signal);
 	if (!shell->all_input->next)
         run_built_ins(shell, 1);
 	else

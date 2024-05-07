@@ -33,7 +33,6 @@ void ft_hide_ctrl_c(void)
 	struct termios ter;
 
 	tcgetattr(STDIN_FILENO, &ter);
-
 	ter.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, 0, &ter);
 }
@@ -57,7 +56,6 @@ int	main(int argc, char **argv, char **env)
 	{
 		while (1)
 		{
-			signal(SIGINT, &handle_signal);
 			input = readline("minishell$> ");
 			if (!input)
 				exit_shell(minishell, NULL);
