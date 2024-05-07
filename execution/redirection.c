@@ -22,7 +22,7 @@ int here_doc(t_input *input, t_file *file)
     signal(SIGINT, &handle_signal_heredoc);
     while (1)
     {
-        line = readline(">");
+        line = readline(">>");
         if (!line || !ft_strncmp(line, file->delimeter, ft_strlen(line) + 1))
             break ;
         write(fd, line, ft_strlen(line));

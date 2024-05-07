@@ -58,4 +58,6 @@ void execute_binary(t_shell *shell, int mode)
         ft_lst_add_status_back(&shell->all_status, ft_lstnew_status(127));
         fprintf(stderr, "bash: %s: command not found\n", args_list[0]);
     }
+    if (stop_signal != 2)
+        stop_signal = -1;
 }

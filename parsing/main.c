@@ -56,6 +56,8 @@ int	main(int argc, char **argv, char **env)
 	{
 		while (1)
 		{
+			if (stop_signal && stop_signal != -1)
+				stop_signal = 3;
 			input = readline("minishell$> ");
 			if (!input)
 				exit_shell(minishell, NULL);
