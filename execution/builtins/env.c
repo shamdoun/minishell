@@ -1,102 +1,81 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/09 21:45:04 by shamdoun          #+#    #+#             */
+/*   Updated: 2024/05/09 21:53:56 by shamdoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../execution.h"
 
-void print_all_env_vars(char **env)
+void	print_all_env_vars(char **env)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (env[i])
-    {
-        printf("%s\n", env[i]);
-        i++;
-    }
+	i = 0;
+	while (env[i])
+	{
+		printf("%s\n", env[i]);
+		i++;
+	}
 }
 
-void 		update_env_path_var(t_shell *shell)
+void	update_env_path_var(t_shell *shell)
 {
-    t_arg *new_envpath;
+	t_arg	*new_envpath;
 
-    new_envpath = malloc(sizeof(t_arg));
-    if (!new_envpath)
-        perror("failed!");
-    new_envpath->arg = ft_strdup("_=/usr/bin/env");
-    add_update_env(new_envpath, shell, &shell->env);
-    free(new_envpath->arg);
-    free(new_envpath);
+	new_envpath = malloc(sizeof(t_arg));
+	if (!new_envpath)
+		perror("failed!");
+	new_envpath->arg = ft_strdup("_=/usr/bin/env");
+	add_update_env(new_envpath, shell, &shell->env);
+	free(new_envpath->arg);
+	free(new_envpath);
 }
 
-void update_shlvl(t_shell *shell)
+void	declare_all_envs(char **env)
 {
-    int new_value;
-    char *var;
-    // char *new_shlvl;
-    char *tmp;
-    t_arg *new_shlvl;
+	int	i;
 
-    var = ft_getenv("SHLVL", shell->env);
-    if (!var)
-        perror("failed!");
-    //check if env is reseted
-    new_value = ft_atoi(var) + 1;
-    if  (new_value == 1000)
-    {
-        perror("bash: warning: shell level (1000) too high, resetting to 1");
-        tmp = ft_itoa(1);
-    }
-    else
-        tmp = ft_itoa(new_value);
-    if (!tmp)
-        perror("failed!");
-    new_shlvl = malloc(sizeof(t_arg));
-	new_shlvl->arg = ft_strjoin("SHLVL=", tmp);
-    if (!new_shlvl->arg)
-        perror("failed!");
-    add_update_env(new_shlvl, shell, &shell->env);
-    free(new_shlvl);
-    free(tmp);
+	i = 0;
+	while (env[i])
+	{
+		printf("declare -x %s\n", env[i]);
+		i++;
+	}
 }
 
-void declare_all_envs(char **env)
+void	add_default_env(t_shell *shell)
 {
-    int i;
+	t_arg	*tmp;
+	char	*pwd;
 
-    i = 0;
-    while (env[i])
-    {
-        printf("declare -x %s\n", env[i]);
-        i++;
-    }
+	tmp = malloc(sizeof(t_arg));
+	pwd = ft_strjoin("PWD=", shell->cwd);
+	tmp->arg = pwd;
+	add_update_env(tmp, shell, &shell->env);
+	free(tmp->arg);
+	tmp->arg = NULL;
+	tmp->arg = ft_strdup("SHLVL=1");
+	add_update_env(tmp, shell, &shell->env);
+	free(tmp->arg);
+	tmp->arg = NULL;
+	free(tmp);
+	shell->r_path = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
 }
 
-void add_default_env(t_shell *shell)
+void	update_inhereted_env(t_shell *shell, char **env)
 {
-    t_arg *tmp;
-    char *pwd;
+	t_arg	*oldpwd;
 
-    tmp = malloc(sizeof(t_arg));
-    pwd = ft_strjoin("PWD=", shell->cwd);
-    tmp->arg = pwd;
-    add_update_env(tmp, shell, &shell->env);
-    free(tmp->arg);
-    tmp->arg = NULL;
-    tmp->arg = ft_strdup("SHLVL=1");
-    add_update_env(tmp, shell, &shell->env);
-    free(tmp->arg);
-    tmp->arg = NULL;
-    free(tmp);
-    shell->r_path = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
-}
-
-void update_inhereted_env(t_shell *shell, char **env)
-{
-    t_arg *oldpwd;
-    (void)env;
-    //removing oldpwd from env list
 	oldpwd = malloc(sizeof(t_arg));
 	oldpwd->arg = ft_strdup("OLDPWD");
-	remove_env(oldpwd, shell, &shell->env);
+	remove_env(oldpwd, shell, &env);
 	free(oldpwd->arg);
 	free(oldpwd);
-	//updating shell lvl
 	update_shlvl(shell);
 }

@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-static void	put_redirection(t_input *nw, char *str, char *name)
+static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 {
 	t_file	*new;
 	char	*ptr;	
@@ -15,7 +15,9 @@ static void	put_redirection(t_input *nw, char *str, char *name)
 		new = ft_lstnew_file(ptr, 2, NULL);
 	else if (!strncmp(str, "<<", 3))
 		new = ft_lstnew_file(NULL, 4, ptr);
-	ft_lst_add_file_back(&(nw->all_files), new);
+	if (!new)
+		exit (1);
+	ft_lst_add_file_back(&(nw->all_files), new, shell);
 }
 
 static t_arg	*put_arg(t_arg *arguments, char *str)
@@ -55,7 +57,7 @@ static int	check_last(char *str)
 	return (1);
 }
 
-static int	filltoken(t_commands *cmd, t_input *new)
+static int	filltoken(t_commands *cmd, t_input *new, t_shell *shell)
 {
 	char	**str;
 	int		i;
@@ -72,7 +74,7 @@ static int	filltoken(t_commands *cmd, t_input *new)
 	{
 		if (str[i][0] == '<' || str[i][0] == '>')
 		{
-			put_redirection(new, str[i], str[i + 1]);
+			put_redirection(new, str[i], str[i + 1], shell);
 			i++;
 		}
 		else if (t == 0)
@@ -84,7 +86,7 @@ static int	filltoken(t_commands *cmd, t_input *new)
 	return (1);
 }
 
-t_input	*split_cmd(t_commands *cmd)
+t_input	*split_cmd(t_commands *cmd, t_shell *shell)
 {
 	t_commands	*head;
 	t_input		*tokenize;
@@ -98,10 +100,10 @@ t_input	*split_cmd(t_commands *cmd)
 		new = ft_lstnew_input();
 		if (!new)
 			exit(1);
-		check = filltoken(cmd, new);
+		check = filltoken(cmd, new, shell);
 		if (!check)
 			return (free_tokenize(tokenize), free_list(head), NULL);
-		ft_lst_add_input_back(&tokenize, new);
+		ft_lst_add_input_back(&tokenize, new, shell);
 		cmd = cmd->next;
 	}
 	//free_list(head);

@@ -13,7 +13,7 @@ int	ft_cmdlenght(char *s)
 		{
 			o = s[i++];
 			len++;
-			while (s[i] != o)
+			while (s && s[i] != o)
 				(1) && (len++, i++);
 		}
 		if (s[i] == '<' || s[i] == '>')

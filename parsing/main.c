@@ -1,40 +1,10 @@
 #include "../minishell.h"
 
-volatile sig_atomic_t stop_signal = 0;
+volatile sig_atomic_t g_stop_signal = 0;
 
 void f()
 {
 	system("leaks minishell");
-}
-
-void init(t_shell **minishell, char **env)
-{
-	//initializing minishell structure
-	(*minishell) = malloc(sizeof(t_shell));
-	if (!(*minishell))
-		exit(1);
-	(*minishell)->all_allocated_data = NULL;
-	(*minishell)->all_status = NULL;
-	(*minishell)->all_input = NULL;
-	(*minishell)->env = env;
-	(*minishell)->r_path = NULL;
-	getcwd((*minishell)->cwd, sizeof((*minishell)->cwd));
-	//checking if env is empty
-	if (!(*env))
-		add_default_env(*minishell);
-	else
-		update_inhereted_env(*minishell, env);
-	if (!ft_getenv("_", env) || ft_strncmp(ft_getenv("_", env), "/usr/bin/env", 13))
-		update_env_path_var(*minishell);
-}
-
-void ft_hide_ctrl_c(void)
-{
-	struct termios ter;
-
-	tcgetattr(STDIN_FILENO, &ter);
-	ter.c_lflag &= ~ECHOCTL;
-	tcsetattr(STDIN_FILENO, 0, &ter);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -44,20 +14,21 @@ int	main(int argc, char **argv, char **env)
 	t_commands	*cmds;
 	t_shell		*minishell;
 
+	(void)argc;
+	(void)argv;
+	atexit(f);
 	// signals
 	signal(SIGINT, &handle_signal);
 	signal(SIGQUIT, SIG_IGN);
-	(void)argc;
-	(void)argv;
 	minishell = NULL;
+	//init
 	init(&minishell, env);
-	ft_hide_ctrl_c();
-	if (isatty(1))
+	if (1)
 	{
 		while (1)
 		{
-			if (stop_signal && stop_signal != -1)
-				stop_signal = 3;
+			if (g_stop_signal && g_stop_signal != -1)
+				g_stop_signal = 3;
 			input = readline("minishell$> ");
 			if (!input)
 				exit_shell(minishell, NULL);
@@ -70,13 +41,13 @@ int	main(int argc, char **argv, char **env)
 					if (cmds == NULL)
 						(perror("allocation failed..."), exit (1));
 					add_space(cmds);
-					minishell->all_input = split_cmd(cmds);
+					minishell->all_input = split_cmd(cmds, minishell);
 					if (!minishell->all_input)
-						printf("syntax error\n");
+						(perror("syntax error\n"), exit(1));
 					execute_input(minishell);
 				}
 				else
-					printf("syntax error\n");
+					perror("syntax error\n");
 				add_history(input);
 			}
 		}

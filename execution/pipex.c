@@ -1,91 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
+/*   Updated: 2024/05/08 19:44:34 by shamdoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "execution.h"
 
-
-void create_pipes(int **ends, int count)
+void	create_pipes(int **ends, int count)
 {
-    int i;
-    
-    *ends = malloc(sizeof(int) * 2 * count);
-    i = 0;
-    while (i < count)
-    {
-        pipe((*ends) + 2 * i);
-        i++;
-    }
+	int	i;
+
+	*ends = malloc(sizeof(int) * 2 * count);
+	if (*ends)
+		exit(1);
+	i = 0;
+	while (i < count)
+	{
+		pipe((*ends) + 2 * i);
+		i++;
+	}
 }
 
-int count_nbr_of_pipes(t_input *list)
+int	count_nbr_of_pipes(t_input *list)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (list)
-    {
-        list = list->next;
-        i++;
-    }
-    return (i - 1);
+	i = 0;
+	while (list)
+	{
+		list = list->next;
+		i++;
+	}
+	return (i - 1);
 }
 
-void close_unused_here_docs(t_input *input)
+void	init_pipex(t_pipex **pipex, t_shell *shell)
 {
-    t_input *head;
-
-    head = input->next;
-    while (head)
-    {
-        if (head->here_doc)
-            close(head->here_doc);
-        head = head->next;
-    }
+	*pipex = malloc(sizeof(t_pipex));
+	if (!(*pipex))
+		exit(1);
+	(*pipex)->pipe_count = count_nbr_of_pipes(shell->all_input);
+	create_pipes(&(*pipex)->ends, (*pipex)->pipe_count);
+	(*pipex)->processes = malloc(sizeof(int) * ((*pipex)->pipe_count + 1));
+	if (!(*pipex)->processes)
+		exit(1);
 }
 
-void pipex(t_shell *shell, int mode)
+void	pipex(t_shell *shell, int mode)
 {
-    pid_t child1;
-    int *ends;
-    int pipe_count;
-    int *processes;
-    pipe_count = count_nbr_of_pipes(shell->all_input);
-    create_pipes(&ends, pipe_count);
-    int i = 0;
-    processes = malloc(sizeof(int) * (pipe_count + 1));
-    while (i < pipe_count + 1)
-    {
-        child1 = fork();
-        if (!child1)
-        {
-            if (i)
-                dup2(ends[2 * i - 2], STDIN_FILENO);
-            if (i != pipe_count)
-                dup2(ends[2 * i + 1], STDOUT_FILENO);
-            int j = 0;
-            while (j < pipe_count * 2)
-            {
-                close(ends[j]);
-                j++;
-            }
-            close_unused_here_docs(shell->all_input);
-            run_built_ins(shell, mode);
-            exit(1);
-        }
-        processes[i] = child1;
-        close(shell->all_input->in_file);
-        if (shell->all_input->here_doc)
-            close(shell->all_input->here_doc);
-        shell->all_input = shell->all_input->next;
-        i++;
-    }
-    int j = 0;
-    while (j < pipe_count * 2)
-    {
-        close(ends[j]);
-        j++;
-    }
-    j = 0;
-    while (j < pipe_count + 1)
-    {
-        waitpid(processes[j], NULL, 0);
-        j++;
-    }
+	t_pipex	*pipex;
+	pid_t	child1;
+	int		i;
+
+	init_pipex(&pipex, shell);
+	i = 0;
+	while (i < pipex->pipe_count + 1)
+	{
+		child1 = fork();
+		if (!child1)
+		{
+			duplicate_ends(shell, pipex->ends, pipex->pipe_count, i);
+			(run_built_ins(shell, mode), exit(1));
+		}
+		pipex->processes[i] = child1;
+		close(shell->all_input->in_file);
+		if (shell->all_input->here_doc)
+			close(shell->all_input->here_doc);
+		shell->all_input = shell->all_input->next;
+		i++;
+	}
+	close_ends_and_wait(pipex->pipe_count, pipex->ends, pipex->processes);
 }

@@ -109,11 +109,17 @@ typedef struct	s_space
 	int		j;
 }	t_space;
 
+typedef struct	pipex
+{
+	int	*ends;
+	int	pipe_count;
+	int	*processes;
+} t_pipex;
 
-void		ft_lst_add_input_back(t_input **lst, t_input *new);
+void		ft_lst_add_input_back(t_input **lst, t_input *new, t_shell *shell);
 void		ft_lst_add_ad_back(t_a_data **lst, t_a_data *new);
-void		ft_lst_add_file_back(t_file **lst, t_file *new);
-void		ft_lst_add_status_back(t_status **lst, t_status *new);
+void		ft_lst_add_file_back(t_file **lst, t_file *new, t_shell *shell);
+void		ft_lst_add_status_back(t_status **lst, t_status *new, t_shell *shell);
 t_input		*ft_lstnew_input();
 t_a_data	*ft_lstnew_ad(void *address);
 t_status	*ft_lstnew_status(int status);
@@ -157,7 +163,7 @@ void		add_space(t_commands *cmd);
 /*---------------ft_split.c---------------*/
 char		**ft_split(char *s);
 /*---------------parsing/ft_split_cmd.c---------------*/
-t_input		*split_cmd(t_commands *cmd);
+t_input		*split_cmd(t_commands *cmd, t_shell *shell);
 /*---------------parsing/ft_split_cmd_utils.c---------------*/
 void		put_delimiter(t_input *nw, char *str);
 void		put_filename(t_input *nw, char *str);
@@ -176,3 +182,10 @@ char 		*ft_getenv(char *name, char **env);
 void 		add_default_env(t_shell *shell);
 void 		update_inhereted_env(t_shell *shell, char **env);
 int 		open_here_docs(t_shell *shell);
+void		add_a_data_to_list(t_shell *shell, void *address);
+void		init(t_shell **minishell, char **env);
+int			ft_same_value(char *p1, char *p2);
+void		copy_old_cwd(char *old_cwd, char **split_cwd);
+char		*retrieve_value(t_shell *shell);
+void		update_shlvl(t_shell *shell);
+void 		add_update_env(t_arg *data, t_shell *shell, char ***env);

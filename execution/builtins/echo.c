@@ -1,51 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   echo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
+/*   Updated: 2024/05/09 20:29:54 by shamdoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../execution.h"
 
-char *ft_join_args(t_arg *args)
+char	*ft_join_args(t_arg *args)
 {
-    char *result;
-    char *tmp;
+	char	*result;
+	char	*tmp;
 
-    result = NULL;
-    result = ft_strdup(args->arg);
-    args = args->next;
-    while (args)
-    {
-        tmp = ft_strjoin(" ", args->arg);
-        if (!tmp)
-            perror("failed to join:");
-        result = ft_strjoin(result, tmp);
-        args = args->next;
-    }
-    return (result);
+	result = NULL;
+	result = ft_strdup(args->arg);
+	if (!result)
+		exit (1);
+	args = args->next;
+	while (args)
+	{
+		tmp = ft_strjoin(" ", args->arg);
+		if (!tmp)
+			perror("failed to join:");
+		result = ft_strjoin(result, tmp);
+		args = args->next;
+	}
+	return (result);
 }
 
-void echo_message(t_arg *args)
+void	print_message(char **split, bool *new_line)
 {
-    bool new_line;
-    char *joined_args;
-    char **split;
+	while (*split && !ft_strncmp(*split, "-n", ft_strlen(*split)))
+	{
+		split++;
+		*new_line = false;
+	}
+	while (*split)
+	{
+		printf("%s", *split);
+		if (*(split + 1))
+			printf(" ");
+		split++;
+	}
+}
 
-    new_line = true;
-    if (!args->arg)
-    {
-        printf("\n");
-        return ;
-    }
-    joined_args = ft_join_args(args);
-    split = ft_split_1(joined_args, ' ');
-    while (*split && !ft_strncmp(*split, "-n", ft_strlen(*split)))
-    {
-        split++;
-        new_line = false;
-    }
+void	echo_message(t_arg *args)
+{
+	bool	new_line;
+	char	*joined_args;
+	char	**split;
 
-    while (*split)
-    {
-        printf("%s", *split);
-        if (*(split+1))
-            printf(" ");
-        split++;
-    }
-    if (new_line)
-        printf("\n");
+	new_line = true;
+	if (!args->arg)
+	{
+		printf("\n");
+		return ;
+	}
+	joined_args = ft_join_args(args);
+	if (!joined_args)
+		exit(1);
+	split = ft_split_1(joined_args, ' ');
+	if (!split)
+		exit(1);
+	print_message(split, &new_line);
+	if (new_line)
+		printf("\n");
+	free(joined_args);
+	// free_array(split);
 }

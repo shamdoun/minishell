@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lst_add_back.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/09 20:31:35 by shamdoun          #+#    #+#             */
+/*   Updated: 2024/05/09 22:19:18 by shamdoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void	ft_lst_add_input_back(t_input **lst, t_input *new)
+void	ft_lst_add_input_back(t_input **lst, t_input *new, t_shell *shell)
 {
 	t_input	*head;
 
@@ -18,11 +30,12 @@ void	ft_lst_add_input_back(t_input **lst, t_input *new)
 			head = head->next;
 		head->next = new;
 	}
+	add_a_data_to_list(shell, new);
 }
 
 void	ft_lst_add_ad_back(t_a_data **lst, t_a_data *new)
 {
-    t_a_data	*head;
+	t_a_data	*head;
 
 	if (!lst || !new)
 		return ;
@@ -37,9 +50,9 @@ void	ft_lst_add_ad_back(t_a_data **lst, t_a_data *new)
 	}
 }
 
-void	ft_lst_add_file_back(t_file **lst, t_file *new)
+void	ft_lst_add_file_back(t_file **lst, t_file *new, t_shell *shell)
 {
-    t_file	*head;
+	t_file	*head;
 
 	if (!lst || !new)
 		return ;
@@ -52,11 +65,12 @@ void	ft_lst_add_file_back(t_file **lst, t_file *new)
 			head = head -> next;
 		head -> next = new;
 	}
+	add_a_data_to_list(shell, new);
 }
 
-void	ft_lst_add_status_back(t_status **lst, t_status *new)
+void	ft_lst_add_status_back(t_status **lst, t_status *new, t_shell *shell)
 {
-    t_status	*head;
+	t_status	*head;
 
 	if (!lst || !new)
 		return ;
@@ -69,4 +83,5 @@ void	ft_lst_add_status_back(t_status **lst, t_status *new)
 			head = head -> next;
 		head -> next = new;
 	}
+	add_a_data_to_list(shell, new);
 }

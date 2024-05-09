@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   cd_utils1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 22:13:42 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 22:15:07 by shamdoun         ###   ########.fr       */
+/*   Created: 2024/05/09 19:19:10 by shamdoun          #+#    #+#             */
+/*   Updated: 2024/05/09 20:21:26 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-extern volatile sig_atomic_t	g_stop_signal;
-
-void	handle_signal(int sig)
+void	copy_old_cwd(char *old_cwd, char **split_cwd)
 {
-	static int	nl;
+	char	**split_oldcwd;
+	int		i;
 
-	if (g_stop_signal == 1 || g_stop_signal == 2 || g_stop_signal == -1)
-		nl = 0;
-	else if (g_stop_signal == 3)
-		nl = 1;
-	if (sig == 2)
+	i = 0;
+	split_oldcwd = ft_split_1(old_cwd, '/');
+	if (!split_oldcwd)
+		exit(1);
+	while (split_cwd[i] && split_oldcwd[i])
 	{
-		if (!nl)
-			write(1, "\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
+		if (ft_same_value(split_cwd[i], split_oldcwd[i]))
+			strcpy(split_cwd[i], split_oldcwd[i]);
+		i++;
 	}
+	free_array(split_oldcwd);
 }

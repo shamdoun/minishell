@@ -1,26 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_ins_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
+/*   Updated: 2024/05/09 14:35:02 by shamdoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../execution.h"
 
-
-char *find_command_path(char *s, t_shell *shell)
+char	*extract_command(char *s, char **env_list, char *command)
 {
-    char **env_list;
-    int i;
-    char	*command;
+	int		i;
 	char	*tmp;
 
-	if (access(s, F_OK | X_OK) == 0)
-	{
-		command = ft_strdup1(s);
-		return (command);
-	}
-    if (shell->r_path)
-        env_list = ft_split_1(shell->r_path, ':');
-    else
-        env_list = ft_split_1(ft_getenv("PATH", shell->env), ':');
-    if (!env_list)
-        return (NULL);
 	i = 0;
-    while (env_list[i])
+	while (env_list[i])
 	{
 		tmp = ft_strjoin(env_list[i], "/");
 		if (!tmp)
@@ -28,52 +26,108 @@ char *find_command_path(char *s, t_shell *shell)
 		command = ft_strjoin(tmp, s);
 		free(tmp);
 		if (!command)
-        {
-            free_array(env_list);
+		{
+			free_array(env_list);
 			return (NULL);
-        }
-        if (access(command, F_OK | X_OK) == 0)
-        {
-            free_array(env_list);
+		}
+		if (access(command, F_OK | X_OK) == 0)
+		{
+			free_array(env_list);
 			return (command);
-        }
-        free(command);
+		}
+		free(command);
 		i++;
 	}
-    free_array(env_list);
 	return (NULL);
 }
 
-void copy_list_updating(char *env_name, char *data, t_shell *shell, char **new_environ)
+char	*find_command_path(char *s, t_shell *shell)
 {
-    char **old_list;
-    char **p;
+	char	**env_list;
+	char	*command;
 
-    int i = 0;
-    old_list = shell->env;
-    while (i < list_len(old_list))
-    {
-            p = ft_split_1(old_list[i], '=');
-            if (ft_strncmp(env_name, p[0], ft_strlen(p[0]) + 1))
-                ft_memcpy(new_environ, &old_list[i], sizeof(char *));
-            else
-            {
-                data = ft_strdup(data);
-                ft_lst_add_ad_back(&shell->all_allocated_data, ft_lstnew_ad(data));
-                ft_memcpy(new_environ, &data, sizeof(char *));
-            }
-            new_environ++;
-            free_array(p);
-            i++;
-    }
-    *new_environ = NULL;
+	command = NULL;
+	if (access(s, F_OK | X_OK) == 0)
+	{
+		command = ft_strdup1(s);
+		return (command);
+	}
+	if (shell->r_path)
+		env_list = ft_split_1(shell->r_path, ':');
+	else
+		env_list = ft_split_1(ft_getenv("PATH", shell->env), ':');
+	if (!env_list)
+		return (NULL);
+	add_a_data_to_list(shell, env_list);
+	// free_array(env_list);
+	return (extract_command(s, shell->env, command));
+	// i = 0;
+	// while (env_list[i])
+	// {
+	// 	tmp = ft_strjoin(env_list[i], "/");
+	// 	if (!tmp)
+	// 		return (NULL);
+	// 	command = ft_strjoin(tmp, s);
+	// 	free(tmp);
+	// 	if (!command)
+	// 	{
+	// 		free_array(env_list);
+	// 		return (NULL);
+	// 	}
+	// 	if (access(command, F_OK | X_OK) == 0)
+	// 	{
+	// 		free_array(env_list);
+	// 		return (command);
+	// 	}
+	// 	free(command);
+	// 	i++;
+	// }
+	// return (NULL);
 }
 
-int list_len(char **list)
+void	copy_list_updating(char *env_name, char *data,
+	t_shell *shell, char **new_environ)
 {
-    int i;
-    i = 0;
-    while (list[i])
-        i++;
-    return (i);
+	char	**old_list;
+	char	**p;
+	int		i;
+
+	i = 0;
+	old_list = shell->env;
+	while (i < list_len(old_list))
+	{
+		p = ft_split_1(old_list[i], '=');
+		if (ft_strncmp(env_name, p[0], ft_strlen(p[0]) + 1))
+			ft_memcpy(new_environ, &old_list[i], sizeof(char *));
+		else
+		{
+			data = ft_strdup(data);
+			ft_lst_add_ad_back(&shell->all_allocated_data, ft_lstnew_ad(data));
+			ft_memcpy(new_environ, &data, sizeof(char *));
+		}
+		new_environ++;
+		free_array(p);
+		i++;
+	}
+	*new_environ = NULL;
+}
+
+int	list_len(char **list)
+{
+	int	i;
+
+	i = 0;
+	while (list[i])
+		i++;
+	return (i);
+}
+
+void	add_a_data_to_list(t_shell *shell, void *address)
+{
+	t_a_data	*new;
+
+	new = ft_lstnew_ad(address);
+	if (!new)
+		exit(1);
+	ft_lst_add_ad_back(&shell->all_allocated_data, new);
 }
