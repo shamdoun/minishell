@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 20:20:34 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:25:59 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*ft_getenv(char *name, char **env)
 
 	if (!*env)
 		perror("env is empty!");
-	printf("%s %s\n", name, *env);
 	while (*env)
 	{
 		split = ft_split_1(*env, '=');
@@ -101,5 +100,6 @@ void	change_directory(t_arg *path, t_shell *shell, char ***env)
 		perror("cd");
 	}
 	getcwd(shell->cwd, sizeof(shell->cwd));
-	update_cwd(shell->cwd, path, old_cwd);
+	if (!return_value)
+		update_cwd(shell->cwd, path, old_cwd);
 }

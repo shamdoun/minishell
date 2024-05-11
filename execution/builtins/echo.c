@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 20:29:54 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:08:46 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	echo_message(t_arg *args)
 	char	**split;
 
 	new_line = true;
-	if (!args->arg)
+	if (!args)
 	{
 		printf("\n");
 		return ;

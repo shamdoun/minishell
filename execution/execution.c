@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 15:18:25 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:40:33 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,13 @@ void	execute_input(t_shell *shell)
 	if (open_here_docs(shell))
 	{
 		signal(SIGINT, &handle_signal);
-		dup2(o_in, STDIN_FILENO);
-		dup2(o_out, STDOUT_FILENO);
-		close(o_in);
-		close(o_out);
 		return ;
 	}
 	signal(SIGINT, &handle_signal);
 	if (shell->all_input->next == NULL)
+	{
 		run_built_ins(shell, 1);
+	}
 	else
 		pipex(shell, 0);
 	dup2(o_in, STDIN_FILENO);

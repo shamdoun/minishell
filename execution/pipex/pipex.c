@@ -6,18 +6,18 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/08 19:44:34 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:09:25 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "../execution.h"
 
 void	create_pipes(int **ends, int count)
 {
 	int	i;
 
 	*ends = malloc(sizeof(int) * 2 * count);
-	if (*ends)
+	if (!(*ends))
 		exit(1);
 	i = 0;
 	while (i < count)
