@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:45:04 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 21:53:56 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:22:18 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void	add_default_env(t_shell *shell)
 	shell->r_path = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
 }
 
-void	update_inhereted_env(t_shell *shell, char **env)
+void	update_inhereted_env(t_shell *shell)
 {
 	t_arg	*oldpwd;
 
 	oldpwd = malloc(sizeof(t_arg));
 	oldpwd->arg = ft_strdup("OLDPWD");
-	remove_env(oldpwd, shell, &env);
+	remove_env(oldpwd, shell, &shell->env);
 	free(oldpwd->arg);
 	free(oldpwd);
 	update_shlvl(shell);

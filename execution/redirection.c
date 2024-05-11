@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 14:31:52 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:34:58 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	here_doc(t_input *input, t_file *file)
 	signal(SIGINT, &handle_signal_heredoc);
 	while (1)
 	{
-		line = readline(">>");
+		line = readline(">");
 		if (!line || !ft_strncmp(line, file->delimeter, ft_strlen(line) + 1))
 			break ;
 		(write(fd, line, ft_strlen(line)), write(fd, "\n", 1));
@@ -79,7 +79,7 @@ int	open_input_files(t_shell *shell)
 {
 	t_file	*first_file;
 
-	first_file = NULL;
+	first_file = shell->all_input->all_files;
 	while (shell->all_input->all_files)
 	{
 		if (shell->all_input->all_files->type >= 3 && shell->all_input->in_file)
@@ -116,6 +116,8 @@ void	redirect_streams(t_shell *shell)
 			shell->all_input->out_file
 				= open(shell->all_input->all_files->file_name,
 					O_WRONLY | O_CREAT | O_APPEND, 0644);
+		if (shell->all_input->out_file < 0)
+			perror("failed to open output file!");
 		shell->all_input->all_files = shell->all_input->all_files->next;
 	}
 	if (shell->all_input->in_file)

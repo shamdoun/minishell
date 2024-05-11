@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_ins_utils2.c                                 :+:      :+:    :+:   */
+/*   cd_utils2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:25:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 19:25:43 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:53:53 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	check_path(t_arg *path, char *cwd)
 	if (!path || !ft_strncmp(path->arg, "~", 2)
 		|| !ft_strncmp(path->arg, "..", 3))
 		return (1);
-	printf("%s\n", cwd);
 	if (ft_same_value(path->arg, cwd))
 	{
 		strcpy(cwd, path->arg);

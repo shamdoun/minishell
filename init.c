@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:50:55 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 19:04:07 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:22:25 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init(t_shell **minishell, char **env)
 	if (!(*env))
 		add_default_env(*minishell);
 	else
-		update_inhereted_env(*minishell, env);
+		update_inhereted_env(*minishell);
 	var = ft_getenv("_", env);
 	add_a_data_to_list(*minishell, var);
 	if (!var || ft_strncmp(var, "/usr/bin/env", 13))

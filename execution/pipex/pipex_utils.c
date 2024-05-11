@@ -6,11 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:43:52 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/08 19:45:56 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:09:30 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	close_unused_here_docs(t_input *input)
 {

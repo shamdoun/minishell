@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 14:35:02 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:46:39 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,7 @@ char	*find_command_path(char *s, t_shell *shell)
 		return (NULL);
 	add_a_data_to_list(shell, env_list);
 	// free_array(env_list);
-	return (extract_command(s, shell->env, command));
-	// i = 0;
-	// while (env_list[i])
-	// {
-	// 	tmp = ft_strjoin(env_list[i], "/");
-	// 	if (!tmp)
-	// 		return (NULL);
-	// 	command = ft_strjoin(tmp, s);
-	// 	free(tmp);
-	// 	if (!command)
-	// 	{
-	// 		free_array(env_list);
-	// 		return (NULL);
-	// 	}
-	// 	if (access(command, F_OK | X_OK) == 0)
-	// 	{
-	// 		free_array(env_list);
-	// 		return (command);
-	// 	}
-	// 	free(command);
-	// 	i++;
-	// }
-	// return (NULL);
+	return (extract_command(s, env_list, command));
 }
 
 void	copy_list_updating(char *env_name, char *data,

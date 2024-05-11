@@ -16,7 +16,6 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
-	atexit(f);
 	// signals
 	signal(SIGINT, &handle_signal);
 	signal(SIGQUIT, SIG_IGN);
