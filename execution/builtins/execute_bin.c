@@ -6,13 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 15:38:32 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 23:31:20 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
-
-extern volatile sig_atomic_t	g_stop_signal;
 
 void	update_split_list(char ***args_list, char *data)
 {
@@ -29,7 +27,7 @@ void	update_split_list(char ***args_list, char *data)
 	*args_list = new_list;
 }
 
-void	child_runs_binary(char *cmd_path, char **args_list, t_shell *shell)
+void	pipe_child_runs_binary(char *cmd_path, char **args_list, t_shell *shell)
 {
 	int	rv;
 	int	status;
@@ -53,6 +51,7 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 		child = fork();
 		if (child == 0)
 		{
+			signal(SIGINT, &handle_child_signal);
 			rv = execve(cmd_path, args_list, shell->env);
 			fprintf(stderr, "error of %d\n", errno);
 			if (rv)
@@ -64,7 +63,7 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 			ft_lstnew_status(status), shell);
 	}
 	else
-		child_runs_binary(cmd_path, args_list, shell);
+		pipe_child_runs_binary(cmd_path, args_list, shell);
 	free(cmd_path);
 }
 
@@ -90,7 +89,7 @@ void	set_args_list(t_shell *shell, char ***args_list)
 	}
 }
 
-void	execute_binary(t_shell *shell, int mode)
+void	execute_other_commands(t_shell *shell, int mode)
 {
 	char	**args_list;
 	char	*cmd_path;
@@ -105,6 +104,4 @@ void	execute_binary(t_shell *shell, int mode)
 			ft_lstnew_status(127), shell);
 		fprintf(stderr, "bash: %s: command not found\n", args_list[0]);
 	}
-	if (g_stop_signal != 2)
-		g_stop_signal = -1;
 }

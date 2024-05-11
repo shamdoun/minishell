@@ -9,6 +9,7 @@
 #include <signal.h>
 #include <stdbool.h>
 #include <termios.h>
+#include "./gnl/get_next_line.h"
 
 /*
 	<<: 4
@@ -16,6 +17,8 @@
 	<: 3
 	>: 1
 */
+
+char	*get_next_line(int fd);
 
 typedef struct	s_arg
 {
@@ -171,6 +174,7 @@ void		put_cmdname(t_input *nw, char *str);
 char		*remove_quotes(char *str);
 //for signals
 void        handle_signal(int sig);
+void		handle_child_signal(int sig);
 void 		exit_shell(t_shell *shell, t_arg *status);
 void 		remove_env(t_arg *data, t_shell *shell, char ***env);
 void 		ft_str_tolower(char *str);
@@ -189,3 +193,6 @@ void		copy_old_cwd(char *old_cwd, char **split_cwd);
 char		*retrieve_value(t_shell *shell);
 void		update_shlvl(t_shell *shell);
 void 		add_update_env(t_arg *data, t_shell *shell, char ***env);
+void 		ft_recover_echo(void);
+void		ft_hide_ctrl_c(void);
+char		*get_next_line(int fd);

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:10:12 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 22:12:37 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 23:29:33 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define EXECUTION_H
 # include "../minishell.h"
 
-void	execute_binary(t_shell *shell, int mode);
+void	execute_other_commands(t_shell *shell, int mode);
 void	print_all_env_vars(char **env);
 void	echo_message(t_arg *args);
 void	change_directory(t_arg *path, t_shell *shell, char ***env);

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 16:34:58 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 23:04:01 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,29 @@ int	here_doc(t_input *input, t_file *file)
 	char	*line;
 	int		fd;
 
-	fd = open("here_doc.txt", O_CREAT | O_TRUNC | O_WRONLY, 0777);
+	fd = open("here_doc.txt", O_CREAT | O_TRUNC | O_WRONLY, 777);
 	if (fd < 0)
 		perror("failed to open here_doc file for writing");
-	input->here_doc = open("here_doc.txt", O_RDONLY, 0777);
+	input->here_doc = open("here_doc.txt", O_RDONLY, 777);
 	if (input->here_doc < 0)
 		perror("failed to open here_doc file!");
-	unlink("here_doc.txt");
+	(unlink("here_doc.txt"), ft_hide_ctrl_c());
 	signal(SIGINT, &handle_signal_heredoc);
 	while (1)
 	{
-		line = readline(">");
-		if (!line || !ft_strncmp(line, file->delimeter, ft_strlen(line) + 1))
+		write(1, "> ", 2);
+		line = get_next_line(0);
+		if (!line || !ft_strncmp(line, file->delimeter, ft_strlen(line) - 1))
+		{
+			free(line);
 			break ;
-		(write(fd, line, ft_strlen(line)), write(fd, "\n", 1));
-		free(line);
+		}
+		(write(fd, line, ft_strlen(line)), free(line));
 	}
 	close(fd);
+	ft_recover_echo();
 	if (g_stop_signal == 1)
 		return (1);
-	if (!line)
-		g_stop_signal = 2;
 	return (0);
 }
 

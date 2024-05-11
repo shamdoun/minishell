@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:50:55 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 16:22:25 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:19:55 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@ void	ft_hide_ctrl_c(void)
 
 	tcgetattr(STDIN_FILENO, &ter);
 	ter.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, 0, &ter);
+}
+
+void ft_recover_echo(void)
+{
+	struct termios	ter;
+
+	tcgetattr(STDIN_FILENO, &ter);
+	ter.c_lflag |= ECHOCTL;
 	tcsetattr(STDIN_FILENO, 0, &ter);
 }
 

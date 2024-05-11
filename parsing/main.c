@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-volatile sig_atomic_t g_stop_signal = 0;
+extern volatile sig_atomic_t	g_stop_signal;
 
 void f()
 {
@@ -26,8 +26,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		while (1)
 		{
-			if (g_stop_signal && g_stop_signal != -1)
-				g_stop_signal = 3;
+			g_stop_signal = 0;
 			input = readline("minishell$> ");
 			if (!input)
 				exit_shell(minishell, NULL);
@@ -43,7 +42,9 @@ int	main(int argc, char **argv, char **env)
 					minishell->all_input = split_cmd(cmds, minishell);
 					if (!minishell->all_input)
 						(perror("syntax error\n"), exit(1));
+					ft_recover_echo();
 					execute_input(minishell);
+					ft_hide_ctrl_c();
 				}
 				else
 					perror("syntax error\n");
