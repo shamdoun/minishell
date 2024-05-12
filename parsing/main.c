@@ -38,7 +38,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	minishell = NULL;
 	init(&minishell, env);
-	if (isatty(STDIN_FILENO))
+	if (1)
 	{
 		while (1)
 		{
@@ -55,7 +55,7 @@ int	main(int argc, char **argv, char **env)
 					if (cmds == NULL)
 						(perror("allocation failed..."), exit (1));
 					add_space(cmds);
-					minishell->all_input = split_cmd(cmds);
+					minishell->all_input = split_cmd(cmds, minishell->env);
 					if (!minishell->all_input)
 						printf("syntax error\n");
 					execute_input(minishell);
