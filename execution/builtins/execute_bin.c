@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 23:31:20 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:39:20 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,11 @@ void	update_split_list(char ***args_list, char *data)
 void	pipe_child_runs_binary(char *cmd_path, char **args_list, t_shell *shell)
 {
 	int	rv;
-	int	status;
 
+	signal(SIGQUIT, &handle_quit_signal);
 	rv = execve(cmd_path, args_list, shell->env);
-	fprintf(stderr, "error of %d\n", errno);
-	waitpid(-1, &status, 0);
-	if (rv)
-		ft_lst_add_status_back(&shell->all_status,
-			ft_lstnew_status(status), shell);
+	if (rv < 0)
+		fprintf(stderr, "error of %d\n", errno);
 }
 
 void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
@@ -48,19 +45,21 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 
 	if (mode)
 	{
+		(signal(SIGINT, &handle_signal_for_bin),
+			signal(SIGQUIT, &handle_quit_signal));
 		child = fork();
 		if (child == 0)
 		{
 			signal(SIGINT, &handle_child_signal);
 			rv = execve(cmd_path, args_list, shell->env);
-			fprintf(stderr, "error of %d\n", errno);
 			if (rv)
 				ft_lst_add_status_back(&shell->all_status,
 					ft_lstnew_status(errno), shell);
 		}
-		waitpid(-1, &status, 0);
+		waitpid(child, &status, 0);
 		ft_lst_add_status_back(&shell->all_status,
 			ft_lstnew_status(status), shell);
+		(signal(SIGINT, &handle_signal), signal(SIGQUIT, SIG_IGN));
 	}
 	else
 		pipe_child_runs_binary(cmd_path, args_list, shell);

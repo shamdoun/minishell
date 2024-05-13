@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 16:25:59 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:11:30 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ void	update_cwd(char *cwd, t_arg *path, char *old_cwd)
 
 	if (check_path(path, cwd))
 		return ;
-	split_values(&split_cwd, &split_path, cwd, path);
+	if (split_values(&split_cwd, &split_path, cwd, path))
+		return ;
 	joined = ft_strdup("/");
 	if (!joined)
 		exit(1);
 	copy_old_cwd(old_cwd, split_cwd);
 	i = copy_common_path(&joined, split_cwd,
-			list_len(split_cwd) - list_len(split_path));
+			list_len(split_cwd) - list_len(split_path), split_path[0]);
 	copy_unique_path(&joined, split_cwd, split_path, i);
 	strcpy(cwd, joined);
 	free(joined);
@@ -93,13 +94,13 @@ void	change_directory(t_arg *path, t_shell *shell, char ***env)
 	}
 	if (return_value)
 	{
-		status = ft_lstnew_status(errno);
+		status = ft_lstnew_status(1);
 		if (!status)
 			exit(1);
 		ft_lst_add_status_back(&shell->all_status, status, shell);
 		perror("cd");
 	}
 	getcwd(shell->cwd, sizeof(shell->cwd));
-	if (!return_value)
+	if (!return_value && path)
 		update_cwd(shell->cwd, path, old_cwd);
 }

@@ -196,3 +196,5 @@ void 		add_update_env(t_arg *data, t_shell *shell, char ***env);
 void 		ft_recover_echo(void);
 void		ft_hide_ctrl_c(void);
 char		*get_next_line(int fd);
+int			ft_last_status(t_status *list);
+void		update_cwd_list(char **split_cwd, char **split_path, int k);

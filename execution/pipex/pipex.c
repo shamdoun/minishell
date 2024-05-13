@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 16:09:25 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:28:09 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	pipex(t_shell *shell, int mode)
 	i = 0;
 	while (i < pipex->pipe_count + 1)
 	{
+		signal(SIGINT, &handle_signal_for_bin);
 		child1 = fork();
 		if (!child1)
 		{

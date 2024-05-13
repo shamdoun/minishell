@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:25:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 15:53:53 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:38:03 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_same_value(char *p1, char *p2)
 	cp2 = ft_strdup(p2);
 	ft_str_tolower(cp1);
 	ft_str_tolower(cp2);
-	if (!ft_strncmp(cp1, cp2, ft_strlen(cp2)))
+	if (!ft_strncmp(cp1, cp2, ft_strlen(cp1)))
 	{
 		free(cp1);
 		free(cp2);
@@ -45,30 +45,34 @@ int	check_path(t_arg *path, char *cwd)
 	return (0);
 }
 
-void	split_values(char ***split_cwd,
+int	split_values(char ***split_cwd,
 	char ***split_path, char *cwd, t_arg *path)
 {
 	*split_cwd = ft_split_1(cwd, '/');
 	if (!(*split_cwd))
 		exit(1);
 	*split_path = ft_split_1(path->arg, '/');
+	if (path_is_only_levels(*split_path))
+		return (1);
 	if (!(*split_path))
 		exit(1);
-	while (!ft_strncmp((*split_path)[0], ".", 2)
-		|| !ft_strncmp((*split_path)[0], "..", 2))
+	while ((!ft_strncmp((**split_path), ".", ft_strlen((**split_path)))
+			|| !ft_strncmp((**split_path), "..", ft_strlen((**split_path)))))
 	{
-		free((*split_path)[0]);
+		free((**split_path));
 		(*split_path)++;
 	}
+	return (0);
 }
 
-int	copy_common_path(char **joined, char **split_cwd, int n)
+int	copy_common_path(char **joined, char **split_cwd, int n, char *delimeter)
 {
 	int		i;
 	char	*tmp;
 
 	i = 0;
-	while (i < n)
+	(void)n;
+	while (split_cwd[i] && !ft_same_value(split_cwd[i], delimeter))
 	{
 		tmp = *joined;
 		*joined = ft_strjoin(*joined, split_cwd[i]);
@@ -90,21 +94,18 @@ int	copy_common_path(char **joined, char **split_cwd, int n)
 void	copy_unique_path(char **joined, char **split_cwd,
 	char **split_path, int i)
 {
-	int		j;
 	char	*tmp;
 
-	j = 0;
+	update_cwd_list(split_cwd, split_path, i);
 	while (split_cwd[i])
 	{
-		strcpy(split_cwd[i], split_path[j]);
 		tmp = *joined;
 		*joined = ft_strjoin(*joined, split_cwd[i]);
 		if (!(*joined))
 			exit(1);
 		free(tmp);
 		tmp = NULL;
-		j++;
-		if (split_path[j])
+		if (split_cwd[i + 1])
 		{
 			tmp = *joined;
 			*joined = ft_strjoin(*joined, "/");

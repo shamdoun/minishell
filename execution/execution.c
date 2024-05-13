@@ -6,12 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 23:29:33 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:39:58 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
-
 
 void	free_array(char **a)
 {
@@ -84,7 +83,7 @@ void	run_built_ins(t_shell *shell, int mode)
 	if (shell->all_input->out_file)
 		close(shell->all_input->out_file);
 	if (!mode)
-		exit(0);
+		exit(ft_last_status(shell->all_status));
 	free(command);
 }
 
