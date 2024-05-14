@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 14:00:35 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:45:06 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_getenv(char *name, char **env)
 	char	**split;
 	char	*found;
 
-	if (!*env)
-		perror("env is empty!");
 	while (*env)
 	{
 		split = ft_split_1(*env, '=');
