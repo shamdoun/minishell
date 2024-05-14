@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:04:07 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 16:05:28 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:03:32 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	exit_shell(t_shell *shell, t_arg *status)
 	// 	free(shell->all_allocated_data);
 	// 	shell->all_allocated_data = shell->all_allocated_data->next;
 	// }
+	write(1, "exit\n", 5);
 	if (status)
 	{
 		value = ft_atoi(status->arg);

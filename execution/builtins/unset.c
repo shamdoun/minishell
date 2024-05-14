@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:05:17 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 22:09:18 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:31:59 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,26 @@ void	remove_env(t_arg *data, t_shell *shell, char ***env)
 {
 	char		**new_environ;
 
-	if (ft_strrchr(data->arg, '='))
+	while (data && data->arg)
 	{
-		perror("bash: unset: not a valid identifier");
-		return ;
+		if (ft_strrchr(data->arg, '='))
+			perror("bash: unset: not a valid identifier");
+		else
+		{
+			if (!ft_strncmp(data->arg, "PATH", 5) && shell->r_path)
+			{
+				free(shell->r_path);
+				shell->r_path = NULL;
+			}
+			else if (env_exists(data->arg, *env))
+			{
+				new_environ = malloc(sizeof(char *) * (list_len(*env)));
+				if (!new_environ)
+					exit (1);
+				copy_list_excluding(new_environ, *env, data->arg);
+				*env = new_environ;
+			}
+		}
+		data = data->next;
 	}
-	if (!ft_strncmp(data->arg, "PATH", 5) && shell->r_path)
-	{
-		free(shell->r_path);
-		shell->r_path = NULL;
-		return ;
-	}
-	new_environ = malloc(sizeof(char *) * (list_len(*env)));
-	if (!new_environ)
-		exit (1);
-	copy_list_excluding(new_environ, *env, data->arg);
-	*env = new_environ;
 }

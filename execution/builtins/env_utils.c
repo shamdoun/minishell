@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:54:01 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 15:59:41 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:25:43 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	update_shlvl(t_shell *shell)
 	new_shlvl->arg = ft_strjoin("SHLVL=", tmp);
 	if (!new_shlvl->arg)
 		exit(1);
+	new_shlvl->next = NULL;
 	add_a_data_to_list(shell, new_shlvl->arg);
 	add_update_env(new_shlvl, shell, &shell->env);
 	free(new_shlvl);

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/13 21:39:58 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:57:01 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	run_built_ins(t_shell *shell, int mode)
 	if (!command)
 		exit(1);
 	add_a_data_to_list(shell, command);
-	ft_str_tolower(command);
+	if (!ft_same_value(command, "exit"))
+		ft_str_tolower(command);
 	run_options(shell, command, mode);
 	if (shell->all_input->in_file)
 		close(shell->all_input->in_file);

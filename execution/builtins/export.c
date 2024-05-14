@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:22:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 20:24:46 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:19:05 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,21 @@ void	add_update_env(t_arg *data, t_shell *shell, char ***env)
 		declare_all_envs(*env);
 		return ;
 	}
-	if (!ft_strrchr(data->arg, '='))
-		return ;
-	split_env = ft_split_1(data->arg, '=');
-	if (!split_env)
-		exit(1);
-	if (env_exists(split_env[0], *env))
-		update_env(split_env[0], shell, data->arg, env);
-	else
-		add_env(data->arg, shell, env);
-	free_array(split_env);
+	while (data && data->arg)
+	{
+		if (*data->arg == '=')
+			write(2, "export: not a valid identifier\n", 31);
+		else if (ft_strrchr(data->arg, '='))
+		{
+			split_env = ft_split_1(data->arg, '=');
+			if (!split_env)
+				exit(1);
+			if (env_exists(split_env[0], *env))
+				update_env(split_env[0], shell, data->arg, env);
+			else
+				add_env(data->arg, shell, env);
+			free_array(split_env);
+		}
+		data = data->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/13 21:28:09 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:21:34 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ void	pipex(t_shell *shell, int mode)
 		i++;
 	}
 	close_ends_and_wait(pipex->pipe_count, pipex->ends, pipex->processes);
+	(signal(SIGINT, &handle_signal),signal(SIGQUIT, SIG_IGN));
 }

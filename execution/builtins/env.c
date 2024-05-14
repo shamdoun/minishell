@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:45:04 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 16:22:18 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:41:54 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	update_env_path_var(t_shell *shell)
 	if (!new_envpath)
 		perror("failed!");
 	new_envpath->arg = ft_strdup("_=/usr/bin/env");
+	new_envpath->next = NULL;
 	add_update_env(new_envpath, shell, &shell->env);
 	free(new_envpath->arg);
 	free(new_envpath);
@@ -57,10 +58,12 @@ void	add_default_env(t_shell *shell)
 	tmp = malloc(sizeof(t_arg));
 	pwd = ft_strjoin("PWD=", shell->cwd);
 	tmp->arg = pwd;
+	tmp->next = NULL;
 	add_update_env(tmp, shell, &shell->env);
 	free(tmp->arg);
 	tmp->arg = NULL;
 	tmp->arg = ft_strdup("SHLVL=1");
+	tmp->next = NULL;
 	add_update_env(tmp, shell, &shell->env);
 	free(tmp->arg);
 	tmp->arg = NULL;
@@ -74,6 +77,7 @@ void	update_inhereted_env(t_shell *shell)
 
 	oldpwd = malloc(sizeof(t_arg));
 	oldpwd->arg = ft_strdup("OLDPWD");
+	oldpwd->next = NULL;
 	remove_env(oldpwd, shell, &shell->env);
 	free(oldpwd->arg);
 	free(oldpwd);

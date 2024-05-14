@@ -43,5 +43,10 @@ int	ft_atoi(const char *str)
 		result = (result * 10) + (*s - '0');
 		s++;
 	}
+	if (*s)
+	{
+		write(2, "bash: exit: numeric argument required", 37);
+		return (255);
+	}
 	return ((int)result * sign);
 }
