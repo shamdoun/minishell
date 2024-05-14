@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 19:19:10 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/13 21:38:08 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:00:55 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,20 @@ int	path_is_only_levels(char **split)
 		split++;
 	}
 	return (1);
+}
+
+void update_oldpwd(char *old_pwd, t_shell *shell)
+{
+	t_arg	*oldpwd_env;
+	char 	*tmp;
+
+	oldpwd_env = malloc(sizeof(t_arg));
+	if (!oldpwd_env)
+		exit (1);
+	tmp = ft_strjoin("OLDPWD=", old_pwd);
+	if (!tmp)
+		exit(1);
+	oldpwd_env->arg = tmp;
+	oldpwd_env->next = NULL;
+	add_update_env(oldpwd_env, shell, &shell->env);
 }

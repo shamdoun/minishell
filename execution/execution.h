@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:10:12 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/13 21:40:15 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:01:01 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void	copy_unique_path(char **joined, char **split_cwd,
 			char **split_path, int i);
 void	handle_signal_for_bin(int sig);
 void	handle_quit_signal(int sig);
+void 	update_oldpwd(char *old_pwd, t_shell *shell);
 #endif

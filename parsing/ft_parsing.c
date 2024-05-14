@@ -9,7 +9,7 @@ static int	check_syntax(char *str)
 		i++;
 	while (i > 0 && (str[i - 1] == ' ' || str[i - 1] == '\t'))
 		i--;
-	if (str[i - 1] == '\\' || str[i - 1] == '<' || str[i - 1] == '>')
+	if (str[i - 1] == '<' || str[i - 1] == '>')
 		return (1);
 	return (0);
 }

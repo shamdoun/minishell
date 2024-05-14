@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/13 18:11:30 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:00:35 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	change_directory(t_arg *path, t_shell *shell, char ***env)
 		perror("cd");
 	}
 	getcwd(shell->cwd, sizeof(shell->cwd));
+	update_oldpwd(old_cwd, shell);
 	if (!return_value && path)
 		update_cwd(shell->cwd, path, old_cwd);
 }
