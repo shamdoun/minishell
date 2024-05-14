@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 21:08:46 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:06:39 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,25 @@ char	*ft_join_args(t_arg *args)
 	return (result);
 }
 
+int	is_flag(char *split)
+{
+	if (*split == '-')
+	{
+		split++;
+		while (*split)
+		{
+			if (*split != 'n')
+				return (0);
+			split++;
+		}
+		return (1);
+	}
+	return (0);
+}
+
 void	print_message(char **split, bool *new_line)
 {
-	while (*split && !ft_strncmp(*split, "-n", ft_strlen(*split)))
+	while (*split && is_flag(*split))
 	{
 		split++;
 		*new_line = false;

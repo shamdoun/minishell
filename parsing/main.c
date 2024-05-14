@@ -42,14 +42,11 @@ int	main(int argc, char **argv, char **env)
 					minishell->all_input = split_cmd(cmds, minishell);
 					if (!minishell->all_input)
 						(perror("syntax error\n"), exit(1));
-					ft_recover_echo();
-					execute_input(minishell);
-					ft_hide_ctrl_c();
+					(ft_recover_echo(), execute_input(minishell), ft_hide_ctrl_c());
 				}
 				else
 					perror("syntax error\n");
 				add_history(input);
-				// printf("status %d\n", ft_last_status(minishell->all_status));
 			}
 		}
 	}

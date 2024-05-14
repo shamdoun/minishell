@@ -18,8 +18,6 @@
 	>: 1
 */
 
-char	*get_next_line(int fd);
-
 typedef struct	s_arg
 {
 	char			*arg;
@@ -198,3 +196,4 @@ void		ft_hide_ctrl_c(void);
 char		*get_next_line(int fd);
 int			ft_last_status(t_status *list);
 void		update_cwd_list(char **split_cwd, char **split_path, int k);
+int			path_is_only_levels(char **split);
