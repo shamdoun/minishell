@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/13 21:41:36 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:33:08 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ int	open_input_files(t_shell *shell)
 	first_file = shell->all_input->all_files;
 	while (shell->all_input->all_files)
 	{
-		if (shell->all_input->all_files->type >= 3 && shell->all_input->in_file)
-			close(shell->all_input->in_file);
+		if (shell->all_input->all_files->type >= 3 && shell->all_input->all_files->type != 4 && shell->all_input->in_file)
+			close(shell->all_input->in_file); 
 		if (shell->all_input->all_files->type == 3)
 			shell->all_input->in_file
 				= open(shell->all_input->all_files->file_name, O_RDONLY, 0777);

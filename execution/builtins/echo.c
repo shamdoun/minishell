@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 13:06:39 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:18:11 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_join_args(t_arg *args)
 
 int	is_flag(char *split)
 {
-	if (*split == '-')
+	if (*split == '-' && *(split + 1))
 	{
 		split++;
 		while (*split)
