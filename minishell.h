@@ -198,3 +198,4 @@ int			ft_last_status(t_status *list);
 void		update_cwd_list(char **split_cwd, char **split_path, int k);
 int			path_is_only_levels(char **split);
 int			env_exists(char *name, char **env);
+void		add_new_status(t_shell *shell, int status);

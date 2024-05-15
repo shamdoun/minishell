@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 16:45:06 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 21:53:32 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	update_cwd(char *cwd, t_arg *path, char *old_cwd)
 		exit(1);
 	copy_old_cwd(old_cwd, split_cwd);
 	i = copy_common_path(&joined, split_cwd,
-			list_len(split_cwd) - list_len(split_path), split_path[0]);
+			split_path[0]);
 	copy_unique_path(&joined, split_cwd, split_path, i);
 	strcpy(cwd, joined);
 	free(joined);
@@ -96,7 +96,7 @@ void	change_directory(t_arg *path, t_shell *shell, char ***env)
 		if (!status)
 			exit(1);
 		ft_lst_add_status_back(&shell->all_status, status, shell);
-		perror("cd");
+		perror("bash: cd");
 	}
 	getcwd(shell->cwd, sizeof(shell->cwd));
 	update_oldpwd(old_cwd, shell);

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 13:18:11 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 22:20:01 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	print_message(char **split, bool *new_line)
 	}
 }
 
-void	echo_message(t_arg *args)
+void	echo_message(t_arg *args, t_shell *shell)
 {
 	bool	new_line;
 	char	*joined_args;
@@ -74,7 +74,7 @@ void	echo_message(t_arg *args)
 	new_line = true;
 	if (!args)
 	{
-		printf("\n");
+		printf("\n"), add_new_status(shell, 0);
 		return ;
 	}
 	joined_args = ft_join_args(args);
@@ -86,6 +86,6 @@ void	echo_message(t_arg *args)
 	print_message(split, &new_line);
 	if (new_line)
 		printf("\n");
-	free(joined_args);
-	// free_array(split);
+	free_array(split);
+	free(joined_args), add_new_status(shell, 0);
 }

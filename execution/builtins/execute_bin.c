@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 13:49:46 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 22:49:17 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 					ft_lstnew_status(errno), shell);
 		}
 		waitpid(child, &status, 0);
-		ft_lst_add_status_back(&shell->all_status,
-			ft_lstnew_status(status), shell);
+		fprintf(stderr, "child status %d\n", WEXITSTATUS(status));
+		add_new_status(shell, WEXITSTATUS(status));
 		(signal(SIGINT, &handle_signal), signal(SIGQUIT, SIG_IGN));
 	}
 	else
@@ -99,8 +99,7 @@ void	execute_other_commands(t_shell *shell, int mode)
 		run_binary(cmd_path, mode, args_list, shell);
 	else
 	{
-		ft_lst_add_status_back(&shell->all_status,
-			ft_lstnew_status(127), shell);
 		fprintf(stderr, "bash: %s: command not found\n", args_list[0]);
+		add_new_status(shell, 127);
 	}
 }

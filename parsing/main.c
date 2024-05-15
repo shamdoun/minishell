@@ -48,6 +48,7 @@ int	main(int argc, char **argv, char **env)
 					perror("syntax error\n");
 				add_history(input);
 			}
+			printf("last status-> %d\n", ft_last_status(minishell->all_status));
 		}
 	}
 	else

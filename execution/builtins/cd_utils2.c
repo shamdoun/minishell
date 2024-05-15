@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:25:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/13 21:38:03 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 21:52:41 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,12 @@ int	split_values(char ***split_cwd,
 	return (0);
 }
 
-int	copy_common_path(char **joined, char **split_cwd, int n, char *delimeter)
+int	copy_common_path(char **joined, char **split_cwd, char *delimeter)
 {
 	int		i;
 	char	*tmp;
 
 	i = 0;
-	(void)n;
 	while (split_cwd[i] && !ft_same_value(split_cwd[i], delimeter))
 	{
 		tmp = *joined;
