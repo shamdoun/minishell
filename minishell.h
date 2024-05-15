@@ -21,6 +21,7 @@
 typedef struct	s_arg
 {
 	char			*arg;
+	int				t_f;
 	struct	s_arg	*next;
 }	t_arg;
 
@@ -40,6 +41,7 @@ typedef struct input
 	int				in_file;
 	int				out_file;
 	int				here_doc;
+	int				t;
 	struct input	*next;
 } t_input;
 
@@ -133,9 +135,10 @@ char	    *ft_strdup1(char *s);
 void        print_all_env_vars(char **env);
 int	        ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	    ft_strlen(const char *s);
+char		*ft_strjoin(char *s1, char *s2);
 size_t	    ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	    ft_strlcat(char *dst, const char *src, size_t dstsize);
-char	    *ft_strjoin(char const *s1, char const *s2);
+char		*ft_azejoin(char **s1, char *s2);
 char	    *ft_strdup(const char *s1);
 char	    **ft_split_1(char const *s, char c);
 void	    *ft_memmove(void *dst, const void *src, size_t len );
@@ -164,12 +167,15 @@ void		add_space(t_commands *cmd);
 /*---------------ft_split.c---------------*/
 char		**ft_split(char *s);
 /*---------------parsing/ft_split_cmd.c---------------*/
-t_input		*split_cmd(t_commands *cmd, t_shell *shell);
+t_input		*split_cmd(t_commands *cmd);
 /*---------------parsing/ft_split_cmd_utils.c---------------*/
 void		put_delimiter(t_input *nw, char *str);
 void		put_filename(t_input *nw, char *str);
 void		put_cmdname(t_input *nw, char *str);
 char		*remove_quotes(char *str);
+int			ft_isexpanded(char *str);
+/*---------------parsing/ft_split_cmdutils2.c---------------*/
+char		*get_cmdname(char *s, char **env);
 //for signals
 void        handle_signal(int sig);
 void		handle_child_signal(int sig);
@@ -181,20 +187,5 @@ void 		update_shlvl(t_shell *shell);
 void 		update_env_path_var(t_shell *shell);
 char		*ft_itoa(int n);
 char 		*ft_getenv(char *name, char **env);
-void 		add_default_env(t_shell *shell);
-void 		update_inhereted_env(t_shell *shell);
-int 		open_here_docs(t_shell *shell);
-void		add_a_data_to_list(t_shell *shell, void *address);
-void		init(t_shell **minishell, char **env);
-int			ft_same_value(char *p1, char *p2);
-void		copy_old_cwd(char *old_cwd, char **split_cwd);
-char		*retrieve_value(t_shell *shell);
-void		update_shlvl(t_shell *shell);
-void 		add_update_env(t_arg *data, t_shell *shell, char ***env);
-void 		ft_recover_echo(void);
-void		ft_hide_ctrl_c(void);
-char		*get_next_line(int fd);
-int			ft_last_status(t_status *list);
-void		update_cwd_list(char **split_cwd, char **split_path, int k);
-int			path_is_only_levels(char **split);
-int			env_exists(char *name, char **env);
+void add_default_env(t_shell *shell);
+void update_inhereted_env(t_shell *shell, char **env);

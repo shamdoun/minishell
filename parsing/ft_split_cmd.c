@@ -3,16 +3,25 @@
 static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 {
 	t_file	*new;
-	char	*ptr;	
+	int		t_f;
+	char	*ptr;
+	char	*s;
 
-	new = NULL;
-	ptr = remove_quotes(name);
-	if (!strncmp(str, "<", 2))
-		new = ft_lstnew_file(ptr, 3, NULL);
-	else if (!strncmp(str, ">", 2))
-		new = ft_lstnew_file(ptr, 1, NULL);
-	else if (!strncmp(str, ">>", 3))
-		new = ft_lstnew_file(ptr, 2, NULL);
+	(1) && (new = NULL, ptr = NULL, s = NULL, t_f = 0);
+	if (!strncmp(str, "<", 2) || !strncmp(str, ">", 2) || !strncmp(str, ">>", 3))
+	{
+		t_f = ft_isexpanded(name);
+		if (t_f)
+			ptr = ft_expand(name, env);
+		s = remove_quotes(ptr);
+		if (!strncmp(str, "<", 2))
+			new = ft_lstnew_file(s, 3, NULL);
+		else if (!strncmp(str, ">", 2))
+			new = ft_lstnew_file(s, 1, NULL);
+		else if (!strncmp(str, ">>", 3))
+			new = ft_lstnew_file(s, 2, NULL);
+		free(ptr);
+	}
 	else if (!strncmp(str, "<<", 3))
 		new = ft_lstnew_file(NULL, 4, ptr);
 	if (!new)
@@ -20,18 +29,24 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 	ft_lst_add_file_back(&(nw->all_files), new, shell);
 }
 
-static t_arg	*put_arg(t_arg *arguments, char *str)
+static t_arg	*put_arg(t_arg *arguments, char *str, char **env)
 {
 	t_arg	*new;
 	t_arg	*head;
 	char	*ptr;
 
-	ptr = remove_quotes(str);
 	head = arguments;
+	ptr = NULL;
 	new = malloc(sizeof(t_arg));
 	if (!new)
 		return (NULL);
-	new->arg = ptr;
+	new->t_f = ft_isexpanded(str);
+	if (new->t_f)
+		ptr = ft_expand(str, env);
+	else
+		ptr = str;
+	new->arg = remove_quotes(ptr);
+	free(ptr);
 	new->next = NULL;
 	if (!arguments)
 	{
@@ -78,9 +93,9 @@ static int	filltoken(t_commands *cmd, t_input *new, t_shell *shell)
 			i++;
 		}
 		else if (t == 0)
-			(1) && (t = 1, new->command_name = str[i]);
+			(1) && (t = 1, new->command_name = get_cmdname(str[i], env));
 		else
-			(new)->args = put_arg((new)->args, str[i]);
+			(new)->args = put_arg((new)->args, str[i], env);
 		i++;
 	}
 	return (1);

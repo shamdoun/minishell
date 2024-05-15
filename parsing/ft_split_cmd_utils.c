@@ -1,5 +1,34 @@
 #include "../minishell.h"
 
+int	ft_isexpanded(char *str)
+{
+	char	*del;
+	int		i;
+
+	(1) && (i = 0, del = " \t'\".#!%%&()*+,-/:;<=>?@[]\\^{}|~$");
+	if (!ft_strncmp(str, "$", 2))
+		return (0);
+	while (str[i])
+	{
+		if (str[i] == '"')
+		{
+			while (str[++i] && str[i] != '"')
+				if (str[i] == '$' && str[i + 1] && !ft_strchr(del, str[i + 1]))
+					return (1);
+		}
+		if (str[i] == '\'')
+			while (str[++i] && str[i] != '\'')
+				;
+		if (str[i] == '$' && !ft_strchr(del, str[i + 1]))
+			return (1);
+		if (str[i] == '$' && ft_strchr("\"'", str[i + 1]))
+			return (1);
+		if (str[i])
+			i++;
+	}
+	return (0);
+}
+
 int	ft_lenwithoutquotes(char *str)
 {
 	char	q;
@@ -8,7 +37,7 @@ int	ft_lenwithoutquotes(char *str)
 
 	i = 0;
 	len = 0;
-	while (str[i])
+	while (str && str[i])
 	{
 		if (str[i] == '\'' || str[i] == '"')
 		{
@@ -37,17 +66,13 @@ char	*remove_quotes(char *str)
 	i = ft_lenwithoutquotes(str);
 	ptr = malloc(i + 1);
 	(1) && (i = 0, j = 0);
-	while (str[i])
+	while (str && str[i])
 	{
 		if (str[i] == '\'' || str[i] == '"')
 		{
-			q = str[i];
-			i++;
+			(1) && (q = str[i], i++);
 			while (str[i] != q)
-			{
-				ptr[j] = str[i];
-				(1) && (j++, i++);
-			}
+				(1) && (ptr[j] = str[i], j++, i++);
 			i++;
 		}
 		else

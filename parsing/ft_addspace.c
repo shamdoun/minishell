@@ -74,6 +74,7 @@ void	add_space(t_commands *cmd)
 	while (cmd)
 	{
 		cmd->command = ft_strwithspace(cmd->command);
+		//ft_expand(cmd->command);
 		cmd = cmd->next;
 	}
 }
