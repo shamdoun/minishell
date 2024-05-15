@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/15 10:47:37 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:31:31 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void	run_options(t_shell *shell, char *command, int mode)
 	else if (!ft_strncmp(command, "exit", 5))
 		exit_shell(shell, shell->all_input->args);
 	else if (!ft_strncmp(command, "echo", 5))
-		echo_message(shell->all_input->args);
+		echo_message(shell->all_input->args, shell);
 	else if (!ft_strncmp(command, "env", 4))
-		print_all_env_vars(shell->env);
+		(print_all_env_vars(shell->env), add_new_status(shell, 0));
 	else if (!ft_strncmp(command, "pwd", 4))
-		printf("%s\n", shell->cwd);
+		(printf("%s\n", shell->cwd), add_new_status(shell, 0));
 	else
 		execute_other_commands(shell, mode);
 }

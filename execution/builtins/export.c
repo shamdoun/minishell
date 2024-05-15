@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:22:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 16:19:05 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 22:07:37 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,16 @@ int	env_exists(char *name, char **env)
 void	update_env(char *env_name, t_shell *shell, char *data, char ***env)
 {
 	char		**new_environ;
-	t_status	*status;
 
 	new_environ = malloc(sizeof(char *) * (list_len(*env) + 1));
-	if (new_environ)
+	if (!new_environ)
+		add_new_status(shell, errno);
+	else
 	{
 		copy_list_updating(env_name, data, shell, new_environ);
 		// add_a_data_to_list(shell, new_environ);
 		*env = new_environ;
-	}
-	else
-	{
-		status = ft_lstnew_status(errno);
-		if (!status)
-			exit(1);
-		ft_lst_add_status_back(&shell->all_status, status, shell);
+		add_new_status(shell, 0);
 	}
 }
 
@@ -55,10 +50,11 @@ void	add_env(char *data, t_shell *shell, char ***env)
 {
 	char		**new_environ;
 	char		*new_data;
-	t_status	*status;
 
 	new_environ = malloc(sizeof(char *) * (list_len(*env) + 2));
-	if (new_environ)
+	if (!new_environ)
+		add_new_status(shell, errno);
+	else
 	{
 		ft_memcpy(new_environ, *env, list_len(*env) * sizeof(char *));
 		new_data = ft_strdup(data);
@@ -68,14 +64,8 @@ void	add_env(char *data, t_shell *shell, char ***env)
 		new_environ[list_len(*env) + 1] = NULL;
 		*env = new_environ;
 		add_a_data_to_list(shell, new_data);
+		add_new_status(shell, 0);
 		// add_a_data_to_list(shell, new_environ);
-	}
-	else
-	{
-		status = ft_lstnew_status(errno);
-		if (!status)
-			exit(1);
-		ft_lst_add_status_back(&shell->all_status, status, shell);
 	}
 }
 
@@ -86,12 +76,13 @@ void	add_update_env(t_arg *data, t_shell *shell, char ***env)
 	if (!data)
 	{
 		declare_all_envs(*env);
+		add_new_status(shell, 0);
 		return ;
 	}
 	while (data && data->arg)
 	{
 		if (*data->arg == '=')
-			write(2, "export: not a valid identifier\n", 31);
+			(write(2, "export: not a valid identifier\n", 31), add_new_status(shell, 1));
 		else if (ft_strrchr(data->arg, '='))
 		{
 			split_env = ft_split_1(data->arg, '=');
@@ -103,6 +94,8 @@ void	add_update_env(t_arg *data, t_shell *shell, char ***env)
 				add_env(data->arg, shell, env);
 			free_array(split_env);
 		}
+		else
+			add_new_status(shell, 0);
 		data = data->next;
 	}
 }

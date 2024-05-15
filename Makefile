@@ -26,8 +26,8 @@ SRC= ft_free.c ft_split.c ./parsing/ft_parsing.c ./parsing/divide_cmd.c parsing/
 	./execution/builtins/exit.c ./execution/builtins/export.c ./execution/builtins/unset.c ./execution/builtins/built_ins_utils.c ft_split_v2.c ft_strdup.c ft_atoi.c \
 	ft_strncmp.c ft_strlen.c ft_strjoin.c ft_memcpy.c ft_memmove.c ft_strlcat.c ft_strlcpy.c \
 	./parsing/ft_tolower.c ./parsing/ft_strrchr.c ./parsing/ft_itoa.c init.c execution/builtins/cd_utils2.c  \
-	./execution/pipex/pipex_utils.c ./execution/builtins/cd_utils1.c ./execution/builtins/env_utils.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c
-	./parsing/ft_tolower.c ./parsing/ft_strrchr.c ./parsing/ft_itoa.c parsing/expand.c \
+	./execution/pipex/pipex_utils.c ./execution/builtins/cd_utils1.c ./execution/builtins/env_utils.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c \
+	./execution/builtins/built_ins_utils2.c ./parsing/ft_tolower.c ./parsing/ft_strrchr.c ./parsing/ft_itoa.c parsing/expand.c \
 	parsing/ft_splitcmdutils2.c
 
 CC= cc

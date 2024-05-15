@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:10:12 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 14:01:01 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/14 22:17:58 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	execute_other_commands(t_shell *shell, int mode);
 void	print_all_env_vars(char **env);
-void	echo_message(t_arg *args);
+void	echo_message(t_arg *args, t_shell *shell);
 void	change_directory(t_arg *path, t_shell *shell, char ***env);
 char	*find_command_path(char *s, t_shell *shell);
 void	copy_list_updating(char *env_name, char *data,
@@ -35,7 +35,7 @@ int		check_path(t_arg *path, char *cwd);
 int		split_values(char ***split_cwd, char ***split_path,
 			char *cwd, t_arg *path);
 int		copy_common_path(char **joined,
-			char **split_cwd, int n, char *delimeter);
+			char **split_cwd, char *delimeter);
 void	copy_unique_path(char **joined, char **split_cwd,
 			char **split_path, int i);
 void	handle_signal_for_bin(int sig);
