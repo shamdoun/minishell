@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:43:52 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 16:09:30 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/15 23:14:30 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ void	close_unused_here_docs(t_input *input)
 	}
 }
 
-void	duplicate_ends(t_shell *shell, int *ends, int pipe_count, int i)
+int	duplicate_ends(t_shell *shell, int *ends, int pipe_count, int i)
 {
 	int	j;
 
 	if (i)
-		dup2(ends[2 * i - 2], STDIN_FILENO);
+		if (dup2(ends[2 * i - 2], STDIN_FILENO) == -1)
+			return (1);
 	if (i != pipe_count)
-		dup2(ends[2 * i + 1], STDOUT_FILENO);
+		if (dup2(ends[2 * i + 1], STDOUT_FILENO) == -1)
+			return (1);
 	j = 0;
 	while (j < pipe_count * 2)
 	{
@@ -40,11 +42,13 @@ void	duplicate_ends(t_shell *shell, int *ends, int pipe_count, int i)
 		j++;
 	}
 	close_unused_here_docs(shell->all_input);
+	return (0);
 }
 
-void	close_ends_and_wait(int pipe_count, int *ends, int *processes)
+void	close_ends_and_wait(int pipe_count, int *ends, int *processes, t_shell *shell)
 {
 	int	j;
+	int	status;
 
 	j = 0;
 	while (j < pipe_count * 2)
@@ -55,7 +59,11 @@ void	close_ends_and_wait(int pipe_count, int *ends, int *processes)
 	j = 0;
 	while (j < pipe_count + 1)
 	{
-		waitpid(processes[j], NULL, 0);
+		waitpid(processes[j], &status, 0);
+		if (WIFEXITED(status))
+			add_new_status(shell, WEXITSTATUS(status));
+		else
+			add_new_status(shell, WTERMSIG(status) + 128);
 		j++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 22:21:48 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/15 23:16:23 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,19 @@ void	run_options(t_shell *shell, char *command, int mode)
 void	run_built_ins(t_shell *shell, int mode)
 {
 	char	*command;
-
+	
 	if (open_input_files(shell))
 		return ;
-	redirect_streams(shell);
+	if (redirect_streams(shell))
+		return ;
 	if (!shell->all_input->command_name)
 		return ;
 	command = ft_strdup(shell->all_input->command_name);
 	if (!command)
-		exit(1);
+	{
+		add_new_status(shell, 1);
+		return ;
+	}
 	add_a_data_to_list(shell, command);
 	if (!ft_same_value(command, "exit"))
 		ft_str_tolower(command);
@@ -92,12 +96,15 @@ void	execute_input(t_shell *shell)
 {
 	int	o_in;
 	int	o_out;
+	int	rv;
 
 	o_in = dup(STDIN_FILENO);
 	o_out = dup(STDOUT_FILENO);
-	if (open_here_docs(shell))
+	rv = open_here_docs(shell);
+	if (rv)
 	{
 		signal(SIGINT, &handle_signal);
+		add_new_status(shell, rv);
 		dup2(o_in, STDIN_FILENO);
 		dup2(o_out, STDOUT_FILENO);
 		close(o_in);
@@ -105,12 +112,14 @@ void	execute_input(t_shell *shell)
 		return ;
 	}
 	signal(SIGINT, &handle_signal);
-	if (shell->all_input->next == NULL)
+	if (!shell->all_input->next)
 		run_built_ins(shell, 1);
 	else
 		pipex(shell, 0);
-	dup2(o_in, STDIN_FILENO);
-	dup2(o_out, STDOUT_FILENO);
+	if (dup2(o_in, STDIN_FILENO) == -1)
+		return ;
+	if (dup2(o_out, STDOUT_FILENO) == -1)
+		return ;
 	close(o_in);
 	close(o_out);
 }
