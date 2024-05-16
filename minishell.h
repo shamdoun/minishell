@@ -175,9 +175,9 @@ void		put_cmdname(t_input *nw, char *str);
 char		*remove_quotes(char *str);
 int			ft_isexpanded(char *str);
 /*---------------parsing/ft_split_cmdutils2.c---------------*/
-char		*get_cmdname(char *s, char **env);
+char		*get_cmdname(char *s, t_shell *shell);
 /*---------------parsing/expand.c---------------*/
-char		*ft_expand(char *cmd, char **env);
+char		*ft_expand(char *cmd, t_shell *shell);
 //for signals
 void        handle_signal(int sig);
 void		handle_child_signal(int sig);

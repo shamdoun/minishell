@@ -61,7 +61,7 @@ static int	ft_strlenquotes(char *str)
 	return (len);
 }
 
-static char	*ft_getname(char *str, char **env, int len)
+static char	*ft_getname(char *str, t_shell *shell, int len)
 {
 	char	*ptr;
 	char	*s;
@@ -76,7 +76,9 @@ static char	*ft_getname(char *str, char **env, int len)
 		--len;
 	}
 	ptr[i - 1] = '\0';
-	s = ft_getenv(ptr, env);
+	s = ft_getenv(ptr, shell->env);
+	if (!s)
+		s = shell->r_path;
 	if (s == NULL)
 		return (NULL);
 	i = 0;
@@ -90,10 +92,11 @@ static char	*ft_getname(char *str, char **env, int len)
 		ptr[i] = s[i];
 		i++;
 	}
+	ptr[i] = '\0';
 	return (ptr);
 }
 
-char	*ft_expand(char *cmd, char **env)
+char	*ft_expand(char *cmd, t_shell *shell)
 {
 	char	*ptr;
 	char	*str;
@@ -108,7 +111,7 @@ char	*ft_expand(char *cmd, char **env)
 		if (cmd[i] == '$')
 		{
 			len = ft_strlenquotes(cmd + i);
-			ptr = ft_getname(cmd + i, env, len);
+			ptr = ft_getname(cmd + i, shell, len);
 			i += len + 1;
 			str = ft_azejoin(&str, ptr);
 			free(ptr);

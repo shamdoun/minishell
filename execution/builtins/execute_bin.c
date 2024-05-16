@@ -6,11 +6,13 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 15:31:45 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:05:02 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
+#include <errno.h>
+#include <stdio.h>
 
 void	update_split_list(char ***args_list, char *data)
 {
@@ -53,8 +55,10 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 			signal(SIGINT, &handle_child_signal);
 			rv = execve(cmd_path, args_list, shell->env);
 			if (rv)
-				ft_lst_add_status_back(&shell->all_status,
-					ft_lstnew_status(errno), shell);
+			{
+				fprintf(stderr, "bash: %s: is a directory\n", args_list[0]);
+				exit(126);
+			}
 		}
 		waitpid(child, &status, 0);
 		fprintf(stderr, "child status %d\n", WEXITSTATUS(status));
@@ -96,15 +100,13 @@ void	execute_other_commands(t_shell *shell, int mode)
 
 	set_args_list(shell, &args_list);
 	cmd_path = find_command_path(args_list[0], shell);
-		printf("%s\n", cmd_path);
 	if (cmd_path)
 	{
 		run_binary(cmd_path, mode, args_list, shell);
 	}
 	else
 	{
-		printf("bash: %s: command not found\n", args_list[0]);
-		//fprintf(stderr, "bash: %s: command not found\n", args_list[0]);
+		fprintf(stderr, "bash: %s: command not found\n", args_list[0]);
 		add_new_status(shell, 127);
 	}
 }

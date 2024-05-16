@@ -21,13 +21,13 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGQUIT, SIG_IGN);
 	minishell = NULL;
 	//init
-	init(&minishell, env);
 	if (1)
 	{
 		while (1)
 		{
 			g_stop_signal = 0;
 			input = readline("minishell$> ");
+			init(&minishell, env);
 			if (!input)
 				exit_shell(minishell, NULL);
 			if (*input != '\0')

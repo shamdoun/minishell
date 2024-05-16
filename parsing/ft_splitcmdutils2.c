@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-char	*get_cmdname(char *s, char **env)
+char	*get_cmdname(char *s, t_shell *shell)
 {
 	char	*ptr;
 	char	*str;
@@ -11,7 +11,7 @@ char	*get_cmdname(char *s, char **env)
 	str = NULL;
 	if (t)
 	{
-		ptr = ft_expand(s, env);
+		ptr = ft_expand(s, shell);
 		str = remove_quotes(ptr);
 		free(ptr);
 	}

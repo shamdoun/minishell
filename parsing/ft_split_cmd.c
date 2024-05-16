@@ -12,7 +12,7 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 	{
 		t_f = ft_isexpanded(name);
 		if (t_f)
-			ptr = ft_expand(name, shell->env);
+			ptr = ft_expand(name, shell);
 		s = remove_quotes(ptr);
 		if (!strncmp(str, "<", 2))
 			new = ft_lstnew_file(s, 3, NULL);
@@ -29,7 +29,7 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 	ft_lst_add_file_back(&(nw->all_files), new, shell);
 }
 
-static t_arg	*put_arg(t_arg *arguments, char *str, char **env)
+static t_arg	*put_arg(t_arg *arguments, char *str, t_shell *shell)
 {
 	t_arg	*new;
 	t_arg	*head;
@@ -42,7 +42,7 @@ static t_arg	*put_arg(t_arg *arguments, char *str, char **env)
 		return (NULL);
 	new->t_f = ft_isexpanded(str);
 	if (new->t_f)
-		ptr = ft_expand(str, env);
+		ptr = ft_expand(str, shell);
 	else
 		ptr = str;
 	new->arg = remove_quotes(ptr);
@@ -93,9 +93,9 @@ static int	filltoken(t_commands *cmd, t_input *new, t_shell *shell)
 			i++;
 		}
 		else if (t == 0)
-			(1) && (t = 1, new->command_name = get_cmdname(str[i], shell->env));
+			(1) && (t = 1, new->command_name = get_cmdname(str[i], shell));
 		else
-			(new)->args = put_arg((new)->args, str[i], shell->env);
+			(new)->args = put_arg((new)->args, str[i], shell);
 		i++;
 	}
 	return (1);
