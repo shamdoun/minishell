@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 22:03:42 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/15 22:18:20 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,14 @@ void	copy_list_updating(char *env_name, char *data,
 	{
 		p = ft_split_1(old_list[i], '=');
 		if (!p)
-			exit(1);
+			return ;
 		if (ft_strncmp(env_name, p[0], ft_strlen(p[0]) + 1))
 			ft_memcpy(new_environ, &old_list[i], sizeof(char *));
 		else
 		{
 			data = ft_strdup(data);
+			if (!data)
+				return ;
 			ft_lst_add_ad_back(&shell->all_allocated_data, ft_lstnew_ad(data));
 			ft_memcpy(new_environ, &data, sizeof(char *));
 		}
@@ -108,6 +110,6 @@ void	add_a_data_to_list(t_shell *shell, void *address)
 
 	new = ft_lstnew_ad(address);
 	if (!new)
-		exit(1);
+		return ;
 	ft_lst_add_ad_back(&shell->all_allocated_data, new);
 }
