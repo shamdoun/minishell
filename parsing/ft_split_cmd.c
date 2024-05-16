@@ -12,7 +12,7 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 	{
 		t_f = ft_isexpanded(name);
 		if (t_f)
-			ptr = ft_expand(name, env);
+			ptr = ft_expand(name, shell->env);
 		s = remove_quotes(ptr);
 		if (!strncmp(str, "<", 2))
 			new = ft_lstnew_file(s, 3, NULL);
@@ -93,9 +93,9 @@ static int	filltoken(t_commands *cmd, t_input *new, t_shell *shell)
 			i++;
 		}
 		else if (t == 0)
-			(1) && (t = 1, new->command_name = get_cmdname(str[i], env));
+			(1) && (t = 1, new->command_name = get_cmdname(str[i], shell->env));
 		else
-			(new)->args = put_arg((new)->args, str[i], env);
+			(new)->args = put_arg((new)->args, str[i], shell->env);
 		i++;
 	}
 	return (1);

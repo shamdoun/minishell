@@ -167,7 +167,7 @@ void		add_space(t_commands *cmd);
 /*---------------ft_split.c---------------*/
 char		**ft_split(char *s);
 /*---------------parsing/ft_split_cmd.c---------------*/
-t_input		*split_cmd(t_commands *cmd);
+t_input		*split_cmd(t_commands *cmd, t_shell *shell);
 /*---------------parsing/ft_split_cmd_utils.c---------------*/
 void		put_delimiter(t_input *nw, char *str);
 void		put_filename(t_input *nw, char *str);
@@ -176,6 +176,8 @@ char		*remove_quotes(char *str);
 int			ft_isexpanded(char *str);
 /*---------------parsing/ft_split_cmdutils2.c---------------*/
 char		*get_cmdname(char *s, char **env);
+/*---------------parsing/expand.c---------------*/
+char		*ft_expand(char *cmd, char **env);
 //for signals
 void        handle_signal(int sig);
 void		handle_child_signal(int sig);

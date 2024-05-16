@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_bin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 22:49:17 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:31:45 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	set_args_list(t_shell *shell, char ***args_list)
 		*args_list = ft_split_1(shell->all_input->command_name, ' ');
 		if (!(*args_list))
 			exit(1);
+		//printf("%s\n %s\n", shell->all_input->command_name, *(args_list)[0]);
 	}
 }
 
@@ -95,11 +96,15 @@ void	execute_other_commands(t_shell *shell, int mode)
 
 	set_args_list(shell, &args_list);
 	cmd_path = find_command_path(args_list[0], shell);
+		printf("%s\n", cmd_path);
 	if (cmd_path)
+	{
 		run_binary(cmd_path, mode, args_list, shell);
+	}
 	else
 	{
-		fprintf(stderr, "bash: %s: command not found\n", args_list[0]);
+		printf("bash: %s: command not found\n", args_list[0]);
+		//fprintf(stderr, "bash: %s: command not found\n", args_list[0]);
 		add_new_status(shell, 127);
 	}
 }

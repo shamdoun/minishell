@@ -124,6 +124,7 @@ char	*ft_expand(char *cmd, char **env)
 			i++;
 		}
 	}
+	//printf("%s\n", str);
 	return (str);
 }
 
