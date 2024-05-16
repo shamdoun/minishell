@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:10:12 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 22:17:58 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/15 23:11:22 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ char	*find_command_path(char *s, t_shell *shell);
 void	copy_list_updating(char *env_name, char *data,
 			t_shell *shell, char **new_environ);
 int		list_len(char **list);
-void	redirect_streams(t_shell *shell);
+int		redirect_streams(t_shell *shell);
 void	pipex(t_shell *shell, int mode);
 void	run_built_ins(t_shell *shell, int mode);
 int		open_input_files(t_shell *shell);
 char	*ft_join_args(t_arg *args);
 void	declare_all_envs(char **env);
 void	close_unused_here_docs(t_input *input);
-void	duplicate_ends(t_shell *shell, int *ends, int pipe_count, int i);
-void	close_ends_and_wait(int pipe_count, int *ends, int *processes);
+int		duplicate_ends(t_shell *shell, int *ends, int pipe_count, int i);
+void	close_ends_and_wait(int pipe_count, int *ends, int *processes, t_shell *shell);
 int		check_path(t_arg *path, char *cwd);
 int		split_values(char ***split_cwd, char ***split_path,
 			char *cwd, t_arg *path);
@@ -41,4 +41,5 @@ void	copy_unique_path(char **joined, char **split_cwd,
 void	handle_signal_for_bin(int sig);
 void	handle_quit_signal(int sig);
 void 	update_oldpwd(char *old_pwd, t_shell *shell);
+void	handle_quit_for_child(int sig);
 #endif
