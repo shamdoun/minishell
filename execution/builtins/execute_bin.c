@@ -6,13 +6,11 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 17:05:02 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:09:52 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
-#include <errno.h>
-#include <stdio.h>
 
 void	update_split_list(char ***args_list, char *data)
 {

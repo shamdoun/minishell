@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 16:24:03 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:08:33 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ void	echo_message(t_arg *args, t_shell *shell)
 		exit(1);
 	split = ft_split_1(joined_args, ' ');
 	if (!split)
-		exit(1);
+	{
+		add_new_status(shell, 1);
+		return ;
+	}
 	print_message(split, &new_line);
 	if (new_line)
 		printf("\n");

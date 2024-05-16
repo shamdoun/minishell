@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:13:42 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 13:49:56 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/15 23:31:56 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ void	handle_signal_for_bin(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-}
-
-void	handle_child_signal(int sig)
-{
-	if (sig == 2)
-		exit(130);
 }
 
 void	handle_quit_signal(int sig)

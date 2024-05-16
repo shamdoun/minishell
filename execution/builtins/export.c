@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:22:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 22:07:37 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/15 22:15:54 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	update_env(char *env_name, t_shell *shell, char *data, char ***env)
 		copy_list_updating(env_name, data, shell, new_environ);
 		// add_a_data_to_list(shell, new_environ);
 		*env = new_environ;
-		add_new_status(shell, 0);
 	}
 }
 
@@ -59,12 +58,11 @@ void	add_env(char *data, t_shell *shell, char ***env)
 		ft_memcpy(new_environ, *env, list_len(*env) * sizeof(char *));
 		new_data = ft_strdup(data);
 		if (!new_data)
-			exit(1);
+			return ;
 		new_environ[list_len(*env)] = new_data;
 		new_environ[list_len(*env) + 1] = NULL;
 		*env = new_environ;
 		add_a_data_to_list(shell, new_data);
-		add_new_status(shell, 0);
 		// add_a_data_to_list(shell, new_environ);
 	}
 }
@@ -72,30 +70,37 @@ void	add_env(char *data, t_shell *shell, char ***env)
 void	add_update_env(t_arg *data, t_shell *shell, char ***env)
 {
 	char	**split_env;
+	bool	error;
 
+	error = false;
 	if (!data)
 	{
-		declare_all_envs(*env);
-		add_new_status(shell, 0);
+		(declare_all_envs(*env), add_new_status(shell, 0));
 		return ;
 	}
 	while (data && data->arg)
 	{
 		if (*data->arg == '=')
-			(write(2, "export: not a valid identifier\n", 31), add_new_status(shell, 1));
-		else if (ft_strrchr(data->arg, '='))
-		{
-			split_env = ft_split_1(data->arg, '=');
-			if (!split_env)
-				exit(1);
-			if (env_exists(split_env[0], *env))
-				update_env(split_env[0], shell, data->arg, env);
-			else
-				add_env(data->arg, shell, env);
-			free_array(split_env);
-		}
+			(write(2, "export: not a valid identifier\n", 31), add_new_status(shell, 1), error = true);
 		else
-			add_new_status(shell, 0);
+		{
+			if (ft_strrchr(data->arg, '='))
+			{
+				split_env = ft_split_1(data->arg, '=');
+				if (!split_env)
+				{
+					add_new_status(shell, 1);
+					return ;
+				}
+				if (env_exists(split_env[0], *env))
+					update_env(split_env[0], shell, data->arg, env);
+				else
+					add_env(data->arg, shell, env);
+				free_array(split_env);
+			}
+			if (!error)
+				add_new_status(shell, 0);
+		}
 		data = data->next;
 	}
 }

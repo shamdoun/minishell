@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 16:49:46 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:09:05 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	update_cwd(char *cwd, t_arg *path, char *old_cwd)
 		return ;
 	joined = ft_strdup("/");
 	if (!joined)
-		exit(1);
+		return ;
 	copy_old_cwd(old_cwd, split_cwd);
 	i = copy_common_path(&joined, split_cwd,
 			split_path[0]);
@@ -65,9 +65,7 @@ int	change_to_default_home(t_shell *shell, char **env, int *rv)
 	home = ft_getenv("HOME", env);
 	if (!home)
 	{
-		write(2, "bash: cd: HOME not set\n", 23);
-		ft_lst_add_status_back(&shell->all_status,
-			ft_lstnew_status(1), shell);
+		(write(2, "bash: cd: HOME not set\n", 23), add_new_status(shell, 1));
 		return (1);
 	}
 	*rv = chdir(home);
@@ -79,24 +77,22 @@ void	change_directory(t_arg *path, t_shell *shell, char ***env)
 {
 	int			return_value;
 	char		*old_cwd;
-	t_status	*status;
 
 	return_value = 0;
 	old_cwd = ft_strdup(shell->cwd);
+	if (!old_cwd)
+	{
+		add_new_status(shell, 1);
+		return ;
+	}
 	if (path && ft_strncmp(path->arg, "~", 2))
 		return_value = chdir(path->arg);
-	else
-	{
-		if (change_to_default_home(shell, *env, &return_value))
+	else if (change_to_default_home(shell, *env, &return_value))
 			return ;
-	}
 	if (return_value)
 	{
-		status = ft_lstnew_status(1);
-		if (!status)
-			exit(1);
-		ft_lst_add_status_back(&shell->all_status, status, shell);
-		perror("bash: cd");
+		(add_new_status(shell, 1), perror("bash: cd"));
+		return ;
 	}
 	getcwd(shell->cwd, sizeof(shell->cwd));
 	update_oldpwd(old_cwd, shell);
