@@ -50,7 +50,7 @@ static int	ft_strlenquotes(char *str)
 	int		len;
 	int		i;
 
-	del = " \t'\".#!%%&()*+,-/:;<=>?@[]\\^{}|~$";
+	del = " \t'\".#!%%&()*+,-/:;<=>@[]\\^{}|~$";
 	i = 1;
 	len = 0;
 	while (str[i] && !ft_strchr(del, str[i]))
@@ -67,14 +67,12 @@ static char	*ft_getname(char *str, t_shell *shell, int len)
 	char	*s;
 	int		i;
 
-	ptr = malloc(len + 1);
 	i = 1;
+	if (str[i] == '?')
+		return (ptr = ft_itoa(ft_last_status(shell->all_status)));
+	ptr = malloc(len + 1);
 	while (len)
-	{
-		ptr[i - 1] = str[i];
-		i++;
-		--len;
-	}
+		(1) && (ptr[i - 1] = str[i], i++, --len);
 	ptr[i - 1] = '\0';
 	s = ft_getenv(ptr, shell->env);
 	if (!s)
@@ -84,16 +82,10 @@ static char	*ft_getname(char *str, t_shell *shell, int len)
 	i = 0;
 	while (s && s[i])
 		i++;
-	free(ptr);
-	ptr = malloc(i + 1);
-	i = 0;
+	(1) && (free(ptr), ptr = malloc(i + 1), i = 0);
 	while (s && s[i])
-	{
-		ptr[i] = s[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
+		(1) && (ptr[i] = s[i], i++);
+	return (ptr[i] = '\0', ptr);
 }
 
 char	*ft_expand(char *cmd, t_shell *shell)

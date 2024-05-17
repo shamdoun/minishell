@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 21:42:20 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:30:10 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,7 @@ void	execute_other_commands(t_shell *shell, int mode)
 	set_args_list(shell, &args_list);
 	cmd_path = find_command_path(args_list[0], shell);
 	if (cmd_path)
-	{
 		run_binary(cmd_path, mode, args_list, shell);
-	}
 	else
 	{
 		fprintf(stderr, "bash: %s: command not found\n", args_list[0]);

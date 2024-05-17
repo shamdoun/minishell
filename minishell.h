@@ -54,7 +54,7 @@ typedef struct allocated_data
 {
 	void					*address;
 	struct allocated_data	*next;
-}t_a_data;
+} t_a_data;
 
 typedef struct shell
 {
