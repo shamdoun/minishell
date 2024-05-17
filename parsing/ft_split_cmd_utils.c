@@ -5,7 +5,7 @@ int	ft_isexpanded(char *str)
 	char	*del;
 	int		i;
 
-	(1) && (i = 0, del = " \t'\".#!%%&()*+,-/:;<=>?@[]\\^{}|~$");
+	(1) && (i = 0, del = " \t'\".#!%%&()*+,-/:;<=>@[]\\^{}|~$");
 	if (!ft_strncmp(str, "$", 2))
 		return (0);
 	while (str[i])

@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 17:09:52 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:15:30 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 		child = fork();
 		if (child == 0)
 		{
-			signal(SIGINT, &handle_child_signal);
 			rv = execve(cmd_path, args_list, shell->env);
 			if (rv)
 			{
@@ -99,9 +98,7 @@ void	execute_other_commands(t_shell *shell, int mode)
 	set_args_list(shell, &args_list);
 	cmd_path = find_command_path(args_list[0], shell);
 	if (cmd_path)
-	{
 		run_binary(cmd_path, mode, args_list, shell);
-	}
 	else
 	{
 		fprintf(stderr, "bash: %s: command not found\n", args_list[0]);

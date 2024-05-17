@@ -31,7 +31,7 @@ SRC= ft_free.c ft_split.c ./parsing/ft_parsing.c ./parsing/divide_cmd.c parsing/
 	parsing/ft_splitcmdutils2.c
 
 CC= cc
-Flags= -Wall -Werror -Wextra
+Flags= -Wall -Werror -Wextra -g
 
 O_SRC=$(SRC:.c=.o)
 
