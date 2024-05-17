@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:22:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/15 22:15:54 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:47:56 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	add_env(char *data, t_shell *shell, char ***env)
 	}
 }
 
-void	add_update_env(t_arg *data, t_shell *shell, char ***env)
+void	add_update_env(t_arg *data, t_shell *shell, char ***env, int mode)
 {
 	char	**split_env;
 	bool	error;
@@ -98,7 +98,7 @@ void	add_update_env(t_arg *data, t_shell *shell, char ***env)
 					add_env(data->arg, shell, env);
 				free_array(split_env);
 			}
-			if (!error)
+			if (!error && mode)
 				add_new_status(shell, 0);
 		}
 		data = data->next;

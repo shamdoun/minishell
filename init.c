@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:50:55 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 21:19:55 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/16 22:03:24 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ void ft_recover_echo(void)
 	tcsetattr(STDIN_FILENO, 0, &ter);
 }
 
-void	init(t_shell **minishell, char **env)
+void	init(t_shell **minishell, char **env, int last_exit)
 {
 	char	*var;
 
 	(*minishell) = malloc(sizeof(t_shell));
 	if ((*minishell) < 0)
-		exit(1);
+		return ;
 	(*minishell)->all_allocated_data = NULL;
-	(*minishell)->all_status = NULL;
+	(*minishell)->all_status = ft_lstnew_status(last_exit);
 	(*minishell)->all_input = NULL;
 	(*minishell)->env = env;
 	(*minishell)->r_path = NULL;

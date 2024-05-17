@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 19:19:10 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/15 21:46:30 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:19:15 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ void update_oldpwd(char *old_pwd, t_shell *shell)
 	}
 	oldpwd_env->arg = tmp;
 	oldpwd_env->next = NULL;
-	add_update_env(oldpwd_env, shell, &shell->env);
+	add_update_env(oldpwd_env, shell, &shell->env, 0);
 }

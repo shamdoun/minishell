@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:54:01 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/14 15:25:43 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:48:46 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	update_shlvl(t_shell *shell)
 		exit(1);
 	new_shlvl->next = NULL;
 	add_a_data_to_list(shell, new_shlvl->arg);
-	add_update_env(new_shlvl, shell, &shell->env);
+	add_update_env(new_shlvl, shell, &shell->env, 0);
 	free(new_shlvl);
 	free(tmp);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_bin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 17:09:52 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:42:20 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 
 	if (mode)
 	{
-		(signal(SIGINT, &handle_signal_for_bin),
-			signal(SIGQUIT, &handle_quit_signal));
+		handle_all_signals(3);
+		// (signal(SIGINT, &handle_signal_for_bin),signal(SIGQUIT, &handle_quit_signal));
 		child = fork();
 		if (child == 0)
 		{
-			signal(SIGINT, &handle_child_signal);
+			signal(SIGINT, &handle_ctrl_c_for_child);
 			rv = execve(cmd_path, args_list, shell->env);
 			if (rv)
 			{
@@ -59,9 +59,12 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 			}
 		}
 		waitpid(child, &status, 0);
-		fprintf(stderr, "child status %d\n", WEXITSTATUS(status));
-		add_new_status(shell, WEXITSTATUS(status));
-		(signal(SIGINT, &handle_signal), signal(SIGQUIT, SIG_IGN));
+		if (WIFEXITED(status))
+			add_new_status(shell, WEXITSTATUS(status));
+		else
+			add_new_status(shell, 128 + WTERMSIG(status));
+		handle_all_signals(0);
+		// (signal(SIGINT, &handle_ctrl_c), signal(SIGQUIT, SIG_IGN));
 	}
 	else
 		pipe_child_runs_binary(cmd_path, args_list, shell);

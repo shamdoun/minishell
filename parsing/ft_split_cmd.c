@@ -13,6 +13,8 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 		t_f = ft_isexpanded(name);
 		if (t_f)
 			ptr = ft_expand(name, shell);
+		else
+			ptr = name;
 		s = remove_quotes(ptr);
 		if (!strncmp(str, "<", 2))
 			new = ft_lstnew_file(s, 3, NULL);
@@ -23,7 +25,10 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 		free(ptr);
 	}
 	else if (!strncmp(str, "<<", 3))
+	{
+		ptr = remove_quotes(name);
 		new = ft_lstnew_file(NULL, 4, ptr);
+	}
 	if (!new)
 		exit (1);
 	ft_lst_add_file_back(&(nw->all_files), new, shell);

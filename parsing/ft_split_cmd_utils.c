@@ -63,6 +63,8 @@ char	*remove_quotes(char *str)
 	int		i;
 	int		j;
 
+	if (!str)
+		return (0);
 	i = ft_lenwithoutquotes(str);
 	ptr = malloc(i + 1);
 	(1) && (i = 0, j = 0);

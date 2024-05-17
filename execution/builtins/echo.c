@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 17:08:33 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:18:55 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,27 @@ int	is_flag(char *split)
 	return (0);
 }
 
-void	print_message(char **split, bool *new_line)
+void	print_message(t_arg *split, bool *new_line)
 {
-	while (*split && is_flag(*split))
+	while (split && is_flag(split->arg))
 	{
-		split++;
 		*new_line = false;
+		split = split->next;
 	}
-	while (*split)
+	while (split)
 	{
-		printf("%s", *split);
-		if (*(split + 1))
+		printf("%s", split->arg);
+		if (split->next)
 			printf(" ");
-		split++;
+		split = split->next;
 	}
 }
 
 void	echo_message(t_arg *args, t_shell *shell)
 {
 	bool	new_line;
-	char	*joined_args;
-	char	**split;
+	// char	*joined_args;
+	// char	**split;
 
 	new_line = true;
 	if (!args)
@@ -77,18 +77,19 @@ void	echo_message(t_arg *args, t_shell *shell)
 		printf("\n"), add_new_status(shell, 0);
 		return ;
 	}
-	joined_args = ft_join_args(args);
-	if (!joined_args)
-		exit(1);
-	split = ft_split_1(joined_args, ' ');
-	if (!split)
-	{
-		add_new_status(shell, 1);
-		return ;
-	}
-	print_message(split, &new_line);
+	// joined_args = ft_join_args(args);
+	// if (!joined_args)
+	// 	exit(1);
+	// split = ft_split_1(joined_args, ' ');
+	// if (!split)
+	// {
+	// 	add_new_status(shell, 1);
+	// 	return ;
+	// }
+	print_message(args, &new_line);
 	if (new_line)
 		printf("\n");
-	free_array(split);
-	free(joined_args), add_new_status(shell, 0);
+	// free_array(split);
+	// free(joined_args), 
+	add_new_status(shell, 0);
 }

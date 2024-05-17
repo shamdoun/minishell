@@ -1,11 +1,12 @@
 #include "../minishell.h"
 
-extern volatile sig_atomic_t	g_stop_signal;
+extern volatile sig_atomic_t	g_signal;
 
 void f()
 {
 	system("leaks minishell");
 }
+
 
 int	main(int argc, char **argv, char **env)
 {
@@ -13,21 +14,23 @@ int	main(int argc, char **argv, char **env)
     int     	check;
 	t_commands	*cmds;
 	t_shell		*minishell;
+	int			last_exit;
 
 	(void)argc;
 	(void)argv;
 	// signals
-	signal(SIGINT, &handle_signal);
-	signal(SIGQUIT, SIG_IGN);
+	handle_all_signals(0);
+	// signal(SIGINT, &handle_ctrl_c);
+	// signal(SIGQUIT, SIG_IGN);
 	minishell = NULL;
 	//init
+	last_exit = 0;
 	if (1)
 	{
 		while (1)
 		{
-			g_stop_signal = 0;
+			init(&minishell, env, last_exit);
 			input = readline("minishell$> ");
-			init(&minishell, env);
 			if (!input)
 				exit_shell(minishell, NULL);
 			if (*input != '\0')
@@ -47,8 +50,23 @@ int	main(int argc, char **argv, char **env)
 				else
 					perror("syntax error\n");
 				add_history(input);
+				if (g_signal == 2)
+				{
+					add_new_status(minishell, 1);
+					g_signal = 0;
+				}
 			}
-			printf("last status-> %d\n", ft_last_status(minishell->all_status));
+			if (g_signal == 2)
+			{
+				add_new_status(minishell, 1);
+				g_signal = -3;
+			}
+			else if (g_signal == -3)
+			{
+				add_new_status(minishell, 0);
+				g_signal = 0;
+			}
+			last_exit = ft_last_status(minishell->all_status);
 		}
 	}
 	else

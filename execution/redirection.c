@@ -6,21 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/15 21:39:27 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/16 22:21:01 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-extern volatile sig_atomic_t	g_stop_signal;
-
-void	handle_signal_heredoc(int sig)
-{
-	(void)sig;
-	close(STDIN_FILENO);
-	write(1, "\n", 1);
-	g_stop_signal = 1;
-}
+extern volatile sig_atomic_t	g_signal;
 
 int	here_doc(t_input *input, t_file *file)
 {
@@ -40,20 +32,26 @@ int	here_doc(t_input *input, t_file *file)
 		return (1);
 	}
 	(unlink("here_doc.txt"), ft_hide_ctrl_c());
-	signal(SIGINT, &handle_signal_heredoc);
+	handle_all_signals(2);
+	// signal(SIGINT, &handle_signal_heredoc);
+	line = NULL;
+	if (!file->delimeter)
+		printf("no exisitng delimeter\n");
 	while (1)
 	{
 		write(1, "> ", 2);
 		line = get_next_line(0);
+		// printf("%zu\n", ft_strlen(line));
 		if (!line || !ft_strncmp(line, file->delimeter, ft_strlen(line) - 1))
 			break ;
 		(write(fd, line, ft_strlen(line)), free(line));
 	}
 	(free(line), close(fd), ft_recover_echo());
-	if (g_stop_signal == 1)
+	if (g_signal == 1)
 		return (1);
 	return (0);
 }
+
 
 int	open_here_docs(t_shell *shell)
 {
@@ -120,11 +118,11 @@ int	redirect_streams(t_shell *shell)
 		if (shell->all_input->all_files->type == 1)
 			shell->all_input->out_file
 				= open(shell->all_input->all_files->file_name,
-					O_WRONLY | O_CREAT | O_TRUNC, 0644);
+					O_WRONLY | O_CREAT | O_TRUNC, 0777);
 		else if (shell->all_input->all_files->type == 2)
 			shell->all_input->out_file
 				= open(shell->all_input->all_files->file_name,
-					O_WRONLY | O_CREAT | O_APPEND, 0644);
+					O_WRONLY | O_CREAT | O_APPEND, 0777);
 		if (shell->all_input->out_file < 0)
 		{
 			perror("failed to open output file!"), add_new_status(shell, 1);

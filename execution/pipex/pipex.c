@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 15:53:30 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:38:48 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	pipex(t_shell *shell, int mode)
 		return ;
 	}
 	i = 0;
-	signal(SIGINT, &handle_signal_for_bin), signal(SIGQUIT,&handle_quit_signal);
+	handle_all_signals(3);
+	// signal(SIGINT, &handle_signal_for_bin), signal(SIGQUIT,&handle_quit_signal);
 	while (i < pipex->pipe_count + 1)
 	{
 		child = fork();
@@ -91,5 +92,6 @@ void	pipex(t_shell *shell, int mode)
 		i++;
 	}
 	close_ends_and_wait(pipex->pipe_count, pipex->ends, pipex->processes, shell);
-	(signal(SIGINT, &handle_signal),signal(SIGQUIT, SIG_IGN));
+	handle_all_signals(0);
+	// (signal(SIGINT, &handle_ctrl_c),signal(SIGQUIT, SIG_IGN));
 }

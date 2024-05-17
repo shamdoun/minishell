@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:05:17 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/15 22:14:47 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/16 21:47:20 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	copy_list_excluding(char **new_environ, char **old_env, char *str)
 	*new_environ = NULL;
 }
 
-void	remove_env(t_arg *data, t_shell *shell, char ***env)
+void	remove_env(t_arg *data, t_shell *shell, char ***env, int mode)
 {
 	char		**new_environ;
 	bool		error;
@@ -62,7 +62,7 @@ void	remove_env(t_arg *data, t_shell *shell, char ***env)
 				copy_list_excluding(new_environ, *env, data->arg);
 				(*env = new_environ);
 			}
-			if (!error)
+			if (!error && mode)
 				add_new_status(shell, 0);
 		}
 		data = data->next;

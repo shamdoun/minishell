@@ -6,11 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 15:52:24 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/16 22:18:22 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
+
+extern volatile sig_atomic_t	g_signal;
 
 void	free_array(char **a)
 {
@@ -48,9 +50,9 @@ void	run_options(t_shell *shell, char *command, int mode)
 	if (!ft_strncmp(command, "cd", 3))
 		change_directory(shell->all_input->args, shell, &shell->env);
 	else if (!ft_strncmp(command, "export", 7))
-		add_update_env(shell->all_input->args, shell, &shell->env);
+		add_update_env(shell->all_input->args, shell, &shell->env, 1);
 	else if (!ft_strncmp(command, "unset", 6))
-		remove_env(shell->all_input->args, shell, &shell->env);
+		remove_env(shell->all_input->args, shell, &shell->env, 1);
 	else if (!ft_strncmp(command, "exit", 5))
 		exit_shell(shell, shell->all_input->args);
 	else if (!ft_strncmp(command, "echo", 5))
@@ -103,15 +105,17 @@ void	execute_input(t_shell *shell)
 	rv = open_here_docs(shell);
 	if (rv)
 	{
-		signal(SIGINT, &handle_signal);
 		add_new_status(shell, rv);
+		g_signal = 0;
+		handle_all_signals(0);
+		// signal(SIGINT, &handle_ctrl_c);
 		dup2(o_in, STDIN_FILENO);
 		dup2(o_out, STDOUT_FILENO);
 		close(o_in);
 		close(o_out);
 		return ;
 	}
-	signal(SIGINT, &handle_signal);
+	handle_all_signals(0);
 	if (!shell->all_input->next)
 		run_built_ins(shell, 1);
 	else
