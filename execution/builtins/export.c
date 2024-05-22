@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:22:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/22 15:31:56 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:37:25 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	add_update_env(t_arg *data, t_shell *shell, char ***env, int mode)
 		(declare_all_envs(*env), add_new_status(shell, 0));
 		return ;
 	}
+	printf("exporting...\n");
 	while (data && data->arg)
 	{
 		if (*data->arg == '=')

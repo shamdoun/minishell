@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/22 15:32:31 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:36:18 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	run_options(t_shell *shell, char *command, int mode)
 {
 	char *path_env;
 	
+	printf("running options\n");
 	path_env = ft_getenv("PATH", shell->env);
 	add_a_data_to_list(shell, path_env);
 	if ((path_env && !shell->r_path) || (!path_env && shell->r_path))
