@@ -6,11 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 21:38:48 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/17 21:39:33 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../../minishell.h"
 
 int	create_pipes(int **ends, int count)
 {

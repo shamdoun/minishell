@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 19:19:10 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/17 17:19:15 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:21:52 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,25 @@ void	copy_old_cwd(char *old_cwd, char **split_cwd)
 	while (split_cwd[i] && split_oldcwd[i])
 	{
 		if (ft_same_value(split_cwd[i], split_oldcwd[i]))
-			strcpy(split_cwd[i], split_oldcwd[i]);
+			ft_strcpy(split_cwd[i], split_oldcwd[i]);
 		i++;
 	}
 	free_array(split_oldcwd);
+}
+
+void	ft_update_if_already_exists(char **split_cwd, char *value, int k)
+{
+	int	i = 0;
+
+	while (i < k)
+	{
+		if (ft_same_value(split_cwd[i], value))
+		{
+			ft_strcpy(split_cwd[i], value);
+			return ;
+		}
+		i++;
+	}
 }
 
 void	update_cwd_list(char **split_cwd, char **split_path, int k)
@@ -41,17 +56,14 @@ void	update_cwd_list(char **split_cwd, char **split_path, int k)
 		{
 			if (ft_same_value(split_cwd[k], split_path[j]))
 			{
-				strcpy(split_cwd[k], split_path[j]);
+				ft_strcpy(split_cwd[k], split_path[j]);
 				k++;
 			}
-			else if (ft_same_value(split_cwd[k - 1], split_path[j]))
-				strcpy(split_cwd[k - 1], split_path[j]);
+			else
+				ft_update_if_already_exists(split_cwd, split_path[j], k);
 		}
 		else
-		{
-			if (ft_same_value(split_cwd[k - 1], split_path[j]))
-				strcpy(split_cwd[k - 1], split_path[j]);
-		}
+			ft_update_if_already_exists(split_cwd, split_path[j], k);
 		j++;
 	}
 }

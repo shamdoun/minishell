@@ -1,5 +1,5 @@
 NAME = minishell
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 srcs = ./execution/execution.c ./execution/redirection.c ft_lst_add_back.c ft_lstnew.c ft_strlen.c ft_memcpy.c \
 ft_memmove.c ft_strlcat.c ft_strlcpy.c ft_strjoin.c ./execution/builtins/built_ins_utils.c ft_split_v2.c ft_strdup.c ft_atoi.c \
 ft_strncmp.c ./execution/builtins/execute_bin.c ./execution/builtins/change_dir.c ./execution/builtins/echo.c ./execution/builtins/env.c \
@@ -28,10 +28,10 @@ SRC= ft_free.c ft_split.c ./parsing/ft_parsing.c ./parsing/divide_cmd.c parsing/
 	init.c execution/builtins/cd_utils2.c  \
 	./execution/pipex/pipex_utils.c ./execution/builtins/cd_utils1.c ./execution/builtins/env_utils.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c \
 	./execution/builtins/built_ins_utils2.c ./parsing/ft_tolower.c ./parsing/ft_strrchr.c ./parsing/ft_itoa.c parsing/expand.c \
-	parsing/ft_splitcmdutils2.c
+	parsing/ft_splitcmdutils2.c ft_strcpy.c ft_putstr_fd.c ft_putchar_fd.c ft_putendl_fd.c
 
 CC= cc
-Flags= -Wall -Werror -Wextra -g
+# Flags= -Wall -Werror -Wextra -g
 
 O_SRC=$(SRC:.c=.o)
 
@@ -43,7 +43,7 @@ NAME= minishell
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(FLAGS) -lreadline -g -fsanitize=address $(O_SRC) -o $(NAME)
+	$(CC) $(FLAGS) -lreadline -g $(O_SRC) -o $(NAME)
 
 clean:
 	rm -f $(O_SRC)

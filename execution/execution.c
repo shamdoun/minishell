@@ -6,11 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 22:18:22 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/18 22:58:59 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "../minishell.h"
 
 extern volatile sig_atomic_t	g_signal;
 
@@ -45,24 +45,56 @@ char	*ft_strdup1(char *s)
 	return (r);
 }
 
-void	run_options(t_shell *shell, char *command, int mode)
+void	run_options_path(t_shell *shell, char *command, int mode)
 {
-	if (!ft_strncmp(command, "cd", 3))
+	if (!ft_strncmp(command, "env", 4))
+		(print_all_env_vars(shell->env), add_new_status(shell, 0));
+	else if (!ft_strncmp(command, "pwd", 4))
+		(printf("%s\n", shell->cwd), add_new_status(shell, 0));
+	else if (!ft_strncmp(command, "cd", 3))
 		change_directory(shell->all_input->args, shell, &shell->env);
 	else if (!ft_strncmp(command, "export", 7))
 		add_update_env(shell->all_input->args, shell, &shell->env, 1);
 	else if (!ft_strncmp(command, "unset", 6))
 		remove_env(shell->all_input->args, shell, &shell->env, 1);
-	else if (!ft_strncmp(command, "exit", 5))
-		exit_shell(shell, shell->all_input->args);
 	else if (!ft_strncmp(command, "echo", 5))
 		echo_message(shell->all_input->args, shell);
-	else if (!ft_strncmp(command, "env", 4))
-		(print_all_env_vars(shell->env), add_new_status(shell, 0));
+	else if (!ft_strncmp(command, "exit", 5))
+		exit_shell(shell, shell->all_input->args);
+	else
+	{
+		execute_other_commands(shell, mode);
+	}
+}
+
+void	run_options(t_shell *shell, char *command, int mode)
+{
+	char *path_env;
+	
+	printf("running options\n");
+	path_env = ft_getenv("PATH", shell->env);
+	add_a_data_to_list(shell, path_env);
+	if ((path_env && !shell->r_path) || (!path_env && shell->r_path))
+		run_options_path(shell, command, mode);
 	else if (!ft_strncmp(command, "pwd", 4))
 		(printf("%s\n", shell->cwd), add_new_status(shell, 0));
+	else if (!ft_strncmp(command, "cd", 3))
+		change_directory(shell->all_input->args, shell, &shell->env);
+	else if (!ft_strncmp(command, "export", 7))
+	{
+		add_update_env(shell->all_input->args, shell, &shell->env, 1);
+	}
+	else if (!ft_strncmp(command, "unset", 6))
+		remove_env(shell->all_input->args, shell, &shell->env, 1);
+	else if (!ft_strncmp(command, "echo", 5))
+		echo_message(shell->all_input->args, shell);
+	else if (!ft_strncmp(command, "exit", 5))
+			exit_shell(shell, shell->all_input->args);
 	else
-		execute_other_commands(shell, mode);
+	{
+		add_new_status(shell, 127);
+		printf("minishell: %s: No such file or directory\n", command);
+	}
 }
 
 void	run_built_ins(t_shell *shell, int mode)
@@ -81,7 +113,8 @@ void	run_built_ins(t_shell *shell, int mode)
 		add_new_status(shell, 1);
 		return ;
 	}
-	add_a_data_to_list(shell, command);
+	// printf("adding %s \n", command);
+	// add_a_data_to_list(shell, command);
 	if (!ft_same_value(command, "exit"))
 		ft_str_tolower(command);
 	run_options(shell, command, mode);
@@ -108,7 +141,6 @@ void	execute_input(t_shell *shell)
 		add_new_status(shell, rv);
 		g_signal = 0;
 		handle_all_signals(0);
-		// signal(SIGINT, &handle_ctrl_c);
 		dup2(o_in, STDIN_FILENO);
 		dup2(o_out, STDOUT_FILENO);
 		close(o_in);

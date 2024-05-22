@@ -6,11 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:45:04 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 21:49:12 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:36:36 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../../minishell.h"
 
 void	print_all_env_vars(char **env)
 {
@@ -68,18 +68,22 @@ void	add_default_env(t_shell *shell)
 	free(tmp->arg);
 	tmp->arg = NULL;
 	free(tmp);
-	shell->r_path = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
+	// shell->r_path = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
 }
 
-void	update_inhereted_env(t_shell *shell)
+void	update_inhereted_env(t_shell *shell, int *is_new_shell)
 {
 	t_arg	*oldpwd;
-
-	oldpwd = malloc(sizeof(t_arg));
-	oldpwd->arg = ft_strdup("OLDPWD");
-	oldpwd->next = NULL;
-	remove_env(oldpwd, shell, &shell->env, 0);
-	free(oldpwd->arg);
-	free(oldpwd);
-	update_shlvl(shell);
+	
+	if (*is_new_shell)
+	{
+		oldpwd = malloc(sizeof(t_arg));
+		oldpwd->arg = ft_strdup("OLDPWD");
+		oldpwd->next = NULL;
+		remove_env(oldpwd, shell, &shell->env, 0);
+		free(oldpwd->arg);
+		free(oldpwd);
+		*is_new_shell = 0;
+		update_shlvl(shell);
+	}
 }

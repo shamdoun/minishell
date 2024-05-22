@@ -10,6 +10,31 @@
 #include <stdbool.h>
 #include <termios.h>
 #include "./gnl/get_next_line.h"
+#include "./execution/execution.h"
+
+
+FILE*gfp;
+
+
+// static void *_6malloc(size_t size, int line, const char *file)
+// {
+//     void *ptr = malloc(size);
+//     fprintf(gfp, "['malloc', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
+//     return (ptr);
+
+// }
+
+// static void _6free(void*ptr , int line, const char *file)
+// {
+//     fprintf(gfp, "['free', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
+//     free(ptr);
+
+// }
+
+
+// #define malloc(x) _6malloc(x, __LINE__, __FILE__)
+// #define free(x) _6free(x, __LINE__, __FILE__)
+#define FAILED_MALLOC "failure"
 
 /*
 	<<: 4
@@ -64,6 +89,7 @@ typedef struct shell
 	char                    **env;
     char			        cwd[PATH_MAX];
 	char 					*r_path;
+	int						new_shell;
 } t_shell;
 
 // to handle norminette errors on split
@@ -189,10 +215,10 @@ void 		update_env_path_var(t_shell *shell);
 char		*ft_itoa(int n);
 char 		*ft_getenv(char *name, char **env);
 void 		add_default_env(t_shell *shell);
-void 		update_inhereted_env(t_shell *shell);
+void 		update_inhereted_env(t_shell *shell, int *is_new_shell);
 int 		open_here_docs(t_shell *shell);
 void		add_a_data_to_list(t_shell *shell, void *address);
-void		init(t_shell **minishell, char **env, int last_exit);
+void		init(t_shell **minishell, char **env, int last_exit, int *is_new_shell, char *inhereted_r_path);
 int			ft_same_value(char *p1, char *p2);
 void		copy_old_cwd(char *old_cwd, char **split_cwd);
 char		*retrieve_value(t_shell *shell);
@@ -208,3 +234,38 @@ int			env_exists(char *name, char **env);
 void		add_new_status(t_shell *shell, int status);
 void		handle_all_signals(int mode);
 void		handle_signal_heredoc(int sig);
+void		execute_other_commands(t_shell *shell, int mode);
+void		print_all_env_vars(char **env);
+void		echo_message(t_arg *args, t_shell *shell);
+void		change_directory(t_arg *path, t_shell *shell, char ***env);
+char		*find_command_path(char *s, t_shell *shell);
+void		copy_list_updating(char *env_name, char *data,
+				t_shell *shell, char **new_environ);
+int			list_len(char **list);
+int			redirect_streams(t_shell *shell);
+void		pipex(t_shell *shell, int mode);
+void		run_built_ins(t_shell *shell, int mode);
+int			open_input_files(t_shell *shell);
+char		*ft_join_args(t_arg *args);
+void		declare_all_envs(char **env);
+void		close_unused_here_docs(t_input *input);
+int			duplicate_ends(t_shell *shell, int *ends, int pipe_count, int i);
+void		close_ends_and_wait(int pipe_count, int *ends, int *processes, t_shell *shell);
+int			check_path(t_arg *path, char *cwd);
+int			split_values(char ***split_cwd, char ***split_path,
+				char *cwd, t_arg *path);
+int			copy_common_path(char **joined,
+				char **split_cwd, char *delimeter);
+void		copy_unique_path(char **joined, char **split_cwd,
+				char **split_path, int i);
+void		handle_signal_for_bin(int sig);
+void		handle_quit_signal(int sig);
+void 		update_oldpwd(char *old_pwd, t_shell *shell);
+int			ft_is_executable(char *cmd_path);
+char    	*ft_strcpy(char *s1, char *s2);
+void		free_all(t_shell *minishell);
+int			init_shell_struct(t_shell **minishell, char **env, int last_exit, char *cwd);
+void			init_shell_environment(t_shell **minishell, int *is_new_shell, char *inherited_r_path);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		ft_putendl_fd(char *s, int fd);

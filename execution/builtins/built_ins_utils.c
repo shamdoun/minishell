@@ -6,11 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/15 22:18:20 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/18 22:57:30 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../../minishell.h"
 
 char	*extract_command(char *s, char **env_list, char *command)
 {
@@ -36,6 +36,7 @@ char	*extract_command(char *s, char **env_list, char *command)
 			return (command);
 		}
 		free(command);
+		command = NULL;
 		i++;
 	}
 	return (NULL);
@@ -45,8 +46,10 @@ char	*find_command_path(char *s, t_shell *shell)
 {
 	char	**env_list;
 	char	*command;
-
+	char	*path;
+	
 	command = NULL;
+	env_list = NULL;
 	if (access(s, F_OK | X_OK) == 0)
 	{
 		command = ft_strdup1(s);
@@ -55,11 +58,16 @@ char	*find_command_path(char *s, t_shell *shell)
 	if (shell->r_path)
 		env_list = ft_split_1(shell->r_path, ':');
 	else
-		env_list = ft_split_1(ft_getenv("PATH", shell->env), ':');
+	{
+		path = ft_getenv("PATH", shell->env);
+		if (!path)
+			return (NULL);
+		add_a_data_to_list(shell, path);
+		env_list = ft_split_1(path, ':');
+	}
 	if (!env_list)
 		return (NULL);
-	add_a_data_to_list(shell, env_list);
-	// free_array(env_list);
+	int i = 0;
 	return (extract_command(s, env_list, command));
 }
 
