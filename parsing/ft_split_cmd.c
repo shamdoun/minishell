@@ -52,6 +52,7 @@ static t_arg	*put_arg(t_arg *arguments, char *str, t_shell *shell)
 		ptr = str;
 	new->arg = remove_quotes(ptr);
 	free(ptr);
+	add_a_data_to_list(shell, new->arg);
 	new->next = NULL;
 	if (!arguments)
 	{
@@ -103,6 +104,7 @@ static int	filltoken(t_commands *cmd, t_input *new, t_shell *shell)
 			(new)->args = put_arg((new)->args, str[i], shell);
 		i++;
 	}
+	free_array(str);
 	return (1);
 }
 
@@ -124,8 +126,9 @@ t_input	*split_cmd(t_commands *cmd, t_shell *shell)
 		if (!check)
 			return (free_tokenize(tokenize), free_list(head), NULL);
 		ft_lst_add_input_back(&tokenize, new, shell);
+		add_a_data_to_list(shell, new);
 		cmd = cmd->next;
 	}
-	//free_list(head);
+	free_list(head);
 	return (tokenize);
 }

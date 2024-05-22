@@ -6,11 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:05:17 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 21:47:20 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:40:01 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../../minishell.h"
 
 void	copy_list_excluding(char **new_environ, char **old_env, char *str)
 {
@@ -60,6 +60,7 @@ void	remove_env(t_arg *data, t_shell *shell, char ***env, int mode)
 					return ;
 				}
 				copy_list_excluding(new_environ, *env, data->arg);
+				add_a_data_to_list(shell, new_environ);
 				(*env = new_environ);
 			}
 			if (!error && mode)

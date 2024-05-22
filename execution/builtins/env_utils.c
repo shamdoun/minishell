@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:54:01 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 21:48:46 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/17 22:17:14 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*retrieve_value(t_shell *shell)
 	if (!var)
 	{
 		perror("failed!");
-		exit(1);
+		return (NULL);
 	}
 	add_a_data_to_list(shell, var);
 	new_value = ft_atoi(var) + 1;

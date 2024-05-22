@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:13:42 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 21:58:58 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/17 21:16:43 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,12 @@ void	handle_all_signals(int mode)
 {
 	if (!mode)
 	{
-		signal(SIGINT, &handle_ctrl_c_for_parent);
-		signal(SIGQUIT, SIG_IGN);
+		(1) && (signal(SIGINT, &handle_ctrl_c_for_parent), signal(SIGQUIT, SIG_IGN));
 	}
 	else if (mode == 1)
-		(signal(SIGINT, &handle_ctrl_c_for_child), signal(SIGQUIT, SIG_IGN));
+		(1) && (signal(SIGINT, &handle_ctrl_c_for_child), signal(SIGQUIT, SIG_IGN));
 	else if (mode == 2)
 		signal(SIGINT, &handle_signal_heredoc);
 	else if (mode == 3)
-		(signal(SIGINT, &handle_signal_for_bin),signal(SIGQUIT, &handle_quit_signal));
+		(1) && (signal(SIGINT, &handle_signal_for_bin),signal(SIGQUIT, &handle_quit_signal));
 }

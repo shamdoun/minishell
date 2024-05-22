@@ -6,16 +6,22 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:04:07 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 22:33:42 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/17 20:59:29 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../../minishell.h"
+extern volatile sig_atomic_t	g_signal;
 
 int	ft_last_status(t_status *list)
 {
 	t_status	*head;
-
+	
+	if (g_signal == 2)
+	{
+		g_signal = 0;
+		return (1);
+	}
 	head = list;
 	if (!head)
 		return (0);

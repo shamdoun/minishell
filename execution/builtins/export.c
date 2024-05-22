@@ -6,11 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:22:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 21:47:56 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:31:56 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../execution.h"
+#include "../../minishell.h"
 
 int	env_exists(char *name, char **env)
 {
@@ -33,14 +33,14 @@ int	env_exists(char *name, char **env)
 void	update_env(char *env_name, t_shell *shell, char *data, char ***env)
 {
 	char		**new_environ;
-
+	
 	new_environ = malloc(sizeof(char *) * (list_len(*env) + 1));
 	if (!new_environ)
 		add_new_status(shell, errno);
 	else
 	{
 		copy_list_updating(env_name, data, shell, new_environ);
-		// add_a_data_to_list(shell, new_environ);
+		add_a_data_to_list(shell, new_environ);
 		*env = new_environ;
 	}
 }
@@ -63,7 +63,7 @@ void	add_env(char *data, t_shell *shell, char ***env)
 		new_environ[list_len(*env) + 1] = NULL;
 		*env = new_environ;
 		add_a_data_to_list(shell, new_data);
-		// add_a_data_to_list(shell, new_environ);
+		add_a_data_to_list(shell, new_environ);
 	}
 }
 
