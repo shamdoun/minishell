@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:22:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/22 15:31:56 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:43:48 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	env_exists(char *name, char **env)
 void	update_env(char *env_name, t_shell *shell, char *data, char ***env)
 {
 	char		**new_environ;
-	
+
 	new_environ = malloc(sizeof(char *) * (list_len(*env) + 1));
 	if (!new_environ)
 		add_new_status(shell, errno);

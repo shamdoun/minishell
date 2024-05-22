@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/22 15:33:18 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:45:03 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	*find_command_path(char *s, t_shell *shell)
 	}
 	if (!env_list)
 		return (NULL);
+	int i = 0;
 	return (extract_command(s, env_list, command));
 }
 
