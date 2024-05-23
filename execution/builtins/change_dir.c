@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/18 18:13:41 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:03:01 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ char	*ft_getenv(char *name, char **env)
 			found = ft_strdup(split[1]);
 			if (!found)
 				exit (1);
-			free_array(split);
+			// free_array(split);
 			return (found);
 		}
-		free_array(split);
+		// free_array(split);
 		env++;
 	}
 	return (NULL);
@@ -69,7 +69,7 @@ int	change_to_default_home(t_shell *shell, char **env, int *rv)
 		return (1);
 	}
 	*rv = chdir(home);
-	add_a_data_to_list(shell, home);
+	// add_a_data_to_list(shell, home);
 	return (0);
 }
 
@@ -105,12 +105,12 @@ void	change_directory(t_arg *path, t_shell *shell, char ***env)
 	else
 	{
 		ft_putstr_fd("cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n", 2);
-		char *tmp = old_cwd;
+		// char *tmp = old_cwd;
 		old_cwd = ft_strjoin(old_cwd, "/..");
 		if (!old_cwd)
 			return ;
-		add_a_data_to_list(shell, old_cwd);
+		// add_a_data_to_list(shell, old_cwd);
 		ft_strcpy(shell->cwd, old_cwd);
-		free(tmp);
+		// free(tmp);
 	}
 }

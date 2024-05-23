@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:54:01 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/17 22:17:14 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/22 20:26:17 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ char	*retrieve_value(t_shell *shell)
 		perror("failed!");
 		return (NULL);
 	}
-	add_a_data_to_list(shell, var);
+	// add_a_data_to_list(shell, var);
 	new_value = ft_atoi(var) + 1;
 	if (new_value == 1000)
 	{
 		perror("bash: warning: shell level (1000) too high, resetting to 1");
-		return (ft_itoa(1));
+		return (ft_itoa_v2(1));
 	}
 	else
-		return (ft_itoa(new_value));
+		return (ft_itoa_v2(new_value));
 }
 
 void	update_shlvl(t_shell *shell)
@@ -45,15 +45,15 @@ void	update_shlvl(t_shell *shell)
 		perror("failed!");
 		exit(1);
 	}
-	new_shlvl = malloc(sizeof(t_arg));
+	new_shlvl = ft_malloc(sizeof(t_arg), 0);
 	if (!new_shlvl)
 		exit(1);
 	new_shlvl->arg = ft_strjoin("SHLVL=", tmp);
 	if (!new_shlvl->arg)
 		exit(1);
 	new_shlvl->next = NULL;
-	add_a_data_to_list(shell, new_shlvl->arg);
+	// add_a_data_to_list(shell, new_shlvl->arg);
 	add_update_env(new_shlvl, shell, &shell->env, 0);
-	free(new_shlvl);
-	free(tmp);
+	// free(new_shlvl);
+	// free(tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:05:17 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/18 20:40:01 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:46:04 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	copy_list_excluding(char **new_environ, char **old_env, char *str)
 			ft_memcpy(new_environ, &old_env[i], sizeof(char *));
 			new_environ++;
 		}
-		free_array(p);
+		// free_array(p);
 		i++;
 	}
 	*new_environ = NULL;
@@ -53,14 +53,14 @@ void	remove_env(t_arg *data, t_shell *shell, char ***env, int mode)
 			}
 			else if (env_exists(data->arg, *env))
 			{
-				new_environ = malloc(sizeof(char *) * (list_len(*env)));
+				new_environ = ft_malloc(sizeof(char *) * (list_len(*env)), 2);
 				if (!new_environ)
 				{
 					add_new_status(shell, 1);
 					return ;
 				}
 				copy_list_excluding(new_environ, *env, data->arg);
-				add_a_data_to_list(shell, new_environ);
+				// add_a_data_to_list(shell, new_environ);
 				(*env = new_environ);
 			}
 			if (!error && mode)

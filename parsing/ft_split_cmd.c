@@ -22,7 +22,7 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 			new = ft_lstnew_file(s, 1, NULL);
 		else if (!strncmp(str, ">>", 3))
 			new = ft_lstnew_file(s, 2, NULL);
-		free(ptr);
+		//free(ptr);
 	}
 	else if (!strncmp(str, "<<", 3))
 	{
@@ -51,7 +51,7 @@ static t_arg	*put_arg(t_arg *arguments, char *str, t_shell *shell)
 	else
 		ptr = str;
 	new->arg = remove_quotes(ptr);
-	free(ptr);
+	// free(ptr);
 	add_a_data_to_list(shell, new->arg);
 	new->next = NULL;
 	if (!arguments)
@@ -104,6 +104,12 @@ static int	filltoken(t_commands *cmd, t_input *new, t_shell *shell)
 			(new)->args = put_arg((new)->args, str[i], shell);
 		i++;
 	}
+	int	j = 0;
+	// while (str[j])
+	// {
+	// 	printf("%p\n", str[j]);
+	// 	j++;
+	// }
 	free_array(str);
 	return (1);
 }
@@ -126,9 +132,18 @@ t_input	*split_cmd(t_commands *cmd, t_shell *shell)
 		if (!check)
 			return (free_tokenize(tokenize), free_list(head), NULL);
 		ft_lst_add_input_back(&tokenize, new, shell);
-		add_a_data_to_list(shell, new);
+		// add_a_data_to_list(shell, new);
 		cmd = cmd->next;
 	}
+	// t_input *aaa;
+	// aaa = tokenize;
+	// while (aaa)
+	// {
+	// 	printf("%p\n", aaa);
+	// 	aaa = aaa->next;
+	// }
 	free_list(head);
+			ft_malloc(1, 1);
+	exit(1);
 	return (tokenize);
 }

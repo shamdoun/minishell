@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 19:19:10 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/18 17:21:52 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/22 20:04:00 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	copy_old_cwd(char *old_cwd, char **split_cwd)
 			ft_strcpy(split_cwd[i], split_oldcwd[i]);
 		i++;
 	}
-	free_array(split_oldcwd);
+	// free_array(split_oldcwd);
 }
 
 void	ft_update_if_already_exists(char **split_cwd, char *value, int k)
@@ -84,7 +84,7 @@ void update_oldpwd(char *old_pwd, t_shell *shell)
 	t_arg	*oldpwd_env;
 	char 	*tmp;
 
-	oldpwd_env = malloc(sizeof(t_arg));
+	oldpwd_env = ft_malloc(sizeof(t_arg), 0);
 	if (!oldpwd_env)
 	{
 		add_new_status(shell, 1);

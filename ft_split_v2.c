@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:19:50 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 23:09:11 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:25:14 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_strdnup(const char *s, int start, int len)
 
 	i = 0;
 	j = 0;
-	ret = (char *)malloc(sizeof(char) * len + 1);
+	ret = (char *)ft_malloc(sizeof(char) * len + 1, 0);
 	if (!ret)
 		return (NULL);
 	while (s[i] && len)
@@ -104,7 +104,7 @@ char	**ft_split_1(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	ft_count(s, c, &count);
-	array = (char **)malloc((count + 1) * sizeof(char *));
+	array = (char **)ft_malloc((count + 1) * sizeof(char *), 0);
 	if (!array)
 		return (NULL);
 	array[count] = 0;

@@ -66,7 +66,7 @@ char	*remove_quotes(char *str)
 	if (!str)
 		return (0);
 	i = ft_lenwithoutquotes(str);
-	ptr = malloc(i + 1);
+	ptr = ft_malloc(i + 1, 0);
 	(1) && (i = 0, j = 0);
 	while (str && str[i])
 	{

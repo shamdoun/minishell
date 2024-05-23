@@ -18,6 +18,37 @@ void	free_all(t_shell *minishell)
 	free(minishell);
 }
 
+
+void copy_env_list(char ***new_env, char **old_env, size_t len)
+{
+	static t_a_data *nodes;
+	t_a_data *head;
+	t_a_data *tmp;
+	size_t i = 0;
+
+	while (i < len)
+	{
+		(*new_env)[i] = ft_strdup_v3(old_env[i]);
+		tmp = ft_lstnew_ad(((*new_env)[i]));
+		if (!i)
+			head = tmp;
+		ft_lst_add_ad_back(&nodes, tmp);
+		i++;
+	}
+	(*new_env)[i] = NULL;
+
+	//free
+	while (nodes != head)
+	{
+		tmp = nodes;
+		nodes = nodes->next;
+		free(tmp->address);
+		tmp->address = NULL;
+		free(tmp);
+		tmp = NULL;
+	}
+} 
+
 void leaks()
 {
     fclose(gfp);
@@ -35,9 +66,9 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
-	// gfp = fopen("test/leaks", "w");
+	gfp = fopen("test/leaks", "w");
 	// signals
-	// atexit(leaks);
+	atexit(leaks);
 	handle_all_signals(0);
 	minishell = NULL;
 	//init
@@ -80,7 +111,7 @@ int	main(int argc, char **argv, char **env)
 					add_history(input);
 				}
 				last_exit = ft_last_status(minishell->all_status);
-				env = minishell->env;
+				copy_env_list(&env, minishell->env, list_len(minishell->env));
 				inherited_r_path = minishell->r_path;
 				cwd = minishell->cwd;
 			}

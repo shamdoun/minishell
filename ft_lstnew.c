@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:31:41 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/09 22:19:32 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:58:56 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_input	*ft_lstnew_input(void)
 {
 	t_input	*n_node;
 
-	n_node = malloc(sizeof(t_input));
+	n_node = ft_malloc(sizeof(t_input), 0);
 	if (!n_node)
 		return (NULL);
 	n_node->command_name = NULL;
@@ -45,7 +45,7 @@ t_status	*ft_lstnew_status(int status)
 {
 	t_status	*n_node;
 
-	n_node = (t_status *)malloc(sizeof(t_status));
+	n_node = (t_status *)ft_malloc(sizeof(t_status), 0);
 	if (!n_node)
 		return (NULL);
 	n_node->status = status;
@@ -57,7 +57,7 @@ t_file	*ft_lstnew_file(char *file_name, int type, char *delimeter)
 {
 	t_file	*n_node;
 
-	n_node = (t_file *)malloc(sizeof(t_file));
+	n_node = (t_file *)ft_malloc(sizeof(t_file), 0);
 	if (!n_node)
 		return (NULL);
 	n_node->file_name = file_name;

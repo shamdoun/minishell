@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:04:07 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/17 20:59:29 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:20:32 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,9 @@ void	exit_shell(t_shell *shell, t_arg *status)
 			exit(value);
 	}
 	else
-		exit(ft_last_status(shell->all_status));
+	{
+		value = ft_last_status(shell->all_status);
+		ft_malloc(0, 1);
+		exit(value);
+	}
 }

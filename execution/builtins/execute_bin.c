@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/18 22:10:38 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/22 21:21:08 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	update_split_list(char ***args_list, char *data)
 {
 	char	**new_list;
 
-	new_list = malloc(sizeof(char *) * (list_len(*args_list) + 2));
+	new_list = ft_malloc(sizeof(char *) * (list_len(*args_list) + 2), 0);
 	if (!new_list)
 		exit(1);
 	new_list[0] = ft_strdup(data);
@@ -75,7 +75,7 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 	}
 	else
 		pipe_child_runs_binary(cmd_path, args_list, shell);
-	free(cmd_path);
+	// free(cmd_path);
 }
 
 void	set_args_list(t_shell *shell, char ***args_list)
@@ -109,9 +109,9 @@ void	execute_other_commands(t_shell *shell, int mode)
 	
 	set_args_list(shell, &args_list);
 	cmd_path = find_command_path(args_list[0], shell);
-	add_a_data_to_list(shell, cmd_path);
+	// add_a_data_to_list(shell, cmd_path);
 	path_env = ft_getenv("PATH", shell->env);
-	add_a_data_to_list(shell, path_env);
+	// add_a_data_to_list(shell, path_env);
 	if ((cmd_path && path_env) || (cmd_path && shell->r_path))
 	{
 		run_binary(cmd_path, mode, args_list, shell);

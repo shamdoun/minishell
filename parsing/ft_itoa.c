@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 22:01:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/05 13:23:28 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/22 20:25:50 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,34 @@ char	*ft_itoa(int n)
 
 	count = count_int(n);
 	s = malloc(count + 1);
+	nbr = n;
+	if (!s)
+		return (NULL);
+	s[count] = '\0';
+	if (n < 0)
+	{
+		s[0] = '-';
+		nbr = -nbr;
+	}
+	if (n == 0)
+		s[0] = '0';
+	while (nbr)
+	{
+		count--;
+		s[count] = (nbr % 10) + '0';
+		nbr = nbr / 10;
+	}
+	return (s);
+}
+
+char	*ft_itoa_v2(int n)
+{
+	size_t	count;
+	size_t	nbr;
+	char	*s;
+
+	count = count_int(n);
+	s = ft_malloc(count + 1, 0);
 	nbr = n;
 	if (!s)
 		return (NULL);

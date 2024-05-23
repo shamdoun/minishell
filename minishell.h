@@ -16,26 +16,26 @@
 FILE*gfp;
 
 
-// static void *_6malloc(size_t size, int line, const char *file)
-// {
-//     void *ptr = malloc(size);
-//     fprintf(gfp, "['malloc', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
-//     return (ptr);
+static void *_6malloc(size_t size, int line, const char *file)
+{
+    void *ptr = malloc(size);
+    fprintf(gfp, "['malloc', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
+    return (ptr);
 
-// }
+}
 
-// static void _6free(void*ptr , int line, const char *file)
-// {
-//     fprintf(gfp, "['free', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
-//     free(ptr);
+static void _6free(void*ptr , int line, const char *file)
+{
+    fprintf(gfp, "['free', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
+    free(ptr);
 
-// }
+}
 
 
-// #define malloc(x) _6malloc(x, __LINE__, __FILE__)
-// #define free(x) _6free(x, __LINE__, __FILE__)
+#define malloc(x) _6malloc(x, __LINE__, __FILE__)
+#define free(x) _6free(x, __LINE__, __FILE__)
 #define FAILED_MALLOC "failure"
-
+#define WRONG_INPUT "No such file or directory"
 /*
 	<<: 4
 	>>: 2
@@ -90,6 +90,7 @@ typedef struct shell
     char			        cwd[PATH_MAX];
 	char 					*r_path;
 	int						new_shell;
+	int						env_updated;
 } t_shell;
 
 // to handle norminette errors on split
@@ -158,7 +159,7 @@ int         ft_strncmp(const char *s1, const char *s2, size_t n);
 void        execute_input(t_shell *shell);
 void        free_array(char **a);
 char	    *ft_strdup1(char *s);
-void        print_all_env_vars(char **env);
+// void        print_all_env_vars(char **env);
 int	        ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	    ft_strlen(const char *s);
 char		*ft_strjoin(char *s1, char *s2);
@@ -235,7 +236,7 @@ void		add_new_status(t_shell *shell, int status);
 void		handle_all_signals(int mode);
 void		handle_signal_heredoc(int sig);
 void		execute_other_commands(t_shell *shell, int mode);
-void		print_all_env_vars(char **env);
+int			print_all_env_vars(char **env, t_input *input);
 void		echo_message(t_arg *args, t_shell *shell);
 void		change_directory(t_arg *path, t_shell *shell, char ***env);
 char		*find_command_path(char *s, t_shell *shell);
@@ -269,3 +270,9 @@ void			init_shell_environment(t_shell **minishell, int *is_new_shell, char *inhe
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
+void		*ft_malloc(size_t size, int flag);
+void		add_a_data_to_linked_list(t_a_data **list, void *address);
+char		*ft_itoa_v2(int n);
+int			list_len(char **list);
+void		ft_bzero(void *s, size_t n);
+char		*ft_strdup_v3(const char *s1);

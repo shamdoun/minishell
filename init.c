@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:50:55 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/18 20:37:47 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/22 20:17:28 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void ft_recover_echo(void)
 
 int	init_shell_struct(t_shell **minishell, char **env, int last_exit, char *cwd)
 {
-	(*minishell) = malloc(sizeof(t_shell));
+	(*minishell) = ft_malloc(sizeof(t_shell), 0);
 	if (!(*minishell))
 	{
 		printf("is NULL");
@@ -40,7 +40,7 @@ int	init_shell_struct(t_shell **minishell, char **env, int last_exit, char *cwd)
 	}
 	(*minishell)->all_allocated_data = NULL;
 	(*minishell)->all_status = ft_lstnew_status(last_exit);
-	add_a_data_to_list(*minishell, (*minishell)->all_status);
+	// add_a_data_to_list(*minishell, (*minishell)->all_status);
 	if (!cwd)
 		getcwd((*minishell)->cwd, sizeof((*minishell)->cwd));
 	else
@@ -59,14 +59,14 @@ void	init_shell_environment(t_shell **minishell, int *is_new_shell, char *inheri
 		(*minishell)->r_path = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
 	else
 		(*minishell)->r_path = inherited_r_path;
-	free(var);
-	var = NULL;
+	// free(var);
+	// var = NULL;
 	if (!(*((*minishell)->env)))
 		add_default_env(*minishell);
 	else
 		update_inhereted_env(*minishell, is_new_shell);
 	var = ft_getenv("_", (*minishell)->env);
-	add_a_data_to_list(*minishell, var);
+	// add_a_data_to_list(*minishell, var);
 	if (!var || ft_strncmp(var, "/usr/bin/env", 13))
 		update_env_path_var(*minishell);
 	if (*is_new_shell == 1)

@@ -8,7 +8,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	result = malloc(len + 1);
+	result = ft_malloc(len + 1, 0);
 	if (!result)
 		return (NULL);
 	ft_strlcpy(result, s1, ft_strlen(s1) + 1);
@@ -26,7 +26,7 @@ char	*ft_azejoin(char **s1, char *s2)
 	j = 0;
 	if (!(*s1) && !s2)
 		return (NULL);
-	ptr = (char *) malloc((ft_strlen((*s1)) + ft_strlen(s2) + 1) * sizeof(char));
+	ptr = (char *) ft_malloc((ft_strlen((*s1)) + ft_strlen(s2) + 1) * sizeof(char), 0);
 	if (ptr == NULL)
 		return (NULL);
 	while ((*s1) && (*s1)[i])
