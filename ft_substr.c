@@ -6,15 +6,15 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 21:00:12 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/01/14 00:23:09 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:22:49 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
 static void	check_len(char const *s, size_t *len, unsigned int start)
 {
-	if (*len > (size_t)ft_strlen(s)
+	if (*len > ft_strlen(s)
 		|| start + *len > (unsigned long)ft_strlen(s))
 		*len = ft_strlen(s) - start;
 }
@@ -29,10 +29,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (!s)
 		return (NULL);
-	if (len < 1 || start >= (size_t) ft_strlen(s))
+	if (len < 1 || start >= ft_strlen(s))
 		return (ft_strdup(""));
 	check_len(s, &len, start);
-	sbs = malloc(sizeof(char) * len + 1);
+	sbs = ft_malloc(sizeof(char) * len + 1, 2);
 	if (!sbs)
 		return (NULL);
 	while (s[i])

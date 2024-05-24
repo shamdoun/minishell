@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/22 21:19:25 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:08:17 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,12 @@ void	copy_list_updating(char *env_name, char *data,
 			ft_memcpy(new_environ, &old_list[i], sizeof(char *));
 		else
 		{
-			data = ft_strdup(data);
+			if (ft_strchr(data, '+'))
+				data = ft_strjoin(old_list[i], ft_strchr_occurence(data, '=') + 1);
+			else
+				data = ft_strdup(data);
 			if (!data)
 				return ;
-			// ft_lst_add_ad_back(&shell->all_allocated_data, ft_lstnew_ad(data));
 			ft_memcpy(new_environ, &data, sizeof(char *));
 		}
 		new_environ++;

@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/05 22:07:19 by shamdoun          #+#    #+#             */
-/*   Updated: 2023/11/05 22:07:31 by shamdoun         ###   ########.fr       */
+/*   Created: 2023/11/05 22:08:09 by shamdoun          #+#    #+#             */
+/*   Updated: 2024/05/24 13:10:38 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_isdigit(int c)
+int	ft_isalpha(int c)
 {
-	return (c < 58 && c >= 48);
+	int	a;
+	int	b;
+
+	a = (c <= 90) && (c > 64);
+	b = (c <= 122) && (c > 96);
+	return (a || b);
 }

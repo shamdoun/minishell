@@ -16,24 +16,24 @@
 FILE*gfp;
 
 
-static void *_6malloc(size_t size, int line, const char *file)
-{
-    void *ptr = malloc(size);
-    fprintf(gfp, "['malloc', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
-    return (ptr);
+// static void *_6malloc(size_t size, int line, const char *file)
+// {
+//     void *ptr = malloc(size);
+//     fprintf(gfp, "['malloc', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
+//     return (ptr);
 
-}
+// }
 
-static void _6free(void*ptr , int line, const char *file)
-{
-    fprintf(gfp, "['free', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
-    free(ptr);
+// static void _6free(void*ptr , int line, const char *file)
+// {
+//     fprintf(gfp, "['free', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
+//     free(ptr);
 
-}
+// }
 
 
-#define malloc(x) _6malloc(x, __LINE__, __FILE__)
-#define free(x) _6free(x, __LINE__, __FILE__)
+// #define malloc(x) _6malloc(x, __LINE__, __FILE__)
+// #define free(x) _6free(x, __LINE__, __FILE__)
 #define FAILED_MALLOC "failure"
 #define WRONG_INPUT "No such file or directory"
 /*
@@ -207,19 +207,19 @@ char		*get_cmdname(char *s, t_shell *shell);
 char		*ft_expand(char *cmd, t_shell *shell);
 //for signals
 void		handle_ctrl_c_for_child(int sig);
-void 		exit_shell(t_shell *shell, t_arg *status);
+void 		exit_shell(t_shell *shell, t_arg *status, int mode);
 void 		remove_env(t_arg *data, t_shell *shell, char ***env, int mode);
 void 		ft_str_tolower(char *str);
 char		*ft_strrchr(const char *s, int c);
 void 		update_shlvl(t_shell *shell);
-void 		update_env_path_var(t_shell *shell);
+void 		update_env_path_var(t_shell *shell, char *value, int  mode);
 char		*ft_itoa(int n);
 char 		*ft_getenv(char *name, char **env);
 void 		add_default_env(t_shell *shell);
-void 		update_inhereted_env(t_shell *shell, int *is_new_shell);
+void 		update_inhereted_env(t_shell *shell);
 int 		open_here_docs(t_shell *shell);
 void		add_a_data_to_list(t_shell *shell, void *address);
-void		init(t_shell **minishell, char **env, int last_exit, int *is_new_shell, char *inhereted_r_path);
+void		init(t_shell **minishell, char **env);
 int			ft_same_value(char *p1, char *p2);
 void		copy_old_cwd(char *old_cwd, char **split_cwd);
 char		*retrieve_value(t_shell *shell);
@@ -265,8 +265,8 @@ void 		update_oldpwd(char *old_pwd, t_shell *shell);
 int			ft_is_executable(char *cmd_path);
 char    	*ft_strcpy(char *s1, char *s2);
 void		free_all(t_shell *minishell);
-int			init_shell_struct(t_shell **minishell, char **env, int last_exit, char *cwd);
-void			init_shell_environment(t_shell **minishell, int *is_new_shell, char *inherited_r_path);
+int			init_shell_struct(t_shell **minishell, char **env);
+void		init_shell_environment(t_shell **minishell);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
@@ -275,4 +275,10 @@ void		add_a_data_to_linked_list(t_a_data **list, void *address);
 char		*ft_itoa_v2(int n);
 int			list_len(char **list);
 void		ft_bzero(void *s, size_t n);
-char		*ft_strdup_v3(const char *s1);
+char		*ft_strdup_v3(const char *s1, int mode);
+int			ft_isdigit(int c);
+int			ft_isalpha(int c);
+int			eu_syntax_error(char *data, int mode);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_strchr_occurence(const char *s, int c);
+int			ft_strchr_index(const char *s, int c);

@@ -108,8 +108,6 @@ static int	filltoken(t_commands *cmd, t_input *new, t_shell *shell)
 		}
 		i++;
 	}
-	ft_malloc(0, 1);
-	exit(0);
 	free_array(str);
 	return (1);
 }

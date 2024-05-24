@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:05:17 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/23 11:46:04 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:25:36 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	remove_env(t_arg *data, t_shell *shell, char ***env, int mode)
 	error = false;
 	while (data && data->arg)
 	{
-		if (ft_strrchr(data->arg, '='))
+		if (eu_syntax_error(data->arg, 1))
 			(perror("bash: unset: not a valid identifier"), add_new_status(shell, 1), error = true);
 		else
 		{

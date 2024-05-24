@@ -17,7 +17,6 @@ char	*get_cmdname(char *s, t_shell *shell)
 	}
 	else
 		str = remove_quotes(s);
-	printf("%p\n", str);
 	// add_a_data_to_list(shell, str);
 	return (str);
 }

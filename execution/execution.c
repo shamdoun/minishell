@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/23 15:04:38 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:11:04 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	run_options_path(t_shell *shell, char *command, int mode)
 {
 	if (!ft_strncmp(command, "env", 4))
 	{
+		update_env_path_var(shell, "env", 1);
 		if (print_all_env_vars(shell->env, shell->all_input))
 			return ;
 		add_new_status(shell, 0);
@@ -64,9 +65,27 @@ void	run_options_path(t_shell *shell, char *command, int mode)
 	else if (!ft_strncmp(command, "echo", 5))
 		echo_message(shell->all_input->args, shell);
 	else if (!ft_strncmp(command, "exit", 5))
-		exit_shell(shell, shell->all_input->args);
+		exit_shell(shell, shell->all_input->args, mode);
 	else
 		execute_other_commands(shell, mode);
+}
+
+char *ft_last_arg(char *command, t_arg *args)
+{
+	char	*tmp;
+
+	tmp = NULL;
+	if (!args)
+		return (command);
+	while (args)
+	{
+		if (args->arg)
+			tmp = args->arg;
+		args = args->next;
+	}
+	if (!tmp)
+		return (command);
+	return (tmp); 
 }
 
 void	run_options(t_shell *shell, char *command, int mode)
@@ -74,7 +93,6 @@ void	run_options(t_shell *shell, char *command, int mode)
 	char *path_env;
 	
 	path_env = ft_getenv("PATH", shell->env);
-	// add_a_data_to_list(shell, path_env);
 	if ((path_env && !shell->r_path) || (!path_env && shell->r_path))
 		run_options_path(shell, command, mode);
 	else if (!ft_strncmp(command, "pwd", 4))
@@ -88,12 +106,14 @@ void	run_options(t_shell *shell, char *command, int mode)
 	else if (!ft_strncmp(command, "echo", 5))
 		echo_message(shell->all_input->args, shell);
 	else if (!ft_strncmp(command, "exit", 5))
-			exit_shell(shell, shell->all_input->args);
+		exit_shell(shell, shell->all_input->args, mode);
 	else
 	{
 		add_new_status(shell, 127);
 		printf("minishell: %s: No such file or directory\n", command);
 	}
+	if (mode)
+		update_env_path_var(shell, ft_last_arg(command, shell->all_input->args), 0);
 }
 
 void	run_built_ins(t_shell *shell, int mode)
@@ -112,10 +132,6 @@ void	run_built_ins(t_shell *shell, int mode)
 		add_new_status(shell, 1);
 		return ;
 	}
-	// printf("adding %s \n", command);
-	// add_a_data_to_list(shell, command);
-	if (!ft_same_value(command, "exit") && !ft_same_value(command, "export") && !ft_same_value(command, "unset"))
-		ft_str_tolower(command);
 	run_options(shell, command, mode);
 	if (shell->all_input->in_file)
 		close(shell->all_input->in_file);
@@ -123,7 +139,6 @@ void	run_built_ins(t_shell *shell, int mode)
 		close(shell->all_input->out_file);
 	if (!mode)
 		exit(ft_last_status(shell->all_status));
-	// free(command);
 }
 
 void	execute_input(t_shell *shell)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:04:07 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/23 16:34:35 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:10:36 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_last_status(t_status *list)
 	return (head->status);
 }
 
-void	exit_shell(t_shell *shell, t_arg *status)
+void	exit_shell(t_shell *shell, t_arg *status, int mode)
 {
 	int	value;
 
@@ -41,7 +41,8 @@ void	exit_shell(t_shell *shell, t_arg *status)
 	// 	free(shell->all_allocated_data);
 	// 	shell->all_allocated_data = shell->all_allocated_data->next;
 	// }
-	write(1, "exit\n", 5);
+	if (mode)
+		write(1, "exit\n", 5);
 	if (status)
 	{
 		value = ft_atoi(status->arg);

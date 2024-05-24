@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/23 12:03:01 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:23:50 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ char	*ft_getenv(char *name, char **env)
 			found = ft_strdup(split[1]);
 			if (!found)
 				exit (1);
-			// free_array(split);
 			return (found);
 		}
-		// free_array(split);
 		env++;
 	}
 	return (NULL);

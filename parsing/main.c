@@ -28,7 +28,7 @@ void copy_env_list(char ***new_env, char **old_env, size_t len)
 
 	while (i < len)
 	{
-		(*new_env)[i] = ft_strdup_v3(old_env[i]);
+		(*new_env)[i] = ft_strdup_v3(old_env[i], 2);
 		tmp = ft_lstnew_ad(((*new_env)[i]));
 		if (!i)
 			head = tmp;
@@ -62,33 +62,19 @@ int	main(int argc, char **argv, char **env)
     int     	check;
 	t_commands	*cmds;
 	t_shell		*minishell;
-	int			last_exit;
 
 	(void)argc;
 	(void)argv;
-	gfp = fopen("test/leaks", "w");
+	// gfp = fopen("test/leaks", "w");
 	// signals
-	atexit(leaks);
 	handle_all_signals(0);
 	minishell = NULL;
 	//init
-	last_exit = 0;
-	int is_new_shell;
-	char *inherited_r_path;
-	char *cwd;
-
-	inherited_r_path = NULL;
-	is_new_shell = 1;
-	cwd = NULL;
+	init(&minishell, env);
 	if (1)
 	{
 		while (1)
 		{
-			if (init_shell_struct(&minishell, env, last_exit, cwd))
-				ft_putendl_fd(FAILED_MALLOC, 2);
-			else
-			{
-				init_shell_environment(&minishell, &is_new_shell, inherited_r_path);
 				input = readline("minishell$> ");
 				if (!input)
 					exit_shell(minishell, NULL);
@@ -110,11 +96,6 @@ int	main(int argc, char **argv, char **env)
 						perror("syntax error\n");
 					add_history(input);
 				}
-				last_exit = ft_last_status(minishell->all_status);
-				copy_env_list(&env, minishell->env, list_len(minishell->env));
-				inherited_r_path = minishell->r_path;
-				cwd = minishell->cwd;
-			}
 		}
 	}
 	else

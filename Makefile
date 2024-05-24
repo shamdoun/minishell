@@ -28,10 +28,11 @@ SRC= ft_free.c ft_split.c ./parsing/ft_parsing.c ./parsing/divide_cmd.c parsing/
 	init.c execution/builtins/cd_utils2.c  \
 	./execution/pipex/pipex_utils.c ./execution/builtins/cd_utils1.c ./execution/builtins/env_utils.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c \
 	./execution/builtins/built_ins_utils2.c ./parsing/ft_tolower.c ./parsing/ft_strrchr.c ./parsing/ft_itoa.c parsing/expand.c \
-	parsing/ft_splitcmdutils2.c ft_strcpy.c ft_putstr_fd.c ft_putchar_fd.c ft_putendl_fd.c ft_malloc.c ft_bzero.c
+	parsing/ft_splitcmdutils2.c ft_strcpy.c ft_putstr_fd.c ft_putchar_fd.c ft_putendl_fd.c ft_malloc.c ft_bzero.c \
+	ft_isalpha.c ft_isdigit.c ft_substr.c
 
 CC= cc
-# Flags= -Wall -Werror -Wextra -g
+Flags= -Wall -Werror -Wextra -g
 
 O_SRC=$(SRC:.c=.o)
 
@@ -43,7 +44,7 @@ NAME= minishell
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(FLAGS) -g -lreadline $(O_SRC) -o $(NAME)
+	$(CC) $(FLAGS) -lreadline $(O_SRC) -o $(NAME)
 
 clean:
 	rm -f $(O_SRC)
