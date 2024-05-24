@@ -77,7 +77,7 @@ int	main(int argc, char **argv, char **env)
 		{
 				input = readline("minishell$> ");
 				if (!input)
-					exit_shell(minishell, NULL);
+					exit_shell(minishell, NULL, 1);
 				if (*input != '\0')
 				{
 					check = ft_parsing(input);

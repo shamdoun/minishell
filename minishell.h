@@ -282,3 +282,4 @@ int			eu_syntax_error(char *data, int mode);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strchr_occurence(const char *s, int c);
 int			ft_strchr_index(const char *s, int c);
+char		*ft_strtrim(char const *s1, char const *set);

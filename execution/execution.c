@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/24 17:11:04 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:38:20 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char *ft_last_arg(char *command, t_arg *args)
 void	run_options(t_shell *shell, char *command, int mode)
 {
 	char *path_env;
-	
+
 	path_env = ft_getenv("PATH", shell->env);
 	if ((path_env && !shell->r_path) || (!path_env && shell->r_path))
 		run_options_path(shell, command, mode);
@@ -116,12 +116,42 @@ void	run_options(t_shell *shell, char *command, int mode)
 		update_env_path_var(shell, ft_last_arg(command, shell->all_input->args), 0);
 }
 
+void	open_output_files(t_shell *shell)
+{
+	t_file *head;
+
+	head = shell->all_input->all_files;
+	while (shell->all_input->all_files)
+	{
+		if (shell->all_input->all_files->type < 3
+			&& shell->all_input->out_file > 1)
+			close(shell->all_input->out_file);
+		if (shell->all_input->all_files->type == 1)
+			shell->all_input->out_file
+				= open(shell->all_input->all_files->file_name,
+					O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		else if (shell->all_input->all_files->type == 2)
+			shell->all_input->out_file
+				= open(shell->all_input->all_files->file_name,
+					O_WRONLY | O_CREAT | O_APPEND, 0777);
+		if (shell->all_input->out_file < 0)
+		{
+			perror("failed to open output file!"), add_new_status(shell, 1);
+			return ;
+		}
+		shell->all_input->all_files = shell->all_input->all_files->next;
+	}
+	if (head)
+		shell->all_input->all_files = head;
+}
+
 void	run_built_ins(t_shell *shell, int mode)
 {
 	char	*command;
 	
 	if (open_input_files(shell))
 		return ;
+	open_output_files(shell);
 	if (redirect_streams(shell))
 		return ;
 	if (!shell->all_input->command_name)

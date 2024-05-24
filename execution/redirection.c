@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 22:21:01 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:39:59 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	here_doc(t_input *input, t_file *file)
 	{
 		write(1, "> ", 2);
 		line = get_next_line(0);
-		// printf("%zu\n", ft_strlen(line));
 		if (!line || !ft_strncmp(line, file->delimeter, ft_strlen(line) - 1))
 			break ;
 		(write(fd, line, ft_strlen(line)), free(line));
@@ -93,7 +92,7 @@ int	open_input_files(t_shell *shell)
 			close(shell->all_input->in_file); 
 		if (shell->all_input->all_files->type == 3)
 			shell->all_input->in_file
-				= open(shell->all_input->all_files->file_name, O_RDONLY, 0777);
+				= open(shell->all_input->all_files->file_name, O_RDONLY, 0666);
 		if (shell->all_input->all_files->type == 4)
 			shell->all_input->in_file = shell->all_input->here_doc;
 		if (shell->all_input->in_file < 0)
@@ -110,26 +109,6 @@ int	open_input_files(t_shell *shell)
 
 int	redirect_streams(t_shell *shell)
 {
-	while (shell->all_input->all_files)
-	{
-		if (shell->all_input->all_files->type < 3
-			&& shell->all_input->out_file > 1)
-			close(shell->all_input->out_file);
-		if (shell->all_input->all_files->type == 1)
-			shell->all_input->out_file
-				= open(shell->all_input->all_files->file_name,
-					O_WRONLY | O_CREAT | O_TRUNC, 0777);
-		else if (shell->all_input->all_files->type == 2)
-			shell->all_input->out_file
-				= open(shell->all_input->all_files->file_name,
-					O_WRONLY | O_CREAT | O_APPEND, 0777);
-		if (shell->all_input->out_file < 0)
-		{
-			perror("failed to open output file!"), add_new_status(shell, 1);
-			return (1);
-		}
-		shell->all_input->all_files = shell->all_input->all_files->next;
-	}
 	if (shell->all_input->in_file)
 		if (dup2(shell->all_input->in_file, STDIN_FILENO) == -1)
 			add_new_status(shell, 1);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 21:04:39 by shamdoun          #+#    #+#             */
-/*   Updated: 2023/11/05 22:16:56 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:51:47 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
 static int	ft_in_set(char c, char const *set)
 {

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:45:04 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/24 17:06:56 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:15:20 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	print_all_env_vars(char **env, t_input *input)
 void	update_env_path_var(t_shell *shell, char *value, int mode)
 {
 	t_arg	*new_envpath;
-
+	char	**array;
 	new_envpath = ft_malloc(sizeof(t_arg), 0);
 	if (!new_envpath)
 	{
@@ -57,7 +57,27 @@ void	update_env_path_var(t_shell *shell, char *value, int mode)
 	else if (mode)
 		new_envpath->arg = ft_strjoin("_=/usr/bin/", value);
 	else
+	{
+		int i = 0;
+		array = ft_split_1(value, ' ');
+		if (!array)
+			return ;
+		value = NULL;
+		while (array[i])
+		{
+			value = ft_strjoin_v2(value, array[i]);
+			if (!value)
+				return ;
+			if (array[i + 1])
+			{
+				value = ft_strjoin(value, " ");
+				if (!value)
+					return ;
+			}
+			i++;
+		}
 		new_envpath->arg = ft_strjoin("_=", value);
+	}
 	new_envpath->next = NULL;
 	if (!mode && !value)
 		remove_env(new_envpath, shell, &shell->env, 0);

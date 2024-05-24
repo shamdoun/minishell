@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/22 21:21:08 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:37:46 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,8 @@ void	execute_other_commands(t_shell *shell, int mode)
 	char	*path_env;
 	
 	set_args_list(shell, &args_list);
-	cmd_path = find_command_path(args_list[0], shell);
-	// add_a_data_to_list(shell, cmd_path);
+	cmd_path = find_command_path(shell->all_input->command_name, shell);
 	path_env = ft_getenv("PATH", shell->env);
-	// add_a_data_to_list(shell, path_env);
 	if ((cmd_path && path_env) || (cmd_path && shell->r_path))
 	{
 		run_binary(cmd_path, mode, args_list, shell);

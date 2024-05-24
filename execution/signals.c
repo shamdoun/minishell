@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:13:42 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/17 21:16:43 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:27:31 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	handle_signal_heredoc(int sig)
 {
 	(void)sig;
 	close(STDIN_FILENO);
-	write(1, "\n", 1);
+	write(2, "\n", 1);
 	g_signal = 1;
 }
 

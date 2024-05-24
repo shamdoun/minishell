@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/24 12:40:49 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:43:57 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,15 @@ char	*ft_join_args(t_arg *args)
 	args = args->next;
 	while (args)
 	{
-		tmp = ft_strjoin(" ", args->arg);
-		if (!tmp)
-			perror("failed to join:");
-		result = ft_strjoin(result, tmp);
+		if (args->arg)
+		{
+			tmp = ft_strjoin(" ", args->arg);
+			if (!tmp)
+				return (NULL);
+			result = ft_strjoin(result, tmp);
+			if (!result)
+				return (NULL);
+		}
 		args = args->next;
 	}
 	return (result);

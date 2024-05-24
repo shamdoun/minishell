@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:31:35 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/22 21:29:04 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:26:15 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_lst_add_input_back(t_input **lst, t_input *new, t_shell *shell)
 			head = head->next;
 		head->next = new;
 	}
-	// add_a_data_to_list(shell, new);
 }
 
 void	ft_lst_add_ad_back(t_a_data **lst, t_a_data *new)
@@ -67,7 +66,6 @@ void	ft_lst_add_file_back(t_file **lst, t_file *new, t_shell *shell)
 			head = head -> next;
 		head -> next = new;
 	}
-	// add_a_data_to_list(shell, new);
 }
 
 void	ft_lst_add_status_back(t_status **lst, t_status *new, t_shell *shell)
@@ -86,5 +84,4 @@ void	ft_lst_add_status_back(t_status **lst, t_status *new, t_shell *shell)
 			head = head -> next;
 		head -> next = new;
 	}
-	// add_a_data_to_list(shell, new);
 }
