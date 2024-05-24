@@ -42,7 +42,8 @@ static t_arg	*put_arg(t_arg *arguments, char *str, t_shell *shell)
 
 	head = arguments;
 	ptr = NULL;
-	new = malloc(sizeof(t_arg));
+	new = ft_malloc(sizeof(t_arg), 0);
+	//printf("args : %p\n", new);
 	if (!new)
 		return (NULL);
 	new->t_f = ft_isexpanded(str);
@@ -52,7 +53,7 @@ static t_arg	*put_arg(t_arg *arguments, char *str, t_shell *shell)
 		ptr = str;
 	new->arg = remove_quotes(ptr);
 	// free(ptr);
-	add_a_data_to_list(shell, new->arg);
+	// add_a_data_to_list(shell, new->arg);
 	new->next = NULL;
 	if (!arguments)
 	{
@@ -101,15 +102,14 @@ static int	filltoken(t_commands *cmd, t_input *new, t_shell *shell)
 		else if (t == 0)
 			(1) && (t = 1, new->command_name = get_cmdname(str[i], shell));
 		else
+		{
 			(new)->args = put_arg((new)->args, str[i], shell);
+			//printf("%p\n", new->args);
+		}
 		i++;
 	}
-	int	j = 0;
-	// while (str[j])
-	// {
-	// 	printf("%p\n", str[j]);
-	// 	j++;
-	// }
+	ft_malloc(0, 1);
+	exit(0);
 	free_array(str);
 	return (1);
 }
@@ -129,6 +129,7 @@ t_input	*split_cmd(t_commands *cmd, t_shell *shell)
 		if (!new)
 			exit(1);
 		check = filltoken(cmd, new, shell);
+
 		if (!check)
 			return (free_tokenize(tokenize), free_list(head), NULL);
 		ft_lst_add_input_back(&tokenize, new, shell);
@@ -143,7 +144,5 @@ t_input	*split_cmd(t_commands *cmd, t_shell *shell)
 	// 	aaa = aaa->next;
 	// }
 	free_list(head);
-			ft_malloc(1, 1);
-	exit(1);
 	return (tokenize);
 }
