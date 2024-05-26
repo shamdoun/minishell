@@ -36,6 +36,7 @@ FILE*gfp;
 // #define free(x) _6free(x, __LINE__, __FILE__)
 #define FAILED_MALLOC "failure"
 #define WRONG_INPUT "No such file or directory"
+#define POINT_INPUT "bash: .: filename argument required \n.: usage: . filename [arguments]"
 /*
 	<<: 4
 	>>: 2
@@ -283,3 +284,7 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strchr_occurence(const char *s, int c);
 int			ft_strchr_index(const char *s, int c);
 char		*ft_strtrim(char const *s1, char const *set);
+int			unset_syntax_error(char *data);
+int			export_syntax_error(char *data);
+int			append_mode(char *data);
+int			empty_args(t_arg *data);

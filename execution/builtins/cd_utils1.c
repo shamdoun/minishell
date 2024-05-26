@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 19:19:10 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/22 20:04:00 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:50:42 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	copy_old_cwd(char *old_cwd, char **split_cwd)
 	i = 0;
 	split_oldcwd = ft_split_1(old_cwd, '/');
 	if (!split_oldcwd)
-		exit(1);
+		return ;
 	while (split_cwd[i] && split_oldcwd[i])
 	{
 		if (ft_same_value(split_cwd[i], split_oldcwd[i]))

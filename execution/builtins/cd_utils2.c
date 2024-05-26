@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:25:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/22 20:07:08 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:51:40 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ int	split_values(char ***split_cwd,
 {
 	*split_cwd = ft_split_1(cwd, '/');
 	if (!(*split_cwd))
-		exit(1);
+		return (1);
 	*split_path = ft_split_1(path->arg, '/');
 	if (path_is_only_levels(*split_path))
 		return (1);
 	if (!(*split_path))
-		exit(1);
+		return (1);
 	while ((!ft_strncmp((**split_path), ".", ft_strlen((**split_path)))
 			|| !ft_strncmp((**split_path), "..", ft_strlen((**split_path)))))
 	{
@@ -76,13 +76,13 @@ int	copy_common_path(char **joined, char **split_cwd, char *delimeter)
 		// tmp = *joined;
 		*joined = ft_strjoin(*joined, split_cwd[i]);
 		if (!(*joined))
-			exit(1);
+			return (-1);
 		// free(tmp);
 		// tmp = NULL;
 		tmp = *joined;
 		*joined = ft_strjoin(*joined, "/");
 		if (!(*joined))
-			exit(1);
+			return (-1);
 		// free(tmp);
 		// tmp = NULL;
 		i++;
@@ -101,7 +101,7 @@ void	copy_unique_path(char **joined, char **split_cwd,
 		// tmp = *joined;
 		*joined = ft_strjoin(*joined, split_cwd[i]);
 		if (!(*joined))
-			exit(1);
+			return ;
 		// free(tmp);
 		// tmp = NULL;
 		if (split_cwd[i + 1])
@@ -109,7 +109,7 @@ void	copy_unique_path(char **joined, char **split_cwd,
 			tmp = *joined;
 			*joined = ft_strjoin(*joined, "/");
 			if (!(*joined))
-				exit(1);
+				return ;
 			// free(tmp);
 			// tmp = NULL;
 		}

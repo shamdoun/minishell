@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:45:04 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/24 20:15:20 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:43:26 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,16 @@ void	declare_all_envs(char **env)
 	while (env[i])
 	{
 		split_env = ft_split_1(env[i], '=');
-		printf("declare -x %s", split_env[0]);
-		if (split_env[1])
-			printf("=\"%s\"\n", split_env[1]);
-		else if (ft_strchr(env[i], '='))
-			printf("=\"\"\n");
-		else
-			printf("\n");
+		if (ft_strncmp(split_env[0], "_", ft_strlen(split_env[0])))
+		{
+			printf("declare -x %s", split_env[0]);
+			if (split_env[1])
+				printf("=\"%s\"\n", split_env[1]);
+			else if (ft_strchr(env[i], '='))
+				printf("=\"\"\n");
+			else
+				printf("\n");
+		}
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/24 12:23:50 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:51:59 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ char	*ft_getenv(char *name, char **env)
 	{
 		split = ft_split_1(*env, '=');
 		if (!split)
-			exit (1);
+			return (NULL);
 		if (!ft_strncmp(split[0], name, ft_strlen(name) + 1))
 		{
 			found = ft_strdup(split[1]);
 			if (!found)
-				exit (1);
+				return (NULL);
 			return (found);
 		}
 		env++;
@@ -103,12 +103,12 @@ void	change_directory(t_arg *path, t_shell *shell, char ***env)
 	else
 	{
 		ft_putstr_fd("cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n", 2);
-		// char *tmp = old_cwd;
-		old_cwd = ft_strjoin(old_cwd, "/..");
+		old_cwd = ft_strjoin(old_cwd, "/");
 		if (!old_cwd)
 			return ;
-		// add_a_data_to_list(shell, old_cwd);
+		old_cwd = ft_strjoin(old_cwd, path->arg);
+		if (!old_cwd)
+			return ;
 		ft_strcpy(shell->cwd, old_cwd);
-		// free(tmp);
 	}
 }

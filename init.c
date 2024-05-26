@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:50:55 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/24 16:44:24 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:49:49 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	init(t_shell **minishell, char **env)
 {
 	if (init_shell_struct(minishell, env))
 	{
-		ft_putendl_fd(FAILED_MALLOC, 2);
-		exit(1);
+		while (1)
+			ft_putendl_fd(FAILED_MALLOC, 2);
 	}
 	init_shell_environment(minishell);
 }

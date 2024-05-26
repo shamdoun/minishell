@@ -30,7 +30,7 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 		new = ft_lstnew_file(NULL, 4, ptr);
 	}
 	if (!new)
-		exit (1);
+		return ;
 	ft_lst_add_file_back(&(nw->all_files), new, shell);
 }
 
@@ -125,7 +125,7 @@ t_input	*split_cmd(t_commands *cmd, t_shell *shell)
 	{
 		new = ft_lstnew_input();
 		if (!new)
-			exit(1);
+			return NULL;
 		check = filltoken(cmd, new, shell);
 
 		if (!check)

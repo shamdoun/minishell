@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/24 19:43:57 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:52:10 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_join_args(t_arg *args)
 	result = NULL;
 	result = ft_strdup(args->arg);
 	if (!result)
-		exit (1);
+		return (NULL);
 	args = args->next;
 	while (args)
 	{

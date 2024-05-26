@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/24 20:39:59 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/25 19:29:13 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,27 +83,20 @@ int	open_here_docs(t_shell *shell)
 
 int	open_input_files(t_shell *shell)
 {
-	t_file	*first_file;
-
-	first_file = shell->all_input->all_files;
-	while (shell->all_input->all_files)
+	if (shell->all_input->all_files->type != 4 && shell->all_input->in_file)
+		close(shell->all_input->in_file); 
+	if (shell->all_input->all_files->type == 3)
+		shell->all_input->in_file
+			= open(shell->all_input->all_files->file_name, O_RDONLY, 0666);
+	if (shell->all_input->all_files->type == 4)
+		shell->all_input->in_file = shell->all_input->here_doc;
+	if (shell->all_input->in_file < 0)
 	{
-		if (shell->all_input->all_files->type >= 3 && shell->all_input->all_files->type != 4 && shell->all_input->in_file)
-			close(shell->all_input->in_file); 
-		if (shell->all_input->all_files->type == 3)
-			shell->all_input->in_file
-				= open(shell->all_input->all_files->file_name, O_RDONLY, 0666);
-		if (shell->all_input->all_files->type == 4)
-			shell->all_input->in_file = shell->all_input->here_doc;
-		if (shell->all_input->in_file < 0)
-		{
-			perror("bash: "), add_new_status(shell, 1);
-			return (1);
-		}
-		shell->all_input->all_files = shell->all_input->all_files->next;
+		ft_putstr_fd("bash: ", 2), ft_putstr_fd(shell->all_input->all_files->file_name, 2);
+		ft_putendl_fd(": No such file or directory", 2);
+		add_new_status(shell, 1);
+		return (1);
 	}
-	if (first_file)
-		shell->all_input->all_files = first_file;
 	return (0);
 }
 

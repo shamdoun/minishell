@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/24 19:37:46 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/26 16:20:59 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	update_split_list(char ***args_list, char *data)
 
 	new_list = ft_malloc(sizeof(char *) * (list_len(*args_list) + 2), 0);
 	if (!new_list)
-		exit(1);
+		return ;
 	new_list[0] = ft_strdup(data);
 	if (!new_list)
-		exit(1);
+		return ;
 	ft_memcpy(&new_list[1], *args_list, list_len(*args_list) * sizeof(char *));
 	new_list[list_len(*args_list) + 1] = NULL;
 	*args_list = new_list;
@@ -86,17 +86,17 @@ void	set_args_list(t_shell *shell, char ***args_list)
 	{
 		joined_args = ft_join_args(shell->all_input->args);
 		if (!joined_args)
-			exit(1);
+			return ;
 		*args_list = ft_split_1(joined_args, ' ');
 		if (!(*args_list))
-			exit(1);
+			return ;
 		update_split_list(args_list, shell->all_input->command_name);
 	}
 	else
 	{
 		*args_list = ft_split_1(shell->all_input->command_name, ' ');
 		if (!(*args_list))
-			exit(1);
+			return ;
 		//printf("%s\n %s\n", shell->all_input->command_name, *(args_list)[0]);
 	}
 }
@@ -111,9 +111,7 @@ void	execute_other_commands(t_shell *shell, int mode)
 	cmd_path = find_command_path(shell->all_input->command_name, shell);
 	path_env = ft_getenv("PATH", shell->env);
 	if ((cmd_path && path_env) || (cmd_path && shell->r_path))
-	{
 		run_binary(cmd_path, mode, args_list, shell);
-	}
 	else
 	{
 		fprintf(stderr, "bash: %s: command not found\n", args_list[0]);

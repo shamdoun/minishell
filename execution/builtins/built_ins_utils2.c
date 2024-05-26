@@ -9,7 +9,7 @@ void	add_new_status(t_shell *shell, int status)
 	
 	s = ft_malloc(sizeof(t_status), 0);
 	if (!s)
-		exit(1);
+		return ;
 	s->status = status;
 	s->next = NULL;
 	ft_lst_add_status_back(&shell->all_status, s,  shell);

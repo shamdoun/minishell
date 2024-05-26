@@ -67,10 +67,10 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	// gfp = fopen("test/leaks", "w");
 	// signals
-	handle_all_signals(0);
-	minishell = NULL;
 	//init
+	minishell = NULL;
 	init(&minishell, env);
+	handle_all_signals(0);
 	if (1)
 	{
 		while (1)
