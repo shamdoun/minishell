@@ -36,7 +36,7 @@ FILE*gfp;
 // #define free(x) _6free(x, __LINE__, __FILE__)
 #define FAILED_MALLOC "failure"
 #define WRONG_INPUT "No such file or directory"
-#define POINT_INPUT "bash: .: filename argument required \n.: usage: . filename [arguments]"
+#define POINT_INPUT "minishell: .: filename argument required \n.: usage: . filename [arguments]"
 /*
 	<<: 4
 	>>: 2

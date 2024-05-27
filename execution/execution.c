@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/26 16:05:25 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:48:29 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	run_options(t_shell *shell, char *command, int mode)
 	}
 	else if (!ft_strncmp(command, ".", 2))
 	{
-		ft_putendl_fd("bash: .: No such file or directoty", 2), add_new_status(shell, 1);
+		ft_putendl_fd("minishell: .: No such file or directoty", 2), add_new_status(shell, 1);
 		return ;
 	}
 	path_env = ft_getenv("PATH", shell->env);
@@ -117,6 +117,8 @@ void	run_options(t_shell *shell, char *command, int mode)
 		echo_message(shell->all_input->args, shell);
 	else if (!ft_strncmp(command, "exit", 5))
 		exit_shell(shell, shell->all_input->args, mode);
+	else if (*command == '/' || (access(command, F_OK) == 0))
+		execute_other_commands(shell, 1);
 	else
 	{
 		add_new_status(shell, 127);
@@ -161,7 +163,7 @@ int open_files(t_shell *shell)
 
 void	run_built_ins(t_shell *shell, int mode)
 {
-	char	*command;
+	// char	*command;
 	
 	if (open_files(shell))
 	{
@@ -175,13 +177,13 @@ void	run_built_ins(t_shell *shell, int mode)
 		return ;
 	if (!shell->all_input->command_name)
 		return ;
-	command = ft_strdup(shell->all_input->command_name);
-	if (!command)
-	{
-		add_new_status(shell, 1);
-		return ;
-	}
-	run_options(shell, command, mode);
+	// command = ft_strdup(shell->all_input->command_name);
+	// if (!command)
+	// {
+	// 	add_new_status(shell, 1);
+	// 	return ;
+	// }
+	run_options(shell, shell->all_input->command_name, mode);
 	if (shell->all_input->in_file)
 		close(shell->all_input->in_file);
 	if (shell->all_input->out_file)

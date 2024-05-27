@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:22:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/26 16:26:31 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:32:16 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	update_env(char *env_name, char *env_value, t_shell *shell, char *data, cha
 	char		**new_environ;
 
 	(void)env_value;
+	if (!ft_strchr(data, '='))
+		return ;
 	new_environ = ft_malloc(sizeof(char *) * (list_len(*env) + 1), 2);
 	if (!new_environ)
 		add_new_status(shell, errno);

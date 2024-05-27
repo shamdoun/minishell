@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:04:07 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/24 17:10:36 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:01:50 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ void	exit_shell(t_shell *shell, t_arg *status, int mode)
 	int	value;
 
 	//!TODO: free all allocated data!
-	// while (shell->all_allocated_data)
-	// {
-	// 	free(shell->all_allocated_data->address);
-	// 	free(shell->all_allocated_data);
-	// 	shell->all_allocated_data = shell->all_allocated_data->next;
-	// }
 	if (mode)
 		write(1, "exit\n", 5);
 	if (status)

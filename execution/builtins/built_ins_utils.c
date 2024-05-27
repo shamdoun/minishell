@@ -6,11 +6,36 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/25 14:34:14 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:25:56 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int command_is_executable(char *env, char *s)
+{
+	char	**split1;
+	char	**split2;
+	int		i;
+
+	split1 = ft_split_1(env, '/');
+	if (!split1)
+		return (0);
+	split2 = ft_split_1(s, '/');
+	if (!split2)
+		return (0);
+	i = 0;
+	while (split1[i] && split2[i])
+	{
+		if (ft_strncmp(split1[i], split2[i], ft_strlen(split2[i])))
+			return (0);
+		i++;
+	}
+	if (split2[i] && (access(s, F_OK | X_OK) == 0))
+		return (1);
+	return (0);
+}
+
 
 char	*extract_command(char *s, char **env_list, char *command)
 {
@@ -20,23 +45,16 @@ char	*extract_command(char *s, char **env_list, char *command)
 	i = 0;
 	while (env_list[i])
 	{
+		if (command_is_executable(env_list[i], s))
+			return (ft_strdup1(s));
 		tmp = ft_strjoin(env_list[i], "/");
 		if (!tmp)
 			return (NULL);
 		command = ft_strjoin(tmp, s);
-		// free(tmp);
 		if (!command)
-		{
-			// free_array(env_list);
 			return (NULL);
-		}
 		if (access(command, F_OK | X_OK) == 0)
-		{
-			// free_array(env_list);
 			return (command);
-		}
-		// free(command);
-		// command = NULL;
 		i++;
 	}
 	return (NULL);
@@ -50,11 +68,11 @@ char	*find_command_path(char *s, t_shell *shell)
 	
 	command = NULL;
 	env_list = NULL;
-	if (access(s, F_OK | X_OK) == 0)
-	{
-		command = ft_strdup1(s);
-		return (command);
-	}
+	// if (access(s, F_OK | X_OK) == 0)
+	// {
+	// 	command = ft_strdup1(s);
+	// 	return (command);
+	// }
 	if (shell->r_path)
 		env_list = ft_split_1(shell->r_path, ':');
 	else
