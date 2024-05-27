@@ -92,6 +92,7 @@ typedef struct shell
 	char 					*r_path;
 	int						new_shell;
 	int						env_updated;
+	int						is_expanded;
 } t_shell;
 
 // to handle norminette errors on split
