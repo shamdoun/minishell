@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/26 16:05:25 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:56:05 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,10 +159,37 @@ int open_files(t_shell *shell)
 	return (0);
 }
 
+void	ft_lstadd_front(t_arg **lst, char *new)
+{
+	t_arg	*head;
+	t_arg	*arg;
+
+	arg = malloc(sizeof(t_arg));
+	if (arg == NULL)
+		return ;
+	arg->arg = new;	
+	if (!lst || !arg)
+		return ;
+	head = (*lst);
+	(*lst) = arg;
+	(*lst)->next = head;
+}
+
 void	run_built_ins(t_shell *shell, int mode)
 {
 	char	*command;
-	
+	char	**test;
+	int		i = 0;
+
+	test = ft_split_1(shell->all_input->command_name, ' ');
+	while (test[i])
+		i++;
+	if (i > 1 && shell->is_expanded)
+	{
+		shell->all_input->command_name = test[0];
+		while (--i > 0)
+			ft_lstadd_front(&(shell->all_input->args), test[i]);
+	}
 	if (open_files(shell))
 	{
 		if (shell->all_input->in_file)

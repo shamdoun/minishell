@@ -121,6 +121,7 @@ t_input	*split_cmd(t_commands *cmd, t_shell *shell)
 
 	tokenize = NULL;
 	head = cmd;
+	shell->is_expanded = 0;
 	while (cmd)
 	{
 		new = ft_lstnew_input();
@@ -131,16 +132,8 @@ t_input	*split_cmd(t_commands *cmd, t_shell *shell)
 		if (!check)
 			return (free_tokenize(tokenize), free_list(head), NULL);
 		ft_lst_add_input_back(&tokenize, new, shell);
-		// add_a_data_to_list(shell, new);
 		cmd = cmd->next;
 	}
-	// t_input *aaa;
-	// aaa = tokenize;
-	// while (aaa)
-	// {
-	// 	printf("%p\n", aaa);
-	// 	aaa = aaa->next;
-	// }
 	free_list(head);
 	return (tokenize);
 }

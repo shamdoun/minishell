@@ -13,6 +13,7 @@ char	*get_cmdname(char *s, t_shell *shell)
 	{
 		ptr = ft_expand(s, shell);
 		str = remove_quotes(ptr);
+		shell->is_expanded = 1;
 		free(ptr);
 	}
 	else
