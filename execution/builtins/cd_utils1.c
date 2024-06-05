@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 19:19:10 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/25 14:50:42 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:03:27 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	copy_old_cwd(char *old_cwd, char **split_cwd)
 			ft_strcpy(split_cwd[i], split_oldcwd[i]);
 		i++;
 	}
-	// free_array(split_oldcwd);
 }
 
 void	ft_update_if_already_exists(char **split_cwd, char *value, int k)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (i < k)
 	{
 		if (ft_same_value(split_cwd[i], value))
@@ -79,16 +79,16 @@ int	path_is_only_levels(char **split)
 	return (1);
 }
 
-void update_oldpwd(char *old_pwd, t_shell *shell)
+void	update_oldpwd(char *old_pwd, t_shell *shell)
 {
 	t_arg	*oldpwd_env;
-	char 	*tmp;
+	char	*tmp;
 
 	oldpwd_env = ft_malloc(sizeof(t_arg), 0);
 	if (!oldpwd_env)
 	{
 		add_new_status(shell, 1);
-		return;
+		return ;
 	}
 	tmp = ft_strjoin("OLDPWD=", old_pwd);
 	if (!tmp)

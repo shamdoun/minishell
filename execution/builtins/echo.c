@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/25 14:52:10 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:11:21 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void	echo_message(t_arg *args, t_shell *shell)
 	new_line = true;
 	if (!args)
 	{
-		printf("\n"), add_new_status(shell, 0);
+		printf("\n");
+		add_new_status(shell, 0);
 		return ;
 	}
 	print_message(args, &new_line);

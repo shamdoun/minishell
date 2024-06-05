@@ -6,17 +6,18 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:04:07 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/27 18:01:50 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/05 21:34:08 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
 extern volatile sig_atomic_t	g_signal;
 
 int	ft_last_status(t_status *list)
 {
 	t_status	*head;
-	
+
 	if (g_signal == 2)
 	{
 		g_signal = 0;
@@ -34,7 +35,6 @@ void	exit_shell(t_shell *shell, t_arg *status, int mode)
 {
 	int	value;
 
-	//!TODO: free all allocated data!
 	if (mode)
 		write(1, "exit\n", 5);
 	if (status)
@@ -46,9 +46,10 @@ void	exit_shell(t_shell *shell, t_arg *status, int mode)
 		{
 			perror("bash: exit: too many arguments");
 			add_new_status(shell, 1);
+			return ;
 		}
-		else
-			exit(value);
+		ft_malloc(0, 1);
+		exit(value);
 	}
 	else
 	{

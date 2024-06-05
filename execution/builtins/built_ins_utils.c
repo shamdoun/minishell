@@ -6,13 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/27 16:25:56 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/05 21:29:03 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int command_is_executable(char *env, char *s)
+int	command_is_executable(char *env, char *s)
 {
 	char	**split1;
 	char	**split2;
@@ -35,7 +35,6 @@ int command_is_executable(char *env, char *s)
 		return (1);
 	return (0);
 }
-
 
 char	*extract_command(char *s, char **env_list, char *command)
 {
@@ -65,14 +64,9 @@ char	*find_command_path(char *s, t_shell *shell)
 	char	**env_list;
 	char	*command;
 	char	*path;
-	
+
 	command = NULL;
 	env_list = NULL;
-	// if (access(s, F_OK | X_OK) == 0)
-	// {
-	// 	command = ft_strdup1(s);
-	// 	return (command);
-	// }
 	if (shell->r_path)
 		env_list = ft_split_1(shell->r_path, ':');
 	else
@@ -80,7 +74,6 @@ char	*find_command_path(char *s, t_shell *shell)
 		path = ft_getenv("PATH", shell->env);
 		if (!path)
 			return (NULL);
-		// add_a_data_to_list(shell, path);
 		env_list = ft_split_1(path, ':');
 	}
 	if (!env_list)
@@ -105,39 +98,11 @@ void	copy_list_updating(char *env_name, char *data,
 		if (ft_strncmp(env_name, p[0], ft_strlen(p[0]) + 1))
 			ft_memcpy(new_environ, &old_list[i], sizeof(char *));
 		else
-		{
-			if (append_mode(data))
-				data = ft_strjoin(old_list[i], ft_strchr_occurence(data, '=') + 1);
-			else
-				data = ft_strdup(data);
-			if (!data)
-				return ;
-			ft_memcpy(new_environ, &data, sizeof(char *));
-		}
+			update_list_value(data, old_list[i], new_environ);
 		new_environ++;
 		i++;
 	}
 	*new_environ = NULL;
-}
-
-int	list_len(char **list)
-{
-	int	i;
-
-	i = 0;
-	while (list[i])
-		i++;
-	return (i);
-}
-
-void	add_a_data_to_list(t_shell *shell, void *address)
-{
-	t_a_data	*new;
-
-	new = ft_lstnew_ad(address);
-	if (!new)
-		return ;
-	ft_lst_add_ad_back(&shell->all_allocated_data, new);
 }
 
 void	add_a_data_to_linked_list(t_a_data **list, void *address)

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/25 14:55:24 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:31:56 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,14 @@ int	init_pipex(t_pipex **pipex, t_shell *shell)
 	return (0);
 }
 
+static void	run_child(t_shell *shell, t_pipex *pipex, int i, int mode)
+{
+	if (duplicate_ends(shell, pipex->ends, pipex->pipe_count, i))
+		exit (1);
+	(run_built_ins(shell, mode),
+		exit(ft_last_status(shell->all_status)));
+}
+
 void	pipex(t_shell *shell, int mode)
 {
 	t_pipex	*pipex;
@@ -63,10 +71,7 @@ void	pipex(t_shell *shell, int mode)
 	int		i;
 
 	if (init_pipex(&pipex, shell))
-	{
-		add_new_status(shell, 1);
 		return ;
-	}
 	i = 0;
 	handle_all_signals(3);
 	while (i < pipex->pipe_count + 1)
@@ -78,19 +83,10 @@ void	pipex(t_shell *shell, int mode)
 			return ;
 		}
 		if (!child)
-		{
-			if (duplicate_ends(shell, pipex->ends, pipex->pipe_count, i))
-				exit (1);
-			(run_built_ins(shell, mode), exit(ft_last_status(shell->all_status)));
-		}
-		pipex->processes[i] = child;
-		close(shell->all_input->in_file);
-		if (shell->all_input->here_doc)
-			close(shell->all_input->here_doc);
+			run_child(shell, pipex, i, mode);
+		release_fds(pipex, shell, child, i);
 		shell->all_input = shell->all_input->next;
 		i++;
 	}
-	close_ends_and_wait(pipex->pipe_count, pipex->ends, pipex->processes, shell);
-	handle_all_signals(0);
-	update_env_path_var(shell, NULL, 0);
+	post_pipe_update(pipex, shell);
 }

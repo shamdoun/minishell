@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:05:17 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/25 12:02:59 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:16:11 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,19 @@ void	copy_list_excluding(char **new_environ, char **old_env, char *str)
 			ft_memcpy(new_environ, &old_env[i], sizeof(char *));
 			new_environ++;
 		}
-		// free_array(p);
 		i++;
 	}
 	*new_environ = NULL;
+}
+
+int	r_path_empty(t_shell *shell, t_arg *data)
+{
+	if (!ft_strncmp(data->arg, "PATH", 5) && shell->r_path)
+	{
+		(shell->r_path = NULL);
+		return (0);
+	}
+	return (1);
 }
 
 void	remove_env(t_arg *data, t_shell *shell, char ***env, int mode)
@@ -43,24 +52,15 @@ void	remove_env(t_arg *data, t_shell *shell, char ***env, int mode)
 	while (data && data->arg)
 	{
 		if (unset_syntax_error(data->arg))
-			(perror("bash: unset: not a valid identifier"), add_new_status(shell, 1), error = true);
+			(error_status_update(UNSET_ERR, shell, 1), error = true);
 		else
 		{
-			if (!ft_strncmp(data->arg, "PATH", 5) && shell->r_path)
-			{
-				free(shell->r_path);
-				(shell->r_path = NULL);
-			}
-			else if (env_exists(data->arg, *env))
+			if (r_path_empty(shell, data) && env_exists(data->arg, *env))
 			{
 				new_environ = ft_malloc(sizeof(char *) * (list_len(*env)), 2);
 				if (!new_environ)
-				{
-					add_new_status(shell, 1);
 					return ;
-				}
 				copy_list_excluding(new_environ, *env, data->arg);
-				// add_a_data_to_list(shell, new_environ);
 				(*env = new_environ);
 			}
 			if (!error && mode)

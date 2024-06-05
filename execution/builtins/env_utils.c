@@ -5,12 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/09 21:54:01 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/24 17:17:13 by shamdoun         ###   ########.fr       */
+/*   Created: 2024/06/05 16:18:48 by shamdoun          #+#    #+#             */
+/*   Updated: 2024/06/05 21:11:47 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	print_all_env_vars(char **env, t_input *input)
+{
+	int	i;
+
+	if (input->args)
+	{
+		ft_putstr_fd("env: ", 2);
+		ft_putendl_fd(WRONG_INPUT, 2);
+		return (1);
+	}
+	i = 0;
+	while (env[i])
+	{
+		if (ft_strrchr(env[i], '='))
+			printf("%s\n", env[i]);
+		i++;
+	}
+	return (0);
+}
+
+void	declare_all_envs(char **env)
+{
+	int		i;
+	char	**split_env;
+
+	i = 0;
+	while (env[i])
+	{
+		split_env = ft_split_1(env[i], '=');
+		if (ft_strncmp(split_env[0], "_", ft_strlen(split_env[0])))
+		{
+			printf("declare -x %s", split_env[0]);
+			if (split_env[1])
+				printf("=\"%s\"\n", split_env[1]);
+			else if (ft_strchr(env[i], '='))
+				printf("=\"\"\n");
+			else
+				printf("\n");
+		}
+		i++;
+	}
+}
+
+int	env_exists(char *name, char **env)
+{
+	char	**split;
+
+	while (*env)
+	{
+		split = ft_split_1(*env, '=');
+		if (!ft_strncmp(split[0], name, ft_strlen(split[0]) + 1))
+			return (1);
+		env++;
+	}
+	return (0);
+}
 
 char	*retrieve_value(t_shell *shell)
 {
@@ -19,16 +76,12 @@ char	*retrieve_value(t_shell *shell)
 
 	var = ft_getenv("SHLVL", shell->env);
 	if (!var)
-	{
-		perror("failed!");
 		return (NULL);
-	}
-	// add_a_data_to_list(shell, var);
 	new_value = ft_atoi(var) + 1;
 	if (new_value == 1000)
-	{
 		return (ft_strdup(""));
-	}
+	else if (new_value > 1000)
+		return (ft_itoa_v2(1));
 	else
 		return (ft_itoa_v2(new_value));
 }
@@ -40,19 +93,11 @@ void	update_shlvl(t_shell *shell)
 
 	tmp = retrieve_value(shell);
 	if (!tmp)
-	{
-		perror("failed!");
 		return ;
-	}
 	new_shlvl = ft_malloc(sizeof(t_arg), 0);
 	if (!new_shlvl)
 		return ;
 	new_shlvl->arg = ft_strjoin("SHLVL=", tmp);
-	if (!new_shlvl->arg)
-		return ;
 	new_shlvl->next = NULL;
-	// add_a_data_to_list(shell, new_shlvl->arg);
 	add_update_env(new_shlvl, shell, &shell->env, 0);
-	// free(new_shlvl);
-	// free(tmp);
 }

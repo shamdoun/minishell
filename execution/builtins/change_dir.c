@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/25 14:51:59 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/05 21:29:51 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	update_cwd(char *cwd, t_arg *path, char *old_cwd)
 	char	**split_path;
 	char	*joined;	
 	int		i;
-	
+
 	if (check_path(path, cwd))
 		return ;
 	if (split_values(&split_cwd, &split_path, cwd, path))
@@ -67,14 +67,36 @@ int	change_to_default_home(t_shell *shell, char **env, int *rv)
 		return (1);
 	}
 	*rv = chdir(home);
-	// add_a_data_to_list(shell, home);
 	return (0);
+}
+
+void	update_wd(t_shell *shell, int return_value, t_arg *path, char *old_cwd)
+{
+	char	*gcw_result;
+
+	gcw_result = getcwd(shell->cwd, sizeof(shell->cwd));
+	if (gcw_result)
+	{
+		update_oldpwd(old_cwd, shell);
+		if (!return_value && path)
+			update_cwd(shell->cwd, path, old_cwd);
+	}
+	else
+	{
+		ft_putstr_fd(GCW_FAILED, 2);
+		old_cwd = ft_strjoin(old_cwd, "/");
+		if (!old_cwd)
+			return ;
+		old_cwd = ft_strjoin(old_cwd, path->arg);
+		if (!old_cwd)
+			return ;
+		ft_strcpy(shell->cwd, old_cwd);
+	}
 }
 
 void	change_directory(t_arg *path, t_shell *shell, char ***env)
 {
 	int			return_value;
-	char		*gcw_result;
 	char		*old_cwd;
 
 	return_value = 0;
@@ -87,28 +109,11 @@ void	change_directory(t_arg *path, t_shell *shell, char ***env)
 	if (path && ft_strncmp(path->arg, "~", 2))
 		return_value = chdir(path->arg);
 	else if (change_to_default_home(shell, *env, &return_value))
-			return ;
+		return ;
 	if (return_value)
 	{
 		(add_new_status(shell, 1), perror("bash: cd"));
 		return ;
 	}
-	gcw_result = getcwd(shell->cwd, sizeof(shell->cwd));
-	if (gcw_result)
-	{
-		update_oldpwd(old_cwd, shell);
-		if (!return_value && path)
-			update_cwd(shell->cwd, path, old_cwd);
-	}
-	else
-	{
-		ft_putstr_fd("cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n", 2);
-		old_cwd = ft_strjoin(old_cwd, "/");
-		if (!old_cwd)
-			return ;
-		old_cwd = ft_strjoin(old_cwd, path->arg);
-		if (!old_cwd)
-			return ;
-		ft_strcpy(shell->cwd, old_cwd);
-	}
+	update_wd(shell, return_value, path, old_cwd);
 }

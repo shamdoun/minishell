@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/25 19:29:13 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:49:48 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 extern volatile sig_atomic_t	g_signal;
 
-int	here_doc(t_input *input, t_file *file)
+int	open_here_doc_fd(int *fd, t_input *input)
 {
-	char	*line;
-	int		fd;
-
-	fd = open("here_doc.txt", O_CREAT | O_TRUNC | O_WRONLY, 777);
-	if (fd < 0)
+	*fd = open("here_doc.txt", O_CREAT | O_TRUNC | O_WRONLY, 777);
+	if (*fd < 0)
 	{
 		perror("failed to open here_doc file for writing");
 		return (1);
@@ -32,8 +29,17 @@ int	here_doc(t_input *input, t_file *file)
 		return (1);
 	}
 	(unlink("here_doc.txt"), ft_hide_ctrl_c());
+	return (0);
+}
+
+int	here_doc(t_input *input, t_file *file)
+{
+	char	*line;
+	int		fd;
+
+	if (open_here_doc_fd(&fd, input))
+		return (1);
 	handle_all_signals(2);
-	// signal(SIGINT, &handle_signal_heredoc);
 	line = NULL;
 	if (!file->delimeter)
 		printf("no exisitng delimeter\n");
@@ -51,8 +57,7 @@ int	here_doc(t_input *input, t_file *file)
 	return (0);
 }
 
-
-int	open_here_docs(t_shell *shell)
+int	handle_here_docs(t_shell *shell)
 {
 	t_input	*i_head;
 	t_file	*f_head;
@@ -84,7 +89,7 @@ int	open_here_docs(t_shell *shell)
 int	open_input_files(t_shell *shell)
 {
 	if (shell->all_input->all_files->type != 4 && shell->all_input->in_file)
-		close(shell->all_input->in_file); 
+		close(shell->all_input->in_file);
 	if (shell->all_input->all_files->type == 3)
 		shell->all_input->in_file
 			= open(shell->all_input->all_files->file_name, O_RDONLY, 0666);
@@ -92,7 +97,8 @@ int	open_input_files(t_shell *shell)
 		shell->all_input->in_file = shell->all_input->here_doc;
 	if (shell->all_input->in_file < 0)
 	{
-		ft_putstr_fd("bash: ", 2), ft_putstr_fd(shell->all_input->all_files->file_name, 2);
+		ft_putstr_fd("bash: ", 2);
+		ft_putstr_fd(shell->all_input->all_files->file_name, 2);
 		ft_putendl_fd(": No such file or directory", 2);
 		add_new_status(shell, 1);
 		return (1);

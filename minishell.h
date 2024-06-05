@@ -31,12 +31,16 @@ FILE*gfp;
 
 // }
 
-
 // #define malloc(x) _6malloc(x, __LINE__, __FILE__)
 // #define free(x) _6free(x, __LINE__, __FILE__)
 #define FAILED_MALLOC "failure"
 #define WRONG_INPUT "No such file or directory"
 #define POINT_INPUT "minishell: .: filename argument required \n.: usage: . filename [arguments]"
+#define COMMAND_NOT_FOUND "minishell: %s: No such file or directory\n"
+#define NO_FILE_DIR "No such file or directory"
+#define GCW_FAILED "cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
+#define EXPORT_ERR "export: not a valid identifier\n"
+#define	UNSET_ERR "minishell: unset: not a valid identifier\n"
 /*
 	<<: 4
 	>>: 2
@@ -219,8 +223,7 @@ char		*ft_itoa(int n);
 char 		*ft_getenv(char *name, char **env);
 void 		add_default_env(t_shell *shell);
 void 		update_inhereted_env(t_shell *shell);
-int 		open_here_docs(t_shell *shell);
-void		add_a_data_to_list(t_shell *shell, void *address);
+int 		handle_here_docs(t_shell *shell);
 void		init(t_shell **minishell, char **env);
 int			ft_same_value(char *p1, char *p2);
 void		copy_old_cwd(char *old_cwd, char **split_cwd);
@@ -289,3 +292,28 @@ int			unset_syntax_error(char *data);
 int			export_syntax_error(char *data);
 int			append_mode(char *data);
 int			empty_args(t_arg *data);
+void		reset_resources(t_shell *shell, int rv, int o_in, int o_out);
+int			open_output_files(t_shell *shell);
+int			open_files(t_shell *shell);
+int			run_special_cases(t_shell *shell, char *command);
+void		update_args(t_shell *shell);
+void		free_array(char **a);
+char		*ft_strdup1(char *s);
+char		*ft_last_arg(char *command, t_arg *args);
+void		ft_lstadd_front(t_arg **lst, char *new);
+void		handle_ctrl_c_for_parent(int sig);
+void		handle_ctrl_c_for_child(int sig);
+void		update_list_value(char *data,
+				char *old_list_value, char **new_environ);
+int			execution_case(char *cmd_path, t_shell *shell);
+void		error_status_update(char *error, t_shell *shell, int s);
+void		release_fds(t_pipex *pipex, t_shell *shell, pid_t child, int i);
+void		post_pipe_update(t_pipex *pipex, t_shell *shell);
+void		set_args_list(t_shell *shell, char ***args_list);
+void		make_file_executable(char ***args, char *file, char **cmd_path);
+int			check_args(t_arg *data, t_shell *shell, char ***env);
+void		split_var(char ***split_env, t_arg *data, t_shell *shell);
+void		update_split_list(char ***args_list, char *data);
+void		error_arg_status_update(char *error,
+				char *arg, t_shell *shell, int s);
+void		ft_reset_terminal(void);

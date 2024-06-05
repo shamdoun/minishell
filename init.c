@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:50:55 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/27 14:36:43 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/06/05 21:50:01 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,28 @@ void	ft_hide_ctrl_c(void)
 {
 	struct termios	ter;
 
-	tcgetattr(STDIN_FILENO, &ter);
+	if (tcgetattr(STDIN_FILENO, &ter) == -1)
+	{
+		perror("tcgetattr");
+		return ;
+	}
 	ter.c_lflag &= ~ECHOCTL;
-	tcsetattr(STDIN_FILENO, 0, &ter);
+	if (tcsetattr(STDIN_FILENO, 0, &ter) == -1)
+		perror("tcsetattr");
 }
 
-void ft_recover_echo(void)
+void	ft_recover_echo(void)
 {
 	struct termios	ter;
 
-	tcgetattr(STDIN_FILENO, &ter);
+	if (tcgetattr(STDIN_FILENO, &ter) == -1)
+	{
+		perror("tcgetattr");
+		return ;
+	}
 	ter.c_lflag |= ECHOCTL;
-	tcsetattr(STDIN_FILENO, 0, &ter);
+	if (tcsetattr(STDIN_FILENO, 0, &ter) == -1)
+		perror("tcsetattr");
 }
 
 int	init_shell_struct(t_shell **minishell, char **env)
@@ -46,10 +56,11 @@ int	init_shell_struct(t_shell **minishell, char **env)
 void	init_shell_environment(t_shell **minishell)
 {
 	char	*var;
-	
+
 	var = ft_getenv("PATH", (*minishell)->env);
 	if (!var)
-		(*minishell)->r_path = ft_strdup_v3("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.", 0);
+		(*minishell)->r_path
+			= ft_strdup_v3("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.", 0);
 	if (!(*((*minishell)->env)))
 		add_default_env(*minishell);
 	else

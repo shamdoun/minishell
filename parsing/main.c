@@ -2,7 +2,6 @@
 
 extern volatile sig_atomic_t	g_signal;
 
-
 void	free_all(t_shell *minishell)
 {
 	t_a_data *tmp;
@@ -59,15 +58,12 @@ void leaks()
 int	main(int argc, char **argv, char **env)
 {
 	char		*input;
-    int     	check;
+	int			check;
 	t_commands	*cmds;
 	t_shell		*minishell;
 
 	(void)argc;
 	(void)argv;
-	// gfp = fopen("test/leaks", "w");
-	// signals
-	//init
 	minishell = NULL;
 	init(&minishell, env);
 	handle_all_signals(0);

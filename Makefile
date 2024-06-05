@@ -29,7 +29,8 @@ SRC= ft_free.c ft_split.c ./parsing/ft_parsing.c ./parsing/divide_cmd.c parsing/
 	./execution/pipex/pipex_utils.c ./execution/builtins/cd_utils1.c ./execution/builtins/env_utils.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c \
 	./execution/builtins/built_ins_utils2.c ./parsing/ft_tolower.c ./parsing/ft_strrchr.c ./parsing/ft_itoa.c parsing/expand.c \
 	parsing/ft_splitcmdutils2.c ft_strcpy.c ft_putstr_fd.c ft_putchar_fd.c ft_putendl_fd.c ft_malloc.c ft_bzero.c \
-	ft_isalpha.c ft_isdigit.c ft_substr.c ft_strtrim.c
+	ft_isalpha.c ft_isdigit.c ft_substr.c ft_strtrim.c ./execution/execution_utils.c ./execution/execution_utils_2.c \
+	./execution/signals_utils.c  ./execution/builtins/export_utils.c ./execution/builtins/errors.c ./execution/builtins/execute_bin_utils.c init_utils.c
 
 CC= cc
 Flags= -Wall -Werror -Wextra -g
@@ -44,7 +45,7 @@ NAME= minishell
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(FLAGS) -lreadline -fsanitize=address $(O_SRC) -o $(NAME)
+	$(CC) $(FLAGS) -lreadline $(O_SRC) -o $(NAME)
 
 clean:
 	rm -f $(O_SRC)

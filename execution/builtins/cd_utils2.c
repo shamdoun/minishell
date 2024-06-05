@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:25:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/25 14:51:40 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:04:10 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,7 @@ int	ft_same_value(char *p1, char *p2)
 	ft_str_tolower(cp1);
 	ft_str_tolower(cp2);
 	if (!ft_strncmp(cp1, cp2, ft_strlen(cp1)))
-	{
-		// free(cp1);
-		// free(cp2);
 		return (1);
-	}
-	// free(cp1);
-	// free(cp2);
 	return (0);
 }
 
@@ -58,10 +52,7 @@ int	split_values(char ***split_cwd,
 		return (1);
 	while ((!ft_strncmp((**split_path), ".", ft_strlen((**split_path)))
 			|| !ft_strncmp((**split_path), "..", ft_strlen((**split_path)))))
-	{
-		// free((**split_path));
 		(*split_path)++;
-	}
 	return (0);
 }
 
@@ -73,18 +64,13 @@ int	copy_common_path(char **joined, char **split_cwd, char *delimeter)
 	i = 0;
 	while (split_cwd[i] && !ft_same_value(split_cwd[i], delimeter))
 	{
-		// tmp = *joined;
 		*joined = ft_strjoin(*joined, split_cwd[i]);
 		if (!(*joined))
 			return (-1);
-		// free(tmp);
-		// tmp = NULL;
 		tmp = *joined;
 		*joined = ft_strjoin(*joined, "/");
 		if (!(*joined))
 			return (-1);
-		// free(tmp);
-		// tmp = NULL;
 		i++;
 	}
 	return (i);
@@ -98,20 +84,15 @@ void	copy_unique_path(char **joined, char **split_cwd,
 	update_cwd_list(split_cwd, split_path, i);
 	while (split_cwd[i])
 	{
-		// tmp = *joined;
 		*joined = ft_strjoin(*joined, split_cwd[i]);
 		if (!(*joined))
 			return ;
-		// free(tmp);
-		// tmp = NULL;
 		if (split_cwd[i + 1])
 		{
 			tmp = *joined;
 			*joined = ft_strjoin(*joined, "/");
 			if (!(*joined))
 				return ;
-			// free(tmp);
-			// tmp = NULL;
 		}
 		i++;
 	}

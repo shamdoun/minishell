@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:43:52 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/15 23:14:30 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:31:03 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	duplicate_ends(t_shell *shell, int *ends, int pipe_count, int i)
 	return (0);
 }
 
-void	close_ends_and_wait(int pipe_count, int *ends, int *processes, t_shell *shell)
+void	close_ends_and_wait(int pipe_count, int *ends,
+	int *processes, t_shell *shell)
 {
 	int	j;
 	int	status;
@@ -66,4 +67,20 @@ void	close_ends_and_wait(int pipe_count, int *ends, int *processes, t_shell *she
 			add_new_status(shell, WTERMSIG(status) + 128);
 		j++;
 	}
+}
+
+void	release_fds(t_pipex *pipex, t_shell *shell, pid_t child, int i)
+{
+	pipex->processes[i] = child;
+	close(shell->all_input->in_file);
+	if (shell->all_input->here_doc)
+		close(shell->all_input->here_doc);
+}
+
+void	post_pipe_update(t_pipex *pipex, t_shell *shell)
+{
+	close_ends_and_wait(pipex->pipe_count,
+		pipex->ends, pipex->processes, shell);
+	handle_all_signals(0);
+	update_env_path_var(shell, NULL, 0);
 }
