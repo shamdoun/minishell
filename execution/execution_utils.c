@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:39:56 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 15:44:34 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:08:52 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	open_output_files(t_shell *shell)
 	if (shell->all_input->all_files->type == 1)
 		shell->all_input->out_file
 			= open(shell->all_input->all_files->file_name,
-				O_WRONLY | O_CREAT | O_TRUNC, 0777);
+				O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	else if (shell->all_input->all_files->type == 2)
 		shell->all_input->out_file
 			= open(shell->all_input->all_files->file_name,
-				O_WRONLY | O_CREAT | O_APPEND, 0777);
+				O_WRONLY | O_CREAT | O_APPEND, 0666);
 	if (shell->all_input->out_file < 0)
 	{
 		perror("failed to open output file!");
@@ -86,7 +86,7 @@ void	update_args(t_shell *shell)
 	test = ft_split_1(shell->all_input->command_name, ' ');
 	while (test[i])
 		i++;
-	if (i > 1 && shell->is_expanded)
+	if (i >= 1 && shell->is_expanded)
 	{
 		shell->all_input->command_name = test[0];
 		while (--i > 0)

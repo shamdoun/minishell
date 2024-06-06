@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 15:49:48 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:08:27 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	open_input_files(t_shell *shell)
 		close(shell->all_input->in_file);
 	if (shell->all_input->all_files->type == 3)
 		shell->all_input->in_file
-			= open(shell->all_input->all_files->file_name, O_RDONLY, 0666);
+			= open(shell->all_input->all_files->file_name, O_RDONLY);
 	if (shell->all_input->all_files->type == 4)
 		shell->all_input->in_file = shell->all_input->here_doc;
 	if (shell->all_input->in_file < 0)

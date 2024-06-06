@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 21:48:59 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:16:07 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,7 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 		if (!ft_is_executable(cmd_path))
 			handle_all_signals(3);
 		else
-		{
-			signal(SIGINT, SIG_IGN);
-			signal(SIGQUIT, SIG_IGN);
-		}
+			(signal(SIGINT, SIG_IGN), signal(SIGQUIT, SIG_IGN));
 		child = fork();
 		if (child == 0)
 			run_child(cmd_path, args_list, shell);
@@ -83,7 +80,8 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 	}
 	else
 		pipe_child_runs_binary(cmd_path, args_list, shell);
-	ft_reset_terminal();
+	if (!ft_strncmp(shell->all_input->command_name, "top", 3))
+		ft_reset_terminal();
 }
 
 void	execute_other_commands(t_shell *shell, int mode)

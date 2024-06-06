@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 21:29:03 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:48:35 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	command_is_executable(char *env, char *s)
 			return (0);
 		i++;
 	}
-	if (split2[i] && (access(s, F_OK | X_OK) == 0))
+	if (split1[i] && split2[i] && (access(s, F_OK | X_OK) == 0))
 		return (1);
 	return (0);
 }
