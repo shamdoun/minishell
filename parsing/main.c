@@ -50,7 +50,7 @@ void copy_env_list(char ***new_env, char **old_env, size_t len)
 
 void leaks()
 {
-    fclose(gfp);
+    // fclose(gfp);
     system("leaks minishell");
     usleep(1000 * 100 *10000);
 }
@@ -73,7 +73,9 @@ int	main(int argc, char **argv, char **env)
 		{
 				input = readline("minishell$> ");
 				if (!input)
+				{
 					exit_shell(minishell, NULL, 1);
+				}
 				if (*input != '\0')
 				{
 					check = ft_parsing(input);
@@ -92,6 +94,7 @@ int	main(int argc, char **argv, char **env)
 						perror("syntax error\n");
 					add_history(input);
 				}
+				free(input);
 		}
 	}
 	else

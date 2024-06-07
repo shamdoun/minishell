@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:40:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 21:28:34 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:16:56 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_lstadd_front(t_arg **lst, char *new)
 	t_arg	*head;
 	t_arg	*arg;
 
-	arg = malloc(sizeof(t_arg));
+	arg = ft_malloc(sizeof(t_arg), 2);
 	if (arg == NULL)
 		return ;
 	arg->arg = new;

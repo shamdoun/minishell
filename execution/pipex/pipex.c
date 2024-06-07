@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 17:31:56 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:26:31 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ int	count_nbr_of_pipes(t_input *list)
 
 int	init_pipex(t_pipex **pipex, t_shell *shell)
 {
-	*pipex = malloc(sizeof(t_pipex));
+	*pipex = ft_malloc(sizeof(t_pipex), 1);
 	if (!(*pipex))
 		return (1);
 	(*pipex)->pipe_count = count_nbr_of_pipes(shell->all_input);
 	if (create_pipes(&(*pipex)->ends, (*pipex)->pipe_count))
 		return (1);
-	(*pipex)->processes = malloc(sizeof(int) * ((*pipex)->pipe_count + 1));
+	(*pipex)->processes = ft_malloc(sizeof(int)
+			* ((*pipex)->pipe_count + 1), 1);
 	if (!(*pipex)->processes)
 		return (1);
 	return (0);
@@ -60,8 +61,7 @@ static void	run_child(t_shell *shell, t_pipex *pipex, int i, int mode)
 {
 	if (duplicate_ends(shell, pipex->ends, pipex->pipe_count, i))
 		exit (1);
-	(run_built_ins(shell, mode),
-		exit(ft_last_status(shell->all_status)));
+	(run_built_ins(shell, mode), exit(ft_last_status(shell->all_status)));
 }
 
 void	pipex(t_shell *shell, int mode)

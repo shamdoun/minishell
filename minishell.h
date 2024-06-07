@@ -13,7 +13,7 @@
 #include "./execution/execution.h"
 
 
-FILE*gfp;
+// FILE*gfp;
 
 
 // static void *_6malloc(size_t size, int line, const char *file)

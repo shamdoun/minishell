@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/06 18:16:07 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:59:19 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,15 @@ void	run_child(char *cmd_path, char **args_list, t_shell *shell)
 	{
 		perror("minishell: ");
 		if (errno == ENOENT)
+		{
+			ft_malloc(0, -4);
 			exit (127);
+		}
 		if (errno == ENOEXEC || errno == EACCES)
+		{
+			ft_malloc(0, -4);
 			exit (126);
+		}
 		exit(1);
 	}
 }

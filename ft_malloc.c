@@ -16,6 +16,12 @@ void free_allocated_data(t_a_data *list)
     }
 }
 
+void    free_all_collectors(t_a_data *l1, t_a_data *l2, t_a_data *l3)
+{
+    free_allocated_data(l1);
+    free_allocated_data(l2);
+    free_allocated_data(l3);
+}
 
 void    *ft_malloc(size_t size, int flag)
 {
@@ -41,7 +47,9 @@ void    *ft_malloc(size_t size, int flag)
 		free_allocated_data(garbage_collector);
 	else if (flag == -2)
 		free_allocated_data(allocated_envs);
-	else
+	else if (flag == -3)
 		free_allocated_data(important_addresses);
+    else
+        free_all_collectors(garbage_collector, allocated_envs, important_addresses);
 	return (NULL);
 }
