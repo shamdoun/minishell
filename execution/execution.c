@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/07 15:21:31 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:38:34 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,7 @@ void	run_built_ins(t_shell *shell, int mode)
 	if (shell->all_input->out_file)
 		close(shell->all_input->out_file);
 	if (!mode)
-	{
-		ft_putstr_fd("exiting child\n", 2);
 		exit_shell(shell, NULL, 0);
-		// ft_malloc(0, -4);
-		// exit(ft_last_status(shell->all_status));
-	}
 }
 
 void	execute_input(t_shell *shell)
