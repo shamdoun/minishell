@@ -1,16 +1,30 @@
-#include <unistd.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <errno.h>
-#include <libc.h>
-#include <signal.h>
-#include <stdbool.h>
-#include <termios.h>
-#include "./gnl/get_next_line.h"
-#include "./execution/execution.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
+/*   Updated: 2024/06/07 16:19:37 by shamdoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef MINISHELL_H
+# define MINISHELL_H
+# include <unistd.h>
+# include <limits.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <errno.h>
+# include <libc.h>
+# include <signal.h>
+# include <stdbool.h>
+# include <termios.h>
+# include "./gnl/get_next_line.h"
+# include "./execution/execution.h"
 
 
 // FILE*gfp;
@@ -33,14 +47,14 @@
 
 // #define malloc(x) _6malloc(x, __LINE__, __FILE__)
 // #define free(x) _6free(x, __LINE__, __FILE__)
-#define FAILED_MALLOC "failure"
-#define WRONG_INPUT "No such file or directory"
-#define POINT_INPUT "minishell: .: filename argument required \n.: usage: . filename [arguments]"
-#define COMMAND_NOT_FOUND "minishell: %s: No such file or directory\n"
-#define NO_FILE_DIR "No such file or directory"
-#define GCW_FAILED "cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
-#define EXPORT_ERR "export: not a valid identifier\n"
-#define	UNSET_ERR "minishell: unset: not a valid identifier\n"
+# define FAILED_MALLOC "failure"
+# define WRONG_INPUT "No such file or directory"
+# define POINT_INPUT "minishell: .: filename argument required \n.: usage: . filename [arguments]"
+# define COMMAND_NOT_FOUND "minishell: %s: No such file or directory\n"
+# define NO_FILE_DIR "No such file or directory"
+# define GCW_FAILED "cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
+# define EXPORT_ERR "export: not a valid identifier\n"
+# define	UNSET_ERR "minishell: unset: not a valid identifier\n"
 /*
 	<<: 4
 	>>: 2
@@ -48,20 +62,20 @@
 	>: 1
 */
 
-typedef struct	s_arg
+typedef struct s_arg
 {
 	char			*arg;
 	int				t_f;
-	struct	s_arg	*next;
+	struct s_arg	*next;
 }	t_arg;
 
 typedef struct file
 {
-	char	*file_name;
-	int		type;
-	char	*delimeter;
-	struct file *next;
-} t_file;
+	char		*file_name;
+	int			type;
+	char		*delimeter;
+	struct file	*next;
+}	t_file;
 
 typedef struct input
 {
@@ -73,31 +87,32 @@ typedef struct input
 	int				here_doc;
 	int				t;
 	struct input	*next;
-} t_input;
+}	t_input;
 
-typedef struct status {
+typedef struct status 
+{
 	int				status;
 	struct status	*next;
-} t_status;
+}	t_status;
 
 typedef struct allocated_data
 {
 	void					*address;
 	struct allocated_data	*next;
-} t_a_data;
+}	t_a_data;
 
 typedef struct shell
 {
 	struct input			*all_input;
 	struct status			*all_status;
 	struct allocated_data	*all_allocated_data;
-	char                    **env;
-    char			        cwd[PATH_MAX];
-	char 					*r_path;
+	char					**env;
+	char					cwd[PATH_MAX];
+	char					*r_path;
 	int						new_shell;
 	int						env_updated;
 	int						is_expanded;
-} t_shell;
+}	t_shell;
 
 // to handle norminette errors on split
 typedef struct  s_v
@@ -129,14 +144,13 @@ typedef struct  s_parse_list
 	first node: echo "hello" > file.txt
 	second node: echo "how are you" >> file.txt
 */
-typedef struct	s_commands
+typedef struct s_commands
 {
 	char				*command;
-	
 	struct s_commands	*next;
 }	t_commands;
 
-typedef struct	s_space
+typedef struct s_space
 {
 	char	*p;
 	char	o;
@@ -145,32 +159,33 @@ typedef struct	s_space
 	int		j;
 }	t_space;
 
-typedef struct	pipex
+typedef struct pipex
 {
 	int	*ends;
 	int	pipe_count;
 	int	*processes;
-} t_pipex;
+}	t_pipex;
 
 void		ft_lst_add_input_back(t_input **lst, t_input *new, t_shell *shell);
 void		ft_lst_add_ad_back(t_a_data **lst, t_a_data *new);
 void		ft_lst_add_file_back(t_file **lst, t_file *new, t_shell *shell);
-void		ft_lst_add_status_back(t_status **lst, t_status *new, t_shell *shell);
-t_input		*ft_lstnew_input();
+void		ft_lst_add_status_back(t_status **lst,
+				t_status *new, t_shell *shell);
+t_input		*ft_lstnew_input(void);
 t_a_data	*ft_lstnew_ad(void *address);
 t_status	*ft_lstnew_status(int status);
-t_file	    *ft_lstnew_file(char *file_name, int type, char *delimeter);
-size_t      ft_strlen(const char *);
-int         ft_strncmp(const char *s1, const char *s2, size_t n);
-void        execute_input(t_shell *shell);
-void        free_array(char **a);
-char	    *ft_strdup1(char *s);
+t_file		*ft_lstnew_file(char *file_name, int type, char *delimeter);
+size_t		ft_strlen(const char *);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+void		execute_input(t_shell *shell);
+void		free_array(char **a);
+char		*ft_strdup1(char *s);
 // void        print_all_env_vars(char **env);
 int	        ft_strncmp(const char *s1, const char *s2, size_t n);
-size_t	    ft_strlen(const char *s);
+size_t		ft_strlen(const char *s);
 char		*ft_strjoin(char *s1, char *s2);
-size_t	    ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t	    ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 char		*ft_azejoin(char **s1, char *s2);
 char	    *ft_strdup(const char *s1);
 char	    **ft_split_1(char const *s, char c);
@@ -213,24 +228,24 @@ char		*get_cmdname(char *s, t_shell *shell);
 char		*ft_expand(char *cmd, t_shell *shell);
 //for signals
 void		handle_ctrl_c_for_child(int sig);
-void 		exit_shell(t_shell *shell, t_arg *status, int mode);
-void 		remove_env(t_arg *data, t_shell *shell, char ***env, int mode);
-void 		ft_str_tolower(char *str);
+void		exit_shell(t_shell *shell, t_arg *status, int mode);
+void		remove_env(t_arg *data, t_shell *shell, char ***env, int mode);
+void		ft_str_tolower(char *str);
 char		*ft_strrchr(const char *s, int c);
-void 		update_shlvl(t_shell *shell);
-void 		update_env_path_var(t_shell *shell, char *value, int  mode);
+void		update_shlvl(t_shell *shell);
+void		update_env_path_var(t_shell *shell, char *value, int  mode);
 char		*ft_itoa(int n);
-char 		*ft_getenv(char *name, char **env);
-void 		add_default_env(t_shell *shell);
-void 		update_inhereted_env(t_shell *shell);
-int 		handle_here_docs(t_shell *shell);
+char		*ft_getenv(char *name, char **env);
+void		add_default_env(t_shell *shell);
+void		update_inhereted_env(t_shell *shell);
+int			handle_here_docs(t_shell *shell);
 void		init(t_shell **minishell, char **env);
 int			ft_same_value(char *p1, char *p2);
 void		copy_old_cwd(char *old_cwd, char **split_cwd);
 char		*retrieve_value(t_shell *shell);
 void		update_shlvl(t_shell *shell);
-void 		add_update_env(t_arg *data, t_shell *shell, char ***env, int mode);
-void 		ft_recover_echo(void);
+void		add_update_env(t_arg *data, t_shell *shell, char ***env, int mode);
+void		ft_recover_echo(void);
 void		ft_hide_ctrl_c(void);
 char		*get_next_line(int fd);
 int			ft_last_status(t_status *list);
@@ -256,7 +271,8 @@ char		*ft_join_args(t_arg *args);
 void		declare_all_envs(char **env);
 void		close_unused_here_docs(t_input *input);
 int			duplicate_ends(t_shell *shell, int *ends, int pipe_count, int i);
-void		close_ends_and_wait(int pipe_count, int *ends, int *processes, t_shell *shell);
+void		close_ends_and_wait(int pipe_count, int *ends,
+				int *processes, t_shell *shell);
 int			check_path(t_arg *path, char *cwd);
 int			split_values(char ***split_cwd, char ***split_path,
 				char *cwd, t_arg *path);
@@ -266,9 +282,9 @@ void		copy_unique_path(char **joined, char **split_cwd,
 				char **split_path, int i);
 void		handle_signal_for_bin(int sig);
 void		handle_quit_signal(int sig);
-void 		update_oldpwd(char *old_pwd, t_shell *shell);
+void		update_oldpwd(char *old_pwd, t_shell *shell);
 int			ft_is_executable(char *cmd_path);
-char    	*ft_strcpy(char *s1, char *s2);
+char		*ft_strcpy(char *s1, char *s2);
 void		free_all(t_shell *minishell);
 int			init_shell_struct(t_shell **minishell, char **env);
 void		init_shell_environment(t_shell **minishell);
@@ -317,3 +333,4 @@ void		update_split_list(char ***args_list, char *data);
 void		error_arg_status_update(char *error,
 				char *arg, t_shell *shell, int s);
 void		ft_reset_terminal(void);
+#endif
