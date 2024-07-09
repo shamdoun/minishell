@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 17:08:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 21:19:10 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:28:12 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,10 @@ void	error_arg_status_update(char *error, char *arg, t_shell *shell, int s)
 	ft_putendl_fd(error, 2);
 	add_new_status(shell, s);
 }
+
+void	fork_error(void)
+{
+	ft_putendl_fd("fork has failed!", 2);
+	return ;
+}
+

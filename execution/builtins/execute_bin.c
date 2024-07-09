@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/07 13:59:19 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:15:18 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 		else
 			(signal(SIGINT, SIG_IGN), signal(SIGQUIT, SIG_IGN));
 		child = fork();
+		if (child < 0)
+			return (fork_error());
 		if (child == 0)
 			run_child(cmd_path, args_list, shell);
 		waitpid(child, &status, 0);
@@ -86,8 +88,10 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 	}
 	else
 		pipe_child_runs_binary(cmd_path, args_list, shell);
-	if (!ft_strncmp(shell->all_input->command_name, "top", 3))
-		ft_reset_terminal();
+	// if (!ft_strncmp(shell->all_input->command_name, "top", 3))
+	// {
+		// ft_putendl_fd("reseting teminal", 2);
+	// }
 }
 
 void	execute_other_commands(t_shell *shell, int mode)

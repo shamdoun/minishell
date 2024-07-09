@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:10:36 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/07 16:11:52 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:24:19 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(int argc, char **argv, char **env)
 	minishell = NULL;
 	init(&minishell, env);
 	handle_all_signals(0);
+	ft_reset_terminal(0);
+	
 	if (1)
 	{
 		while (1)
@@ -62,6 +64,7 @@ int	main(int argc, char **argv, char **env)
 				add_history(input);
 			}
 			free(input);
+			ft_reset_terminal(1);
 		}
 	}
 	else

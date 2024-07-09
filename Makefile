@@ -5,6 +5,7 @@ ft_memmove.c ft_strlcat.c ft_strlcpy.c ft_strjoin.c ./execution/builtins/built_i
 ft_strncmp.c ./execution/builtins/execute_bin.c ./execution/builtins/change_dir.c ./execution/builtins/echo.c ./execution/builtins/env.c \
 ./execution/builtins/exit.c ./execution/builtins/export.c ./execution/builtins/unset.c
 OBJC = ${srcs:.c=.o}
+READLINE= $(shell brew --prefix readline)
 %.o: %.c execution.h
 	${CC} ${CFLAGS} -c $< -o $@
 
@@ -37,15 +38,15 @@ Flags= -Wall -Werror -Wextra -g
 
 O_SRC=$(SRC:.c=.o)
 
-NAME= minishell 
+NAME= minishell
 
 %.o: %.c
-	$(CC) $(Flags) -o $@ -c $<
+	$(CC) -c $< -o $@ -I $(READLINE)/include
 
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(FLAGS) -fsanitize=address -lreadline $(O_SRC) -o $(NAME)
+	$(CC) -fsanitize=address -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
 
 clean:
 	rm -f $(O_SRC)

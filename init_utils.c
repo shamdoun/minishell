@@ -6,22 +6,27 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 21:42:28 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 21:47:52 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:22:08 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_reset_terminal(void)
+void	ft_reset_terminal(int flag)
 {
-	struct termios	term;
+	static struct termios	term;
 
-	if (tcgetattr(STDIN_FILENO, &term) == -1)
+	if (!flag)
 	{
-		perror("tcgetattr");
-		return ;
+		if (tcgetattr(STDIN_FILENO, &term) == -1)
+		{
+			perror("tcgetattr");
+			return ;
+		}		
 	}
-	term.c_lflag |= (ECHO | ICANON);
-	if (tcsetattr(STDIN_FILENO, TCSANOW, &term) == -1)
-		perror("tcsetattr");
+	else
+	{
+		if (tcsetattr(STDIN_FILENO, TCSANOW, &term) == -1)
+			perror("tcsetattr");		
+	}
 }

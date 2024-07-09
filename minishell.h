@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/07 16:19:37 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:23:16 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,5 +332,6 @@ void		split_var(char ***split_env, t_arg *data, t_shell *shell);
 void		update_split_list(char ***args_list, char *data);
 void		error_arg_status_update(char *error,
 				char *arg, t_shell *shell, int s);
-void		ft_reset_terminal(void);
+void		ft_reset_terminal(int flag);
+void		fork_error(void);
 #endif

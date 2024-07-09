@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/07 15:26:31 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:26:57 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	pipex(t_shell *shell, int mode)
 		if (child < 0)
 		{
 			add_new_status(shell, 1);
-			return ;
+			return (fork_error());
 		}
 		if (!child)
 			run_child(shell, pipex, i, mode);
