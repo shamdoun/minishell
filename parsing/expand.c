@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-static int	ft_strlenex(char *cmd)
+static int	ft_strlenex(char *cmd, int v)
 {
 	int	len;
 	int	i;
@@ -9,19 +9,23 @@ static int	ft_strlenex(char *cmd)
 	i = 0;
 	while (cmd[i] && cmd[i] != '$')
 	{
-		if (cmd[i] == '\'')
+		if (v == 0)
 		{
+			if (cmd[i] == '\'')
+			{
+				(1) && (len++, i++);
+				while (cmd[i] != '\'')
+					(1) && (i++, len++);
+			}
 			(1) && (len++, i++);
-			while (cmd[i] != '\'')
-				(1) && (i++, len++);
 		}
-		len++;
-		i++;
+		else
+			(1) && (len++, i++);
 	}
 	return (len);
 }
 
-static char	*ft_put_str(char *cmd, int len)
+static char	*ft_put_str(char *cmd, int len, int v)
 {
 	char	*str;
 	int		i;
@@ -30,15 +34,19 @@ static char	*ft_put_str(char *cmd, int len)
 	str = malloc(len + 1);
 	while (cmd[i] && cmd[i] != '$')
 	{
-		if (cmd[i] == '\'')
+		if (v == 0)
 		{
-			str[i] = cmd[i];
-			i++;
-			while (cmd[i] && cmd[i] != '\'')
-				(1) && (str[i] = cmd[i], i++);
+			if (cmd[i] == '\'')
+			{
+				str[i] = cmd[i];
+				i++;
+				while (cmd[i] && cmd[i] != '\'')
+					(1) && (str[i] = cmd[i], i++);
+			}
+			(1) && (str[i] = cmd[i], i++);
 		}
-		str[i] = cmd[i];
-		i++;
+		if (v == 1)
+			(1) && (str[i] = cmd[i], i++);
 	}
 	str[i] = '\0';
 	return (str);
@@ -94,12 +102,18 @@ char	*ft_expand(char *cmd, t_shell *shell)
 	char	*str;
 	int		len;
 	int		i;
+	int		v;
 
 	i = 0;
+	v = 0;
 	str = NULL;
 	len = 0;
 	while (cmd[i])
 	{
+		if (v == 0 && cmd[i] == '"')
+			v = 1;
+		else if (cmd[i] == '"')
+			v = 0;
 		if (cmd[i] == '$')
 		{
 			len = ft_strlenquotes(cmd + i);
@@ -110,8 +124,8 @@ char	*ft_expand(char *cmd, t_shell *shell)
 		}
 		if (cmd[i])
 		{
-			len = ft_strlenex(cmd + i);
-			ptr = ft_put_str(cmd + i, len);
+			len = ft_strlenex(cmd + i, v);
+			ptr = ft_put_str(cmd + i, len, v);
 			str = ft_azejoin(&str, ptr);
 			free(ptr);
 			i += len - 1;
@@ -119,7 +133,6 @@ char	*ft_expand(char *cmd, t_shell *shell)
 			i++;
 		}
 	}
-	//printf("%s\n", str);
 	return (str);
 }
 

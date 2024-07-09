@@ -22,7 +22,6 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 			new = ft_lstnew_file(s, 1, NULL);
 		else if (!strncmp(str, ">>", 3))
 			new = ft_lstnew_file(s, 2, NULL);
-		//free(ptr);
 	}
 	else if (!strncmp(str, "<<", 3))
 	{
@@ -43,7 +42,6 @@ static t_arg	*put_arg(t_arg *arguments, char *str, t_shell *shell)
 	head = arguments;
 	ptr = NULL;
 	new = ft_malloc(sizeof(t_arg), 0);
-	//printf("args : %p\n", new);
 	if (!new)
 		return (NULL);
 	new->t_f = ft_isexpanded(str);
@@ -52,8 +50,6 @@ static t_arg	*put_arg(t_arg *arguments, char *str, t_shell *shell)
 	else
 		ptr = str;
 	new->arg = remove_quotes(ptr);
-	// free(ptr);
-	// add_a_data_to_list(shell, new->arg);
 	new->next = NULL;
 	if (!arguments)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:39:56 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/06 18:08:52 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/08 09:21:14 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	update_args(t_shell *shell)
 
 	i = 0;
 	test = ft_split_1(shell->all_input->command_name, ' ');
-	while (test[i])
+	while (test && test[i])
 		i++;
 	if (i >= 1 && shell->is_expanded)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:50:55 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/06 14:00:10 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:23:15 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	init_shell_struct(t_shell **minishell, char **env)
 	getcwd((*minishell)->cwd, sizeof((*minishell)->cwd));
 	(*minishell)->all_input = NULL;
 	(*minishell)->env = env;
+	(*minishell)->r_path = NULL;
 	return (0);
 }
 

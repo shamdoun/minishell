@@ -4,7 +4,7 @@ extern volatile sig_atomic_t	g_signal;
 
 void	free_all(t_shell *minishell)
 {
-	t_a_data *tmp;
+	t_a_data	*tmp;
 
 	while (minishell->all_allocated_data)
 	{
@@ -73,9 +73,7 @@ int	main(int argc, char **argv, char **env)
 		{
 				input = readline("minishell$> ");
 				if (!input)
-				{
 					exit_shell(minishell, NULL, 1);
-				}
 				if (*input != '\0')
 				{
 					check = ft_parsing(input);
