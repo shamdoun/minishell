@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 12:41:36 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:31:34 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,19 @@ static int	here_doc(t_input *input, t_file *file, t_shell *shell)
 	line = NULL;
 	if (!file->delimeter)
 		printf("no exisitng delimeter\n");
+	// printf("file->delimeter: \"%s\"\n", file->delimeter);
 	while (1)
 	{
 		write(1, "> ", 2);
 		line = get_next_line(0);
+		// printf("before %s\n", line);
 		if (line && !file->hd_expand)
-			line = ft_expand(line, shell);
+			line = ft_expand_hd(line, shell);
+		// printf("after %s\n", line);
 		if (!line || (ft_strlen(line) - 1 == ft_strlen(file->delimeter) &&
 			!ft_strncmp(line, file->delimeter, ft_strlen(line) - 1)))
 			break ;
+		// printf("line: \"%s\"\n", line);
 		(write(fd, line, ft_strlen(line)));
 	}
 	(close(fd), ft_recover_echo());

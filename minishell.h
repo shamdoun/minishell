@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 11:58:39 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:15:33 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,16 @@ typedef struct pipex
 	int	*processes;
 }	t_pipex;
 
+typedef struct	expandVar
+{
+	char	*ptr;
+	char	*str;
+	char	*s;
+	int		len;
+	int		i;
+	int		v;
+} t_expVar;
+
 void		ft_lst_add_input_back(t_input **lst, t_input *new, t_shell *shell);
 void		ft_lst_add_ad_back(t_a_data **lst, t_a_data *new);
 void		ft_lst_add_file_back(t_file **lst, t_file *new, t_shell *shell);
@@ -229,6 +239,12 @@ int			ft_isexpanded(char *str);
 char		*get_cmdname(char *s, t_shell *shell);
 /*---------------parsing/expand.c---------------*/
 char		*ft_expand(char *cmd, t_shell *shell);
+int			ft_strlenex(char *cmd, int v);
+char		*ft_put_str(char *cmd, int len, int v);
+int			ft_strlenquotes(char *str);
+char		*ft_getname(char *str, t_shell *shell, int len);
+/*---------------parsing/heredoc_expand.c---------------*/
+char		*ft_expand_hd(char *cmd, t_shell *shell);
 //for signals
 void		handle_ctrl_c_for_child(int sig);
 void		exit_shell(t_shell *shell, t_arg *status, int mode);
