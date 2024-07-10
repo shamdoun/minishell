@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:22:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 17:08:22 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:25:32 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	append_mode(char *data)
 	return (split[0][ft_strlen(split[0]) - 1] == '+');
 }
 
-void	update_env(char *env_name,
+static void	update_env(char *env_name,
 	t_shell *shell, char *data, char ***env)
 {
 	char		**new_environ;
@@ -37,7 +37,7 @@ void	update_env(char *env_name,
 	}
 }
 
-char	*append_env(char *data)
+static char	*append_env(char *data)
 {
 	char	*name;
 	char	*value;
@@ -54,7 +54,7 @@ char	*append_env(char *data)
 	return (result);
 }
 
-void	add_env(char *data, t_shell *shell, char ***env)
+static void	add_env(char *data, t_shell *shell, char ***env)
 {
 	char		**new_environ;
 	char		*new_data;

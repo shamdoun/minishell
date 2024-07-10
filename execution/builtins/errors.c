@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 17:08:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/09 13:28:12 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:22:48 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ void	fork_error(void)
 	ft_putendl_fd("fork has failed!", 2);
 	return ;
 }
-

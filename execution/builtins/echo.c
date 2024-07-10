@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 16:11:21 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:21:21 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	is_flag(char *split)
 	return (0);
 }
 
-void	print_message(t_arg *split, bool *new_line)
+static void	print_message(t_arg *split, bool *new_line)
 {
 	while (split && is_flag(split->arg))
 	{

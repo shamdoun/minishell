@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/07 15:38:34 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:37:46 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern volatile sig_atomic_t	g_signal;
 
-void	run_options_path(t_shell *shell, char *command, int mode)
+static void	run_options_path(t_shell *shell, char *command, int mode)
 {
 	if (!ft_strncmp(command, "env", 4))
 	{
@@ -39,7 +39,7 @@ void	run_options_path(t_shell *shell, char *command, int mode)
 		execute_other_commands(shell, mode);
 }
 
-void	run_options_no_path(t_shell *shell, char *command, int mode)
+static void	run_options_no_path(t_shell *shell, char *command, int mode)
 {
 	if (!ft_strncmp(command, "pwd", 4))
 		(printf("%s\n", shell->cwd), add_new_status(shell, 0));
@@ -62,7 +62,7 @@ void	run_options_no_path(t_shell *shell, char *command, int mode)
 	}
 }
 
-void	run_options(t_shell *shell, char *command, int mode)
+static void	run_options(t_shell *shell, char *command, int mode)
 {
 	char	*path_env;
 

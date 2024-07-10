@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:05:17 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 17:16:11 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:26:47 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	copy_list_excluding(char **new_environ, char **old_env, char *str)
 	*new_environ = NULL;
 }
 
-int	r_path_empty(t_shell *shell, t_arg *data)
+static int	r_path_empty(t_shell *shell, t_arg *data)
 {
 	if (!ft_strncmp(data->arg, "PATH", 5) && shell->r_path)
 	{

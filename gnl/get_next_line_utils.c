@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 22:08:46 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 22:40:00 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:27:14 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strjoin_v2(char *s1, char *s2)
 	if (!s2)
 		return (ft_strdup(s1));
 	len = ft_strlen(s1) + ft_strlen(s2);
-	js = malloc(len + 1);
+	js = ft_malloc(len + 1, 0);
 	if (!js)
 		return (NULL);
 	ft_cpy_cat(js, s1, s2);

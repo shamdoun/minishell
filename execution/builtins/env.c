@@ -6,13 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:45:04 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 21:30:00 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:22:05 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	update_underscore_var(t_arg *new_envpath, char *value)
+static void	update_underscore_var(t_arg *new_envpath, char *value)
 {
 	int		i;
 	char	**array;

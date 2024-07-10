@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:56:27 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 21:29:34 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:17:35 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	add_new_status(t_shell *shell, int status)
 		g_signal = 0;
 }
 
-int	ft_array_size(char **list)
+static int	ft_array_size(char **list)
 {
 	int	n;
 
