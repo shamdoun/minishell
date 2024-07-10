@@ -45,6 +45,35 @@ char	*ft_strwnl(char *s)
 	return (str);
 }
 
+static int	ft_strlenex(char *cmd)
+{
+	int	len;
+	int	i;
+
+	len = 0;
+	i = 0;
+	while (cmd && cmd[i] && cmd[i] != '$')
+	{
+		(1) && (len++, i++);
+	}
+	return (len);
+}
+
+static char	*ft_put_str(char *cmd, int len)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = malloc(len + 1);
+	while (cmd[i] && cmd[i] != '$')
+	{
+		(1) && (str[i] = cmd[i], i++);
+	}
+	str[i] = '\0';
+	return (str);
+}
+
 char	*ft_expand_hd(char *cmd, t_shell *shell)
 {
 	t_expVar	v;
@@ -61,8 +90,8 @@ char	*ft_expand_hd(char *cmd, t_shell *shell)
 		}
 		if (v.s[v.i])
 		{
-			v.len = ft_strlenex(v.s + v.i, v.v);
-			v.ptr = ft_put_str(v.s + v.i, v.len, v.v);
+			v.len = ft_strlenex(v.s + v.i);
+			v.ptr = ft_put_str(v.s + v.i, v.len);
 			v.str = ft_azejoin(&v.str, v.ptr);
 			free(v.ptr);
 			(1) && (v.i += v.len - 1, v.len = 0, v.i++);

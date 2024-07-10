@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 16:32:08 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 20:47:04 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,8 +240,6 @@ int			ft_isexpanded(char *str);
 char		*get_cmdname(char *s, t_shell *shell);
 /*---------------parsing/expand.c---------------*/
 char		*ft_expand(char *cmd, t_shell *shell);
-int			ft_strlenex(char *cmd, int v);
-char		*ft_put_str(char *cmd, int len, int v);
 int			ft_strlenquotes(char *str);
 char		*ft_getname(char *str, t_shell *shell, int len);
 /*---------------parsing/heredoc_expand.c---------------*/

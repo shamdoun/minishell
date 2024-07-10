@@ -1,31 +1,33 @@
 #include "../minishell.h"
 
-int	ft_strlenex(char *cmd, int v)
+static int	ft_strlenex(char *cmd, int *v)
 {
 	int	len;
 	int	i;
 
 	len = 0;
 	i = 0;
-	while (cmd[i] && cmd[i] != '$')
+	while (cmd && cmd[i] && cmd[i] != '$')
 	{
-		if (v == 0)
+		if (*v == 0)
 		{
 			if (cmd[i] == '\'')
 			{
 				(1) && (len++, i++);
-				while (cmd[i] != '\'')
+				while (cmd[i] && cmd[i] != '\'')
 					(1) && (i++, len++);
 			}
 			(1) && (len++, i++);
 		}
 		else
 			(1) && (len++, i++);
+		if (cmd[i] == '"')
+			*v = 0;
 	}
 	return (len);
 }
 
-char	*ft_put_str(char *cmd, int len, int v)
+static char	*ft_put_str(char *cmd, int len, int *v)
 {
 	char	*str;
 	int		i;
@@ -34,7 +36,7 @@ char	*ft_put_str(char *cmd, int len, int v)
 	str = malloc(len + 1);
 	while (cmd[i] && cmd[i] != '$')
 	{
-		if (v == 0)
+		if (*v == 0)
 		{
 			if (cmd[i] == '\'')
 			{
@@ -45,8 +47,10 @@ char	*ft_put_str(char *cmd, int len, int v)
 			}
 			(1) && (str[i] = cmd[i], i++);
 		}
-		if (v == 1)
+		if (*v == 1)
 			(1) && (str[i] = cmd[i], i++);
+		if (cmd[i] == '"')
+			*v = 0;
 	}
 	str[i] = '\0';
 	return (str);
@@ -61,6 +65,11 @@ int	ft_strlenquotes(char *str)
 	del = " \t'\".#!%%&()*+,-/:;<=>@[]\\^{}|~$";
 	i = 1;
 	len = 0;
+	if (str[i] >= '0' && str[i] <= '9')
+	{
+		len = 1;
+		return (len);
+	}
 	while (str[i] && !ft_strchr(del, str[i]))
 	{
 		len++;
@@ -78,6 +87,8 @@ char	*ft_getname(char *str, t_shell *shell, int len)
 	i = 1;
 	if (str[i] == '?')
 		return (ptr = ft_itoa(ft_last_status(shell->all_status)));
+	if (str[i] >= '0' && str[i] <= '9')
+		return (NULL);
 	ptr = malloc(len + 1);
 	while (len)
 		(1) && (ptr[i - 1] = str[i], i++, --len);
@@ -110,10 +121,6 @@ char	*ft_expand(char *cmd, t_shell *shell)
 	len = 0;
 	while (cmd[i])
 	{
-		if (v == 0 && cmd[i] == '"')
-			v = 1;
-		else if (cmd[i] == '"')
-			v = 0;
 		if (cmd[i] == '$')
 		{
 			len = ft_strlenquotes(cmd + i);
@@ -122,16 +129,23 @@ char	*ft_expand(char *cmd, t_shell *shell)
 			str = ft_azejoin(&str, ptr);
 			free(ptr);
 		}
+		if (v == 0 && cmd[i] == '"')
+			v = 1;
+		else if (cmd[i] == '"')
+			v = 0;
+		// printf("cmd[i] = %c\n", cmd[i]);
 		if (cmd[i])
 		{
-			len = ft_strlenex(cmd + i, v);
-			ptr = ft_put_str(cmd + i, len, v);
+			len = ft_strlenex(cmd + i, &v);
+			ptr = ft_put_str(cmd + i, len, &v);
 			str = ft_azejoin(&str, ptr);
 			free(ptr);
 			i += len - 1;
 			len = 0;
 			i++;
 		}
+		// printf("%s\n", str);
+		// printf("v = %d\n", v);
 	}
 	return (str);
 }
