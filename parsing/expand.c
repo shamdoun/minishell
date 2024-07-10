@@ -83,7 +83,7 @@ char	*ft_getname(char *str, t_shell *shell, int len)
 		(1) && (ptr[i - 1] = str[i], i++, --len);
 	ptr[i - 1] = '\0';
 	s = ft_getenv(ptr, shell->env);
-	if (!s)
+	if (!s && !ft_strncmp(ptr, "PATH", 4))
 		s = shell->r_path;
 	if (s == NULL)
 		return (NULL);
@@ -108,8 +108,6 @@ char	*ft_expand(char *cmd, t_shell *shell)
 	v = 0;
 	str = NULL;
 	len = 0;
-	// if (cmd[ft_strlen(cmd) - 1] == '\n')
-	// 	cmd[ft_strlen(cmd) - 1] = '\0';
 	while (cmd[i])
 	{
 		if (v == 0 && cmd[i] == '"')
@@ -135,16 +133,5 @@ char	*ft_expand(char *cmd, t_shell *shell)
 			i++;
 		}
 	}
-	// printf("expanded string %s\n", str);
 	return (str);
 }
-
-// int	main(int ac, char **av, char **env)
-// {
-// 	char *test = "hello \"$USER\" klds";
-// 	char *ptr;
-
-// 	ptr = ft_expand(test, env);
-// 	printf("%s\n", ptr);
-// 	return (0);
-// }
