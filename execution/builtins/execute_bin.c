@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 09:42:54 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:11:46 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,17 +100,17 @@ void	execute_other_commands(t_shell *shell, int mode)
 	set_args_list(shell, &args_list);
 	cmd_path = find_command_path(shell->all_input->command_name, shell);
 	c = execution_case(cmd_path, shell);
-	if (c == 1)
+	if (c == 1 && ft_strncmp(shell->all_input->command_name, "./minishell", 11))
 		make_file_executable(&args_list,
 			shell->all_input->command_name, &cmd_path);
 	if (c == 2 || (c == 3
 			&& !ft_strncmp(shell->all_input->command_name, "./minishell", 11)))
-		cmd_path = ft_strdup1(shell->all_input->command_name);
+		cmd_path = ft_strdup(shell->all_input->command_name);
 	if (c == 3 && ft_strncmp(shell->all_input->command_name, "./minishell", 11))
 		make_file_executable(&args_list,
 			shell->all_input->command_name, &cmd_path);
-	if (c == 4)
-		cmd_path = ft_strdup1(shell->all_input->command_name);
+	if (c == 4 || c == 5)
+		cmd_path = ft_strdup(shell->all_input->command_name);
 	if (cmd_path)
 		run_binary(cmd_path, mode, args_list, shell);
 	else

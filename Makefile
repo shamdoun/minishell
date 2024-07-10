@@ -46,7 +46,7 @@ NAME= minishell
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(Flags) -fsanitize=address -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
+	$(CC) $(Flags) -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
 
 clean:
 	rm -f $(O_SRC)

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:10:36 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/09 22:32:02 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:06:57 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ extern volatile sig_atomic_t	g_signal;
 //     usleep(1000 * 100 *10000);
 // }
 
+
 int	main(int argc, char **argv, char **env)
 {
 	char		*input;
@@ -34,7 +35,6 @@ int	main(int argc, char **argv, char **env)
 	init(&minishell, env);
 	handle_all_signals(0);
 	ft_reset_terminal(0);
-
 	if (1)
 	{
 		while (1)
