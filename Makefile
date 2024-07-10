@@ -20,7 +20,7 @@ READLINE= $(shell brew --prefix readline)
 
 #!!!!!!!!!!!!!!!!!!MAKEFILE FOR TESTING PARSING!!!!!!!!!!!!!!!!!!!!#
 
-SRC= ./external_functions/ft_free.c ./external_functions/ft_split.c ./parsing/ft_parsing.c ./parsing/divide_cmd.c parsing/ft_syntax.c ./external_functions/ft_strchr.c \
+SRC= ./external_functions/ft_free.c ./external_functions/ft_split.c ./parsing/ft_parsing.c ./parsing/divide_cmd.c parsing/ft_syntax.c parsing/heredoc_expand.c ./external_functions/ft_strchr.c \
 	./external_functions/ft_lst_add_back.c ./external_functions/ft_lstnew.c ./parsing/ft_split_cmd.c ./parsing/ft_addspace.c \
 	./external_functions/ft_free2.c ./parsing/ft_split_cmd_utils.c minishell.c execution/signals.c execution/execution.c execution/redirection.c execution/pipex/pipex.c \
 	./execution/builtins/execute_bin.c ./execution/builtins/change_dir.c ./execution/builtins/echo.c ./execution/builtins/env.c \

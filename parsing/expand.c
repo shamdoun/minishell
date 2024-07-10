@@ -1,7 +1,6 @@
 #include "../minishell.h"
-#include <stdio.h>
 
-static int	ft_strlenex(char *cmd, int v)
+int	ft_strlenex(char *cmd, int v)
 {
 	int	len;
 	int	i;
@@ -26,7 +25,7 @@ static int	ft_strlenex(char *cmd, int v)
 	return (len);
 }
 
-static char	*ft_put_str(char *cmd, int len, int v)
+char	*ft_put_str(char *cmd, int len, int v)
 {
 	char	*str;
 	int		i;
@@ -53,7 +52,7 @@ static char	*ft_put_str(char *cmd, int len, int v)
 	return (str);
 }
 
-static int	ft_strlenquotes(char *str)
+int	ft_strlenquotes(char *str)
 {
 	char	*del;
 	int		len;
@@ -70,7 +69,7 @@ static int	ft_strlenquotes(char *str)
 	return (len);
 }
 
-static char	*ft_getname(char *str, t_shell *shell, int len)
+char	*ft_getname(char *str, t_shell *shell, int len)
 {
 	char	*ptr;
 	char	*s;
@@ -109,8 +108,8 @@ char	*ft_expand(char *cmd, t_shell *shell)
 	v = 0;
 	str = NULL;
 	len = 0;
-	if (cmd[ft_strlen(cmd) - 1] == '\n')
-		cmd[ft_strlen(cmd) - 1] = '\0';
+	// if (cmd[ft_strlen(cmd) - 1] == '\n')
+	// 	cmd[ft_strlen(cmd) - 1] = '\0';
 	while (cmd[i])
 	{
 		if (v == 0 && cmd[i] == '"')

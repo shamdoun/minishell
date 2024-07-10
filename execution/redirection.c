@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 12:41:36 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:55:31 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	here_doc(t_input *input, t_file *file, t_shell *shell)
 		write(1, "> ", 2);
 		line = get_next_line(0);
 		if (line && !file->hd_expand)
-			line = ft_expand(line, shell);
+			line = ft_expand_hd(line, shell);
 		if (!line || (ft_strlen(line) - 1 == ft_strlen(file->delimeter) &&
 			!ft_strncmp(line, file->delimeter, ft_strlen(line) - 1)))
 			break ;
