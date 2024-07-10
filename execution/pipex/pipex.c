@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/09 14:26:57 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:01:42 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int	count_nbr_of_pipes(t_input *list)
 
 int	init_pipex(t_pipex **pipex, t_shell *shell)
 {
-	*pipex = ft_malloc(sizeof(t_pipex), 1);
+	*pipex = ft_malloc(sizeof(t_pipex), 2);
 	if (!(*pipex))
 		return (1);
 	(*pipex)->pipe_count = count_nbr_of_pipes(shell->all_input);
 	if (create_pipes(&(*pipex)->ends, (*pipex)->pipe_count))
 		return (1);
 	(*pipex)->processes = ft_malloc(sizeof(int)
-			* ((*pipex)->pipe_count + 1), 1);
+			* ((*pipex)->pipe_count + 1), 2);
 	if (!(*pipex)->processes)
 		return (1);
 	return (0);
