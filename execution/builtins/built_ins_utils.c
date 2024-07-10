@@ -6,13 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/06 16:48:35 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:16:37 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	command_is_executable(char *env, char *s)
+static int	command_is_executable(char *env, char *s)
 {
 	char	**split1;
 	char	**split2;
@@ -36,7 +36,7 @@ int	command_is_executable(char *env, char *s)
 	return (0);
 }
 
-char	*extract_command(char *s, char **env_list, char *command)
+static char	*extract_command(char *s, char **env_list, char *command)
 {
 	int		i;
 	char	*tmp;

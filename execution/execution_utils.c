@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:39:56 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/08 09:21:14 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:38:20 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	open_files(t_shell *shell)
 	{
 		if (shell->all_input->all_files->type >= 3 && open_input_files(shell))
 			return (1);
-		else if (open_output_files(shell))
+		if (open_output_files(shell))
 			return (1);
 		shell->all_input->all_files = shell->all_input->all_files->next;
 	}

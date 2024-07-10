@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/09 14:15:18 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:42:54 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	update_split_list(char ***args_list, char *data)
 	*args_list = new_list;
 }
 
-void	pipe_child_runs_binary(char *cmd_path, char **args_list, t_shell *shell)
+static void	pipe_child_runs_binary(char *cmd_path,
+		char **args_list, t_shell *shell)
 {
 	int	rv;
 
@@ -37,7 +38,7 @@ void	pipe_child_runs_binary(char *cmd_path, char **args_list, t_shell *shell)
 		printf("error after execve of %d: \n", errno);
 }
 
-void	run_child(char *cmd_path, char **args_list, t_shell *shell)
+static void	run_child(char *cmd_path, char **args_list, t_shell *shell)
 {
 	int	rv;
 
@@ -88,10 +89,6 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 	}
 	else
 		pipe_child_runs_binary(cmd_path, args_list, shell);
-	// if (!ft_strncmp(shell->all_input->command_name, "top", 3))
-	// {
-		// ft_putendl_fd("reseting teminal", 2);
-	// }
 }
 
 void	execute_other_commands(t_shell *shell, int mode)

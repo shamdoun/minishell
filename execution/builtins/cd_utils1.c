@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 19:19:10 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 16:03:27 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:18:28 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	copy_old_cwd(char *old_cwd, char **split_cwd)
 	}
 }
 
-void	ft_update_if_already_exists(char **split_cwd, char *value, int k)
+static void	ft_update_if_already_exists(char **split_cwd, char *value, int k)
 {
 	int	i;
 

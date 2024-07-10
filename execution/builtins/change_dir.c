@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 21:29:51 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:41:57 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	update_cwd(char *cwd, t_arg *path, char *old_cwd)
 	free(joined);
 }
 
-int	change_to_default_home(t_shell *shell, char **env, int *rv)
+static int	change_to_default_home(t_shell *shell, char **env, int *rv)
 {
 	char	*home;
 
@@ -70,7 +70,9 @@ int	change_to_default_home(t_shell *shell, char **env, int *rv)
 	return (0);
 }
 
-void	update_wd(t_shell *shell, int return_value, t_arg *path, char *old_cwd)
+static void	update_wd(t_shell *shell,
+		int return_value, t_arg *path,
+			char *old_cwd)
 {
 	char	*gcw_result;
 

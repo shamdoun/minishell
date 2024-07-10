@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 22:08:51 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/11 23:09:48 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:45:38 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,12 @@ char	*ft_update_buffer(char *b)
 	{
 		return (NULL);
 	}
-	n = malloc(ft_strlen(b) - i);
+	n = ft_malloc(ft_strlen(b) - i, 0);
 	if (!n)
 		return (NULL);
 	ft_memcpy(n, b + i + 1, ft_strlen(b) - i);
 	if (*n == '\0')
-	{
-		free(n);
 		return (NULL);
-	}
 	b[i + 1] = '\0';
 	return (n);
 }

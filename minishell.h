@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/09 14:23:16 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:49:22 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <stdbool.h>
 # include <termios.h>
 # include "./gnl/get_next_line.h"
-# include "./execution/execution.h"
 
 
 // FILE*gfp;
@@ -49,10 +48,13 @@
 // #define free(x) _6free(x, __LINE__, __FILE__)
 # define FAILED_MALLOC "failure"
 # define WRONG_INPUT "No such file or directory"
-# define POINT_INPUT "minishell: .: filename argument required \n.: usage: . filename [arguments]"
+# define POINT_INPUT "minishell: .: filename argument\
+	required \n.: usage: . filename [arguments]"
 # define COMMAND_NOT_FOUND "minishell: %s: No such file or directory\n"
 # define NO_FILE_DIR "No such file or directory"
-# define GCW_FAILED "cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
+# define GCW_FAILED "cd: error retrieving current directory:\
+	getcwd: cannot access parent directories:\
+		No such file or directory\n"
 # define EXPORT_ERR "export: not a valid identifier\n"
 # define	UNSET_ERR "minishell: unset: not a valid identifier\n"
 /*
@@ -89,7 +91,7 @@ typedef struct input
 	struct input	*next;
 }	t_input;
 
-typedef struct status 
+typedef struct status
 {
 	int				status;
 	struct status	*next;
@@ -175,7 +177,7 @@ t_input		*ft_lstnew_input(void);
 t_a_data	*ft_lstnew_ad(void *address);
 t_status	*ft_lstnew_status(int status);
 t_file		*ft_lstnew_file(char *file_name, int type, char *delimeter);
-size_t		ft_strlen(const char *);
+size_t		ft_strlen(const char *str);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		execute_input(t_shell *shell);
 void		free_array(char **a);
@@ -187,12 +189,12 @@ char		*ft_strjoin(char *s1, char *s2);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 char		*ft_azejoin(char **s1, char *s2);
-char	    *ft_strdup(const char *s1);
-char	    **ft_split_1(char const *s, char c);
-void	    *ft_memmove(void *dst, const void *src, size_t len );
-void	    *ft_memcpy(void *dst, const void *src, size_t n);
-int         ft_atoi(const char *str);
-t_file	*ft_lstnew_file(char *file_name, int type, char *delimeter);
+char		*ft_strdup(const char *s1);
+char		**ft_split_1(char const *s, char c);
+void		*ft_memmove(void *dst, const void *src, size_t len );
+void		*ft_memcpy(void *dst, const void *src, size_t n);
+int			ft_atoi(const char *str);
+t_file		*ft_lstnew_file(char *file_name, int type, char *delimeter);
 /*---------------ft_free.c---------------*/
 void   		ft_free(char **ptr, int last); //for split
 void		free_fail(t_parse_list **list); // for freeing linked list in ft_parsing file

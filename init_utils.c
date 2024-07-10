@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 21:42:28 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/09 14:22:08 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:46:37 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	ft_reset_terminal(int flag)
 		{
 			perror("tcgetattr");
 			return ;
-		}		
+		}
 	}
 	else
 	{
 		if (tcsetattr(STDIN_FILENO, TCSANOW, &term) == -1)
-			perror("tcsetattr");		
+			perror("tcsetattr");
 	}
 }

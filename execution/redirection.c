@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/06 18:08:27 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:38:54 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern volatile sig_atomic_t	g_signal;
 
-int	open_here_doc_fd(int *fd, t_input *input)
+static int	open_here_doc_fd(int *fd, t_input *input)
 {
 	*fd = open("here_doc.txt", O_CREAT | O_TRUNC | O_WRONLY, 777);
 	if (*fd < 0)
@@ -32,7 +32,7 @@ int	open_here_doc_fd(int *fd, t_input *input)
 	return (0);
 }
 
-int	here_doc(t_input *input, t_file *file)
+static int	here_doc(t_input *input, t_file *file)
 {
 	char	*line;
 	int		fd;
@@ -49,9 +49,9 @@ int	here_doc(t_input *input, t_file *file)
 		line = get_next_line(0);
 		if (!line || !ft_strncmp(line, file->delimeter, ft_strlen(line) - 1))
 			break ;
-		(write(fd, line, ft_strlen(line)), free(line));
+		(write(fd, line, ft_strlen(line)));
 	}
-	(free(line), close(fd), ft_recover_echo());
+	(close(fd), ft_recover_echo());
 	if (g_signal == 1)
 		return (1);
 	return (0);
