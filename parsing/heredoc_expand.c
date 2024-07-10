@@ -49,7 +49,7 @@ char	*ft_expand_hd(char *cmd, t_shell *shell)
 {
 	t_expVar	v;
 
-	(1) && (v.i = 0, v.v = 0, v.str = NULL, v.len = 0, v.s = ft_strnnl(cmd));
+	(1) && (v.i = 0, v.v = 1, v.str = NULL, v.len = 0, v.s = ft_strnnl(cmd));
 	while (v.s[v.i])
 	{
 		if (v.s[v.i] == '$')
