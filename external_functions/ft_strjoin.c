@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:08:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/07 16:08:06 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:48:54 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ char	*ft_azejoin(char **s1, char *s2)
 		j++;
 	}
 	ptr[i + j] = '\0';
-	return (free(*s1), ptr);
+	return (ptr);
 }
