@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/09 14:23:16 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:41:18 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct file
 	char		*file_name;
 	int			type;
 	char		*delimeter;
+	int			hd_expand;
 	struct file	*next;
 }	t_file;
 

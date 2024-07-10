@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/06 18:08:27 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:13:07 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	open_here_doc_fd(int *fd, t_input *input)
 	return (0);
 }
 
-int	here_doc(t_input *input, t_file *file)
+int	here_doc(t_input *input, t_file *file, t_shell *shell)
 {
 	char	*line;
 	int		fd;
@@ -43,11 +43,17 @@ int	here_doc(t_input *input, t_file *file)
 	line = NULL;
 	if (!file->delimeter)
 		printf("no exisitng delimeter\n");
+	// printf("file->delimeter: %s\n", file->delimeter);
+	// printf("t_f: %d\n", file->hd_expand);
 	while (1)
 	{
 		write(1, "> ", 2);
 		line = get_next_line(0);
-		if (!line || !ft_strncmp(line, file->delimeter, ft_strlen(line) - 1))
+		if (line && !file->hd_expand)
+			line = ft_expand(line, shell);
+		// printf("%s\n", line);
+		if (!line || (ft_strlen(line) - 1 == ft_strlen(file->delimeter) &&
+			!ft_strncmp(line, file->delimeter, ft_strlen(line) - 1)))
 			break ;
 		(write(fd, line, ft_strlen(line)), free(line));
 	}
@@ -73,7 +79,7 @@ int	handle_here_docs(t_shell *shell)
 			{
 				if (i_head->here_doc)
 					close(i_head->here_doc);
-				hd_rv = here_doc(i_head, f_head);
+				hd_rv = here_doc(i_head, f_head, shell);
 				if (hd_rv)
 					return (hd_rv);
 				else

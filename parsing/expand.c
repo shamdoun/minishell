@@ -1,4 +1,5 @@
 #include "../minishell.h"
+#include <stdio.h>
 
 static int	ft_strlenex(char *cmd, int v)
 {
@@ -108,6 +109,8 @@ char	*ft_expand(char *cmd, t_shell *shell)
 	v = 0;
 	str = NULL;
 	len = 0;
+	if (cmd[ft_strlen(cmd) - 1] == '\n')
+		cmd[ft_strlen(cmd) - 1] = '\0';
 	while (cmd[i])
 	{
 		if (v == 0 && cmd[i] == '"')
@@ -133,6 +136,7 @@ char	*ft_expand(char *cmd, t_shell *shell)
 			i++;
 		}
 	}
+	// printf("expanded string %s\n", str);
 	return (str);
 }
 
