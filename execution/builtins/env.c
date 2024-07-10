@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:45:04 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 11:53:46 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:22:22 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,20 @@ static void	update_underscore_var(t_arg *new_envpath, char *value)
 	(new_envpath)->arg = ft_strjoin("_=", value);
 }
 
+int	is_empty(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	update_env_path_var(t_shell *shell, char *value, int mode)
 {
 	t_arg	*new_envpath;
@@ -48,6 +62,8 @@ void	update_env_path_var(t_shell *shell, char *value, int mode)
 		perror("failed!");
 		return ;
 	}
+	if (value && is_empty(value))
+		value = NULL;
 	if ((!mode && !value) || (!mode && !ft_strncmp(value, "", 1)))
 		new_envpath->arg = ft_strdup("_");
 	else if (!value)
