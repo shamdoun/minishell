@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:31:41 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/07 15:40:17 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:41:52 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_file	*ft_lstnew_file(char *file_name, int type, char *delimeter)
 	n_node->file_name = file_name;
 	n_node->delimeter = delimeter;
 	n_node->type = type;
+	n_node->hd_expand = 0;
 	n_node->next = NULL;
 	return (n_node);
 }

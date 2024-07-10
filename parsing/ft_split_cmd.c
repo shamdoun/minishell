@@ -3,7 +3,7 @@
 static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 {
 	t_file	*new;
-	int		t_f;
+	size_t	t_f;
 	char	*ptr;
 	char	*s;
 
@@ -25,8 +25,11 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 	}
 	else if (!strncmp(str, "<<", 3))
 	{
+		t_f = ft_strlen(name);
 		ptr = remove_quotes(name);
 		new = ft_lstnew_file(NULL, 4, ptr);
+		if (t_f != ft_strlen(ptr))
+			new->hd_expand = 1;
 	}
 	if (!new)
 		return ;

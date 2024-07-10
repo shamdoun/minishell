@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 11:53:17 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:58:39 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct file
 	char		*file_name;
 	int			type;
 	char		*delimeter;
+	int			hd_expand;
 	struct file	*next;
 }	t_file;
 
