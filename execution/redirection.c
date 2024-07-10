@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 15:55:31 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:06:33 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ static int	here_doc(t_input *input, t_file *file, t_shell *shell)
 			break ;
 		(write(fd, line, ft_strlen(line)));
 	}
-	(close(fd), ft_recover_echo());
+	close(fd);
 	if (g_signal == 1)
 		return (1);
+	ft_recover_echo();
 	return (0);
 }
 

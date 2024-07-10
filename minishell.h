@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 15:15:33 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:32:08 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@
 # define WRONG_INPUT "No such file or directory"
 # define POINT_INPUT "minishell: .: filename argument\
 	required \n.: usage: . filename [arguments]"
-# define COMMAND_NOT_FOUND "minishell: %s: No such file or directory\n"
+# define COMMAND_NOT_FOUND "minishell: %s: command not found\n"
 # define NO_FILE_DIR "No such file or directory"
+# define NO_COMMAND "command not found"
 # define GCW_FAILED "cd: error retrieving current directory:\
 	getcwd: cannot access parent directories:\
 		No such file or directory\n"
