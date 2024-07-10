@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 09:41:57 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 12:11:45 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	update_cwd(char *cwd, t_arg *path, char *old_cwd)
 			split_path[0]);
 	copy_unique_path(&joined, split_cwd, split_path, i);
 	ft_strcpy(cwd, joined);
-	free(joined);
 }
 
 static int	change_to_default_home(t_shell *shell, char **env, int *rv)

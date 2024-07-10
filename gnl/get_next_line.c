@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 22:08:51 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 09:45:38 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 12:43:17 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char	*ft_add_data1(char *data, char *buffer, int fd)
 		buffer[read_bits] = '\0';
 		tmp = data;
 		data = ft_strjoin_v2(tmp, buffer);
-		free(tmp);
 		tmp = NULL;
 		if (ft_strchr(buffer, '\n'))
 			break ;
