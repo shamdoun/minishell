@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 16:32:19 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:23:22 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ void	execute_other_commands(t_shell *shell, int mode)
 	if (cmd_path)
 		run_binary(cmd_path, mode, args_list, shell);
 	else
-		error_arg_status_update(NO_COMMAND, args_list[0], shell, 127);
+		error_arg_status_update(NO_COMMAND,
+			shell->all_input->command_name, shell, 127);
 }

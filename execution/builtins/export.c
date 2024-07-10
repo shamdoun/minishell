@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:22:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 09:25:32 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:06:55 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	add_update_env(t_arg *data, t_shell *shell, char ***env, int mode)
 	char	**split_env;
 	bool	error;
 
-	if (check_args(data, shell, env))
+	if (mode && check_args(data, shell, env))
 		return ;
 	error = false;
 	while (data && data->arg)
