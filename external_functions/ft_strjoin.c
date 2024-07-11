@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:08:06 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 16:48:54 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:33:08 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (result);
 }
 
-char	*ft_azejoin(char **s1, char *s2)
+char	*ft_join(char **s1, char *s2)
 {
 	int		i;
 	int		j;

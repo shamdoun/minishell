@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:41:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/07 15:41:57 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 12:17:36 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void    ft_free(char **ptr, int last)
+void	ft_free(char **ptr, int last)
 {
-    while (--last >= 0)
-    {
-        free(*ptr);
-    }
-    free(ptr);
+	while (--last >= 0)
+		free(*ptr);
+	free(ptr);
 }
 
 void	ft_free_split(char **ptr)
@@ -36,7 +34,7 @@ void	ft_free_split(char **ptr)
 
 void	free_fail(t_parse_list **list)
 {
-	while((*list))
+	while ((*list))
 	{
 		free(*list);
 		(*list) = (*list)->next;

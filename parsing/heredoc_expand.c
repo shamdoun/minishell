@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc_expand.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/11 11:08:41 by aessalih          #+#    #+#             */
+/*   Updated: 2024/07/11 12:01:19 by aessalih         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 static int	ft_strlennl(char *s)
@@ -27,7 +39,7 @@ static char	*ft_strnnl(char *cmd)
 	return (s);
 }
 
-char	*ft_strwnl(char *s)
+static char	*ft_strwnl(char *s)
 {
 	char	*str;
 	int		i;
@@ -43,20 +55,6 @@ char	*ft_strwnl(char *s)
 	str[i] = '\n';
 	str[i + 1] = '\0';
 	return (str);
-}
-
-static int	ft_strlenex(char *cmd)
-{
-	int	len;
-	int	i;
-
-	len = 0;
-	i = 0;
-	while (cmd && cmd[i] && cmd[i] != '$')
-	{
-		(1) && (len++, i++);
-	}
-	return (len);
 }
 
 static char	*ft_put_str(char *cmd, int len)
@@ -85,14 +83,14 @@ char	*ft_expand_hd(char *cmd, t_shell *shell)
 		{
 			v.len = ft_strlenquotes(v.s + v.i);
 			v.ptr = ft_getname(v.s + v.i, shell, v.len);
-			(1) && (v.i += v.len + 1, v.str = ft_azejoin(&v.str, v.ptr));
+			(1) && (v.i += v.len + 1, v.str = ft_join(&v.str, v.ptr));
 			free(v.ptr);
 		}
 		if (v.s[v.i])
 		{
 			v.len = ft_strlenex(v.s + v.i);
 			v.ptr = ft_put_str(v.s + v.i, v.len);
-			v.str = ft_azejoin(&v.str, v.ptr);
+			v.str = ft_join(&v.str, v.ptr);
 			free(v.ptr);
 			(1) && (v.i += v.len - 1, v.len = 0, v.i++);
 		}

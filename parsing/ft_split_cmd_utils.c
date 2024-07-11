@@ -1,33 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_cmd_utils.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/11 11:14:33 by aessalih          #+#    #+#             */
+/*   Updated: 2024/07/11 14:19:06 by aessalih         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
-
-int	ft_isexpanded(char *str)
-{
-	char	*del;
-	int		i;
-
-	(1) && (i = 0, del = " \t'\".#!%%&()*+,-/:;<=>@[]\\^{}|~$");
-	if (!ft_strncmp(str, "$", 2))
-		return (0);
-	while (str[i])
-	{
-		if (str[i] == '"')
-		{
-			while (str[++i] && str[i] != '"')
-				if (str[i] == '$' && str[i + 1] && !ft_strchr(del, str[i + 1]))
-					return (1);
-		}
-		if (str[i] == '\'')
-			while (str[++i] && str[i] != '\'')
-				;
-		if (str[i] == '$' && !ft_strchr(del, str[i + 1]))
-			return (1);
-		if (str[i] == '$' && ft_strchr("\"'", str[i + 1]))
-			return (1);
-		if (str[i])
-			i++;
-	}
-	return (0);
-}
 
 int	ft_lenwithoutquotes(char *str)
 {
@@ -43,7 +26,7 @@ int	ft_lenwithoutquotes(char *str)
 		{
 			q = str[i];
 			i++;
-			while (str[i] != q)
+			while (str[i] && str[i] != q)
 				(1) && (i++, len++);
 			i++;
 		}
@@ -73,7 +56,7 @@ char	*remove_quotes(char *str)
 		if (str[i] == '\'' || str[i] == '"')
 		{
 			(1) && (q = str[i], i++);
-			while (str[i] != q)
+			while (str[i] && str[i] != q)
 				(1) && (ptr[j] = str[i], j++, i++);
 			i++;
 		}

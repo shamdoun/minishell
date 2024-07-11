@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_cmd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/11 11:15:58 by aessalih          #+#    #+#             */
+/*   Updated: 2024/07/11 12:44:39 by aessalih         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
@@ -8,20 +20,10 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 	char	*s;
 
 	(1) && (new = NULL, ptr = NULL, s = NULL, t_f = 0);
-	if (!strncmp(str, "<", 2) || !strncmp(str, ">", 2) || !strncmp(str, ">>", 3))
+	if (!strncmp(str, "<", 2) || !strncmp(str, ">", 2)
+		|| !strncmp(str, ">>", 3))
 	{
-		t_f = ft_isexpanded(name);
-		if (t_f)
-			ptr = ft_expand(name, shell);
-		else
-			ptr = name;
-		s = remove_quotes(ptr);
-		if (!strncmp(str, "<", 2))
-			new = ft_lstnew_file(s, 3, NULL);
-		else if (!strncmp(str, ">", 2))
-			new = ft_lstnew_file(s, 1, NULL);
-		else if (!strncmp(str, ">>", 3))
-			new = ft_lstnew_file(s, 2, NULL);
+		ft_createfile(name, shell, str, &new);
 	}
 	else if (!strncmp(str, "<<", 3))
 	{
@@ -101,14 +103,10 @@ static int	filltoken(t_commands *cmd, t_input *new, t_shell *shell)
 		else if (t == 0)
 			(1) && (t = 1, new->command_name = get_cmdname(str[i], shell));
 		else
-		{
 			(new)->args = put_arg((new)->args, str[i], shell);
-			//printf("%p\n", new->args);
-		}
 		i++;
 	}
-	free_array(str);
-	return (1);
+	return (free_array(str), 1);
 }
 
 t_input	*split_cmd(t_commands *cmd, t_shell *shell)
@@ -125,9 +123,8 @@ t_input	*split_cmd(t_commands *cmd, t_shell *shell)
 	{
 		new = ft_lstnew_input();
 		if (!new)
-			return NULL;
+			return (NULL);
 		check = filltoken(cmd, new, shell);
-
 		if (!check)
 			return (free_tokenize(tokenize), free_list(head), NULL);
 		ft_lst_add_input_back(&tokenize, new, shell);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_addspace.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/11 11:19:01 by aessalih          #+#    #+#             */
+/*   Updated: 2024/07/11 11:19:22 by aessalih         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	ft_cmdlenght(char *s)
@@ -74,7 +86,6 @@ void	add_space(t_commands *cmd)
 	while (cmd)
 	{
 		cmd->command = ft_strwithspace(cmd->command);
-		//ft_expand(cmd->command);
 		cmd = cmd->next;
 	}
 }

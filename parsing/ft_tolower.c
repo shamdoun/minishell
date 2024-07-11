@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 20:59:22 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/05/16 14:26:16 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:13:27 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ int	ft_tolower(int c)
 	return (c);
 }
 
-
-void ft_str_tolower(char *str)
+void	ft_str_tolower(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])

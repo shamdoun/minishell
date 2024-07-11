@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 20:47:04 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/11 12:45:21 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@
 # include <termios.h>
 # include "./gnl/get_next_line.h"
 
-
 // FILE*gfp;
-
 
 // static void *_6malloc(size_t size, int line, const char *file)
 // {
@@ -57,7 +55,7 @@
 	getcwd: cannot access parent directories:\
 		No such file or directory\n"
 # define EXPORT_ERR "export: not a valid identifier\n"
-# define	UNSET_ERR "minishell: unset: not a valid identifier\n"
+# define UNSET_ERR "minishell: unset: not a valid identifier\n"
 /*
 	<<: 4
 	>>: 2
@@ -119,25 +117,25 @@ typedef struct shell
 }	t_shell;
 
 // to handle norminette errors on split
-typedef struct  s_v
+typedef struct s_v
 {
-	char    **p;
-	char    q;
-	int     j;
-}   t_v;
+	char	**p;
+	char	q;
+	int		j;
+}	t_v;
 
 // handlig norminette on divide_cmd.c file
-typedef struct	s_var
+typedef struct s_var
 {
 	int		j;
 	char	q;
 	char	*cmd;
 }	t_var;
 
-typedef struct  s_parse_list
+typedef struct s_parse_list
 {
-	char					ch; // character
-	char					type; // type of character (special or normal character)
+	char					ch;
+	char					type;
 	struct s_parse_list		*next;
 }	t_parse_list;
 
@@ -170,7 +168,7 @@ typedef struct pipex
 	int	*processes;
 }	t_pipex;
 
-typedef struct	expandVar
+typedef struct expandVar
 {
 	char	*ptr;
 	char	*str;
@@ -178,7 +176,16 @@ typedef struct	expandVar
 	int		len;
 	int		i;
 	int		v;
-} t_expVar;
+}	t_expVar;
+
+typedef struct normalExpVar
+{
+	char	*p;
+	char	*s;
+	int		l;
+	int		i;
+	int		v;
+}	t_normalExpVar;
 
 void		ft_lst_add_input_back(t_input **lst, t_input *new, t_shell *shell);
 void		ft_lst_add_ad_back(t_a_data **lst, t_a_data *new);
@@ -195,12 +202,12 @@ void		execute_input(t_shell *shell);
 void		free_array(char **a);
 char		*ft_strdup1(char *s);
 // void        print_all_env_vars(char **env);
-int	        ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t		ft_strlen(const char *s);
 char		*ft_strjoin(char *s1, char *s2);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
-char		*ft_azejoin(char **s1, char *s2);
+char		*ft_join(char **s1, char *s2);
 char		*ft_strdup(const char *s1);
 char		**ft_split_1(char const *s, char c);
 void		*ft_memmove(void *dst, const void *src, size_t len );
@@ -208,11 +215,11 @@ void		*ft_memcpy(void *dst, const void *src, size_t n);
 int			ft_atoi(const char *str);
 t_file		*ft_lstnew_file(char *file_name, int type, char *delimeter);
 /*---------------ft_free.c---------------*/
-void   		ft_free(char **ptr, int last); //for split
-void		free_fail(t_parse_list **list); // for freeing linked list in ft_parsing file
-void		free_list(t_commands *list); // for freeing linked list that each node has command ( | )
-void		ft_free_split(char **ptr); // free split when it succeeds
-void		ft_free_inputlist(t_parse_list **input_list); // free first step on parsing
+void		ft_free(char **ptr, int last);
+void		free_fail(t_parse_list **list);
+void		free_list(t_commands *list);
+void		ft_free_split(char **ptr);
+void		ft_free_inputlist(t_parse_list **input_list);
 /*---------------ft_free.c---------------*/
 void		free_tokenize(t_input *token);
 /*---------------parsing/ft_parsing.c---------------*/
@@ -238,12 +245,16 @@ char		*remove_quotes(char *str);
 int			ft_isexpanded(char *str);
 /*---------------parsing/ft_split_cmdutils2.c---------------*/
 char		*get_cmdname(char *s, t_shell *shell);
+void		ft_createfile(char *name, t_shell *shell, char *str, t_file **new);
 /*---------------parsing/expand.c---------------*/
 char		*ft_expand(char *cmd, t_shell *shell);
 int			ft_strlenquotes(char *str);
 char		*ft_getname(char *str, t_shell *shell, int len);
 /*---------------parsing/heredoc_expand.c---------------*/
 char		*ft_expand_hd(char *cmd, t_shell *shell);
+/*---------------parsing/expand_utils.c---------------*/
+int			ft_strlenex(char *cmd);
+char		*ft_getname(char *str, t_shell *shell, int len);
 //for signals
 void		handle_ctrl_c_for_child(int sig);
 void		exit_shell(t_shell *shell, t_arg *status, int mode);
@@ -251,7 +262,7 @@ void		remove_env(t_arg *data, t_shell *shell, char ***env, int mode);
 void		ft_str_tolower(char *str);
 char		*ft_strrchr(const char *s, int c);
 void		update_shlvl(t_shell *shell);
-void		update_env_path_var(t_shell *shell, char *value, int  mode);
+void		update_env_path_var(t_shell *shell, char *value, int mode);
 char		*ft_itoa(int n);
 char		*ft_getenv(char *name, char **env);
 void		add_default_env(t_shell *shell);

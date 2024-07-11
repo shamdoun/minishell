@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/11 11:19:52 by aessalih          #+#    #+#             */
+/*   Updated: 2024/07/11 15:40:55 by aessalih         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-static int	ft_strlenex(char *cmd, int *v)
+static int	ft_strlenexin(char *cmd, int *v)
 {
 	int	len;
 	int	i;
 
-	len = 0;
-	i = 0;
+	(1) && (len = 0, i = 0);
 	while (cmd && cmd[i] && cmd[i] != '$')
 	{
 		if (*v == 0)
@@ -23,6 +34,9 @@ static int	ft_strlenex(char *cmd, int *v)
 			(1) && (len++, i++);
 		if (cmd[i] == '"')
 			*v = 0;
+		if (cmd[i] == '$' && cmd[i + 1]
+			&& ft_strchr(" \t'.#!%%&()*+,-/:;<=>@[]\\^{}|~", cmd[i + 1]))
+			(1) && (i++, len++);
 	}
 	return (len);
 }
@@ -78,74 +92,37 @@ int	ft_strlenquotes(char *str)
 	return (len);
 }
 
-char	*ft_getname(char *str, t_shell *shell, int len)
+static void	ft_joinoutex(t_normalExpVar *v, char *cmd)
 {
-	char	*ptr;
-	char	*s;
-	int		i;
-
-	i = 1;
-	if (str[i] == '?')
-		return (ptr = ft_itoa(ft_last_status(shell->all_status)));
-	if (str[i] >= '0' && str[i] <= '9')
-		return (NULL);
-	ptr = malloc(len + 1);
-	while (len)
-		(1) && (ptr[i - 1] = str[i], i++, --len);
-	ptr[i - 1] = '\0';
-	s = ft_getenv(ptr, shell->env);
-	if (!s && !ft_strncmp(ptr, "PATH", 4))
-		s = shell->r_path;
-	if (s == NULL)
-		return (NULL);
-	i = 0;
-	while (s && s[i])
-		i++;
-	(1) && (free(ptr), ptr = malloc(i + 1), i = 0);
-	while (s && s[i])
-		(1) && (ptr[i] = s[i], i++);
-	return (ptr[i] = '\0', ptr);
+	(*v).l = ft_strlenexin(cmd + (*v).i, &(*v).v);
+	(*v).p = ft_put_str(cmd + (*v).i, (*v).l, &(*v).v);
+	(*v).s = ft_join(&(*v).s, (*v).p);
+	free((*v).p);
+	(*v).i += (*v).l - 1;
+	(*v).l = 0;
+	(*v).i++;
 }
 
 char	*ft_expand(char *cmd, t_shell *shell)
 {
-	char	*ptr;
-	char	*str;
-	int		len;
-	int		i;
-	int		v;
+	t_normalExpVar	v;
 
-	i = 0;
-	v = 0;
-	str = NULL;
-	len = 0;
-	while (cmd[i])
+	(1) && (v.i = 0, v.v = 0, v.s = NULL, v.l = 0);
+	while (cmd[v.i])
 	{
-		if (cmd[i] == '$')
+		if (cmd[v.i] == '$')
 		{
-			len = ft_strlenquotes(cmd + i);
-			ptr = ft_getname(cmd + i, shell, len);
-			i += len + 1;
-			str = ft_azejoin(&str, ptr);
-			free(ptr);
+			v.l = ft_strlenquotes(cmd + v.i);
+			v.p = ft_getname(cmd + v.i, shell, v.l);
+			(1) && (v.i += v.l + 1, v.s = ft_join(&v.s, v.p));
+			free(v.p);
 		}
-		if (v == 0 && cmd[i] == '"')
-			v = 1;
-		else if (cmd[i] == '"')
-			v = 0;
-		// printf("cmd[i] = %c\n", cmd[i]);
-		if (cmd[i])
-		{
-			len = ft_strlenex(cmd + i, &v);
-			ptr = ft_put_str(cmd + i, len, &v);
-			str = ft_azejoin(&str, ptr);
-			free(ptr);
-			i += len - 1;
-			len = 0;
-			i++;
-		}
-		// printf("%s\n", str);
-		// printf("v = %d\n", v);
+		if (v.v == 0 && cmd[v.i] == '"')
+			v.v = 1;
+		else if (cmd[v.i] == '"')
+			v.v = 0;
+		if (cmd[v.i])
+			ft_joinoutex(&v, cmd);
 	}
-	return (str);
+	return (v.s);
 }
