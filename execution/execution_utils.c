@@ -6,13 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:39:56 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/09 22:38:20 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:50:57 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-extern volatile sig_atomic_t	g_signal;
+// extern volatile sig_atomic_t	g_signal;
 
 void	reset_resources(t_shell *shell, int rv, int o_in, int o_out)
 {

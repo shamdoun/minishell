@@ -6,13 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:10:36 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 21:31:53 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:50:38 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern volatile sig_atomic_t	g_signal;
+// extern volatile sig_atomic_t	g_signal;
 
 // void leaks()
 // {

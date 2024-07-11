@@ -6,13 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:04:07 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 20:15:45 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:51:43 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-extern volatile sig_atomic_t	g_signal;
+// extern volatile sig_atomic_t	g_signal;
 
 int	ft_last_status(t_status *list)
 {

@@ -6,13 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 21:14:47 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:51:09 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-extern volatile sig_atomic_t	g_signal;
+// extern volatile sig_atomic_t	g_signal;
 
 static int	open_here_doc_fd(int *fd, t_input *input)
 {

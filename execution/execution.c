@@ -6,13 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 16:54:48 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:49:18 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-extern volatile sig_atomic_t	g_signal;
+// extern volatile sig_atomic_t	g_signal;
 
 static void	run_options_path(t_shell *shell, char *command, int mode)
 {

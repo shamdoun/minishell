@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 21:23:05 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:53:37 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ typedef struct normalExpVar
 	int		v;
 }	t_normalExpVar;
 
+extern volatile sig_atomic_t	g_signal;
 void		ft_lst_add_input_back(t_input **lst, t_input *new, t_shell *shell);
 void		ft_lst_add_ad_back(t_a_data **lst, t_a_data *new);
 void		ft_lst_add_file_back(t_file **lst, t_file *new, t_shell *shell);

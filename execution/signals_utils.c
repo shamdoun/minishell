@@ -6,13 +6,13 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:52:09 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 18:39:23 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:51:27 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-volatile sig_atomic_t	g_signal;
+// volatile sig_atomic_t	g_signal;
 
 void	handle_ctrl_c_for_parent(int sig)
 {
