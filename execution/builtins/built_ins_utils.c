@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 09:16:37 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:23:21 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*extract_command(char *s, char **env_list, char *command)
 	while (env_list[i])
 	{
 		if (command_is_executable(env_list[i], s))
-			return (ft_strdup1(s));
+			return (ft_strdup(s));
 		tmp = ft_strjoin(env_list[i], "/");
 		if (!tmp)
 			return (NULL);

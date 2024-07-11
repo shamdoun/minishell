@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_expand.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:08:41 by aessalih          #+#    #+#             */
-/*   Updated: 2024/07/11 12:01:19 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:15:35 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*ft_strnnl(char *cmd)
 	int		i;
 
 	i = ft_strlennl(cmd);
-	s = malloc(i + 1);
+	s = ft_malloc(i + 1, 2);
 	i = 0;
 	while (cmd[i] && cmd[i] != '\n')
 	{

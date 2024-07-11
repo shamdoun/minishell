@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:10:36 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 11:05:37 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:31:53 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	check_execute(char *input, t_shell *minishell)
 	}
 	else
 	{
-		add_new_status(minishell, 2);
+		add_new_status(minishell, 258);
 		perror("syntax error\n");
 	}
 	add_history(input);
@@ -73,5 +73,5 @@ int	main(int argc, char **argv, char **env)
 	}
 	else
 		printf("failed\n");
-	return (0);
+	return (1);
 }

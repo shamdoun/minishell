@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 12:45:21 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:23:05 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,6 @@ size_t		ft_strlen(const char *str);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		execute_input(t_shell *shell);
 void		free_array(char **a);
-char		*ft_strdup1(char *s);
 // void        print_all_env_vars(char **env);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t		ft_strlen(const char *s);
@@ -363,4 +362,7 @@ void		error_arg_status_update(char *error,
 				char *arg, t_shell *shell, int s);
 void		ft_reset_terminal(int flag);
 void		fork_error(void);
+int			incorrect_syntax(char *s);
+int			bin_exists(char *s);
+
 #endif

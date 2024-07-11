@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 17:23:22 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:23:42 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 			(signal(SIGINT, SIG_IGN), signal(SIGQUIT, SIG_IGN));
 		child = fork();
 		if (child < 0)
-			return (fork_error());
+			fork_error();
 		if (child == 0)
 			run_child(cmd_path, args_list, shell);
 		waitpid(child, &status, 0);
@@ -96,24 +96,25 @@ void	execute_other_commands(t_shell *shell, int mode)
 	char	**args_list;
 	char	*cmd_path;
 	int		c;
+	char	*cmd_name;
 
+	cmd_name = shell->all_input->command_name;
 	set_args_list(shell, &args_list);
-	cmd_path = find_command_path(shell->all_input->command_name, shell);
+	cmd_path = find_command_path(cmd_name, shell);
 	c = execution_case(cmd_path, shell);
-	if (c == 1 && ft_strncmp(shell->all_input->command_name, "./minishell", 11))
-		make_file_executable(&args_list,
-			shell->all_input->command_name, &cmd_path);
+	if (c == 1 && ft_strncmp(cmd_name, "./minishell", 11))
+		make_file_executable(&args_list, cmd_name, &cmd_path);
 	if (c == 2 || (c == 3
-			&& !ft_strncmp(shell->all_input->command_name, "./minishell", 11)))
-		cmd_path = ft_strdup1(shell->all_input->command_name);
-	if (c == 3 && ft_strncmp(shell->all_input->command_name, "./minishell", 11))
-		make_file_executable(&args_list,
-			shell->all_input->command_name, &cmd_path);
+			&& !ft_strncmp(cmd_name, "./minishell", 11)))
+		cmd_path = ft_strdup(cmd_name);
+	if (c == 3 && ft_strncmp(cmd_name, "./minishell", 11))
+		make_file_executable(&args_list, cmd_name, &cmd_path);
 	if (c == 4 || c == 5)
-		cmd_path = ft_strdup1(shell->all_input->command_name);
+		cmd_path = ft_strdup(cmd_name);
+	if (c == 6)
+		cmd_path = NULL;
 	if (cmd_path)
 		run_binary(cmd_path, mode, args_list, shell);
 	else
-		error_arg_status_update(NO_COMMAND,
-			shell->all_input->command_name, shell, 127);
+		error_arg_status_update(NO_COMMAND, cmd_name, shell, 127);
 }

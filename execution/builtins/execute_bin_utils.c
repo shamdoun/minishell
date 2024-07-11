@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:26:31 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 12:24:58 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:09:05 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ int	execution_case(char *cmd_path, t_shell *shell)
 		return (4);
 	else if (!cmd_path
 		&& (access(shell->all_input->command_name, F_OK | X_OK) == 0)
-		&& (*shell->all_input->command_name == '/'))
+		&& bin_exists(shell->all_input->command_name))
 		return (5);
+	else if (cmd_path && incorrect_syntax(cmd_path))
+		return (6);
 	return (0);
 }
