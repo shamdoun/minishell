@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:39:56 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 21:50:57 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/13 23:12:22 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ void	reset_resources(t_shell *shell, int rv, int o_in, int o_out)
 	dup2(o_out, STDOUT_FILENO);
 	close(o_in);
 	close(o_out);
+	while (shell->all_input)
+	{
+		if (shell->all_input->here_doc)
+			close(shell->all_input->here_doc);
+		shell->all_input = shell->all_input->next;
+	}
 }
 
 int	open_output_files(t_shell *shell)
@@ -52,7 +58,7 @@ int	open_files(t_shell *shell)
 	{
 		if (shell->all_input->all_files->type >= 3 && open_input_files(shell))
 			return (1);
-		if (open_output_files(shell))
+		if (shell->all_input->all_files->type < 3 && open_output_files(shell))
 			return (1);
 		shell->all_input->all_files = shell->all_input->all_files->next;
 	}

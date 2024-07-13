@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:25:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 09:21:21 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/13 20:23:45 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ static void	print_message(t_arg *split, bool *new_line)
 	{
 		if (split->arg)
 		{
-			printf("%s", split->arg);
+			ft_putstr_fd(split->arg, 1);
 			if (split->next)
-				printf(" ");
+				ft_putstr_fd(" ", 1);
 		}
 		split = split->next;
 	}

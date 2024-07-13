@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 21:51:09 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/13 23:06:42 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,32 @@ int	handle_here_docs(t_shell *shell)
 	return (0);
 }
 
+int last_hd(t_shell *shell)
+{
+	t_file *head;
+	
+	head = shell->all_input->all_files;
+	if (head->type == 4 && !head->next && (shell->all_input->in_file != shell->all_input->here_doc))
+		return (1);
+	while (head)
+	{
+		if (head->type == 4 && (shell->all_input->in_file == shell->all_input->here_doc))
+			return (0);
+		head = head->next;
+	}
+	return (1);
+}
+
+
 int	open_input_files(t_shell *shell)
 {
-	if (shell->all_input->all_files->type != 4 && shell->all_input->in_file)
+	if (shell->all_input->in_file && last_hd(shell))
 		close(shell->all_input->in_file);
 	if (shell->all_input->all_files->type == 3)
 		shell->all_input->in_file
 			= open(shell->all_input->all_files->file_name, O_RDONLY);
-	if (shell->all_input->all_files->type == 4)
+	if (shell->all_input->all_files->type == 4
+		&& (!shell->all_input->command_name || !ft_strncmp("cat", shell->all_input->command_name, 3)))
 		shell->all_input->in_file = shell->all_input->here_doc;
 	if (shell->all_input->in_file < 0)
 	{
@@ -110,7 +128,7 @@ int	open_input_files(t_shell *shell)
 
 int	redirect_streams(t_shell *shell)
 {
-	if (shell->all_input->in_file)
+	if (shell->all_input->in_file > 0)
 		if (dup2(shell->all_input->in_file, STDIN_FILENO) == -1)
 			add_new_status(shell, 1);
 	if (shell->all_input->out_file > 1)

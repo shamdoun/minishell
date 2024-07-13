@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 21:49:18 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/13 22:57:09 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,11 @@ void	run_built_ins(t_shell *shell, int mode)
 	if (redirect_streams(shell))
 		return ;
 	if (!shell->all_input->command_name)
+	{
+		close(shell->all_input->in_file);
+		close(shell->all_input->out_file);
 		return ;
+	}
 	run_options(shell, shell->all_input->command_name, mode);
 	if (shell->all_input->in_file)
 		close(shell->all_input->in_file);
