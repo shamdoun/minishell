@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:09:31 by aessalih          #+#    #+#             */
-/*   Updated: 2024/07/11 12:10:27 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/14 09:54:56 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_isexpanded(char *str)
 {
 	char	*del;
 	int		i;
-
+\
 	(1) && (i = 0, del = " \t'\".#!%%&()*+,-/:;<=>@[]\\^{}|~$");
 	if (!ft_strncmp(str, "$", 2))
 		return (0);
@@ -45,9 +45,9 @@ int	ft_isexpanded(char *str)
 		if (str[i] == '\'')
 			while (str[++i] && str[i] != '\'')
 				;
-		if (str[i] == '$' && !ft_strchr(del, str[i + 1]))
+		if (str[i] == '$' && str[i + 1] && !ft_strchr(del, str[i + 1]))
 			return (1);
-		if (str[i] == '$' && ft_strchr("\"'", str[i + 1]))
+		if (str[i] == '$' && str[i + 1] && ft_strchr("\"'", str[i + 1]))
 			return (1);
 		if (str[i])
 			i++;

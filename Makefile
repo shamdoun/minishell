@@ -31,7 +31,7 @@ SRC= ./external_functions/ft_free.c ./external_functions/ft_split.c ./parsing/ft
 	./execution/builtins/built_ins_utils2.c ./parsing/ft_tolower.c ./parsing/ft_strrchr.c ./parsing/ft_itoa.c parsing/expand.c \
 	parsing/ft_splitcmdutils2.c ./external_functions/ft_strcpy.c ./external_functions/ft_putstr_fd.c ./external_functions/ft_putchar_fd.c ./external_functions/ft_putendl_fd.c ./external_functions/ft_malloc.c ./external_functions/ft_bzero.c \
 	./external_functions/ft_isalpha.c ./external_functions/ft_isdigit.c ./external_functions/ft_substr.c ./external_functions/ft_strtrim.c ./execution/execution_utils.c ./execution/execution_utils_2.c \
-	./execution/signals_utils.c  ./execution/builtins/export_utils.c ./execution/builtins/errors.c ./execution/builtins/execute_bin_utils.c init_utils.c parsing/expand_utils.c
+	./execution/signals_utils.c  ./execution/builtins/export_utils.c ./execution/builtins/errors.c ./execution/builtins/execute_bin_utils.c init_utils.c parsing/expand_utils.c parsing/delimiter_utils.c
 
 CC= cc
 Flags= -Wall -Werror -Wextra -g

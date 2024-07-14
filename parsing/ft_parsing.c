@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:18:45 by aessalih          #+#    #+#             */
-/*   Updated: 2024/07/11 11:18:47 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:24:22 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,22 @@
 static int	check_syntax(char *str)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	while (str[i])
 		i++;
 	while (i > 0 && (str[i - 1] == ' ' || str[i - 1] == '\t'))
 		i--;
-	if (str[i - 1] == '<' || str[i - 1] == '>')
+	if (str[i - 1] == '<' || str[i - 1] == '>' || str[i - 1] == '|')
+		return (1);
+	i = check_pipe(str);
+	if (i)
+		return (1);
+	while (str[j] && (str[j] == '\t' || str[j] == ' '))
+		j++;
+	if (str[j] == '|')
 		return (1);
 	return (0);
 }

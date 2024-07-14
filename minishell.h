@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 21:53:37 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:24:58 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -365,5 +365,7 @@ void		ft_reset_terminal(int flag);
 void		fork_error(void);
 int			incorrect_syntax(char *s);
 int			bin_exists(char *s);
+char		*cut_exp(char *str);
+int			check_pipe(char *str);
 
 #endif

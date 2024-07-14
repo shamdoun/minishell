@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:15:58 by aessalih          #+#    #+#             */
-/*   Updated: 2024/07/11 12:44:39 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:04:36 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 	}
 	else if (!strncmp(str, "<<", 3))
 	{
-		t_f = ft_strlen(name);
-		ptr = remove_quotes(name);
+		ptr = cut_exp(name);
+		ptr = remove_quotes(ptr);
 		new = ft_lstnew_file(NULL, 4, ptr);
-		if (t_f != ft_strlen(ptr))
+		if (ft_strlen(name) == ft_strlen(ptr))
 			new->hd_expand = 1;
 	}
 	if (!new)

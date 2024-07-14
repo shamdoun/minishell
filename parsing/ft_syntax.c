@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:13:45 by aessalih          #+#    #+#             */
-/*   Updated: 2024/07/11 11:13:47 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:25:25 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,26 @@ int	check_operator(char *s)
 				return (1);
 		}
 		s++;
+	}
+	return (0);
+}
+
+int	check_pipe(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '|')
+		{
+			i += 1;
+			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+				i++;
+			if (str[i] == '|')
+				return (1);
+		}
+		i++;
 	}
 	return (0);
 }
