@@ -34,7 +34,7 @@ SRC= ./external_functions/ft_free.c ./external_functions/ft_split.c ./parsing/ft
 	./execution/signals_utils.c  ./execution/builtins/export_utils.c ./execution/builtins/errors.c ./execution/builtins/execute_bin_utils.c init_utils.c parsing/expand_utils.c parsing/delimiter_utils.c
 
 CC= cc
-Flags= -Wall -Werror -Wextra -g
+Flags=
 
 O_SRC=$(SRC:.c=.o)
 
@@ -46,7 +46,7 @@ NAME= minishell
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(Flags) -fsanitize=address -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
+	$(CC) $(Flags) -fsanitize=address -g -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
 
 clean:
 	rm -f $(O_SRC)

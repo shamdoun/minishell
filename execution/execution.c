@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/13 22:57:09 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:27:18 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	run_built_ins(t_shell *shell, int mode)
 
 void	execute_input(t_shell *shell)
 {
+
 	int	o_in;
 	int	o_out;
 	int	rv;

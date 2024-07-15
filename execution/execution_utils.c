@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:39:56 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/13 23:12:22 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:18:37 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,24 @@ int	run_special_cases(t_shell *shell, char *command)
 void	update_args(t_shell *shell)
 {
 	char	**test;
+	t_arg	*head;
 	int		i;
 
 	i = 0;
+	head = shell->all_input->args;
+	if (!shell->all_input->command_name && shell->all_input->args)
+	{
+		while (head)
+		{
+			if (head->arg)
+			{
+				shell->all_input->command_name = head->arg;
+				head->arg = NULL;
+				break ;
+			}
+			head = head->next;	
+		}
+	}
 	test = ft_split_1(shell->all_input->command_name, ' ');
 	while (test && test[i])
 		i++;

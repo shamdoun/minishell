@@ -1,0 +1,2527 @@
+[1;35m
+	███╗░░░███╗░█████╗░███╗░░██╗██████╗░░█████╗░████████╗░█████╗░██████╗░██╗░░░██╗
+	████╗░████║██╔══██╗████╗░██║██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝
+	██╔████╔██║███████║██╔██╗██║██║░░██║███████║░░░██║░░░██║░░██║██████╔╝░╚████╔╝░
+	██║╚██╔╝██║██╔══██║██║╚████║██║░░██║██╔══██║░░░██║░░░██║░░██║██╔══██╗░░╚██╔╝░░
+	██║░╚═╝░██║██║░░██║██║░╚███║██████╔╝██║░░██║░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░
+	╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░[0m 
+
+[0;36m
+█▄▄ █░█ █ █░░ ▀█▀ █▀   █ █▄░█
+█▄█ █▄█ █ █▄▄ ░█░ ▄█   █ █░▀█[0m 
+	
+[hello world
+] 0 
+[hello world
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 1: ✅
+[hello world
+] 0 
+[hello world
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 2: ✅
+[hello world
+] 0 
+[hello world
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 3: ✅
+[helloworld
+] 0 
+[helloworld
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 4: ✅
+[helloworld
+] 0 
+[helloworld
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 5: ✅
+[
+] 0 
+[
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 6: ✅
+[/private/tmp/tmp
+] 0 
+[/private/tmp/tmp
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 7: ✅
+[$PWD
+] 0 
+[$PWD
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 8: ✅
+[aspas ->'
+] 0 
+[aspas ->'
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 9: ✅
+[aspas -> ' 
+] 0 
+[aspas -> ' 
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 10: ✅
+[aspas ->"
+] 0 
+[aspas ->"
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 11: ✅
+[aspas -> " 
+] 0 
+[aspas -> " 
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 12: ✅
+[> >> < * ? [ ] | ; [ ] || && ( ) & # $ \ <<
+] 0 
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mEcho and Expand 13 ❌ [0mecho "> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<"[0;31m
+===>Expeced return -- value: 0
+> >> < * ? [ ] | ; [ ] || && ( ) & # $ \ <<
+
+===>Got return -- value: 2
+[0m
+[> >> < * ? [ ] | ; [ ] || && ( ) & # $ \ <<
+] 0 
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mEcho and Expand 14 ❌ [0mecho '> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<'[0;31m
+===>Expeced return -- value: 0
+> >> < * ? [ ] | ; [ ] || && ( ) & # $ \ <<
+
+===>Got return -- value: 2
+[0m
+[exit_code ->0 user ->shamdoun home -> /Users/shamdoun
+] 0 
+[exit_code ->0 user ->shamdoun home -> /Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 15: ✅
+[exit_code ->$? user ->$USER home -> $HOME
+] 0 
+[exit_code ->$? user ->$USER home -> $HOME
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 16: ✅
+[$
+] 0 
+[$
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 17: ✅
+[$
+] 0 
+[$
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 18: ✅
+[$
+] 0 
+[$
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 19: ✅
+[0
+] 0 
+[0
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 20: ✅
+[0HELLO
+] 0 
+[0
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mEcho and Expand 21 ❌ [0mecho $?HELLO[0;31m
+===>Expeced return -- value: 0
+0HELLO
+
+===>Got return -- value: 0
+0
+[0m
+[USER
+] 0 
+[USER
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 22: ✅
+[USER
+] 0 
+[USER
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 23: ✅
+[23
+] 0 
+[23
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 24: ✅
+[_abc
+] 0 
+[_abc
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 25: ✅
+[$+#####
+] 0 
+[$+#####
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 26: ✅
+[@@@@@
+] 0 
+[@@@@@
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 27: ✅
+[$'USER'
+] 0 
+[$'USER'
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 28: ✅
+["$"USER""
+] 0 
+["$"USER""
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 29: ✅
+[/Users/shamdoun
+] 0 
+[/Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 30: ✅
+[/Users/shamdoun/Users/shamdoun
+] 0 
+[/Users/shamdoun/Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 31: ✅
+[/Users/shamdoun$/Users/shamdoun
+] 0 
+[/Users/shamdoun/Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mEcho and Expand 32 ❌ [0mecho "$HOME""$""$HOME"[0;31m
+===>Expeced return -- value: 0
+/Users/shamdoun$/Users/shamdoun
+
+===>Got return -- value: 0
+/Users/shamdoun/Users/shamdoun
+[0m
+[/Users/shamdoun$/Users/shamdoun$
+] 0 
+[/Users/shamdoun/Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mEcho and Expand 33 ❌ [0mecho "$HOME""$""$HOME"$[0;31m
+===>Expeced return -- value: 0
+/Users/shamdoun$/Users/shamdoun$
+
+===>Got return -- value: 0
+/Users/shamdoun/Users/shamdoun
+[0m
+[/Users/shamdoun$/Users/shamdoun$
+] 0 
+[/Users/shamdoun/Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mEcho and Expand 34 ❌ [0mecho $"$HOME""$""$HOME"$[0;31m
+===>Expeced return -- value: 0
+/Users/shamdoun$/Users/shamdoun$
+
+===>Got return -- value: 0
+/Users/shamdoun/Users/shamdoun
+[0m
+[/Users/shamdoun
+] 0 
+[/Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 35: ✅
+[HOME
+] 0 
+[HOME
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 36: ✅
+[/Users/shamdounshamdoun/Users/shamdoun
+] 0 
+[/Users/shamdounshamdoun/Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 37: ✅
+[/Users/shamdounshamdoun/Users/shamdoun
+] 0 
+[/Users/shamdounshamdoun/Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 38: ✅
+[/Users/shamdounshamdoun/Users/shamdoun
+] 0 
+[/Users/shamdounshamdoun/Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 39: ✅
+[$HOMEshamdoun/Users/shamdoun
+] 0 
+[$HOMEshamdoun/Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 40: ✅
+[HOMEshamdoun/Users/shamdoun
+] 0 
+[HOMEshamdoun/Users/shamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 41: ✅
+[/Users/shamdoun======
+] 0 
+[/Users/shamdoun======
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 42: ✅
+[$HOME======
+] 0 
+[$HOME======
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 43: ✅
+[shamdoun""
+] 0 
+[shamdoun""
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 44: ✅
+[shamdoun"",,shamdoun$USER_____shamdoun==____
+] 0 
+[shamdoun"",,shamdoun$USER_____shamdoun==____
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 45: ✅
+[shamdounshamdounshamdoun==="
+] 0 
+[shamdounshamdounshamdoun==="
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 46: ✅
+[shamdounshamdounshamdoun==="
+] 0 
+[shamdounshamdounshamdoun==="
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 47: ✅
+[$ls
+] 0 
+[$ls
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 48: ✅
+[ls
+] 0 
+[ls
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 49: ✅
+[0
+] 0 
+[0
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 50: ✅
+[minishell
+outfiles
+] 0 
+[minishell
+outfiles
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 51: ✅
+[shamdounl
+] 0 
+[shamdounl
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 54: ✅
+[shamdoun$$
+] 0 
+[shamdoun$
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mEcho and Expand 55 ❌ [0mecho $USER''$l'$'$[0;31m
+===>Expeced return -- value: 0
+shamdoun$$
+
+===>Got return -- value: 0
+shamdoun$
+[0m
+[shamdoun$$
+] 0 
+[shamdoun$
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mEcho and Expand 56 ❌ [0mecho $USER''$l'$'$[0;31m
+===>Expeced return -- value: 0
+shamdoun$$
+
+===>Got return -- value: 0
+shamdoun$
+[0m
+[shamdoun======
+] 0 
+[shamdoun======
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 57: ✅
+[$======
+] 0 
+[$======
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 58: ✅
+[] 2 /bin/sh: -c: line 0: unexpected EOF while looking for matching `"'
+/bin/sh: -c: line 1: syntax error: unexpected end of file
+
+[] 2 /bin/sh: -c: line 0: unexpected EOF while looking for matching `"'
+/bin/sh: -c: line 1: syntax error: unexpected end of file
+
+Echo and Expand 59: ✅
+[$=====
+] 0 
+[$=====
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 60: ✅
+[] 127 bash: line 1: shamdoun\: command not found
+
+[] 127 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: shamdoun\\: command not found
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 61: ✅
+[shamdounshamdoun
+] 0 
+[shamdounshamdoun
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Echo and Expand 62: ✅
+[/private/tmp/tmp
+] 0 
+[/private/tmp/tmp
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+pwd 1: ✅
+[/private/tmp/tmp
+] 0 
+[/private/tmp/tmp
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+pwd 2: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 1: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 2: ✅
+[] 1 bash: line 1: export: `A-': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+export: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 3: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 4: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 5: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 6: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 7: ✅
+[] 1 bash: line 1: export: `a++=': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+export: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 8: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 9: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 10: ✅
+[] 1 bash: line 1: export: `5asd=': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+export: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 11: ✅
+[] 1 bash: line 1: export: `5asd_+=': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+export: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 12: ✅
+[] 1 bash: line 1: export: `+HELLO=123': not a valid identifier
+bash: line 1: export: `+A': not a valid identifier
+bash: line 1: export: `123': not a valid identifier
+bash: line 1: export: `55': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+export: not a valid identifier
+export: not a valid identifier
+export: not a valid identifier
+export: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 13: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 14: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 15: ✅
+[] 1 bash: line 1: export: `HELLO-=123': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+export: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 16: ✅
+[] 1 bash: line 1: export: `=': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+export: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 17: ✅
+[] 1 bash: line 1: export: `123': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+export: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 18: ✅
+[
+] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mExport 19 ❌ [0mexport holola | echo $holola[0;31m
+===>Expeced return -- value: 0
+
+
+===>Got return -- value: 0
+[0m
+[] 1 bash: line 1: export: `a++=a': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+export: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 21: ✅
+[] 1 bash: line 1: export: `9k=a': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+export: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 22: ✅
+[] 1 bash: line 1: export: `=sdfsf': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+export: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Export 23: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 1: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 2: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 3: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 4: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 5: ✅
+[] 1 bash: line 1: unset: `++': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: unset: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 6: ✅
+[] 1 bash: line 1: unset: `+=gwllo': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: unset: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 7: ✅
+[] 1 bash: line 1: unset: `3gwllo': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: unset: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 8: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 9: ✅
+[
+] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mUnset 10 ❌ [0munset pwd | echo $pwd[0;31m
+===>Expeced return -- value: 0
+
+
+===>Got return -- value: 0
+[0m
+[
+] 0 bash: line 1: unset: `pwd'': not a valid identifier
+
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mUnset 11 ❌ [0munset pwd"'" | echo $pwd[0;31m
+===>Expeced return -- value: 0
+
+
+===>Got return -- value: 0
+[0m
+[] 1 bash: line 1: unset: `hello+=': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: unset: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 13: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 14: ✅
+[] 1 bash: line 1: unset: `': not a valid identifier
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: unset: not a valid identifier
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 15: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Unset 16: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+cd 1: ✅
+[] 1 bash: line 1: cd: ...: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: cd: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+cd 2: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+cd 3: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+cd 4: ✅
+[] 0 
+[] 134 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==99600==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x000100ee55bc bp 0x00016ef22f30 sp 0x00016ef22ed0 T0)
+==99600==The signal is caused by a READ memory access.
+==99600==Hint: address points to the zero page.
+    #0 0x100ee55bc in ft_strncmp+0x58 (minishell:arm64+0x1000095bc)
+    #1 0x100ee1a88 in run_options_path+0x110 (minishell:arm64+0x100005a88)
+    #2 0x100ee1808 in run_options+0xb4 (minishell:arm64+0x100005808)
+    #3 0x100ee16bc in run_built_ins+0x108 (minishell:arm64+0x1000056bc)
+    #4 0x100ee1900 in execute_input+0x8c (minishell:arm64+0x100005900)
+    #5 0x100ee11f4 in check_execute+0xfc (minishell:arm64+0x1000051f4)
+    #6 0x100ee10dc in main+0xa0 (minishell:arm64+0x1000050dc)
+    #7 0x19548e0dc  (<unknown module>)
+
+==99600==Register values:
+ x[0] = 0x0000000000000000   x[1] = 0x0000000100eebb2f   x[2] = 0x0000000000000002   x[3] = 0x0000000103c0e640  
+ x[4] = 0x0000000103c0e640   x[5] = 0x0000000000000001   x[6] = 0x000000016e728000   x[7] = 0x0000000000000001  
+ x[8] = 0x0000000000000000   x[9] = 0x0000000000000000  x[10] = 0x0000000000000000  x[11] = 0x000000700001ffff  
+x[12] = 0x0000000000000000  x[13] = 0xbf30fdc4c368e870  x[14] = 0x0000000000007e01  x[15] = 0x0000000000000006  
+x[16] = 0x0000000101840a98  x[17] = 0x00000001018800b8  x[18] = 0x0000000000000000  x[19] = 0x00000001012fdb90  
+x[20] = 0x0000000100ee103c  x[21] = 0x000000016ef23080  x[22] = 0x00000001012fd910  x[23] = 0x000000016ef23100  
+x[24] = 0x000000016ef23140  x[25] = 0x000000019550231b  x[26] = 0x0000000000000000  x[27] = 0x0000000000000000  
+x[28] = 0x0000000000000000     fp = 0x000000016ef22f30     lr = 0x0000000100ee3274     sp = 0x000000016ef22ed0  
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (minishell:arm64+0x1000095bc) in ft_strncmp+0x58
+==99600==ABORTING
+/bin/sh: line 1: 99599 Done                    echo cd \$OLDPWD
+     99600 Abort trap: 6           | ./minishell
+
+[1;31mcd 5 ❌ [0mcd $OLDPWD[0;31m
+===>Expeced return -- value: 0
+
+===>Got return -- value: 134
+[0m
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+cd 6: ✅
+[] 0 
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: cd: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mcd 7 ❌ [0mcd $""[0;31m
+===>Expeced return -- value: 0
+
+===>Got return -- value: 1
+[0m
+[] 0 
+[] 134 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==99619==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x00010473d5bc bp 0x00016b6caf30 sp 0x00016b6caed0 T0)
+==99619==The signal is caused by a READ memory access.
+==99619==Hint: address points to the zero page.
+    #0 0x10473d5bc in ft_strncmp+0x58 (minishell:arm64+0x1000095bc)
+    #1 0x104739a88 in run_options_path+0x110 (minishell:arm64+0x100005a88)
+    #2 0x104739808 in run_options+0xb4 (minishell:arm64+0x100005808)
+    #3 0x1047396bc in run_built_ins+0x108 (minishell:arm64+0x1000056bc)
+    #4 0x104739900 in execute_input+0x8c (minishell:arm64+0x100005900)
+    #5 0x1047391f4 in check_execute+0xfc (minishell:arm64+0x1000051f4)
+    #6 0x1047390dc in main+0xa0 (minishell:arm64+0x1000050dc)
+    #7 0x19548e0dc  (<unknown module>)
+
+==99619==Register values:
+ x[0] = 0x0000000000000000   x[1] = 0x0000000104743b2f   x[2] = 0x0000000000000002   x[3] = 0x000000010740e640  
+ x[4] = 0x000000010740e640   x[5] = 0x0000000000000001   x[6] = 0x000000016aed0000   x[7] = 0x0000000000000001  
+ x[8] = 0x0000000000000000   x[9] = 0x0000000000000000  x[10] = 0x0000000000000000  x[11] = 0x000000700001ffff  
+x[12] = 0x0000000000000000  x[13] = 0xbf30fdc4c368e870  x[14] = 0x0000000000007e01  x[15] = 0x0000000000000006  
+x[16] = 0x0000000105098a98  x[17] = 0x00000001050d80b8  x[18] = 0x0000000000000000  x[19] = 0x0000000104b55b90  
+x[20] = 0x000000010473903c  x[21] = 0x000000016b6cb080  x[22] = 0x0000000104b55910  x[23] = 0x000000016b6cb100  
+x[24] = 0x000000016b6cb140  x[25] = 0x000000019550231b  x[26] = 0x0000000000000000  x[27] = 0x0000000000000000  
+x[28] = 0x0000000000000000     fp = 0x000000016b6caf30     lr = 0x000000010473b274     sp = 0x000000016b6caed0  
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (minishell:arm64+0x1000095bc) in ft_strncmp+0x58
+==99619==ABORTING
+/bin/sh: line 1: 99618 Done                    echo cd \$sdfdsf
+     99619 Abort trap: 6           | ./minishell
+
+[1;31mcd 8 ❌ [0mcd $sdfdsf[0;31m
+===>Expeced return -- value: 0
+
+===>Got return -- value: 134
+[0m
+[] 1 bash: line 1: cd: /testtt: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: cd: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+cd 9: ✅
+[] 1 bash: line 1: cd: /exam: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: cd: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+cd 10: ✅
+[HOMEBREW_REPOSITORY=/opt/homebrew
+HOME=/Users/shamdoun
+HOMEBREW_PREFIX=/opt/homebrew
+HOMEBREW_CELLAR=/opt/homebrew/Cellar
+] 0 
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mEnv 1 ❌ [0menv | grep ^HOME[0;31m
+===>Expeced return -- value: 0
+HOMEBREW_REPOSITORY=/opt/homebrew
+HOME=/Users/shamdoun
+HOMEBREW_PREFIX=/opt/homebrew
+HOMEBREW_CELLAR=/opt/homebrew/Cellar
+
+===>Got return -- value: 1
+[0m
+[HOMEBREW_REPOSITORY=/opt/homebrew
+HOME=/Users/shamdoun
+HOMEBREW_PREFIX=/opt/homebrew
+HOMEBREW_CELLAR=/opt/homebrew/Cellar
+] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mEnv 2 ❌ [0menv | grep ^HOME | cat[0;31m
+===>Expeced return -- value: 0
+HOMEBREW_REPOSITORY=/opt/homebrew
+HOME=/Users/shamdoun
+HOMEBREW_PREFIX=/opt/homebrew
+HOMEBREW_CELLAR=/opt/homebrew/Cellar
+
+===>Got return -- value: 0
+[0m
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 1: ✅
+[] 123 
+[] 123 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 2: ✅
+[0
+] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mExit 3 ❌ [0mexit 123 | echo $?[0;31m
+===>Expeced return -- value: 0
+0
+
+===>Got return -- value: 0
+[0m
+[] 42 
+[] 42 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 4: ✅
+[] 100 
+[] 100 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 5: ✅
+[] 100 
+[] 100 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 6: ✅
+[] 100 
+[] 100 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 7: ✅
+[] 156 
+[] 156 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 8: ✅
+[] 156 
+[] 156 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 9: ✅
+[] 156 
+[] 156 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 10: ✅
+[] 255 bash: line 1: exit: hello: numeric argument required
+
+[] 255 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: exit: hello: numeric argument required
+
+Exit 11: ✅
+[] 1 bash: line 1: exit: too many arguments
+
+[exit
+] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: exit: too many arguments
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mExit 12 ❌ [0mexit 42 world[0;31m
+===>Expeced return -- value: 1
+
+===>Got return -- value: 1
+exit
+[0m
+[hello
+] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mExit 13 ❌ [0mexit 42  | echo hello[0;31m
+===>Expeced return -- value: 0
+hello
+
+===>Got return -- value: 0
+[0m
+[] 1 
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Exit 14: ✅
+[] 42 
+[] 42 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 15: ✅
+[] 255 bash: line 1: exit: 88k: numeric argument required
+
+[] 255 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: exit: 88k: numeric argument required
+
+Exit 16: ✅
+[] 1 bash: line 1: exit: too many arguments
+
+[exit
+] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: exit: too many arguments
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mExit 17 ❌ [0mexit 88 88[0;31m
+===>Expeced return -- value: 1
+
+===>Got return -- value: 1
+exit
+[0m
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 19: ✅
+[] 255 bash: line 1: exit: -9223372036854775809: numeric argument required
+
+[] 255 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: exit: -9223372036854775809: numeric argument required
+
+Exit 20: ✅
+[] 255 
+[] 255 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+
+Exit 21: ✅
+[] 255 bash: line 1: exit: +9223372036854775808: numeric argument required
+
+[] 255 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: exit: +9223372036854775808: numeric argument required
+
+Exit 22: ✅
+[] 255 bash: line 1: exit: 989098896876657657657865: numeric argument required
+
+[] 255 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: exit: 989098896876657657657865: numeric argument required
+
+Exit 23: ✅
+[] 255 bash: line 1: exit: 989098896876657657657865564564654654646546: numeric argument required
+
+[] 255 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: exit: 989098896876657657657865564564654654646546: numeric argument required
+
+Exit 24: ✅
+[0;36m
+█▀█ █▀▀ █▀▄ █ █▀█ █▀▀ █▀▀ ▀█▀ █ █▀█ █▄░█
+█▀▄ ██▄ █▄▀ █ █▀▄ ██▄ █▄▄ ░█░ █ █▄█ █░▀█[0m 
+
+[] 1 bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 1: ✅
+[] 1 bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 2: ✅
+[] 1 bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 3: ✅
+[] 1 bash: line 1: ./test_files/infile_big: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile_big: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 4: ✅
+[] 1 bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 5: ✅
+[] 1 bash: line 1: ./test_files/file name with spaces: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/file name with spaces: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 6: ✅
+[] 1 bash: line 1: ./test_files/infile_big: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile_big: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 7: ✅
+[] 1 bash: line 1: 12345: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: 12345: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 8: ✅
+[] 1 bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 9: ✅
+[] 1 bash: line 1: missing: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: missing: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 10: ✅
+[] 1 bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 11: ✅
+[] 1 bash: line 1: ./test_files/infile_big: No such file or directory
+bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile_big: No such file or directory
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 12: ✅
+[] 1 bash: line 1: ./test_files/infile_big: No such file or directory
+cat: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile_big: No such file or directory
+cat: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 13: ✅
+[] 1 bash: line 1: ./test_files/infile_big: No such file or directory
+bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile_big: No such file or directory
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 14: ✅
+[] 1 bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 15: ✅
+[] 1 cat: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+cat: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 16: ✅
+[] 2 /bin/sh: -c: line 0: unexpected EOF while looking for matching `"'
+/bin/sh: -c: line 1: syntax error: unexpected end of file
+
+[] 2 /bin/sh: -c: line 0: unexpected EOF while looking for matching `"'
+/bin/sh: -c: line 1: syntax error: unexpected end of file
+
+Redirection 17: ✅
+[] 1 bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 18: ✅
+[hi
+] 0 bash: line 1: ./test_files/infile_big: No such file or directory
+
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile_big: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 19 ❌ [0mcat <"./test_files/infile_big" | echo hi[0;31m
+===>Expeced return -- value: 0
+hi
+
+===>Got return -- value: 0
+[0m
+[] 1 bash: line 1: missing: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: missing: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 20: ✅
+[] 0 bash: line 1: missing: No such file or directory
+
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: missing: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 21: ✅
+[oi
+] 0 bash: line 1: missing: No such file or directory
+
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: missing: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 22 ❌ [0mcat <missing | echo oi[0;31m
+===>Expeced return -- value: 0
+oi
+
+===>Got return -- value: 0
+[0m
+[] 1 bash: line 1: missing: No such file or directory
+bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: missing: No such file or directory
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 23: ✅
+[42
+] 0 bash: line 1: 123: No such file or directory
+
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: 123: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 24 ❌ [0mecho <123 <456 hi | echo 42[0;31m
+===>Expeced return -- value: 0
+42
+
+===>Got return -- value: 0
+[0m
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 25: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 26: ✅
+[] 0 
+[
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 27 ❌ [0mecho hi >         ./outfiles/outfile01 bye[0;31m
+===>Expeced return -- value: 0
+
+===>Got return -- value: 0
+
+[0m
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 28: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 29: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 30: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 31: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 32: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 33: ✅
+[] 1 bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 34: ✅
+[bye
+] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 35 ❌ [0mecho hi >./outfiles/outfile01 | echo bye[0;31m
+===>Expeced return -- value: 0
+bye
+
+===>Got return -- value: 0
+[0m
+[bye
+] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 36 ❌ [0mecho hi >./outfiles/outfile01 >./outfiles/outfile02 | echo bye[0;31m
+===>Expeced return -- value: 0
+bye
+
+===>Got return -- value: 0
+[0m
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 37: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 38: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 39: ✅
+[bye
+] 0 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 40 ❌ [0mecho hi >./outfiles/outfile01 >./test_files/invalid_permission | echo bye[0;31m
+===>Expeced return -- value: 0
+bye
+
+===>Got return -- value: 0
+[0m
+[bye
+] 0 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 41 ❌ [0mecho hi >./test_files/invalid_permission | echo bye[0;31m
+===>Expeced return -- value: 0
+bye
+
+===>Got return -- value: 0
+[0m
+[bye
+] 0 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 42 ❌ [0mecho hi >./test_files/invalid_permission >./outfiles/outfile01 | echo bye[0;31m
+===>Expeced return -- value: 0
+bye
+
+===>Got return -- value: 0
+[0m
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 43: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 44: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 45: ✅
+[] 1 bash: line 1: ./test_files/infile: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: ./test_files/infile: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 46: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 47: ✅
+[] 1 bash: line 1: missing: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: missing: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 48: ✅
+[] 1 bash: line 1: missing: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: missing: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 49: ✅
+[] 1 bash: line 1: missing: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: missing: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 50: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 51: ✅
+[] 1 bash: line 1: missing: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: missing: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 52: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 53: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 54: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 55: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 56: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 57: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 58: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 59: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 60: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 61: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 62: ✅
+[] 1 bash: line 1: missing: No such file or directory
+
+[[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K2
+] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: missing: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 63 ❌ [0mls <missing >>./test_files/invalid_permission >>./outfiles/outfile02[0;31m
+===>Expeced return -- value: 1
+
+===>Got return -- value: 1
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K2
+[0m
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg
+] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 64 ❌ [0mls >>./test_files/invalid_permission >>./outfiles/outfile02 <missing[0;31m
+===>Expeced return -- value: 1
+
+===>Got return -- value: 1
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kg
+[0m
+[bye
+] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 65 ❌ [0mecho hi >>./outfiles/outfile01 | echo bye[0;31m
+===>Expeced return -- value: 0
+bye
+
+===>Got return -- value: 0
+[0m
+[bye
+] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 66 ❌ [0mecho hi >>./outfiles/outfile01 >>./outfiles/outfile02 | echo bye[0;31m
+===>Expeced return -- value: 0
+bye
+
+===>Got return -- value: 0
+[0m
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 67: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 68: ✅
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 69: ✅
+[bye
+] 0 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 70 ❌ [0mecho hi >>./test_files/invalid_permission | echo bye[0;31m
+===>Expeced return -- value: 0
+bye
+
+===>Got return -- value: 0
+[0m
+[bye
+] 0 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 71 ❌ [0mecho hi >>./test_files/invalid_permission >./outfiles/outfile01 | echo bye[0;31m
+===>Expeced return -- value: 0
+bye
+
+===>Got return -- value: 0
+[0m
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 72: ✅
+[] 1 bash: line 1: ./test_files/invalid_permission: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 73: ✅
+[] 1 bash: line 1: minishell.h: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: minishell.h: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 74: ✅
+[minishell
+outfiles
+] 0 bash: line 1: minishell.h: No such file or directory
+
+[minishell
+outfiles
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: minishell.h: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 75: ✅
+[] 1 bash: line 1: $sdfsdf: ambiguous redirect
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: Bad address
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 76: ✅
+[] 1 bash: line 1: $sdfsdf: ambiguous redirect
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: Bad address
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 77: ✅
+[] 1 bash: line 1: $sdfsdf: ambiguous redirect
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: : No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 78: ✅
+[] 1 bash: line 1: $sdfsdf: ambiguous redirect
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: Bad address
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 83: ✅
+[] 1 bash: line 1: a: No such file or directory
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+bash: a: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 84: ✅
+[] 1 bash: line 1: /dev/stdin: Permission denied
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: Permission denied
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 85: ✅
+[] 0 bash: line 1: /dev/stdin: Permission denied
+cat: test_files/infile_big: No such file or directory
+
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: Permission denied
+cat: test_files/infile_big: No such file or directory
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 86: ✅
+[] 1 bash: line 1: /dev/stdin: Permission denied
+
+[] 1 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+failed to open output file!: Permission denied
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+Redirection 87: ✅
+[] 0 
+[
+] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mRedirection 88 ❌ [0mecho hello >> =$sdfdsf*[0;31m
+===>Expeced return -- value: 0
+
+===>Got return -- value: 0
+
+[0m
+[0;36m
+█▀ █▄█ █▄░█ ▄▀█ ▀█▀ ▄▀█ ▀▄▀
+▄█ ░█░ █░▀█ █▀█ ░█░ █▀█ █░█[0m 
+
+[] 0 
+[] 0 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+empty command: ✅
+[] 2 bash: line 1: .: filename argument required
+.: usage: . filename [arguments]
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell: .: filename argument	required 
+.: usage: . filename [arguments]
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+[1;31mjust . ❌ [0m.[0;31m
+===>Expeced return -- value: 127
+
+===>Got return -- value: 2
+[0m
+[] 127 bash: line 1: ..: command not found
+
+[] 127 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+/bin/bash: ..: command not found
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
+
+just ..: ✅
+[] 2 bash: line 1: syntax error near unexpected token `newline'
+bash: line 1: `echo hello >'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 0: ✅
+[] 2 bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `| echo oi'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 1: ✅
+[] 2 bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `|'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 2: ✅
+[] 2 bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `| |'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 3: ✅
+[] 2 bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `| $'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 4: ✅
+[] 2 bash: line 1: syntax error near unexpected token `>'
+bash: line 1: `> > >> >>'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 5: ✅
+[] 2 bash: line 1: syntax error near unexpected token `<<'
+bash: line 1: `< <<'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 6: ✅
+[] 2 bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `cat <| ls'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+minishell->all_input failed
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 7: ✅
+[] 2 bash: line 1: syntax error near unexpected token `newline'
+bash: line 1: `echo hi <'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 8: ✅
+[] 2 bash: line 1: syntax error near unexpected token `>>'
+bash: line 1: `> >>'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 9: ✅
+[] 2 bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `echo hi | < |'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 10: ✅
+[] 2 bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `echo hi | |'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 11: ✅
+[] 2 bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `echo hi | |'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 12: ✅
+[] 2 bash: line 2: syntax error: unexpected end of file
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 13: ✅
+[] 2 bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `> |'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 14: ✅
+[] 2 bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `| >>'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 15: ✅
+[] 2 bash: line 1: syntax error near unexpected token `newline'
+bash: line 1: `<<'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 16: ✅
+[] 2 bash: line 1: syntax error near unexpected token `newline'
+bash: line 1: `>'
+
+[] 2 tcgetattr: Inappropriate ioctl for device
+tcgetattr: Inappropriate ioctl for device
+syntax error
+: Undefined error: 0
+tcsetattr: Inappropriate ioctl for device
+
+Syntax 17: ✅

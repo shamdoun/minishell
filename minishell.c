@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:10:36 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/15 14:05:51 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:38:38 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,12 @@ static void	check_execute(char *input, t_shell *minishell)
 		{
 			minishell->all_input = split_cmd(cmds, minishell);
 			if (!minishell->all_input)
+			{
+				
 				(perror("minishell->all_input failed\n"),
 					add_new_status(minishell, 258));
+				return ;
+			}
 			(ft_recover_echo(),
 				execute_input(minishell), ft_hide_ctrl_c());
 		}
@@ -90,7 +94,7 @@ int	main(int argc, char **argv, char **env)
 	init(&minishell, env);
 	handle_all_signals(0);
 	ft_reset_terminal(0);
-	if (isatty(STDIN_FILENO))
+	if (1)
 	{
 		while (1)
 		{

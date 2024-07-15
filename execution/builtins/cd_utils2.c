@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:25:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/06/05 16:04:10 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:26:02 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_same_value(char *p1, char *p2)
 
 int	check_path(t_arg *path, char *cwd)
 {
-	if (!path || !ft_strncmp(path->arg, "~", 2)
+	if (!path || !path->arg || !ft_strncmp(path->arg, "~", 2)
 		|| !ft_strncmp(path->arg, "..", 3))
 		return (1);
 	if (ft_same_value(path->arg, cwd))
