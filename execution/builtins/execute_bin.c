@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 21:23:42 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/15 10:35:04 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ static void	run_child(char *cmd_path, char **args_list, t_shell *shell)
 	rv = execve(cmd_path, args_list, shell->env);
 	if (rv)
 	{
-		perror("minishell: ");
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(shell->all_input->command_name, 2);
+		perror(" ");
 		if (errno == ENOENT)
 		{
 			ft_malloc(0, -4);
@@ -91,6 +93,20 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 		pipe_child_runs_binary(cmd_path, args_list, shell);
 }
 
+int empty_string(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	execute_other_commands(t_shell *shell, int mode)
 {
 	char	**args_list;
@@ -99,6 +115,11 @@ void	execute_other_commands(t_shell *shell, int mode)
 	char	*cmd_name;
 
 	cmd_name = shell->all_input->command_name;
+	if (empty_string(cmd_name))
+	{
+		error_arg_status_update(NO_COMMAND, cmd_name, shell, 127);
+		return ;
+	}
 	set_args_list(shell, &args_list);
 	cmd_path = find_command_path(cmd_name, shell);
 	c = execution_case(cmd_path, shell);
@@ -109,10 +130,12 @@ void	execute_other_commands(t_shell *shell, int mode)
 		cmd_path = ft_strdup(cmd_name);
 	if (c == 3 && ft_strncmp(cmd_name, "./minishell", 11))
 		make_file_executable(&args_list, cmd_name, &cmd_path);
-	if (c == 4 || c == 5)
+	if (c == 4 || c == 5 || (!c && !cmd_path && !ft_strncmp(cmd_name, "./", 2)))
 		cmd_path = ft_strdup(cmd_name);
 	if (c == 6)
 		cmd_path = NULL;
+	if (c == 7)
+		return ;
 	if (cmd_path)
 		run_binary(cmd_path, mode, args_list, shell);
 	else

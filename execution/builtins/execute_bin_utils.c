@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:26:31 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 21:09:05 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/15 10:27:51 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,43 @@ void	make_file_executable(char ***args, char *file, char **cmd_path)
 	(*args)[3] = NULL;
 }
 
+int is_directory(char *path, t_shell *shell) 
+{
+	char *tmp;
+
+	tmp = path;
+	path = ft_strjoin_v2(shell->cwd, &path[1]);
+    DIR *dir = opendir(path);
+	if (!path)
+		return (0);
+    if (dir) {
+        closedir(dir);
+		error_arg_status_update("is a directory", tmp, shell, 126);
+        return (1); 
+    }
+	else
+        return 0;
+}
+
+int is_file(char *path, t_shell *shell) 
+{
+	char *tmp;
+	
+	if (!path[0])
+		return (0);
+	tmp = ft_strjoin_v2(shell->cwd, &path[1]);
+    int fd = open(tmp, O_RDONLY);
+    if (fd > 0) 
+	{
+		printf("file exists\n");
+        close(fd);
+        return (1); 
+    }
+	else
+        return 0;
+}
+
+
 int	execution_case(char *cmd_path, t_shell *shell)
 {
 	if (cmd_path && (*shell->all_input->command_name == '.')
@@ -76,11 +113,15 @@ int	execution_case(char *cmd_path, t_shell *shell)
 		return (2);
 	else if (!cmd_path
 		&& (access(shell->all_input->command_name, F_OK | X_OK) == 0)
+		&& is_directory(shell->all_input->command_name, shell))
+		return (7);
+	else if (!cmd_path
+		&& (access(shell->all_input->command_name, F_OK | X_OK) == 0)
 		&& (*shell->all_input->command_name == '.'))
 		return (3);
 	else if (!cmd_path
 		&& (access(shell->all_input->command_name, F_OK | X_OK))
-		&& (*shell->all_input->command_name == '.'))
+		&& (*shell->all_input->command_name == '.') && is_file(shell->all_input->command_name, shell))
 		return (4);
 	else if (!cmd_path
 		&& (access(shell->all_input->command_name, F_OK | X_OK) == 0)

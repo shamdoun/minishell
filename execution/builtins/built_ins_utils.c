@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:50:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/11 21:23:21 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/15 10:23:16 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ char	*find_command_path(char *s, t_shell *shell)
 
 	command = NULL;
 	env_list = NULL;
+	if (s[0] == '\0')
+		return (NULL);
 	if (shell->r_path)
 		env_list = ft_split_1(shell->r_path, ':');
 	else
