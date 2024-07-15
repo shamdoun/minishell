@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 10:01:42 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/15 18:52:50 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	init_pipex(t_pipex **pipex, t_shell *shell)
 
 static void	run_child(t_shell *shell, t_pipex *pipex, int i, int mode)
 {
+	add_new_status(shell, 0);
 	if (duplicate_ends(shell, pipex->ends, pipex->pipe_count, i))
 		exit (1);
 	(run_built_ins(shell, mode), exit(ft_last_status(shell->all_status)));

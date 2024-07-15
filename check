@@ -981,6 +981,7 @@ tcsetattr: Inappropriate ioctl for device
 [] 0 tcgetattr: Inappropriate ioctl for device
 tcgetattr: Inappropriate ioctl for device
 tcgetattr: Inappropriate ioctl for device
+minishell: unset: not a valid identifier
 tcgetattr: Inappropriate ioctl for device
 tcsetattr: Inappropriate ioctl for device
 
@@ -1061,43 +1062,13 @@ tcsetattr: Inappropriate ioctl for device
 
 cd 4: ✅
 [] 0 
-[] 134 tcgetattr: Inappropriate ioctl for device
+[] 0 tcgetattr: Inappropriate ioctl for device
 tcgetattr: Inappropriate ioctl for device
 tcgetattr: Inappropriate ioctl for device
-AddressSanitizer:DEADLYSIGNAL
-=================================================================
-==99600==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x000100ee55bc bp 0x00016ef22f30 sp 0x00016ef22ed0 T0)
-==99600==The signal is caused by a READ memory access.
-==99600==Hint: address points to the zero page.
-    #0 0x100ee55bc in ft_strncmp+0x58 (minishell:arm64+0x1000095bc)
-    #1 0x100ee1a88 in run_options_path+0x110 (minishell:arm64+0x100005a88)
-    #2 0x100ee1808 in run_options+0xb4 (minishell:arm64+0x100005808)
-    #3 0x100ee16bc in run_built_ins+0x108 (minishell:arm64+0x1000056bc)
-    #4 0x100ee1900 in execute_input+0x8c (minishell:arm64+0x100005900)
-    #5 0x100ee11f4 in check_execute+0xfc (minishell:arm64+0x1000051f4)
-    #6 0x100ee10dc in main+0xa0 (minishell:arm64+0x1000050dc)
-    #7 0x19548e0dc  (<unknown module>)
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
 
-==99600==Register values:
- x[0] = 0x0000000000000000   x[1] = 0x0000000100eebb2f   x[2] = 0x0000000000000002   x[3] = 0x0000000103c0e640  
- x[4] = 0x0000000103c0e640   x[5] = 0x0000000000000001   x[6] = 0x000000016e728000   x[7] = 0x0000000000000001  
- x[8] = 0x0000000000000000   x[9] = 0x0000000000000000  x[10] = 0x0000000000000000  x[11] = 0x000000700001ffff  
-x[12] = 0x0000000000000000  x[13] = 0xbf30fdc4c368e870  x[14] = 0x0000000000007e01  x[15] = 0x0000000000000006  
-x[16] = 0x0000000101840a98  x[17] = 0x00000001018800b8  x[18] = 0x0000000000000000  x[19] = 0x00000001012fdb90  
-x[20] = 0x0000000100ee103c  x[21] = 0x000000016ef23080  x[22] = 0x00000001012fd910  x[23] = 0x000000016ef23100  
-x[24] = 0x000000016ef23140  x[25] = 0x000000019550231b  x[26] = 0x0000000000000000  x[27] = 0x0000000000000000  
-x[28] = 0x0000000000000000     fp = 0x000000016ef22f30     lr = 0x0000000100ee3274     sp = 0x000000016ef22ed0  
-AddressSanitizer can not provide additional info.
-SUMMARY: AddressSanitizer: SEGV (minishell:arm64+0x1000095bc) in ft_strncmp+0x58
-==99600==ABORTING
-/bin/sh: line 1: 99599 Done                    echo cd \$OLDPWD
-     99600 Abort trap: 6           | ./minishell
-
-[1;31mcd 5 ❌ [0mcd $OLDPWD[0;31m
-===>Expeced return -- value: 0
-
-===>Got return -- value: 134
-[0m
+cd 5: ✅
 [] 0 
 [] 0 tcgetattr: Inappropriate ioctl for device
 tcgetattr: Inappropriate ioctl for device
@@ -1120,43 +1091,13 @@ tcsetattr: Inappropriate ioctl for device
 ===>Got return -- value: 1
 [0m
 [] 0 
-[] 134 tcgetattr: Inappropriate ioctl for device
+[] 0 tcgetattr: Inappropriate ioctl for device
 tcgetattr: Inappropriate ioctl for device
 tcgetattr: Inappropriate ioctl for device
-AddressSanitizer:DEADLYSIGNAL
-=================================================================
-==99619==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x00010473d5bc bp 0x00016b6caf30 sp 0x00016b6caed0 T0)
-==99619==The signal is caused by a READ memory access.
-==99619==Hint: address points to the zero page.
-    #0 0x10473d5bc in ft_strncmp+0x58 (minishell:arm64+0x1000095bc)
-    #1 0x104739a88 in run_options_path+0x110 (minishell:arm64+0x100005a88)
-    #2 0x104739808 in run_options+0xb4 (minishell:arm64+0x100005808)
-    #3 0x1047396bc in run_built_ins+0x108 (minishell:arm64+0x1000056bc)
-    #4 0x104739900 in execute_input+0x8c (minishell:arm64+0x100005900)
-    #5 0x1047391f4 in check_execute+0xfc (minishell:arm64+0x1000051f4)
-    #6 0x1047390dc in main+0xa0 (minishell:arm64+0x1000050dc)
-    #7 0x19548e0dc  (<unknown module>)
+tcgetattr: Inappropriate ioctl for device
+tcsetattr: Inappropriate ioctl for device
 
-==99619==Register values:
- x[0] = 0x0000000000000000   x[1] = 0x0000000104743b2f   x[2] = 0x0000000000000002   x[3] = 0x000000010740e640  
- x[4] = 0x000000010740e640   x[5] = 0x0000000000000001   x[6] = 0x000000016aed0000   x[7] = 0x0000000000000001  
- x[8] = 0x0000000000000000   x[9] = 0x0000000000000000  x[10] = 0x0000000000000000  x[11] = 0x000000700001ffff  
-x[12] = 0x0000000000000000  x[13] = 0xbf30fdc4c368e870  x[14] = 0x0000000000007e01  x[15] = 0x0000000000000006  
-x[16] = 0x0000000105098a98  x[17] = 0x00000001050d80b8  x[18] = 0x0000000000000000  x[19] = 0x0000000104b55b90  
-x[20] = 0x000000010473903c  x[21] = 0x000000016b6cb080  x[22] = 0x0000000104b55910  x[23] = 0x000000016b6cb100  
-x[24] = 0x000000016b6cb140  x[25] = 0x000000019550231b  x[26] = 0x0000000000000000  x[27] = 0x0000000000000000  
-x[28] = 0x0000000000000000     fp = 0x000000016b6caf30     lr = 0x000000010473b274     sp = 0x000000016b6caed0  
-AddressSanitizer can not provide additional info.
-SUMMARY: AddressSanitizer: SEGV (minishell:arm64+0x1000095bc) in ft_strncmp+0x58
-==99619==ABORTING
-/bin/sh: line 1: 99618 Done                    echo cd \$sdfdsf
-     99619 Abort trap: 6           | ./minishell
-
-[1;31mcd 8 ❌ [0mcd $sdfdsf[0;31m
-===>Expeced return -- value: 0
-
-===>Got return -- value: 134
-[0m
+cd 8: ✅
 [] 1 bash: line 1: cd: /testtt: No such file or directory
 
 [] 1 tcgetattr: Inappropriate ioctl for device

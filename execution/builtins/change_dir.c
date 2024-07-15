@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/15 17:28:57 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/15 18:38:03 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,5 @@ void	change_directory(t_arg *path, t_shell *shell, char ***env)
 		(add_new_status(shell, 1), perror("bash: cd"));
 		return ;
 	}
-	printf("next step\n");
 	update_wd(shell, return_value, path, old_cwd);
 }
