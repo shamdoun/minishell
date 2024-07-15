@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:10:36 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/13 19:54:28 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:05:51 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,31 @@
 //     usleep(1000 * 100 *10000);
 // }
 
+static int	check_cmds(t_commands *cmd)
+{
+	t_commands	*head;
+	char		**str;
+	int			i;
+
+	head = cmd;
+	while (head)
+	{
+		i = 0;
+		str = ft_split(head->command);
+		while (str[i])
+		{
+			if ((!ft_strncmp(str[i], "<<", ft_strlen(str[i]))
+				|| !ft_strncmp(str[i], ">>", ft_strlen(str[i])))
+				&& str[i + 1] && (!ft_strncmp(str[i + 1], "<<", ft_strlen(str[i + 1]))
+				|| !ft_strncmp(str[i + 1], ">>", ft_strlen(str[i + 1]))))
+				return (1);
+			i++;
+		}
+		head = head->next;
+	}
+	return (0);
+}
+
 static void	check_execute(char *input, t_shell *minishell)
 {
 	int			check;
@@ -33,11 +58,18 @@ static void	check_execute(char *input, t_shell *minishell)
 		if (cmds == NULL)
 			(perror("allocation failed..."), exit (1));
 		add_space(cmds);
-		minishell->all_input = split_cmd(cmds, minishell);
-		if (!minishell->all_input)
-			(perror("syntax error\n"), exit(1));
-		(ft_recover_echo(),
-			execute_input(minishell), ft_hide_ctrl_c());
+		check = check_cmds(cmds);
+		if (check)
+			(add_new_status(minishell, 258), perror("syntax error\n"));
+		else
+		{
+			minishell->all_input = split_cmd(cmds, minishell);
+			if (!minishell->all_input)
+				(perror("minishell->all_input failed\n"),
+					add_new_status(minishell, 258));
+			(ft_recover_echo(),
+				execute_input(minishell), ft_hide_ctrl_c());
+		}
 	}
 	else
 	{
