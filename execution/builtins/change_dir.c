@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:03:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/15 18:38:03 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:28:27 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void	change_directory(t_arg *path, t_shell *shell, char ***env)
 	}
 	while (path && !path->arg)
 		path = path->next;
+	if (path && path->arg && !ft_strlen(path->arg))
+		return ;
 	if (path && path->arg && ft_strncmp(path->arg, "~", 2))
 		return_value = chdir(path->arg);
 	else if (change_to_default_home(shell, *env, &return_value))

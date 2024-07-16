@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delimiter_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:49:14 by aessalih          #+#    #+#             */
-/*   Updated: 2024/07/13 17:50:59 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:21:29 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ static char	*change_val(char *str, int num)
 	int		len;
 
 	len = ft_delimeterlen(str, num);
-	ptr = malloc(len + 1);
+	ptr = ft_malloc(len + 1, 2);
+	if (ptr == NULL)
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (str[i])

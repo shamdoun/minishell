@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:39:56 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/15 16:18:37 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:33:18 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,25 @@ int	open_output_files(t_shell *shell)
 	return (0);
 }
 
+int	ambiguous_redirect(t_shell *shell)
+{
+	char	**ar;
+
+	ar = ft_split_1(shell->all_input->all_files->file_name, ' ');
+	if (ar[1])
+	{
+		error_status_update("bash: ambigious redirect\n", shell, 1);
+		return (1);
+	}
+	return (0);
+}
+
 int	open_files(t_shell *shell)
 {
 	while (shell->all_input->all_files)
 	{
+		if (shell->all_input->all_files->type != 4 && ambiguous_redirect(shell))
+			return (1);
 		if (shell->all_input->all_files->type >= 3 && open_input_files(shell))
 			return (1);
 		if (shell->all_input->all_files->type < 3 && open_output_files(shell))

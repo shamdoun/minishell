@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/15 10:19:53 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:42:33 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,24 @@
 # include "./gnl/get_next_line.h"
 # include <dirent.h>
 
-// FILE*gfp;
+FILE*gfp;
 
-// static void *_6malloc(size_t size, int line, const char *file)
-// {
-//     void *ptr = malloc(size);
-//     fprintf(gfp, "['malloc', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
-//     return (ptr);
+static void *_6malloc(size_t size, int line, const char *file)
+{
+    void *ptr = malloc(size);
+    fprintf(gfp, "['malloc', '%p, %i, '-%s']\n", ptr, line, file);fflush(stdout);
+    return (ptr);
 
-// }
+}
 
-// static void _6free(void*ptr , int line, const char *file)
-// {
-//     fprintf(gfp, "['free', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
-//     free(ptr);
+static void _6free(void*ptr , int line, const char *file)
+{
+    fprintf(gfp, "['free', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
+    free(ptr);
+}
 
-// }
-
-// #define malloc(x) _6malloc(x, __LINE__, __FILE__)
-// #define free(x) _6free(x, __LINE__, __FILE__)
+#define malloc(x) _6malloc(x, __LINE__, __FILE__)
+#define free(x) _6free(x, __LINE__, __FILE__)
 # define FAILED_MALLOC "failure"
 # define WRONG_INPUT "No such file or directory"
 # define POINT_INPUT "minishell: .: filename argument\

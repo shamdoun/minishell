@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:09:31 by aessalih          #+#    #+#             */
-/*   Updated: 2024/07/15 11:39:09 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:11:07 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_getname(char *str, t_shell *shell, int len)
 	if (!s && !ft_strncmp(ptr, "PATH", 4))
 		s = shell->r_path;
 	if (s == NULL)
-		return (NULL);
+		return (free(ptr), NULL);
 	i = 0;
 	while (s && s[i])
 		i++;

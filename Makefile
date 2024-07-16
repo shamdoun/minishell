@@ -41,12 +41,12 @@ O_SRC=$(SRC:.c=.o)
 NAME= minishell
 
 %.o: %.c
-	$(CC) $(Flags) -c $< -o $@ -I $(READLINE)/include
+	$(CC) $(Flags) -c -g $< -o $@ -I $(READLINE)/include
 
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(Flags) -fsanitize=address -g -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
+	$(CC) $(Flags) -g -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
 
 clean:
 	rm -f $(O_SRC)
