@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:39:23 by shamdoun          #+#    #+#             */
-/*   Updated: 2023/11/11 13:18:07 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:18:25 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,3 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 		head = head -> next;
 	}
 }
-// #include <stdio.h>
-// int main()
-// {
-// 	t_list *l = NULL;
-// 	ft_lstadd_back(&l,ft_lstnew(ft_strdup("heldsdslo")));
-// 	ft_lstadd_back(&l,ft_lstnew(ft_strdup("hello")));
-// 	while (l)
-// 	{
-// 		printf("%s\n",l->content);
-// 		l = l -> next;
-// 	}
-// }
