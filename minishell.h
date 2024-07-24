@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/16 11:42:33 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:00:01 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void *_6malloc(size_t size, int line, const char *file)
     void *ptr = malloc(size);
     fprintf(gfp, "['malloc', '%p, %i, '-%s']\n", ptr, line, file);fflush(stdout);
     return (ptr);
-
 }
 
 static void _6free(void*ptr , int line, const char *file)
@@ -107,12 +106,13 @@ typedef struct shell
 {
 	struct input			*all_input;
 	struct status			*all_status;
+	//should we remove this var
 	struct allocated_data	*all_allocated_data;
 	char					**env;
 	char					cwd[PATH_MAX];
 	char					*r_path;
-	int						new_shell;
-	int						env_updated;
+	// int						new_shell;
+	// int						env_updated;
 	int						is_expanded;
 }	t_shell;
 
@@ -367,5 +367,13 @@ int			incorrect_syntax(char *s);
 int			bin_exists(char *s);
 char		*cut_exp(char *str);
 int			check_pipe(char *str);
-
+int			ambiguous_redirect(t_shell *shell);
+int			last_hd(t_shell *shell);
+int			empty_string(char *s);
+void		update_command_name(t_shell *shell);
+void		error_for_executables(char *cmd_name, t_shell *shell);
+int			is_directory(char *path, t_shell *shell);
+int			other_cases(char *cmd_path, t_shell *shell);
+int			is_file(char *path, t_shell *shell);
+void		reorder_args(t_shell *shell);
 #endif

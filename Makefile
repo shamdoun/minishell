@@ -26,7 +26,7 @@ SRC= ./external_functions/ft_free.c ./external_functions/ft_split.c ./parsing/ft
 	./execution/builtins/execute_bin.c ./execution/builtins/change_dir.c ./execution/builtins/echo.c ./execution/builtins/env.c \
 	./execution/builtins/exit.c ./execution/builtins/export.c ./execution/builtins/unset.c ./execution/builtins/built_ins_utils.c ./external_functions/ft_split_v2.c ./external_functions/ft_strdup.c ./external_functions/ft_atoi.c \
 	./external_functions/ft_strncmp.c ./external_functions/ft_strlen.c ./external_functions/ft_strjoin.c ./external_functions/ft_memcpy.c ./external_functions/ft_memmove.c ./external_functions/ft_strlcat.c ./external_functions/ft_strlcpy.c \
-	init.c execution/builtins/cd_utils2.c ./execution/builtins/execute_bin_utils_1.c\
+	init.c execution/builtins/cd_utils2.c ./execution/builtins/execute_bin_utils_1.c ./execution/redirection_tools.c ./execution/execution_utils_3.c \
 	./execution/pipex/pipex_utils.c ./execution/builtins/cd_utils1.c ./execution/builtins/env_utils.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c \
 	./execution/builtins/built_ins_utils2.c ./parsing/ft_tolower.c ./parsing/ft_strrchr.c ./parsing/ft_itoa.c parsing/expand.c \
 	parsing/ft_splitcmdutils2.c ./external_functions/ft_strcpy.c ./external_functions/ft_putstr_fd.c ./external_functions/ft_putchar_fd.c ./external_functions/ft_putendl_fd.c ./external_functions/ft_malloc.c ./external_functions/ft_bzero.c \

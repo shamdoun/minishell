@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:06:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/14 17:02:27 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:22:53 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,23 +88,6 @@ int	handle_here_docs(t_shell *shell)
 	return (0);
 }
 
-int last_hd(t_shell *shell)
-{
-	t_file *head;
-	
-	head = shell->all_input->all_files;
-	if (head->type == 4 && !head->next && (shell->all_input->in_file != shell->all_input->here_doc))
-		return (1);
-	while (head)
-	{
-		if (head->type == 4 && (shell->all_input->in_file == shell->all_input->here_doc))
-			return (0);
-		head = head->next;
-	}
-	return (1);
-}
-
-
 int	open_input_files(t_shell *shell)
 {
 	if (shell->all_input->in_file && last_hd(shell))
@@ -113,7 +96,8 @@ int	open_input_files(t_shell *shell)
 		shell->all_input->in_file
 			= open(shell->all_input->all_files->file_name, O_RDONLY);
 	if (shell->all_input->all_files->type == 4
-		&& (!shell->all_input->command_name || !ft_strncmp("cat", shell->all_input->command_name, 3)))
+		&& (!shell->all_input->command_name
+			|| !ft_strncmp("cat", shell->all_input->command_name, 3)))
 		shell->all_input->in_file = shell->all_input->here_doc;
 	if (shell->all_input->in_file < 0)
 	{

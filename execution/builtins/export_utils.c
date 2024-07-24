@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:38:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/15 18:34:04 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:55:08 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,20 @@ int	empty_args(t_arg *data)
 int	unset_syntax_error(char *data)
 {
 	int	i;
+
 	i = 0;
 	if (data[i] != '_' && !ft_isalpha(data[i]))
 		return (1);
 	i++;
 	while (data[i] && data[i + 1])
 	{
-		if (data[i] != '_' && ((!ft_isalpha(data[i]) && !ft_isdigit(data[i])) || data[i]=='\''))
+		if (data[i] != '_' && ((!ft_isalpha(data[i]) && !ft_isdigit(data[i]))
+				|| data[i] == '\''))
 			return (1);
 		i++;
 	}
-	if (data[i] == '\'')
+	if (data[i] == '\'' || data[i] == '=' || (!ft_isalpha(data[i])
+			&& !ft_isdigit(data[i])))
 		return (1);
 	return (0);
 }
@@ -53,7 +56,8 @@ int	export_syntax_error(char *data)
 		return (0);
 	while (data[i] && data[i + 1] && data[i + 1] != '=')
 	{
-		if (data[i] != '_' && (!ft_isalpha(data[i]) && !ft_isdigit(data[i])) || (data[i]=='\''))
+		if (data[i] != '_' && (!ft_isalpha(data[i]) && !ft_isdigit(data[i]))
+			|| (data[i] == '\''))
 			return (1);
 		i++;
 	}
@@ -61,11 +65,8 @@ int	export_syntax_error(char *data)
 	{
 		if (data[i] == '+' && data[i + 1] == '=')
 			return (0);
-		else if (data[i] == '+' && data[i + 1] != '=')
-			return (1);
-		else if (data[i] != '_' && !ft_isalpha(data[i]) && !ft_isdigit(data[i]))
-			return (1);
-		else if (data[i]=='\'')
+		else if (data[i] == '+' && data[i + 1] != '=' || data[i] == '\''
+			|| (data[i] != '_' && !ft_isalpha(data[i]) && !ft_isdigit(data[i])))
 			return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/15 16:20:16 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:47:13 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,22 @@ static void	pipe_child_runs_binary(char *cmd_path,
 	signal(SIGQUIT, &handle_quit_signal);
 	rv = execve(cmd_path, args_list, shell->env);
 	if (rv < 0)
-		printf("error after execve of %d: \n", errno);
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(shell->all_input->command_name, 2);
+		perror(" ");
+		if (errno == ENOENT)
+		{
+			ft_malloc(0, -4);
+			exit (127);
+		}
+		if (errno == ENOEXEC || errno == EACCES)
+		{
+			ft_malloc(0, -4);
+			exit (126);
+		}
+		exit(1);
+	}
 }
 
 static void	run_child(char *cmd_path, char **args_list, t_shell *shell)
@@ -93,20 +108,6 @@ void	run_binary(char *cmd_path, int mode, char **args_list, t_shell *shell)
 		pipe_child_runs_binary(cmd_path, args_list, shell);
 }
 
-int empty_string(char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] != ' ')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 void	execute_other_commands(t_shell *shell, int mode)
 {
 	char	**args_list;
@@ -115,29 +116,23 @@ void	execute_other_commands(t_shell *shell, int mode)
 	char	*cmd_name;
 
 	cmd_name = shell->all_input->command_name;
+	update_command_name(shell);
 	if (empty_string(cmd_name))
-	{
-		error_arg_status_update(NO_COMMAND, cmd_name, shell, 127);
-		return ;
-	}
+		return (error_arg_status_update(NO_COMMAND, cmd_name, shell, 127));
 	set_args_list(shell, &args_list);
 	cmd_path = find_command_path(cmd_name, shell);
 	c = execution_case(cmd_path, shell);
-	if (c == 1 && ft_strncmp(cmd_name, "./minishell", 11))
+	if ((c == 1 || c == 3) && ft_strncmp(cmd_name, "./minishell", 11))
 		make_file_executable(&args_list, cmd_name, &cmd_path);
-	if (c == 2 || (c == 3
+	if (c == 2 || (!c && !cmd_path && !ft_strncmp(cmd_name, "./", 2)) || (c == 3
 			&& !ft_strncmp(cmd_name, "./minishell", 11)))
-		cmd_path = ft_strdup(cmd_name);
-	if (c == 3 && ft_strncmp(cmd_name, "./minishell", 11))
-		make_file_executable(&args_list, cmd_name, &cmd_path);
-	if (c == 4 || c == 5 || (!c && !cmd_path && !ft_strncmp(cmd_name, "./", 2)))
 		cmd_path = ft_strdup(cmd_name);
 	if (c == 6)
 		cmd_path = NULL;
 	if (c == 7)
-		return ;
+		return (error_arg_status_update("is a directory",
+				cmd_name, shell, 126));
 	if (cmd_path)
-		run_binary(cmd_path, mode, args_list, shell);
-	else
-		error_arg_status_update(NO_COMMAND, cmd_name, shell, 127);
+		return (run_binary(cmd_path, mode, args_list, shell));
+	error_for_executables(cmd_name, shell);
 }

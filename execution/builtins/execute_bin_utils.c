@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:26:31 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/15 10:27:51 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:53:24 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,45 +64,28 @@ void	make_file_executable(char ***args, char *file, char **cmd_path)
 	(*args)[3] = NULL;
 }
 
-int is_directory(char *path, t_shell *shell) 
+int	is_file(char *path, t_shell *shell)
 {
-	char *tmp;
+	char	*tmp;
+	int		fd;
 
-	tmp = path;
-	path = ft_strjoin_v2(shell->cwd, &path[1]);
-    DIR *dir = opendir(path);
-	if (!path)
-		return (0);
-    if (dir) {
-        closedir(dir);
-		error_arg_status_update("is a directory", tmp, shell, 126);
-        return (1); 
-    }
-	else
-        return 0;
-}
-
-int is_file(char *path, t_shell *shell) 
-{
-	char *tmp;
-	
 	if (!path[0])
 		return (0);
 	tmp = ft_strjoin_v2(shell->cwd, &path[1]);
-    int fd = open(tmp, O_RDONLY);
-    if (fd > 0) 
+	fd = open(tmp, O_RDONLY);
+	if (fd > 0)
 	{
-		printf("file exists\n");
-        close(fd);
-        return (1); 
-    }
+		close(fd);
+		return (1);
+	}
 	else
-        return 0;
+		return (0);
 }
-
 
 int	execution_case(char *cmd_path, t_shell *shell)
 {
+	if (is_directory(shell->all_input->command_name, shell))
+		return (7);
 	if (cmd_path && (*shell->all_input->command_name == '.')
 		&& ((access(shell->all_input->command_name, F_OK | X_OK) == 0))
 		&& !correct_dir(cmd_path, shell->cwd))
@@ -119,15 +102,6 @@ int	execution_case(char *cmd_path, t_shell *shell)
 		&& (access(shell->all_input->command_name, F_OK | X_OK) == 0)
 		&& (*shell->all_input->command_name == '.'))
 		return (3);
-	else if (!cmd_path
-		&& (access(shell->all_input->command_name, F_OK | X_OK))
-		&& (*shell->all_input->command_name == '.') && is_file(shell->all_input->command_name, shell))
-		return (4);
-	else if (!cmd_path
-		&& (access(shell->all_input->command_name, F_OK | X_OK) == 0)
-		&& bin_exists(shell->all_input->command_name))
-		return (5);
-	else if (cmd_path && incorrect_syntax(cmd_path))
-		return (6);
-	return (0);
+	else
+		return (other_cases(cmd_path, shell));
 }

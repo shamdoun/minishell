@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/16 09:14:34 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:17:17 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	run_built_ins(t_shell *shell, int mode)
 		if (shell->all_input->in_file)
 			close(shell->all_input->in_file);
 		if (shell->all_input->out_file > 1)
-			close(shell->all_input->in_file);
+			close(shell->all_input->out_file);
 		return ;
 	}
 	if (redirect_streams(shell))
@@ -108,7 +108,6 @@ void	run_built_ins(t_shell *shell, int mode)
 
 void	execute_input(t_shell *shell)
 {
-
 	int	o_in;
 	int	o_out;
 	int	rv;

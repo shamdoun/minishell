@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:18:48 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/10 17:06:49 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:14:18 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@ int	print_all_env_vars(char **env, t_input *input)
 {
 	int	i;
 
-	if (input->args)
+	if (input->args && !empty_args(input->args))
 	{
 		ft_putstr_fd("env: ", 2);
+		while (input->args && !input->args->arg)
+			input->args = input->args->next;
+		ft_putstr_fd(input->args->arg, 2);
+		ft_putstr_fd(": ", 2);
 		ft_putendl_fd(WRONG_INPUT, 2);
 		return (1);
 	}

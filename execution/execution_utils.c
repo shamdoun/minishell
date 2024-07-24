@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:39:56 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/16 12:33:18 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:03:27 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,6 @@ int	open_output_files(t_shell *shell)
 	return (0);
 }
 
-int	ambiguous_redirect(t_shell *shell)
-{
-	char	**ar;
-
-	ar = ft_split_1(shell->all_input->all_files->file_name, ' ');
-	if (ar[1])
-	{
-		error_status_update("bash: ambigious redirect\n", shell, 1);
-		return (1);
-	}
-	return (0);
-}
-
 int	open_files(t_shell *shell)
 {
 	while (shell->all_input->all_files)
@@ -100,11 +87,8 @@ int	run_special_cases(t_shell *shell, char *command)
 
 void	update_args(t_shell *shell)
 {
-	char	**test;
 	t_arg	*head;
-	int		i;
 
-	i = 0;
 	head = shell->all_input->args;
 	if (!shell->all_input->command_name && shell->all_input->args)
 	{
@@ -116,16 +100,8 @@ void	update_args(t_shell *shell)
 				head->arg = NULL;
 				break ;
 			}
-			head = head->next;	
+			head = head->next;
 		}
 	}
-	test = ft_split_1(shell->all_input->command_name, ' ');
-	while (test && test[i])
-		i++;
-	if (i >= 1 && shell->is_expanded)
-	{
-		shell->all_input->command_name = test[0];
-		while (--i > 0)
-			ft_lstadd_front(&(shell->all_input->args), test[i]);
-	}
+	reorder_args(shell);
 }
