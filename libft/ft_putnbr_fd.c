@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 21:44:21 by shamdoun          #+#    #+#             */
-/*   Updated: 2023/11/05 21:46:16 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:18:35 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,3 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(nbr % 10, fd);
 	}
 }
-
-// #include <fcntl.h>
-// #include <stdio.h>
-// int main()
-// {
-// 	// int fd = open("hello",O_RDWR | O_CREAT);
-// 	// // ft_putnbr_fd(2,fd);
-// 	// // ft_putendl_fd("hellodseihiubib biulbjhbl jllhjbh",fd);
-// 	// char c[25];
-// 	// read(fd,c,sizeof(int));
-// 	// printf("line %s",c);
-// 	// close(fd);
-// }

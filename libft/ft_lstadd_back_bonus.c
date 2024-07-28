@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:29:42 by shamdoun          #+#    #+#             */
-/*   Updated: 2023/11/08 15:37:36 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:18:01 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,3 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		head -> next = new;
 	}
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	t_list *l = NULL;
-// 	ft_lstadd_back(&l,ft_lstnew(ft_strdup("heldsdslo")));
-// 	ft_lstadd_back(&l,ft_lstnew(ft_strdup("hello")));
-// 	while (l)
-// 	{
-// 		printf("%s\n",l->content);
-// 		l = l -> next;
-// 	}
-// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:10:36 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/16 12:25:49 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:17:27 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static int	check_cmds(t_commands *cmd)
 				return (1);
 			i++;
 		}
+		ft_free_split(str);
 		head = head->next;
 	}
-	ft_free_split(str);
 	return (0);
 }
 
@@ -56,9 +56,6 @@ static void	check_execute(char *input, t_shell *minishell)
 	if (check)
 	{
 		cmds = create_cmd(input);
-		// printf("node 1: commandName: %s; Node_pointer: %p CommandPointer: %p\n", cmds->command, cmds, cmds->command);
-		// printf("node 2: commandName: %s; Node_pointer: %p CommandPointer: %p\n", cmds->next->command, cmds->next, cmds->next->command);
-		// printf("node 3: commandName: %s; Node_pointer: %p CommandPointer: %p\n", cmds->next->next->command, cmds->next->next, cmds->next->next->command);
 		if (cmds == NULL)
 			(perror("allocation failed..."), exit (1));
 		add_space(cmds);
