@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:26:31 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/24 20:53:24 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/28 22:12:17 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ int	is_file(char *path, t_shell *shell)
 
 int	execution_case(char *cmd_path, t_shell *shell)
 {
-	if (is_directory(shell->all_input->command_name, shell))
+	if (is_directory(shell->all_input->command_name, shell)
+		&& (*shell->all_input->command_name == '.'
+			|| *shell->all_input->command_name == '/'))
 		return (7);
 	if (cmd_path && (*shell->all_input->command_name == '.')
 		&& ((access(shell->all_input->command_name, F_OK | X_OK) == 0))
@@ -96,7 +98,9 @@ int	execution_case(char *cmd_path, t_shell *shell)
 		return (2);
 	else if (!cmd_path
 		&& (access(shell->all_input->command_name, F_OK | X_OK) == 0)
-		&& is_directory(shell->all_input->command_name, shell))
+		&& is_directory(shell->all_input->command_name, shell)
+		&& (*shell->all_input->command_name == '.'
+			|| *shell->all_input->command_name == '/'))
 		return (7);
 	else if (!cmd_path
 		&& (access(shell->all_input->command_name, F_OK | X_OK) == 0)

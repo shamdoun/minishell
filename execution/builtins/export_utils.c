@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:38:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/24 20:55:08 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/28 22:13:09 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ int	unset_syntax_error(char *data)
 			return (1);
 		i++;
 	}
-	if (data[i] == '\'' || data[i] == '=' || (!ft_isalpha(data[i])
-			&& !ft_isdigit(data[i])))
+	if (data[i] && data[i] != '_'
+		&& (data[i] == '\'' || data[i] == '=' || (!ft_isalpha(data[i])
+				&& !ft_isdigit(data[i]))))
 		return (1);
 	return (0);
 }

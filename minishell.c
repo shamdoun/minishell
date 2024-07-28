@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:10:36 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/22 11:17:27 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/28 22:16:02 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// extern volatile sig_atomic_t	g_signal;
-
-void leaks()
-{
-    fclose(gfp);
-    system("leaks minishell");
-    usleep(1000 * 100 *10000);
-}
 
 static int	check_cmds(t_commands *cmd)
 {
@@ -51,7 +42,7 @@ static void	check_execute(char *input, t_shell *minishell)
 {
 	int			check;
 	t_commands	*cmds;
-	
+
 	check = ft_parsing(input);
 	if (check)
 	{
@@ -67,7 +58,6 @@ static void	check_execute(char *input, t_shell *minishell)
 			minishell->all_input = split_cmd(cmds, minishell);
 			if (!minishell->all_input)
 			{
-				
 				(perror("minishell->all_input failed\n"),
 					add_new_status(minishell, 258));
 				return ;
@@ -91,10 +81,6 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
-	gfp = fopen("test/leaks", "w");
-	if (!gfp)
-		perror("");
-	// atexit(leaks);
 	minishell = NULL;
 	init(&minishell, env);
 	handle_all_signals(0);
