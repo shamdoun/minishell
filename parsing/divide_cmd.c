@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 12:13:38 by aessalih          #+#    #+#             */
-/*   Updated: 2024/07/22 10:30:42 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:42:35 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_commands	*create_cmd(char *input)
 	t_var		v;
 	t_commands	*cmd_list;
 
+	cmd_list = NULL;
 	while (*input)
 	{
 		v.j = 0;

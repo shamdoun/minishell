@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:10:36 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/28 22:16:02 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:26:43 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ static int	check_cmds(t_commands *cmd)
 		while (str[i])
 		{
 			if ((!ft_strncmp(str[i], "<<", ft_strlen(str[i]))
-				|| !ft_strncmp(str[i], ">>", ft_strlen(str[i])))
-				&& str[i + 1] && (!ft_strncmp(str[i + 1], "<<", ft_strlen(str[i + 1]))
-				|| !ft_strncmp(str[i + 1], ">>", ft_strlen(str[i + 1]))))
+					|| !ft_strncmp(str[i], ">>", ft_strlen(str[i])))
+				&& str[i + 1] && (!ft_strncmp(str[i + 1],
+						"<<", ft_strlen(str[i + 1]))
+					|| !ft_strncmp(str[i + 1], ">>", ft_strlen(str[i + 1]))))
 				return (1);
 			i++;
 		}
@@ -38,6 +39,32 @@ static int	check_cmds(t_commands *cmd)
 	return (0);
 }
 
+static void	ft_start(char *input, t_shell *minishell)
+{
+	t_commands	*cmds;
+	int			check;
+
+	cmds = create_cmd(input);
+	if (cmds == NULL)
+		(perror("allocation failed..."), exit (1));
+	add_space(cmds);
+	check = check_cmds(cmds);
+	if (check)
+		(add_new_status(minishell, 258), perror("syntax error\n"));
+	else
+	{
+		minishell->all_input = split_cmd(cmds, minishell);
+		if (!minishell->all_input)
+		{
+			(perror("minishell->all_input failed\n"),
+				add_new_status(minishell, 258));
+			return ;
+		}
+		(ft_recover_echo(),
+			execute_input(minishell), ft_hide_ctrl_c());
+	}
+}
+
 static void	check_execute(char *input, t_shell *minishell)
 {
 	int			check;
@@ -45,27 +72,7 @@ static void	check_execute(char *input, t_shell *minishell)
 
 	check = ft_parsing(input);
 	if (check)
-	{
-		cmds = create_cmd(input);
-		if (cmds == NULL)
-			(perror("allocation failed..."), exit (1));
-		add_space(cmds);
-		check = check_cmds(cmds);
-		if (check)
-			(add_new_status(minishell, 258), perror("syntax error\n"));
-		else
-		{
-			minishell->all_input = split_cmd(cmds, minishell);
-			if (!minishell->all_input)
-			{
-				(perror("minishell->all_input failed\n"),
-					add_new_status(minishell, 258));
-				return ;
-			}
-			(ft_recover_echo(),
-				execute_input(minishell), ft_hide_ctrl_c());
-		}
-	}
+		ft_start(input, minishell);
 	else
 	{
 		add_new_status(minishell, 258);

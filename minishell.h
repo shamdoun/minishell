@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/28 22:15:27 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:19:38 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,6 @@
 # include "./gnl/get_next_line.h"
 # include <dirent.h>
 
-FILE*gfp;
-
-// static void *_6malloc(size_t size, int line, const char *file)
-// {
-//     void *ptr = malloc(size);
-//     fprintf(gfp, "['malloc', '%p, %i, '-%s']\n", ptr, line, file);fflush(stdout);
-//     return (ptr);
-// }
-
-// static void _6free(void*ptr , int line, const char *file)
-// {
-//     fprintf(gfp, "['free', '%p, %i, '%s']\n", ptr, line, file);fflush(stdout);
-//     free(ptr);
-// }
-
-// #define malloc(x) _6malloc(x, __LINE__, __FILE__)
-// #define free(x) _6free(x, __LINE__, __FILE__)
 # define FAILED_MALLOC "failure"
 # define WRONG_INPUT "No such file or directory"
 # define POINT_INPUT "minishell: .: filename argument\
@@ -55,12 +38,6 @@ FILE*gfp;
 		No such file or directory\n"
 # define EXPORT_ERR "export: not a valid identifier\n"
 # define UNSET_ERR "minishell: unset: not a valid identifier\n"
-/*
-	<<: 4
-	>>: 2
-	<: 3
-	>: 1
-*/
 
 typedef struct s_arg
 {
@@ -106,17 +83,13 @@ typedef struct shell
 {
 	struct input			*all_input;
 	struct status			*all_status;
-	//should we remove this var
 	struct allocated_data	*all_allocated_data;
 	char					**env;
 	char					cwd[PATH_MAX];
 	char					*r_path;
-	// int						new_shell;
-	// int						env_updated;
 	int						is_expanded;
 }	t_shell;
 
-// to handle norminette errors on split
 typedef struct s_v
 {
 	char	**p;
@@ -124,7 +97,6 @@ typedef struct s_v
 	int		j;
 }	t_v;
 
-// handlig norminette on divide_cmd.c file
 typedef struct s_var
 {
 	int		j;
@@ -139,13 +111,6 @@ typedef struct s_parse_list
 	struct s_parse_list		*next;
 }	t_parse_list;
 
-/*
-	the idea is to parse the commands if it has pipes
-	example: echo "hello" > file.txt | echo "how are you" >> file.txt
-	for the example, the linked list will had two nodes:
-	first node: echo "hello" > file.txt
-	second node: echo "how are you" >> file.txt
-*/
 typedef struct s_commands
 {
 	char				*command;
@@ -201,7 +166,6 @@ size_t		ft_strlen(const char *str);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		execute_input(t_shell *shell);
 void		free_array(char **a);
-// void        print_all_env_vars(char **env);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t		ft_strlen(const char *s);
 char		*ft_strjoin(char *s1, char *s2);
@@ -214,48 +178,33 @@ void		*ft_memmove(void *dst, const void *src, size_t len );
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 int			ft_atoi(const char *str);
 t_file		*ft_lstnew_file(char *file_name, int type, char *delimeter);
-/*---------------ft_free.c---------------*/
 void		ft_free(char **ptr, int last);
 void		free_fail(t_parse_list **list);
 void		free_list(t_commands *list);
 void		ft_free_split(char **ptr);
 void		ft_free_inputlist(t_parse_list **input_list);
-/*---------------ft_free.c---------------*/
 void		free_tokenize(t_input *token);
-/*---------------parsing/ft_parsing.c---------------*/
 int			ft_parsing(char *str);
-/*---------------parsing/divide_cmd.c---------------*/
 t_commands	*create_cmd(char *input);
-/*---------------parsing/parsing_utils.c---------------*/
 int			ft_strchr(const char *s, int c);
-/*---------------parsing/ft_syntax.c---------------*/
 int			ft_checkquotes(t_parse_list *list);
 int			check_operator(char *s);
-/*---------------parsing/ft_addspace.c---------------*/
 void		add_space(t_commands *cmd);
-/*---------------ft_split.c---------------*/
 char		**ft_split(char *s);
-/*---------------parsing/ft_split_cmd.c---------------*/
 t_input		*split_cmd(t_commands *cmd, t_shell *shell);
-/*---------------parsing/ft_split_cmd_utils.c---------------*/
 void		put_delimiter(t_input *nw, char *str);
 void		put_filename(t_input *nw, char *str);
 void		put_cmdname(t_input *nw, char *str);
 char		*remove_quotes(char *str);
 int			ft_isexpanded(char *str);
-/*---------------parsing/ft_split_cmdutils2.c---------------*/
 char		*get_cmdname(char *s, t_shell *shell);
 void		ft_createfile(char *name, t_shell *shell, char *str, t_file **new);
-/*---------------parsing/expand.c---------------*/
 char		*ft_expand(char *cmd, t_shell *shell);
 int			ft_strlenquotes(char *str);
 char		*ft_getname(char *str, t_shell *shell, int len);
-/*---------------parsing/heredoc_expand.c---------------*/
 char		*ft_expand_hd(char *cmd, t_shell *shell);
-/*---------------parsing/expand_utils.c---------------*/
 int			ft_strlenex(char *cmd);
 char		*ft_getname(char *str, t_shell *shell, int len);
-//for signals
 void		handle_ctrl_c_for_child(int sig);
 void		exit_shell(t_shell *shell, t_arg *status, int mode);
 void		remove_env(t_arg *data, t_shell *shell, char ***env, int mode);
@@ -376,4 +325,5 @@ int			is_directory(char *path, t_shell *shell);
 int			other_cases(char *cmd_path, t_shell *shell);
 int			is_file(char *path, t_shell *shell);
 void		reorder_args(t_shell *shell);
+
 #endif
