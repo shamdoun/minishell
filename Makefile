@@ -1,24 +1,5 @@
-NAME = minishell
-CFLAGS = -Wall -Wextra -Werror
-srcs = ./execution/execution.c ./execution/redirection.c ft_lst_add_back.c ft_lstnew.c ft_strlen.c ft_memcpy.c \
-ft_memmove.c ft_strlcat.c ft_strlcpy.c ft_strjoin.c ./execution/builtins/built_ins_utils.c ft_split_v2.c ft_strdup.c ft_atoi.c \
-ft_strncmp.c ./execution/builtins/execute_bin.c ./execution/builtins/change_dir.c ./execution/builtins/echo.c ./execution/builtins/env.c \
-./execution/builtins/exit.c ./execution/builtins/export.c ./execution/builtins/unset.c
-OBJC = ${srcs:.c=.o}
-READLINE= $(shell brew --prefix readline)
-%.o: %.c execution.h
-	${CC} ${CFLAGS} -c $< -o $@
-
-# all: ${NAME}
-
-# ${NAME}: ${OBJC}
-# 	${CC} ${CFLAGS} minishell.c -g -lreadline ${OBJC} -o ${NAME}
-
-# fclean:
-# 	rm -f ${OBJC}
-# 	rm -f ${NAME}
-
-#!!!!!!!!!!!!!!!!!!MAKEFILE FOR TESTING PARSING!!!!!!!!!!!!!!!!!!!!#
+CC= cc
+Flags= -Wall -Wextra -Werror
 
 SRC= ./external_functions/ft_free.c ./external_functions/ft_split.c ./parsing/ft_parsing.c ./parsing/divide_cmd.c parsing/ft_syntax.c parsing/heredoc_expand.c ./external_functions/ft_strchr.c \
 	./external_functions/ft_lst_add_back.c ./external_functions/ft_lstnew.c ./parsing/ft_split_cmd.c ./parsing/ft_addspace.c \
@@ -33,20 +14,17 @@ SRC= ./external_functions/ft_free.c ./external_functions/ft_split.c ./parsing/ft
 	./external_functions/ft_isalpha.c ./external_functions/ft_isdigit.c ./external_functions/ft_substr.c ./external_functions/ft_strtrim.c ./execution/execution_utils.c ./execution/execution_utils_2.c \
 	./execution/signals_utils.c  ./execution/builtins/export_utils.c ./execution/builtins/errors.c ./execution/builtins/execute_bin_utils.c init_utils.c parsing/expand_utils.c parsing/delimiter_utils.c
 
-CC= cc
-Flags=
-
 O_SRC=$(SRC:.c=.o)
 
 NAME= minishell
 
 %.o: %.c
-	$(CC) $(Flags) -c -g $< -o $@ -I $(READLINE)/include
+	$(CC) $(Flags) -c -g $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(Flags) -g -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
+	$(CC) $(Flags) -g -lreadline $(O_SRC) -o $(NAME)
 
 clean:
 	rm -f $(O_SRC)

@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:38:11 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/28 22:13:09 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/30 23:05:20 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	export_syntax_error(char *data)
 		return (0);
 	while (data[i] && data[i + 1] && data[i + 1] != '=')
 	{
-		if (data[i] != '_' && (!ft_isalpha(data[i]) && !ft_isdigit(data[i]))
+		if ((data[i] != '_' && (!ft_isalpha(data[i]) && !ft_isdigit(data[i])))
 			|| (data[i] == '\''))
 			return (1);
 		i++;
@@ -66,7 +66,7 @@ int	export_syntax_error(char *data)
 	{
 		if (data[i] == '+' && data[i + 1] == '=')
 			return (0);
-		else if (data[i] == '+' && data[i + 1] != '=' || data[i] == '\''
+		else if (((data[i] == '+' && data[i + 1] != '=') || data[i] == '\'')
 			|| (data[i] != '_' && !ft_isalpha(data[i]) && !ft_isdigit(data[i])))
 			return (1);
 	}

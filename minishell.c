@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:10:36 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/29 08:26:43 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/30 23:11:09 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static void	ft_start(char *input, t_shell *minishell)
 static void	check_execute(char *input, t_shell *minishell)
 {
 	int			check;
-	t_commands	*cmds;
 
 	check = ft_parsing(input);
 	if (check)
