@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:10:36 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/30 23:11:09 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/07/31 19:48:12 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ static void	ft_start(char *input, t_shell *minishell)
 
 	cmds = create_cmd(input);
 	if (cmds == NULL)
-		(perror("allocation failed..."), exit (1));
+	{
+		perror("allocation failed...");
+		return ;
+	}
 	add_space(cmds);
 	check = check_cmds(cmds);
 	if (check)
@@ -56,7 +59,7 @@ static void	ft_start(char *input, t_shell *minishell)
 		minishell->all_input = split_cmd(cmds, minishell);
 		if (!minishell->all_input)
 		{
-			(perror("minishell->all_input failed\n"),
+			(perror("syntax error\n"),
 				add_new_status(minishell, 258));
 			return ;
 		}

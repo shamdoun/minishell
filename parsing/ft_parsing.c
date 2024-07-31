@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:18:45 by aessalih          #+#    #+#             */
-/*   Updated: 2024/07/22 10:24:31 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/07/31 19:32:27 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ static void	create_new_node(t_parse_list **list, char c, int where)
 	ft_lstadd_back(list, new);
 }
 
-// the idea is puting every charachter inside a node in a linked list
 int	ft_parsing(char *str)
 {
 	int				i;

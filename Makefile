@@ -18,13 +18,13 @@ O_SRC=$(SRC:.c=.o)
 
 NAME= minishell
 
-%.o: %.c
-	$(CC) $(Flags) -c -g $< -o $@
+%.o: %.c minishell.h
+	$(CC) $(Flags) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(Flags) -g -lreadline $(O_SRC) -o $(NAME)
+	$(CC) $(Flags) -lreadline $(O_SRC) -o $(NAME)
 
 clean:
 	rm -f $(O_SRC)
